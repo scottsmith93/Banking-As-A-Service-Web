@@ -13,13 +13,14 @@ import { ROUTES } from "../routes";
 export default function MyProfilePage() {
   const navigate = useNavigate();
   const { activePlanId, setActivePlanId } = useSubscription();
-  const { setMode } = useNavMode();
+  const { mode, setMode } = useNavMode();
   const defaultPlanId = subscriptionPlans.find((plan) => plan.isActive)?.id ?? subscriptionPlans[0].id;
   const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
   const [upgradeDialogPlanId, setUpgradeDialogPlanId] = useState<string | null>(null);
 
   const selectedPlan = subscriptionPlans.find((plan) => plan.id === selectedPlanId) ?? null;
   const upgradeDialogPlan = subscriptionPlans.find((plan) => plan.id === upgradeDialogPlanId) ?? null;
+  const currentPlanId = mode === "portal" ? "portal" : activePlanId;
   const monthlyCost = selectedPlan?.priceAmount ?? 0;
   const vatAmount = Math.round(monthlyCost * SUBSCRIPTION_VAT_RATE * 100) / 100;
 
@@ -37,7 +38,7 @@ export default function MyProfilePage() {
 
         <Box className="subscriptionPlans">
           {subscriptionPlans.map((plan) => {
-            const state = plan.id === activePlanId ? "current" : plan.id === selectedPlanId ? "selected" : "default";
+            const state = plan.id === currentPlanId ? "current" : plan.id === selectedPlanId ? "selected" : "default";
 
             return (
               <SubscriptionPlanCard
@@ -79,10 +80,10 @@ export default function MyProfilePage() {
           }
           setSelectedPlanId(null);
           setUpgradeDialogPlanId(null);
-          // Scale/Control unlock Operations-mode features (inventory, stock
+          // Scale/Control unlock Portal-mode features (inventory, stock
           // tracking, manufacturing) — land back on the Dashboard in that
           // mode so the new "Getting started" tab is right there.
-          setMode("operations");
+          setMode("portal");
           navigate(ROUTES.home);
         }}
       />

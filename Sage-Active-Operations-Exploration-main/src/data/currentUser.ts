@@ -3,5 +3,5 @@
 export const currentUser = {
   name: "Nadia Benhamed",
   initials: "N",
-  role: "Accounting assistant",
+  role: "Client",
 };

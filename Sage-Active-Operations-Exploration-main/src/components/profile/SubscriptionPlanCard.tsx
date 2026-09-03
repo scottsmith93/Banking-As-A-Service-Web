@@ -74,7 +74,7 @@ export default function SubscriptionPlanCard({
 
         <Box className="subscriptionPlanCard__priceBox">
           <Typography variant="p" as="p" className="subscriptionPlanCard__price">
-            {formatEur(plan.priceAmount)} per month
+            {plan.priceLabel ?? `${formatEur(plan.priceAmount)} per month`}
           </Typography>
         </Box>
 

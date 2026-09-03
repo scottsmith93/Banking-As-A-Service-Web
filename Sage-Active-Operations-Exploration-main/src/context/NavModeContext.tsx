@@ -5,7 +5,10 @@ const STORAGE_KEY = "nav-mode";
 
 function readStoredMode(): NavMode {
   if (typeof window === "undefined") return "essentials";
-  return window.localStorage.getItem(STORAGE_KEY) === "operations" ? "operations" : "essentials";
+  return window.localStorage.getItem(STORAGE_KEY) === "portal" ||
+    window.localStorage.getItem(STORAGE_KEY) === "operations"
+    ? "portal"
+    : "essentials";
 }
 
 export function NavModeProvider({ children }: { children: ReactNode }) {
@@ -15,7 +18,7 @@ export function NavModeProvider({ children }: { children: ReactNode }) {
     window.localStorage.setItem(STORAGE_KEY, mode);
   }, [mode]);
 
-  const toggleMode = () => setMode((current) => (current === "essentials" ? "operations" : "essentials"));
+  const toggleMode = () => setMode((current) => (current === "essentials" ? "portal" : "essentials"));
 
   return (
     <NavModeContext.Provider value={{ mode, setMode, toggleMode }}>

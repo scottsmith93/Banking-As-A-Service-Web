@@ -3,12 +3,12 @@ import { useNavMode } from "../context/useNavMode";
 
 const MODE_LABEL = {
   essentials: "Essentials",
-  operations: "Operations",
+  portal: "Portal",
 } as const;
 
 export default function NavModeToggle() {
   const { mode, toggleMode } = useNavMode();
-  const nextMode = mode === "essentials" ? "operations" : "essentials";
+  const nextMode = mode === "essentials" ? "portal" : "essentials";
 
   return (
     <button

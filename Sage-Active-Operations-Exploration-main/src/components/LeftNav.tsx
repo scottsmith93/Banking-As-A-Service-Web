@@ -4,7 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Icon from "carbon-react/lib/components/icon";
 import Portrait from "carbon-react/lib/components/portrait";
 import { PRIMARY_NAV_ITEMS, type PrimaryNavItem, type SubmenuLink } from "../data/primaryNav";
-import { OPERATIONS_NAV_ITEMS } from "../data/operationsNav";
 import { useNavMode } from "../context/useNavMode";
 import { currentUser } from "../data/currentUser";
 import { ROUTES } from "../routes";
@@ -21,11 +20,70 @@ type FlyoutLink = {
   key: string;
   label: string;
   onClick: () => void;
+  selected?: boolean;
 };
 
 type FlyoutContent = {
   groups: FlyoutLink[][];
 };
+
+const ADDITIONAL_NAV_ITEMS: PrimaryNavItem[] = [
+  {
+    id: "sales-invoices",
+    label: "Sale invoices",
+    iconType: "document_right_align",
+    path: ROUTES.sales.invoices,
+    hasSubmenu: false,
+    isActive: (pathname) => pathname === ROUTES.sales.invoices,
+  },
+  {
+    id: "file-upload",
+    label: "File upload",
+    iconType: "upload",
+    path: ROUTES.fileUpload,
+    hasSubmenu: false,
+    isActive: () => false,
+  },
+  {
+    id: "projects",
+    label: "Projects",
+    iconType: "business",
+    path: ROUTES.projects,
+    hasSubmenu: false,
+    isActive: (pathname) => pathname === ROUTES.projects,
+  },
+  {
+    id: "financial-documents",
+    label: "Financial documents",
+    iconType: "document_vertical_lines",
+    path: ROUTES.financialDocuments,
+    hasSubmenu: false,
+    isActive: (pathname) => pathname === ROUTES.financialDocuments,
+  },
+  {
+    id: "year-end-meeting",
+    label: "Year end meeting",
+    iconType: "calendar",
+    path: ROUTES.yearEndMeeting,
+    hasSubmenu: false,
+    isActive: (pathname) => pathname === ROUTES.yearEndMeeting,
+  },
+  {
+    id: "conversations",
+    label: "Conversations",
+    iconType: "chat",
+    path: ROUTES.conversations,
+    hasSubmenu: false,
+    isActive: (pathname) => pathname === ROUTES.conversations,
+  },
+  {
+    id: "ai-advisor",
+    label: "AI Advisor",
+    iconType: "lightbulb_on",
+    hasSubmenu: false,
+    isActive: () => false,
+  },
+];
 
 function isLinkActive(pathname: string, path?: string) {
   if (!path) return false;
@@ -153,8 +211,15 @@ export default function LeftNav() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
   const { mode } = useNavMode();
-  const navItems = mode === "operations" ? OPERATIONS_NAV_ITEMS : PRIMARY_NAV_ITEMS;
+  const navItems =
+    mode === "essentials"
+      ? PRIMARY_NAV_ITEMS
+      : [
+          ...PRIMARY_NAV_ITEMS.filter((item) => item.id === "dashboard"),
+          ...ADDITIONAL_NAV_ITEMS.filter((item) => item.id !== "sales-invoices"),
+        ];
   const [isCollapsed, setIsCollapsed] = useState(false);
+  const [isAiAdvisorOpen, setIsAiAdvisorOpen] = useState(false);
   const [expandedKeys, setExpandedKeys] = useState<Set<string>>(() =>
     initialExpandedKeys(pathname, navItems),
   );
@@ -172,6 +237,7 @@ export default function LeftNav() {
 
   const [footerFlyout, setFooterFlyout] = useState<FooterFlyoutId>(null);
   const [anchor, setAnchor] = useState<FlyoutAnchor | null>(null);
+  const [language, setLanguage] = useState<"English" | "French">("English");
 
   const closeFooterFlyout = () => setFooterFlyout(null);
 
@@ -208,6 +274,26 @@ export default function LeftNav() {
           [
             { key: "my-profile", label: "My profile", onClick: () => go(ROUTES.myProfile) },
             { key: "settings", label: "Settings", onClick: closeFooterFlyout },
+          ],
+          [
+            {
+              key: "language-english",
+              label: "English",
+              selected: language === "English",
+              onClick: () => {
+                setLanguage("English");
+                closeFooterFlyout();
+              },
+            },
+            {
+              key: "language-french",
+              label: "French",
+              selected: language === "French",
+              onClick: () => {
+                setLanguage("French");
+                closeFooterFlyout();
+              },
+            },
           ],
           [{ key: "switch-business", label: "Switch business", onClick: closeFooterFlyout }],
         ],
@@ -264,23 +350,20 @@ export default function LeftNav() {
           const active =
             item.isActive(pathname) &&
             (!isExpanded || !anyDescendantActive(pathname, item.submenu));
-          // Operations mode adds these modules on top of what Essentials
-          // already has (see operationsNav.ts) — flag them as new so users
-          // coming out of the subscription flow can spot what just unlocked.
-          // Explicitly gated on mode (not just item.id) so this can never
-          // show in Essentials, even if these ids are reused there later.
-          const isNewModule =
-            mode === "operations" &&
-            (item.id === "items" || item.id === "inventory" || item.id === "manufacturing");
-
           return (
             <li key={item.id} className="leftNav__itemWrap">
               <button
                 type="button"
                 className={`leftNav__item${active ? " leftNav__item--active" : ""}`}
                 aria-current={active ? "page" : undefined}
-                aria-expanded={hasSubmenu ? isExpanded : undefined}
+                aria-expanded={item.id === "ai-advisor" ? isAiAdvisorOpen : hasSubmenu ? isExpanded : undefined}
+                aria-haspopup={item.id === "ai-advisor" ? "dialog" : undefined}
                 onClick={(e) => {
+                  if (item.id === "ai-advisor") {
+                    closeFooterFlyout();
+                    setIsAiAdvisorOpen(true);
+                    return;
+                  }
                   if (hasSubmenu && (e.target as HTMLElement).closest(".leftNav__itemCaret")) {
                     toggleExpanded(item.id);
                     return;
@@ -294,7 +377,6 @@ export default function LeftNav() {
               >
                 <Icon type={item.iconType} className="leftNav__itemIcon" aria-hidden />
                 <span className="leftNav__itemLabel">{item.label}</span>
-                {isNewModule && <span className="leftNav__itemBadge">NEW</span>}
                 {hasSubmenu && (
                   <Icon
                     type="caret_right"
@@ -417,14 +499,61 @@ export default function LeftNav() {
                       key={link.key}
                       type="button"
                       className="leftNav__flyoutItem"
+                      aria-pressed={link.selected}
                       onClick={link.onClick}
                     >
                       {link.label}
+                      {link.selected && (
+                        <span className="leftNav__flyoutSelectedPill">
+                          {language === "French" ? "Sélectionné" : "Selected"}
+                        </span>
+                      )}
                     </button>
                   ))}
                 </div>
               ))}
             </div>
+          </>,
+          document.body,
+        )}
+
+      {isAiAdvisorOpen &&
+        createPortal(
+          <>
+            <button
+              type="button"
+              className="aiAdvisor__backdrop"
+              aria-label="Close AI Advisor"
+              onClick={() => setIsAiAdvisorOpen(false)}
+            />
+            <aside
+              className="aiAdvisor__panel"
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="ai-advisor-title"
+            >
+              <div className="aiAdvisor__header">
+                <div>
+                  <p className="aiAdvisor__eyebrow">Sage intelligence</p>
+                  <h2 id="ai-advisor-title">AI Advisor</h2>
+                </div>
+                <button
+                  type="button"
+                  className="aiAdvisor__close"
+                  aria-label="Close AI Advisor"
+                  onClick={() => setIsAiAdvisorOpen(false)}
+                >
+                  <Icon type="cross" aria-hidden />
+                </button>
+              </div>
+              <div className="aiAdvisor__body">
+                <div className="aiAdvisor__icon" aria-hidden>
+                  <Icon type="lightbulb_on" />
+                </div>
+                <h3>How can I help?</h3>
+                <p>Ask questions about your business and get useful guidance from Sage.</p>
+              </div>
+            </aside>
           </>,
           document.body,
         )}

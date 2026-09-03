@@ -105,7 +105,7 @@ export const reportsSections: DirectorySection[] = [
         id: "file-management",
         title: "File management",
         description: "Upload and manage files for your business.",
-        href: "#file-management",
+        href: "/file-upload",
       },
     ],
   },

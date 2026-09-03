@@ -11,12 +11,24 @@ export type SubscriptionPlan = {
   userRoleBullets: string[];
   /** Monthly cost in EUR, excluding VAT. */
   priceAmount: number;
+  priceLabel?: string;
 };
 
 // General VAT rate applied across the app's mock data (see productsAndServices.ts).
 export const SUBSCRIPTION_VAT_RATE = 0.21;
 
 export const subscriptionPlans: SubscriptionPlan[] = [
+  {
+    id: "portal",
+    name: "Portal",
+    isActive: false,
+    description:
+      "A lightweight business overview with file sharing capabilities to support communication between Client and Accountant.",
+    allowanceBullets: ["1 user"],
+    userRoleBullets: ["1 Admin", "1 Accountant"],
+    priceAmount: 0,
+    priceLabel: "Free with GE",
+  },
   {
     id: "starter",
     name: "Starter",

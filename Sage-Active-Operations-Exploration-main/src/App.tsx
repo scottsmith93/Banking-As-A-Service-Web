@@ -11,6 +11,8 @@ import DesignPlaygroundPage from "./pages/DesignPlaygroundPage";
 import CarbonComponentsPage from "./pages/CarbonComponentsPage";
 import DashboardPage from "./pages/DashboardPage";
 import ReportsPage from "./pages/reports/ReportsPage";
+import FileUploadPage from "./pages/reports/FileUploadPage";
+import ProjectsPage from "./pages/ProjectsPage";
 import SettingsPage from "./pages/settings/SettingsPage";
 import MyProfilePage from "./pages/MyProfilePage";
 import InvoiceDetailPage from "./pages/InvoiceDetailPage";
@@ -62,6 +64,10 @@ import { ROUTES } from "./routes";
 // generically via PlaceholderPage rather than one bespoke page component
 // each. Update here (and in src/data/operationsNav.ts) as real pages land.
 const PLACEHOLDER_ROUTES: { path: string; title: string; section: string }[] = [
+  { path: ROUTES.financialDocuments, title: "Financial documents", section: "Business" },
+  { path: ROUTES.yearEndMeeting, title: "Year end meeting", section: "Business" },
+  { path: ROUTES.conversations, title: "Conversations", section: "Business" },
+
   { path: ROUTES.sales.orderMassAllocation, title: "Sales order mass allocation", section: "Sales" },
   { path: ROUTES.sales.deliveryNoteMassShipment, title: "Mass shipment creation", section: "Sales" },
   { path: ROUTES.sales.invoiceMassCreation, title: "Mass invoice creation", section: "Sales" },
@@ -267,6 +273,8 @@ export default function App() {
             />
             <Route path={ROUTES.compliance.taxReturns} element={<TaxReturnsPage />} />
             <Route path={ROUTES.reports} element={<ReportsPage />} />
+            <Route path={ROUTES.fileUpload} element={<FileUploadPage />} />
+            <Route path={ROUTES.projects} element={<ProjectsPage />} />
             <Route
               path="/example-page-9"
               element={<Navigate to={ROUTES.reports} replace />}

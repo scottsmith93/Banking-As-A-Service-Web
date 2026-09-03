@@ -10,7 +10,6 @@ import {
 } from "carbon-react/lib/components/tabs/__next__";
 import DashboardCopilotCards from "../components/dashboard/DashboardCopilotCards";
 import DashboardGettingStarted from "../components/dashboard/DashboardGettingStarted";
-import DashboardInventoryOverview from "../components/dashboard/DashboardInventoryOverview";
 import DashboardKpiCards from "../components/dashboard/DashboardKpiCards";
 import { useNavMode } from "../context/useNavMode";
 import { useSubscription } from "../context/useSubscription";
@@ -21,9 +20,9 @@ export default function DashboardPage() {
   const { mode } = useNavMode();
   const { activePlanId } = useSubscription();
   const [showGettingStarted, setShowGettingStarted] = useState(true);
-  const isOperations = mode === "operations";
+  const isPortal = mode === "portal";
   const hasGettingStartedTasks = (GETTING_STARTED_TASKS[activePlanId]?.length ?? 0) > 0;
-  const showGettingStartedTab = isOperations && hasGettingStartedTasks && showGettingStarted;
+  const showGettingStartedTab = isPortal && hasGettingStartedTasks && showGettingStarted;
 
   return (
     <Box className="pageContent dashboardPage">
@@ -39,7 +38,7 @@ export default function DashboardPage() {
       <DashboardCopilotCards />
 
       <Box className="dashboardPage__tabs">
-        {isOperations && hasGettingStartedTasks && (
+        {isPortal && hasGettingStartedTasks && (
           <Box className="dashboardPage__gettingStartedToggle" display="flex" justifyContent="flex-end">
             <Switch
               checked={showGettingStarted}
@@ -51,10 +50,8 @@ export default function DashboardPage() {
           </Box>
         )}
 
-        {/* Remount on mode/tab-visibility change: Tabs tracks the active tab
-            id internally, and the Getting started/Inventory tabs only exist
-            in Operations mode — switching modes or toggling them off would
-            otherwise leave Tabs pointing at an id with no matching panel. */}
+        {/* Remount when the Getting started tab changes so Tabs never points
+            at an id with no matching panel. */}
         <Tabs key={`${mode}-${showGettingStartedTab}`}>
           <TabList ariaLabel="Dashboard sections">
             {showGettingStartedTab && (
@@ -66,9 +63,6 @@ export default function DashboardPage() {
               controls="sales-purchases-panel"
               label="Sales and purchases"
             />
-            {isOperations && (
-              <Tab id="inventory-tab" controls="inventory-panel" label="Inventory" />
-            )}
             <Tab id="whats-new-tab" controls="whats-new-panel" label="What's new" />
           </TabList>
 
@@ -89,12 +83,6 @@ export default function DashboardPage() {
               </Typography>
             </Box>
           </TabPanel>
-
-          {isOperations && (
-            <TabPanel id="inventory-panel" tabId="inventory-tab">
-              <DashboardInventoryOverview />
-            </TabPanel>
-          )}
 
           <TabPanel id="whats-new-panel" tabId="whats-new-tab">
             <Box className="dashboardTabPlaceholder">

@@ -65,7 +65,7 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   },
   {
     id: "products-and-services",
-    label: "Items",
+    label: "Products and services",
     iconType: "business",
     hasSubmenu: true,
     submenu: [

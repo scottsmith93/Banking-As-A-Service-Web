@@ -13,7 +13,14 @@ export type PrimaryNavId =
   | "accounting"
   | "compliance"
   | "reports"
-  | "settings";
+  | "settings"
+  | "sales-invoices"
+  | "file-upload"
+  | "projects"
+  | "financial-documents"
+  | "year-end-meeting"
+  | "conversations"
+  | "ai-advisor";
 
 export const ROUTES = {
   home: "/",
@@ -114,5 +121,10 @@ export const ROUTES = {
   },
   settings: "/settings",
   reports: "/reports",
+  fileUpload: "/file-upload",
+  projects: "/projects",
+  financialDocuments: "/financial-documents",
+  yearEndMeeting: "/year-end-meeting",
+  conversations: "/conversations",
   myProfile: "/my-profile",
 } as const;

@@ -1,6 +1,6 @@
 import { createContext } from "react";
 
-export type NavMode = "essentials" | "operations";
+export type NavMode = "essentials" | "portal";
 
 export type NavModeContextValue = {
   mode: NavMode;

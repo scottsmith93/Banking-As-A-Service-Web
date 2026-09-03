@@ -1,0 +1,14 @@
+[build]
+  # Build settings are intentionally not specified here.
+  # This file exists primarily to attach Edge Functions to routes.
+
+# Client-side routes (React Router): serve the SPA shell when no static file matches.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[edge_functions]]
+  function = "basic-auth"
+  path = "/*"
+

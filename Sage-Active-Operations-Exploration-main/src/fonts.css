@@ -1,0 +1,37 @@
+@import url("@sage/design-tokens/assets/fonts/sageui.css");
+
+@font-face {
+  font-family: "Sage UI";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: local("Sage UI Regular"), local("SageUI-Regular"),
+    url("@sage/design-tokens/assets/fonts/sageui-regular.woff2") format("woff2"),
+    url("@sage/design-tokens/assets/fonts/sageui-regular.woff") format("woff"),
+    url("@sage/design-tokens/assets/fonts/sageui-regular.ttf") format("truetype"),
+    url("@sage/design-tokens/assets/fonts/sageui-regular.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Sage UI";
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: local("Sage UI Medium"), local("SageUI-Medium"),
+    url("@sage/design-tokens/assets/fonts/sageui-medium.woff2") format("woff2"),
+    url("@sage/design-tokens/assets/fonts/sageui-medium.woff") format("woff"),
+    url("@sage/design-tokens/assets/fonts/sageui-medium.ttf") format("truetype"),
+    url("@sage/design-tokens/assets/fonts/sageui-medium.otf") format("opentype");
+}
+
+@font-face {
+  font-family: "Sage UI";
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: local("Sage UI Bold"), local("SageUI-Bold"),
+    url("@sage/design-tokens/assets/fonts/sageui-bold.woff2") format("woff2"),
+    url("@sage/design-tokens/assets/fonts/sageui-bold.woff") format("woff"),
+    url("@sage/design-tokens/assets/fonts/sageui-bold.ttf") format("truetype"),
+    url("@sage/design-tokens/assets/fonts/sageui-bold.otf") format("opentype");
+}

@@ -1,0 +1,110 @@
+import { useState } from "react";
+import Box from "carbon-react/lib/components/box";
+import Typography from "carbon-react/lib/components/typography";
+import Switch from "carbon-react/lib/components/switch";
+import {
+  Tab,
+  TabList,
+  TabPanel,
+  Tabs,
+} from "carbon-react/lib/components/tabs/__next__";
+import DashboardCopilotCards from "../components/dashboard/DashboardCopilotCards";
+import DashboardGettingStarted from "../components/dashboard/DashboardGettingStarted";
+import DashboardInventoryOverview from "../components/dashboard/DashboardInventoryOverview";
+import DashboardKpiCards from "../components/dashboard/DashboardKpiCards";
+import { useNavMode } from "../context/useNavMode";
+import { useSubscription } from "../context/useSubscription";
+import { dashboardGreeting } from "../data/dashboard";
+import { GETTING_STARTED_TASKS } from "../data/dashboardGettingStarted";
+
+export default function DashboardPage() {
+  const { mode } = useNavMode();
+  const { activePlanId } = useSubscription();
+  const [showGettingStarted, setShowGettingStarted] = useState(true);
+  const isOperations = mode === "operations";
+  const hasGettingStartedTasks = (GETTING_STARTED_TASKS[activePlanId]?.length ?? 0) > 0;
+  const showGettingStartedTab = isOperations && hasGettingStartedTasks && showGettingStarted;
+
+  return (
+    <Box className="pageContent dashboardPage">
+      <Box className="dashboardPage__greeting">
+        <Typography variant="h1" as="h1" className="dashboardPage__greetingTitle">
+          Hello {dashboardGreeting.name},
+        </Typography>
+        <Typography variant="p" as="p" className="dashboardPage__greetingSubtitle">
+          {dashboardGreeting.subtitle}
+        </Typography>
+      </Box>
+
+      <DashboardCopilotCards />
+
+      <Box className="dashboardPage__tabs">
+        {isOperations && hasGettingStartedTasks && (
+          <Box className="dashboardPage__gettingStartedToggle" display="flex" justifyContent="flex-end">
+            <Switch
+              checked={showGettingStarted}
+              onChange={(event) => setShowGettingStarted(event.target.checked)}
+              label="Show 'Getting started' tab"
+              labelInline
+              size="small"
+            />
+          </Box>
+        )}
+
+        {/* Remount on mode/tab-visibility change: Tabs tracks the active tab
+            id internally, and the Getting started/Inventory tabs only exist
+            in Operations mode — switching modes or toggling them off would
+            otherwise leave Tabs pointing at an id with no matching panel. */}
+        <Tabs key={`${mode}-${showGettingStartedTab}`}>
+          <TabList ariaLabel="Dashboard sections">
+            {showGettingStartedTab && (
+              <Tab id="getting-started-tab" controls="getting-started-panel" label="Getting started" />
+            )}
+            <Tab id="accounting-tab" controls="accounting-panel" label="Accounting" />
+            <Tab
+              id="sales-purchases-tab"
+              controls="sales-purchases-panel"
+              label="Sales and purchases"
+            />
+            {isOperations && (
+              <Tab id="inventory-tab" controls="inventory-panel" label="Inventory" />
+            )}
+            <Tab id="whats-new-tab" controls="whats-new-panel" label="What's new" />
+          </TabList>
+
+          {showGettingStartedTab && (
+            <TabPanel id="getting-started-panel" tabId="getting-started-tab">
+              <DashboardGettingStarted activePlanId={activePlanId} />
+            </TabPanel>
+          )}
+
+          <TabPanel id="accounting-panel" tabId="accounting-tab">
+            <DashboardKpiCards />
+          </TabPanel>
+
+          <TabPanel id="sales-purchases-panel" tabId="sales-purchases-tab">
+            <Box className="dashboardTabPlaceholder">
+              <Typography variant="p" as="p">
+                Sales and purchases indicators will appear here.
+              </Typography>
+            </Box>
+          </TabPanel>
+
+          {isOperations && (
+            <TabPanel id="inventory-panel" tabId="inventory-tab">
+              <DashboardInventoryOverview />
+            </TabPanel>
+          )}
+
+          <TabPanel id="whats-new-panel" tabId="whats-new-tab">
+            <Box className="dashboardTabPlaceholder">
+              <Typography variant="p" as="p">
+                Product updates and announcements will appear here.
+              </Typography>
+            </Box>
+          </TabPanel>
+        </Tabs>
+      </Box>
+    </Box>
+  );
+}

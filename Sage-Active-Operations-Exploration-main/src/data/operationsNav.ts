@@ -1,0 +1,185 @@
+import { ROUTES } from "../routes";
+import type { PrimaryNavItem } from "./primaryNav";
+
+// "Operations" mode — a richer, ERP-style information architecture that
+// layers new modules (Items, Inventory, Manufacturing) and deeper
+// sub-flows on top of the same pages "Essentials" mode already has.
+export const OPERATIONS_NAV_ITEMS: PrimaryNavItem[] = [
+  {
+    id: "dashboard",
+    label: "Dashboard",
+    iconType: "boxed_shapes",
+    path: ROUTES.home,
+    hasSubmenu: false,
+    isActive: (pathname) => pathname === ROUTES.home,
+  },
+  {
+    id: "sales",
+    label: "Sales",
+    iconType: "chart_bar_arrow_up",
+    hasSubmenu: true,
+    submenu: [
+      { label: "Sales quotes", path: ROUTES.sales.quotes },
+      {
+        label: "Sales orders",
+        path: ROUTES.sales.orders,
+        children: [{ label: "Sales order mass allocation", path: ROUTES.sales.orderMassAllocation }],
+      },
+      {
+        label: "Sales delivery notes",
+        path: ROUTES.sales.deliveryNotes,
+        children: [{ label: "Mass shipment creation", path: ROUTES.sales.deliveryNoteMassShipment }],
+      },
+      {
+        label: "Sales invoices",
+        path: ROUTES.sales.invoices,
+        children: [
+          { label: "Mass invoice creation", path: ROUTES.sales.invoiceMassCreation },
+          { label: "Recurring invoices", path: ROUTES.sales.recurringInvoices },
+        ],
+      },
+      { label: "Sales receipts", path: ROUTES.sales.receipts },
+      {
+        label: "Sales credit notes",
+        path: ROUTES.sales.creditNotes,
+        children: [{ label: "Sales return requests", path: ROUTES.sales.creditNoteReturnRequests }],
+      },
+    ],
+    isActive: (pathname) => pathname.startsWith("/sales"),
+  },
+  {
+    id: "purchases",
+    label: "Purchases",
+    iconType: "cart",
+    hasSubmenu: true,
+    submenu: [
+      { label: "Purchase requisition", path: ROUTES.purchases.requisition },
+      {
+        label: "Purchase order",
+        path: ROUTES.purchases.orders,
+        children: [{ label: "Purchase order planning", path: ROUTES.purchases.orderPlanning }],
+      },
+      { label: "Purchase invoices", path: ROUTES.purchases.invoices },
+      { label: "Purchase receipts", path: ROUTES.purchases.receipts },
+      { label: "Purchase credit notes", path: ROUTES.purchases.creditNotes },
+      { label: "Purchase returns", path: ROUTES.purchases.returns },
+    ],
+    isActive: (pathname) => pathname.startsWith("/purchases"),
+  },
+  {
+    id: "contacts",
+    label: "Contacts",
+    iconType: "people",
+    hasSubmenu: true,
+    submenu: [
+      { label: "Customers", path: ROUTES.contacts.customers },
+      { label: "Suppliers", path: ROUTES.contacts.suppliers },
+      { label: "Employees", path: ROUTES.contacts.employees },
+    ],
+    isActive: (pathname) => pathname.startsWith("/contacts"),
+  },
+  {
+    id: "items",
+    label: "Items",
+    iconType: "job_seeked",
+    hasSubmenu: true,
+    submenu: [
+      { label: "Items", path: ROUTES.productsAndServices.catalog },
+      { label: "Price lists", path: ROUTES.productsAndServices.priceLists },
+      { label: "Discount groups", path: ROUTES.productsAndServices.discountGroups },
+    ],
+    isActive: (pathname) => pathname.startsWith("/products-and-services"),
+  },
+  {
+    id: "inventory",
+    label: "Inventory",
+    iconType: "files_leaning",
+    hasSubmenu: true,
+    submenu: [
+      { label: "Location", path: ROUTES.inventory.locations },
+      { label: "Stock data", path: ROUTES.inventory.stockData },
+      { label: "Stock receipt", path: ROUTES.inventory.stockReceipt },
+      { label: "Stock adjustment", path: ROUTES.inventory.stockAdjustment },
+      { label: "Stock issue", path: ROUTES.inventory.stockIssue },
+      { label: "Stock transfer", path: ROUTES.inventory.stockTransfer },
+      { label: "Stock value change", path: ROUTES.inventory.stockValueChange },
+      { label: "Valuation", path: ROUTES.inventory.valuation },
+      { label: "Stock count", path: ROUTES.inventory.stockCount },
+      { label: "Reordering", path: ROUTES.inventory.reordering },
+      { label: "Stock inquiries", path: ROUTES.inventory.stockInquiries },
+    ],
+    isActive: (pathname) => pathname.startsWith("/inventory"),
+  },
+  {
+    id: "manufacturing",
+    label: "Manufacturing",
+    iconType: "factory",
+    hasSubmenu: true,
+    submenu: [
+      {
+        label: "Work order",
+        path: ROUTES.manufacturing.workOrder,
+        children: [{ label: "Operations tab", path: ROUTES.manufacturing.workOrderOperationsTab }],
+      },
+      { label: "Work order planning", path: ROUTES.manufacturing.workOrderPlanning },
+      { label: "Work order mass allocation", path: ROUTES.manufacturing.workOrderMassAllocation },
+      { label: "Production tracking", path: ROUTES.manufacturing.productionTracking },
+      { label: "Material tracking", path: ROUTES.manufacturing.materialTracking },
+      { label: "Time tracking", path: ROUTES.manufacturing.timeTracking },
+      { label: "Manufacturing inquiries", path: ROUTES.manufacturing.inquiries },
+    ],
+    isActive: (pathname) => pathname.startsWith("/manufacturing"),
+  },
+  {
+    id: "banking",
+    label: "Banking",
+    iconType: "bank",
+    hasSubmenu: true,
+    submenu: [
+      { label: "Banking", path: ROUTES.banking.overview },
+      { label: "Bank movements", path: ROUTES.banking.bankMovements },
+    ],
+    isActive: (pathname) => pathname.startsWith("/banking"),
+  },
+  {
+    id: "accounting",
+    label: "Accounting",
+    iconType: "filter_new",
+    hasSubmenu: true,
+    submenu: [
+      { label: "Journal entries", path: ROUTES.accounting.journalEntries },
+      { label: "Accounting matching", path: ROUTES.accounting.matching },
+      { label: "Closing", path: ROUTES.accounting.closing },
+      { label: "Fixed assets", path: ROUTES.accounting.fixedAssets },
+      { label: "Fixed asset transactions", path: ROUTES.accounting.fixedAssetTransactions },
+    ],
+    isActive: (pathname) => pathname.startsWith("/accounting"),
+  },
+  {
+    id: "compliance",
+    label: "Compliance",
+    iconType: "euro",
+    hasSubmenu: true,
+    submenu: [
+      { label: "Tax returns", path: ROUTES.compliance.taxReturns },
+      { label: "E-reportings", path: ROUTES.compliance.eReporting },
+    ],
+    isActive: (pathname) => pathname.startsWith("/compliance"),
+  },
+  {
+    id: "reports",
+    label: "Reports",
+    iconType: "document_right_align",
+    hasSubmenu: true,
+    submenu: [{ label: "Reports home", path: ROUTES.reports }],
+    isActive: (pathname) => pathname.startsWith("/reports"),
+  },
+  {
+    id: "settings",
+    label: "Settings",
+    iconType: "settings",
+    hasSubmenu: true,
+    submenu: [{ label: "Application settings", path: ROUTES.settings }],
+    isActive: (pathname) => pathname.startsWith("/settings"),
+  },
+];

@@ -2,8 +2,8 @@ import Icon from "carbon-react/lib/components/icon";
 import { useNavMode } from "../context/useNavMode";
 
 const MODE_LABEL = {
-  essentials: "Essentials",
-  portal: "Portal",
+  essentials: "Active Starter",
+  portal: "Client Portal",
 } as const;
 
 export default function NavModeToggle() {

@@ -26,6 +26,101 @@ body {
   min-height: 100%;
 }
 
+/* Prototype access screen */
+.passwordGate {
+  display: grid;
+  min-height: 100vh;
+  place-items: center;
+  padding: 24px;
+  box-sizing: border-box;
+  background: #f2f5f6;
+}
+
+.passwordGate__card {
+  width: min(100%, 420px);
+  box-sizing: border-box;
+  padding: 40px;
+  border: 1px solid #d9e2e5;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 12px 32px rgba(32, 43, 47, 0.1);
+}
+
+.passwordGate__brand {
+  margin-bottom: 36px;
+  color: #00854a;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.passwordGate__brand span {
+  margin-left: 10px;
+  padding-left: 10px;
+  border-left: 1px solid #52636a;
+  color: #202b2f;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.passwordGate h1 {
+  margin: 0 0 8px;
+  color: #202b2f;
+  font-size: 30px;
+}
+
+.passwordGate__card > p {
+  margin: 0 0 28px;
+  color: #52636a;
+}
+
+.passwordGate form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.passwordGate label {
+  color: #202b2f;
+  font-weight: 600;
+}
+
+.passwordGate input {
+  min-height: 44px;
+  box-sizing: border-box;
+  padding: 8px 12px;
+  border: 1px solid #52636a;
+  border-radius: 4px;
+  font: inherit;
+}
+
+.passwordGate input[aria-invalid="true"] {
+  border-color: #c7384f;
+}
+
+.passwordGate button {
+  align-self: flex-start;
+  min-height: 44px;
+  margin-top: 12px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 4px;
+  background: #00854a;
+  color: #ffffff;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+}
+
+.passwordGate button:hover {
+  background: #006f3e;
+}
+
+.passwordGate__error {
+  margin: 2px 0 0;
+  color: #b4233b;
+  font-size: 14px;
+}
+
 /* ─── Global focus ring (matches Carbon's add-focus-styling) ─── */
 
 :focus:not(:where([data-component] *)) {
@@ -48,6 +143,10 @@ body {
 .mainContent {
   background: var(--colorsUtilityMajor010, #f9f9f9);
   min-height: 100vh;
+}
+
+.mainContent:has(.fileUploadPage, .projectsPage, .yearEndMeetingPage) {
+  background: #F2F5F6;
 }
 
 /* ─── Preserved rail + content nav (not wired into App.tsx) ─
@@ -871,14 +970,13 @@ body {
 .projectsPage {
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 40px;
-  background: var(--colorsUtilityMajor010, #f7f9f9);
+  padding: 32px;
+  background: #F2F5F6;
   color: var(--colorsUtilityYin090, #202020);
 }
 
 .projectsPage__header,
-.projectsPage__sectionHeading,
-.projectsPage__fieldHeader {
+.projectsPage__sectionHeading {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
@@ -916,20 +1014,6 @@ body {
   line-height: 24px;
 }
 
-.projectsPage__headerBadge {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  flex-shrink: 0;
-  padding: 8px 12px;
-  border: 1px solid #c6d8cc;
-  border-radius: 999px;
-  background: #f2faeb;
-  color: #006b3c;
-  font-size: 13px;
-  font-weight: 700;
-}
-
 .projectsPage__workspace {
   display: grid;
   grid-template-columns: minmax(0, 1.6fr) minmax(300px, 0.8fr);
@@ -939,8 +1023,7 @@ body {
 }
 
 .projectsPage__scenario,
-.projectsPage__result,
-.projectsPage__dataNote {
+.projectsPage__result {
   border: 1px solid #d7e0e3;
   border-radius: 12px;
   background: #ffffff;
@@ -954,13 +1037,6 @@ body {
 .projectsPage__sectionHeading {
   align-items: baseline;
   margin-bottom: 20px;
-}
-
-.projectsPage__stepCount {
-  color: #6d7b81;
-  font-size: 12px;
-  font-weight: 700;
-  white-space: nowrap;
 }
 
 .projectsPage__decisionGrid {
@@ -1023,33 +1099,11 @@ body {
   border-bottom: 1px solid #e0e6e8;
 }
 
-.projectsPage__fieldHeader {
-  align-items: center;
-  margin-bottom: 16px;
-}
-
-.projectsPage__fieldHeader label {
+.projectsPage__amountBlock > label {
+  display: block;
+  margin-bottom: 8px;
   font-size: 14px;
   font-weight: 700;
-}
-
-.projectsPage__fieldHeader > span {
-  color: #007e45;
-  font-size: 24px;
-  font-weight: 700;
-}
-
-.projectsPage__range {
-  width: 100%;
-  accent-color: #007e45;
-}
-
-.projectsPage__rangeLabels {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 8px;
-  color: #6d7b81;
-  font-size: 12px;
 }
 
 .projectsPage__amountBlock > p,
@@ -1062,6 +1116,10 @@ body {
 
 .projectsPage__assumptions {
   padding-top: 28px;
+}
+
+.projectsPage__calculate {
+  margin-top: 24px;
 }
 
 .projectsPage__inputGrid {
@@ -1126,16 +1184,19 @@ body {
 }
 
 .projectsPage__resultTop {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
   padding: 28px;
-  background: #f2faeb;
+  background: #ffffff;
 }
 
 .projectsPage__result--borderline .projectsPage__resultTop {
-  background: #fff8e6;
+  background: #ffffff;
 }
 
 .projectsPage__result--not-feasible .projectsPage__resultTop {
-  background: #fff0f2;
+  background: #ffffff;
 }
 
 .projectsPage__statusIcon {
@@ -1144,7 +1205,8 @@ body {
   justify-content: center;
   width: 40px;
   height: 40px;
-  margin: 8px 0 16px;
+  margin: 2px 0 0;
+  flex: 0 0 40px;
   border-radius: 50%;
   background: #007e45;
   color: #ffffff;
@@ -1158,13 +1220,17 @@ body {
   background: #c7354f;
 }
 
-.projectsPage__resultTop h2 {
-  margin-bottom: 8px;
-  font-size: 28px;
-  line-height: 34px;
+.projectsPage__resultHeading {
+  min-width: 0;
 }
 
-.projectsPage__resultTop > p:last-child {
+.projectsPage__resultHeading h3 {
+  margin: 0 0 8px;
+  font-size: 24px;
+  line-height: 30px;
+}
+
+.projectsPage__resultHeading p {
   margin-bottom: 0;
   color: #47565c;
   font-size: 14px;
@@ -1225,46 +1291,6 @@ body {
   line-height: 18px;
 }
 
-.projectsPage__dataNote {
-  display: flex;
-  justify-content: space-between;
-  max-width: 1120px;
-  gap: 32px;
-  margin-top: 24px;
-  padding: 24px 28px;
-}
-
-.projectsPage__dataNote h2 {
-  margin-bottom: 8px;
-}
-
-.projectsPage__dataNote p:last-child {
-  max-width: 72ch;
-  margin-bottom: 0;
-  color: #627178;
-  font-size: 13px;
-  line-height: 20px;
-}
-
-.projectsPage__dataTags {
-  display: flex;
-  align-content: flex-start;
-  flex-wrap: wrap;
-  justify-content: flex-end;
-  gap: 8px;
-  min-width: 260px;
-}
-
-.projectsPage__dataTags span {
-  height: max-content;
-  padding: 6px 10px;
-  border: 1px solid #cbd7db;
-  border-radius: 999px;
-  color: #47565c;
-  font-size: 12px;
-  white-space: nowrap;
-}
-
 @media (max-width: 900px) {
   .projectsPage__workspace {
     grid-template-columns: 1fr;
@@ -1280,8 +1306,7 @@ body {
     padding: 24px 16px;
   }
 
-  .projectsPage__header,
-  .projectsPage__dataNote {
+  .projectsPage__header {
     flex-direction: column;
   }
 
@@ -1294,9 +1319,237 @@ body {
     padding: 20px;
   }
 
-  .projectsPage__dataTags {
-    justify-content: flex-start;
-    min-width: 0;
+}
+
+/* ─── Year-end meeting ──────────────────────────────────── */
+
+.yearEndMeetingPage {
+  min-height: 100vh;
+  box-sizing: border-box;
+  padding: 32px;
+  background: #F2F5F6;
+  color: var(--colorsUtilityYin090, #202020);
+}
+
+.yearEndMeetingPage h1,
+.yearEndMeetingPage h2,
+.yearEndMeetingPage p {
+  margin-top: 0;
+}
+
+.yearEndMeetingPage h1 {
+  margin-bottom: 8px;
+  font-size: 32px;
+  line-height: 40px;
+}
+
+.yearEndMeetingPage h2 {
+  margin-bottom: 6px;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.yearEndMeetingPage__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  max-width: 1120px;
+  margin-bottom: 28px;
+  gap: 24px;
+}
+
+.yearEndMeetingPage__header p {
+  max-width: 70ch;
+  margin-bottom: 0;
+  color: #627178;
+  font-size: 16px;
+  line-height: 24px;
+}
+
+.yearEndMeetingPage__progress,
+.yearEndMeetingPage__panel {
+  max-width: 1120px;
+  border: 1px solid #d7e0e3;
+  border-radius: 12px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 20, 30, 0.06);
+}
+
+.yearEndMeetingPage__progress {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 6px 24px;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+  padding: 20px 24px;
+}
+
+.yearEndMeetingPage__progress h2 {
+  margin-bottom: 2px;
+}
+
+.yearEndMeetingPage__progress p {
+  margin-bottom: 0;
+  color: #627178;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.yearEndMeetingPage__progress > strong {
+  align-self: center;
+  color: #007e45;
+  font-size: 14px;
+}
+
+.yearEndMeetingPage__progressTrack {
+  grid-column: 1 / -1;
+  height: 8px;
+  margin-top: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dce5e8;
+}
+
+.yearEndMeetingPage__progressTrack span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #007e45;
+  transition: width 180ms ease;
+}
+
+.yearEndMeetingPage__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  max-width: 1120px;
+  gap: 24px;
+}
+
+.yearEndMeetingPage__panel {
+  overflow: hidden;
+}
+
+.yearEndMeetingPage__panelHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 24px 18px;
+  border-bottom: 1px solid #e0e6e8;
+}
+
+.yearEndMeetingPage__panelHeader p {
+  margin-bottom: 0;
+  color: #627178;
+  font-size: 13px;
+  line-height: 20px;
+}
+
+.yearEndMeetingPage__checklist,
+.yearEndMeetingPage__agenda {
+  padding: 8px 24px 16px;
+}
+
+.yearEndMeetingPage__checkItem {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  padding: 16px 0;
+  border-bottom: 1px solid #e0e6e8;
+}
+
+.yearEndMeetingPage__checkItem:last-child,
+.yearEndMeetingPage__agendaItem:last-child {
+  border-bottom: 0;
+}
+
+.yearEndMeetingPage__carbonCheckbox {
+  margin-bottom: 4px !important;
+}
+
+.yearEndMeetingPage__checkItem--complete .yearEndMeetingPage__carbonCheckbox label {
+  color: #627178;
+  text-decoration: line-through;
+}
+
+.yearEndMeetingPage__checkItem small {
+  display: block;
+  margin-left: 32px;
+  color: #627178;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.yearEndMeetingPage__agendaItem {
+  display: grid;
+  grid-template-columns: 28px 1fr auto;
+  align-items: start;
+  gap: 12px;
+  padding: 16px 0;
+  border-bottom: 1px solid #e0e6e8;
+}
+
+.yearEndMeetingPage__agendaItem strong {
+  display: block;
+  margin: 4px 0;
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.yearEndMeetingPage__agendaItem p {
+  margin-bottom: 0;
+  color: #627178;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.yearEndMeetingPage__agendaTime {
+  margin-top: 5px;
+  color: #627178;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+.yearEndMeetingPage__addButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 24px 24px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: #007e45;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@media (max-width: 800px) {
+  .yearEndMeetingPage__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .yearEndMeetingPage__header {
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 560px) {
+  .yearEndMeetingPage {
+    padding: 24px 16px;
+  }
+
+  .yearEndMeetingPage__progress {
+    grid-template-columns: 1fr;
+  }
+
+  .yearEndMeetingPage__progress > strong {
+    justify-self: start;
+  }
+
+  .yearEndMeetingPage__progressTrack {
+    grid-column: auto;
   }
 }
 
@@ -1305,8 +1558,8 @@ body {
 .fileUploadPage {
   min-height: 100vh;
   box-sizing: border-box;
-  padding: 16px 32px 40px;
-  background: #f1f4f5;
+  padding: 32px;
+  background: #F2F5F6;
   color: #202020;
 }
 
@@ -1422,14 +1675,8 @@ body {
 .fileUploadPage__table th,
 .fileUploadPage__table td {
   padding: 14px 14px;
-  border-right: 1px solid #d8e0e5;
   text-align: left;
   vertical-align: middle;
-}
-
-.fileUploadPage__table th:last-child,
-.fileUploadPage__table td:last-child {
-  border-right: 0;
 }
 
 .fileUploadPage__table th {
@@ -1924,6 +2171,22 @@ body {
   min-width: 0;
 }
 
+/* AG Grid supplies the table structure and pinned action columns. Keep the
+   visual language row-led: no vertical cell dividers, and a quiet separation
+   where pinned actions meet horizontally scrolling data. */
+.salesGrid .ag-cell,
+.salesGrid .ag-header-cell,
+.salesGrid .ag-header-group-cell {
+  border-right: 0 !important;
+  border-left: 0 !important;
+}
+
+.salesGrid .ag-pinned-right-header,
+.salesGrid .ag-pinned-right-cols-container {
+  box-shadow: -8px 0 14px -12px rgba(0, 20, 30, 0.7);
+  z-index: 2;
+}
+
 .salesGrid__status,
 .quotesGrid__status {
   display: inline-flex;
@@ -2046,6 +2309,14 @@ body {
 
 [data-role="flat-table-cell-content"] {
   vertical-align: middle;
+}
+
+/* Compact Carbon tables use horizontal row rules as the primary scan aid;
+   internal vertical rules add noise and compete with fixed action columns. */
+[data-component="flat-table-cell"],
+[data-component="flat-table-header"] {
+  border-right: 0 !important;
+  border-left: 0 !important;
 }
 
 /* ─── Sales quote create ────────────────────────────────── */
@@ -3732,7 +4003,9 @@ body {
 .dashboardCopilotCards__icon {
   width: 40px;
   height: 40px;
+  font-size: 40px !important;
   flex-shrink: 0;
+  color: var(--colorsActionMajor500, #007e45) !important;
 }
 
 .dashboardCopilotCards__text {
@@ -3788,6 +4061,9 @@ body {
 }
 
 .dashboardCopilotCards__aiButtonIcon {
+  width: 16px !important;
+  height: 16px !important;
+  font-size: 16px !important;
   flex-shrink: 0;
   color: var(--colorsUtilityYin090, #000000);
 }
@@ -5568,4 +5844,748 @@ nav.directoryMenu,
 
 .createReceiptPanel__footerActions {
   flex-shrink: 0;
+}
+
+/* ─── Portal dashboard — client summary ─────────────────── */
+
+.portalDashboard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing300, 24px);
+  max-width: 1200px;
+}
+
+.portalDashboard__actionsTitle {
+  margin: 0 !important;
+}
+
+.portalDashboard__actionsSubtitle {
+  margin: 6px 0 0 !important;
+  color: var(--colorsUtilityYin065, #52636a);
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.portalDashboard__grid {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.portalDashboard__metric,
+.portalDashboard__actions {
+  min-width: 0;
+  box-sizing: border-box;
+  border: 1px solid var(--colorsUtilityMajor075, #d7e0e3);
+  border-radius: var(--borderRadius100, 8px);
+  background: var(--colorsUtilityYang100, #ffffff);
+  box-shadow: 0 2px 8px rgba(0, 20, 30, 0.05);
+}
+
+.portalDashboard__metric {
+  grid-column: span 4;
+  min-height: 174px;
+  padding: 20px;
+}
+
+.portalDashboard__metricHeader {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-height: 32px;
+}
+
+.portalDashboard__metricIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  flex: 0 0 32px;
+  border-radius: 8px;
+}
+
+.portalDashboard__metricIcon--positive {
+  background: transparent;
+  color: #007e45;
+}
+
+.portalDashboard__metricIcon--info {
+  background: transparent;
+  color: #20617b;
+}
+
+.portalDashboard__metricIcon--caution {
+  background: transparent;
+  color: #9a5b00;
+}
+
+.portalDashboard__metricIcon--neutral {
+  background: transparent;
+  color: #52636a;
+}
+
+.portalDashboard__metricTitle {
+  margin: 0 !important;
+  color: #354349;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 20px;
+}
+
+.portalDashboard__metricValue {
+  margin: 22px 0 4px !important;
+  color: #202b2f;
+  font-size: 26px;
+  line-height: 32px;
+  letter-spacing: -0.02em;
+}
+
+.portalDashboard__metricDetail {
+  margin: 0 !important;
+  color: var(--colorsUtilityYin065, #52636a);
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.portalDashboard__scoreTrack {
+  height: 6px;
+  margin-top: 14px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #dce5e8;
+}
+
+.portalDashboard__scoreTrack span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: #007e45;
+}
+
+.portalDashboard__actions {
+  grid-column: span 12;
+  padding: 20px;
+}
+
+.portalDashboard__actionsHeader {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  padding-bottom: 16px;
+  border-bottom: 1px solid var(--colorsUtilityMajor075, #d7e0e3);
+}
+
+.portalDashboard__actionsHeader > [data-component="icon"] {
+  color: #007e45;
+}
+
+.portalDashboard__actionList {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 4px;
+  margin: 0;
+  padding: 16px 0 0;
+  list-style: none;
+}
+
+.portalDashboard__actionLink {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-height: 64px;
+  padding: 10px 12px;
+  border-radius: 6px;
+  color: #202b2f;
+  text-decoration: none !important;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.portalDashboard__actionLink:hover {
+  background: #f2faeb;
+  color: #007e45;
+}
+
+.portalDashboard__actionLink > span {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+}
+
+.portalDashboard__actionLink strong {
+  font-size: 14px;
+  line-height: 20px;
+}
+
+.portalDashboard__actionLink small {
+  color: var(--colorsUtilityYin065, #52636a);
+  font-size: 12px;
+  line-height: 16px;
+}
+
+.portalDashboard__actionLink > [data-component="icon"] {
+  flex: 0 0 16px;
+}
+
+.portalDashboard__actionLink:focus-visible {
+  outline: transparent 3px solid;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #007e45;
+}
+
+/* Keep every dashboard card on the same 8px surface radius in both modes. */
+.dashboardPage .dashboardCopilotCards__item,
+.dashboardPage .dashboardLowStockAlert,
+.dashboardPage .dashboardKpiCard,
+.dashboardPage .dashboardGettingStarted__banner,
+.dashboardPage .dashboardGettingStarted__task,
+.dashboardPage .portalDashboard__metric,
+.dashboardPage .portalDashboard__actions {
+  border-radius: 8px !important;
+}
+
+@media (max-width: 900px) {
+  .portalDashboard__metric {
+    grid-column: span 6;
+  }
+}
+
+@media (max-width: 600px) {
+  .portalDashboard__metric {
+    grid-column: span 12;
+  }
+}
+
+/* ─── Portal task-screen polish ────────────────────────────
+   Shared refinement for the four client-facing task screens. The existing
+   visual language stays intact while page rhythm, control states and small
+   viewport behavior are made consistent. */
+
+.fileUploadPage,
+.projectsPage,
+.yearEndMeetingPage {
+  padding: 32px;
+  background: #F2F5F6;
+}
+
+.pageContent.dashboardPage {
+  margin: 32px;
+  gap: 32px;
+}
+
+.fileUploadPage__header,
+.fileUploadPage__dropzone,
+.fileUploadPage__toolbar,
+.fileUploadPage__tableWrap {
+  max-width: 1440px;
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.fileUploadPage__header {
+  margin-bottom: 28px;
+}
+
+.fileUploadPage__header h1,
+.projectsPage h1,
+.yearEndMeetingPage h1,
+.dashboardPage__greetingTitle {
+  margin-bottom: 8px;
+  font-size: 28px;
+  line-height: 36px;
+  letter-spacing: -0.02em;
+}
+
+.fileUploadPage__header p,
+.projectsPage__intro,
+.yearEndMeetingPage__header p {
+  color: #52636a;
+}
+
+.fileUploadPage__dropzone {
+  min-height: 132px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.82);
+}
+
+.fileUploadPage__select,
+.fileUploadPage__filter {
+  transition: background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease, transform 160ms ease;
+}
+
+.fileUploadPage__select:hover,
+.fileUploadPage__filter:hover {
+  background: #f2faeb;
+}
+
+.fileUploadPage__select:active,
+.fileUploadPage__filter:active {
+  transform: translateY(1px);
+}
+
+.fileUploadPage__toolbar {
+  margin-top: 20px;
+  margin-bottom: 14px;
+}
+
+.fileUploadPage__search {
+  width: min(260px, 42vw);
+  min-height: 40px;
+  box-sizing: border-box;
+  border-bottom-color: #20617b;
+  transition: border-color 160ms ease, background-color 160ms ease;
+}
+
+.fileUploadPage__search:focus-within {
+  border-bottom-color: #007e45;
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.fileUploadPage__tableWrap {
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 20, 30, 0.05);
+}
+
+.fileUploadPage__table th {
+  background: #d7e2e6;
+  color: #27363b;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.fileUploadPage__table tbody tr {
+  transition: background-color 120ms ease;
+}
+
+.fileUploadPage__table tbody tr:hover {
+  background: #f7fbf9;
+}
+
+.fileUploadPage__status {
+  background: #007e45;
+  font-size: 12px;
+  line-height: 18px;
+}
+
+.fileUploadPage__iconButton {
+  width: 40px;
+  height: 40px;
+  border-radius: 6px;
+  transition: background-color 120ms ease, color 120ms ease;
+}
+
+.fileUploadPage__iconButton:hover {
+  background: #e9f5ee;
+}
+
+.fileUploadPage__iconButton--delete:hover {
+  background: #fff0f2;
+}
+
+.fileUploadPage__iconButton:focus-visible,
+.fileUploadPage__select:focus-visible,
+.fileUploadPage__filter:focus-visible,
+.yearEndMeetingPage__addButton:focus-visible,
+.projectsPage__decision:focus-visible {
+  outline: transparent 3px solid;
+  box-shadow: 0 0 0 3px #ffffff, 0 0 0 5px #007e45;
+}
+
+.projectsPage,
+.yearEndMeetingPage {
+  color: #202b2f;
+}
+
+.projectsPage__header,
+.projectsPage__workspace,
+.yearEndMeetingPage__header,
+.yearEndMeetingPage__progress,
+.yearEndMeetingPage__grid {
+  max-width: 1200px;
+}
+
+.projectsPage__header,
+.yearEndMeetingPage__header {
+  margin-bottom: 28px;
+}
+
+.projectsPage__scenario,
+.projectsPage__result,
+.yearEndMeetingPage__progress,
+.yearEndMeetingPage__panel {
+  border-color: #d3dfe2;
+  box-shadow: 0 3px 10px rgba(0, 20, 30, 0.055);
+}
+
+.projectsPage__scenario,
+.yearEndMeetingPage__panelHeader,
+.yearEndMeetingPage__progress {
+  padding: 24px;
+}
+
+.projectsPage__sectionHeading {
+  margin-bottom: 18px;
+}
+
+.projectsPage__decision {
+  min-height: 88px;
+  border-radius: 10px;
+}
+
+.projectsPage__decision:hover {
+  background: #f7fbf9;
+}
+
+.projectsPage__amountBlock > label {
+  color: #27363b;
+}
+
+.projectsPage__inputWrap {
+  min-height: 44px;
+  border-color: #9eafb5;
+  transition: border-color 160ms ease, box-shadow 160ms ease;
+}
+
+.projectsPage__inputWrap:focus-within {
+  border-color: #007e45;
+  box-shadow: 0 0 0 3px rgba(0, 126, 69, 0.14);
+}
+
+.projectsPage__calculate {
+  display: flex;
+  padding-top: 4px;
+}
+
+.projectsPage__calculate [data-component="button"] {
+  width: auto;
+  padding-right: 16px;
+  padding-left: 16px;
+}
+
+.projectsPage__resultTop {
+  padding: 24px;
+}
+
+.projectsPage__resultDetails {
+  padding: 24px;
+}
+
+.projectsPage__resultFootnote {
+  margin-right: 24px;
+  margin-left: 24px;
+  padding-top: 18px;
+}
+
+.yearEndMeetingPage__progress {
+  margin-bottom: 22px;
+}
+
+.yearEndMeetingPage__panelHeader {
+  padding-bottom: 16px;
+}
+
+.yearEndMeetingPage__checklist,
+.yearEndMeetingPage__agenda {
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.yearEndMeetingPage__checkItem,
+.yearEndMeetingPage__agendaItem {
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.yearEndMeetingPage__agendaItem p,
+.yearEndMeetingPage__checkItem small {
+  color: #52636a;
+}
+
+.yearEndMeetingPage__addButton {
+  min-height: 40px;
+  margin-bottom: 18px;
+  padding: 0 10px;
+  border-radius: 6px;
+  transition: background-color 120ms ease;
+}
+
+.yearEndMeetingPage__addButton:hover {
+  background: #e9f5ee;
+}
+
+/* Sales and purchases dashboard tab */
+.dashboardSalesPurchases {
+  gap: 24px;
+  padding: 28px 20px 36px;
+}
+
+.dashboardSalesPurchases > h2,
+.dashboardSalesPurchases__tableCard h2 {
+  margin: 0;
+  color: #202b2f;
+  font-size: 22px;
+}
+
+.dashboardSalesPurchases__paymentGrid,
+.dashboardSalesPurchases__summaryGrid,
+.dashboardSalesPurchases__quotesGrid {
+  display: grid;
+  gap: 20px;
+}
+
+.dashboardSalesPurchases__paymentGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.dashboardSalesPurchases__paymentCard,
+.dashboardSalesPurchases__summaryCard,
+.dashboardSalesPurchases__quickLinks,
+.dashboardSalesPurchases__tableCard,
+.dashboardSalesPurchases__quoteSummary {
+  overflow: hidden;
+  border: 1px solid #d9e2e5;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.dashboardSalesPurchases__paymentCard {
+  display: flex;
+  min-height: 190px;
+  flex-direction: column;
+  padding: 22px 18px 0;
+}
+
+.dashboardSalesPurchases__cardTitle {
+  gap: 10px;
+}
+
+.dashboardSalesPurchases__cardTitle svg {
+  color: #00854a;
+}
+
+.dashboardSalesPurchases__cardTitle h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.dashboardSalesPurchases__overdueAmount {
+  margin: 18px 0 5px;
+  font-size: 12px;
+}
+
+.dashboardSalesPurchases__paymentBar {
+  height: 14px;
+  background: #f58220;
+}
+
+.dashboardSalesPurchases__total {
+  margin: 20px 0;
+  text-align: right;
+}
+
+.dashboardSalesPurchases__cardActions,
+.dashboardSalesPurchases__tableActions {
+  gap: 44px;
+  margin: auto -18px 0;
+  padding: 15px 18px;
+  background: #f2f5f6;
+}
+
+.dashboardSalesPurchases__cardActions a,
+.dashboardSalesPurchases__tableActions a,
+.dashboardSalesPurchases__quickLinks a,
+.dashboardSalesPurchases__table a {
+  color: #00854a;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.dashboardSalesPurchases__summaryGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr)) minmax(190px, 1.15fr);
+}
+
+.dashboardSalesPurchases__summaryCard {
+  display: flex;
+  min-height: 132px;
+  align-items: center;
+  gap: 14px;
+  padding: 18px;
+}
+
+.dashboardSalesPurchases__summaryCard > svg {
+  flex: 0 0 auto;
+  color: #00854a;
+}
+
+.dashboardSalesPurchases__summaryCard p {
+  margin: 0 0 4px;
+}
+
+.dashboardSalesPurchases__summaryCard small {
+  display: block;
+  color: #52636a;
+  line-height: 1.35;
+}
+
+.dashboardSalesPurchases__quickLinks {
+  display: flex;
+  min-height: 132px;
+  flex-direction: column;
+  gap: 10px;
+  padding: 18px;
+}
+
+.dashboardSalesPurchases__quickLinks h3 {
+  margin: 0 0 3px;
+  font-size: 17px;
+}
+
+.dashboardSalesPurchases__tableCard {
+  padding: 20px 14px 0;
+}
+
+.dashboardSalesPurchases__tableCard > p {
+  margin: 5px 0 18px;
+  color: #52636a;
+}
+
+.dashboardSalesPurchases__tableWrap {
+  overflow-x: auto;
+  border: 1px solid #d9e2e5;
+  border-radius: 7px;
+}
+
+.dashboardSalesPurchases__table {
+  width: 100%;
+  min-width: 700px;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+
+.dashboardSalesPurchases__table th {
+  padding: 11px 12px;
+  background: #d7e2e6;
+  color: #202b2f;
+  text-align: left;
+  white-space: nowrap;
+}
+
+.dashboardSalesPurchases__table td {
+  padding: 11px 12px;
+  border-bottom: 1px solid #d9e2e5;
+  white-space: nowrap;
+}
+
+.dashboardSalesPurchases__table tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.dashboardSalesPurchases__status {
+  display: inline-block;
+  border-radius: 5px;
+  padding: 4px 11px;
+  background: #d5004d;
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.dashboardSalesPurchases__amount {
+  text-align: right;
+}
+
+.dashboardSalesPurchases__menu {
+  width: 34px;
+  text-align: center;
+  font-size: 22px;
+}
+
+.dashboardSalesPurchases__tableFooter {
+  padding: 11px 12px;
+  background: #f2f5f6;
+  font-weight: 600;
+}
+
+.dashboardSalesPurchases__tableActions {
+  display: flex;
+  margin: 20px -14px 0;
+}
+
+.dashboardSalesPurchases__quotesGrid {
+  grid-template-columns: minmax(230px, 1fr) minmax(0, 2.4fr);
+}
+
+.dashboardSalesPurchases__quoteSummary {
+  display: flex;
+  min-height: 235px;
+  flex-direction: column;
+  gap: 18px;
+  padding: 20px;
+}
+
+.dashboardSalesPurchases__quoteSummary h3,
+.dashboardSalesPurchases__quoteSummary p {
+  margin: 0;
+}
+
+.dashboardSalesPurchases__quoteSummary p {
+  color: #52636a;
+}
+
+@media (max-width: 1050px) {
+  .dashboardSalesPurchases__summaryGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .dashboardSalesPurchases {
+    padding: 24px 0 28px;
+  }
+
+  .dashboardSalesPurchases__paymentGrid,
+  .dashboardSalesPurchases__summaryGrid,
+  .dashboardSalesPurchases__quotesGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 950px) {
+  .fileUploadPage__table th:first-child,
+  .fileUploadPage__table td:first-child {
+    position: sticky;
+    left: 0;
+    z-index: 1;
+    background: #ffffff;
+  }
+
+  .fileUploadPage__table th:first-child {
+    z-index: 2;
+    background: #d7e2e6;
+  }
+
+  .fileUploadPage__table td:first-child {
+    box-shadow: 8px 0 14px -12px rgba(0, 20, 30, 0.7);
+  }
+}
+
+@media (max-width: 700px) {
+  .fileUploadPage,
+  .projectsPage,
+  .yearEndMeetingPage {
+    padding: 24px 16px 32px;
+  }
+
+  .fileUploadPage__toolbar {
+    align-items: stretch;
+  }
+
+  .fileUploadPage__search {
+    width: auto;
+  }
+
+  .fileUploadPage__filter {
+    flex-shrink: 0;
+  }
 }

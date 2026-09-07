@@ -27,7 +27,7 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     allowanceBullets: ["1 user"],
     userRoleBullets: ["1 Admin", "1 Accountant"],
     priceAmount: 0,
-    priceLabel: "Free with GE",
+    priceLabel: "Provided by Accountant",
   },
   {
     id: "starter",

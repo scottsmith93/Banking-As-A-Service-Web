@@ -12,9 +12,9 @@ export function formatDashboardEuro(amount: number): string {
 }
 
 export const dashboardGreeting = {
-  name: "Tyler",
+  name: "Nadia",
   subtitle:
-    "This page shows key information about your business. Sage Active updates your KPIs every 5 minutes.",
+    "A simple view of your cash position, financial health and the actions that need your attention. KPIs update every 5 minutes.",
 };
 
 export type DashboardBreakdownLine = {

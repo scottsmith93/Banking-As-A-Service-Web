@@ -4,6 +4,7 @@ import LeftNav from "./components/LeftNav";
 import NavModeToggle from "./components/NavModeToggle";
 import RouteErrorBoundary from "./components/RouteErrorBoundary";
 import { NavModeProvider } from "./context/NavModeContext";
+import { LanguageProvider } from "./context/LanguageContext";
 import { SubscriptionProvider } from "./context/SubscriptionContext";
 import { StockAlertProvider } from "./context/StockAlertContext";
 import PlaceholderPage from "./pages/PlaceholderPage";
@@ -13,6 +14,8 @@ import DashboardPage from "./pages/DashboardPage";
 import ReportsPage from "./pages/reports/ReportsPage";
 import FileUploadPage from "./pages/reports/FileUploadPage";
 import ProjectsPage from "./pages/ProjectsPage";
+import FinancialDocumentsPage from "./pages/FinancialDocumentsPage";
+import YearEndMeetingPage from "./pages/YearEndMeetingPage";
 import SettingsPage from "./pages/settings/SettingsPage";
 import MyProfilePage from "./pages/MyProfilePage";
 import InvoiceDetailPage from "./pages/InvoiceDetailPage";
@@ -59,13 +62,12 @@ import TaxReturnsPage from "./pages/compliance/TaxReturnsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LegacyInvoiceRedirect from "./components/LegacyInvoiceRedirect";
 import { ROUTES } from "./routes";
+import PasswordGate from "./components/PasswordGate";
 
 // Operations-mode-only screens with no real functionality yet — rendered
 // generically via PlaceholderPage rather than one bespoke page component
 // each. Update here (and in src/data/operationsNav.ts) as real pages land.
 const PLACEHOLDER_ROUTES: { path: string; title: string; section: string }[] = [
-  { path: ROUTES.financialDocuments, title: "Financial documents", section: "Business" },
-  { path: ROUTES.yearEndMeeting, title: "Year end meeting", section: "Business" },
   { path: ROUTES.conversations, title: "Conversations", section: "Business" },
 
   { path: ROUTES.sales.orderMassAllocation, title: "Sales order mass allocation", section: "Sales" },
@@ -113,6 +115,8 @@ const PLACEHOLDER_ROUTES: { path: string; title: string; section: string }[] = [
 
 export default function App() {
   return (
+    <PasswordGate>
+    <LanguageProvider>
     <SubscriptionProvider>
     <StockAlertProvider>
     <NavModeProvider>
@@ -275,6 +279,8 @@ export default function App() {
             <Route path={ROUTES.reports} element={<ReportsPage />} />
             <Route path={ROUTES.fileUpload} element={<FileUploadPage />} />
             <Route path={ROUTES.projects} element={<ProjectsPage />} />
+            <Route path={ROUTES.financialDocuments} element={<FinancialDocumentsPage />} />
+            <Route path={ROUTES.yearEndMeeting} element={<YearEndMeetingPage />} />
             <Route
               path="/example-page-9"
               element={<Navigate to={ROUTES.reports} replace />}
@@ -294,5 +300,7 @@ export default function App() {
     </NavModeProvider>
     </StockAlertProvider>
     </SubscriptionProvider>
+    </LanguageProvider>
+    </PasswordGate>
   );
 }

@@ -68,9 +68,11 @@ export default function SubscriptionPlanCard({
           <AllowanceBulletList items={plan.userRoleBullets} />
         </Box>
 
-        <Button variant="default" variantType="secondary" size="medium" fullWidth>
-          View additional fees
-        </Button>
+        {plan.id !== "portal" && (
+          <Button variant="default" variantType="secondary" size="medium" fullWidth>
+            View additional fees
+          </Button>
+        )}
 
         <Box className="subscriptionPlanCard__priceBox">
           <Typography variant="p" as="p" className="subscriptionPlanCard__price">
@@ -78,7 +80,7 @@ export default function SubscriptionPlanCard({
           </Typography>
         </Box>
 
-        {state === "current" && (
+        {state === "current" && plan.id !== "portal" && (
           <Button
             variant="destructive"
             variantType="primary"

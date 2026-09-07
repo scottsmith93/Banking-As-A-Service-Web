@@ -172,6 +172,8 @@ export default function SalesInvoicesGrid({
         filter: false,
         minWidth: 72,
         maxWidth: 72,
+        pinned: "right",
+        lockPinned: true,
       },
       {
         colId: "delete",
@@ -181,6 +183,8 @@ export default function SalesInvoicesGrid({
         filter: false,
         minWidth: 80,
         maxWidth: 80,
+        pinned: "right",
+        lockPinned: true,
       },
     ],
     [],

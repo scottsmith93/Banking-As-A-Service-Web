@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState, type ChangeEvent, type DragEvent } from "react";
 import Icon from "carbon-react/lib/components/icon";
+import { useLanguage } from "../../context/useLanguage";
 
 type FileRow = {
   name: string;
@@ -14,7 +15,7 @@ const initialFiles: FileRow[] = [
     name: "Query (5).xlsx",
     size: "19.4 KB",
     dateAdded: "16/12/2025",
-    addedBy: "Anna Marti",
+    addedBy: "Nadia Benhamed",
     status: "File uploaded",
   },
 ];
@@ -28,12 +29,47 @@ function describeFile(file: File): FileRow {
     name: file.name,
     size,
     dateAdded: new Intl.DateTimeFormat("en-GB").format(new Date()),
-    addedBy: "You",
+    addedBy: "Nadia Benhamed",
     status: "File uploaded",
   };
 }
 
 export default function FileUploadPage() {
+  const { language } = useLanguage();
+  const isFrench = language === "French";
+  const copy = isFrench
+    ? {
+      title: "Gestion des fichiers",
+      intro: "Téléversez et gérez les fichiers de votre entreprise. Vous pouvez téléverser des fichiers jusqu’à 20 Mo.",
+      select: "Sélectionner un fichier",
+      drop: "ou glissez-déposez votre fichier",
+      searchLabel: "Rechercher des fichiers",
+      searchPlaceholder: "Rechercher…",
+      filter: "Filtrer",
+      headers: ["Nom", "Taille du fichier", "Date d’ajout", "Ajouté par", "Statut du téléversement", "Voir", "Commentaires", "Supprimer"],
+      uploaded: "Fichier téléversé",
+      empty: "Aucun fichier trouvé.",
+      items: "Articles",
+      view: "Voir",
+      comment: "Commenter",
+      delete: "Supprimer",
+    }
+    : {
+      title: "File management",
+      intro: "Upload and manage files for your business. You can upload files up to 20 MB.",
+      select: "Select file",
+      drop: "or drag and drop your file",
+      searchLabel: "Search files",
+      searchPlaceholder: "Search…",
+      filter: "Filter",
+      headers: ["Name", "File size", "Date added", "Added by", "Upload status", "View", "Comments", "Delete"],
+      uploaded: "File uploaded",
+      empty: "No files found.",
+      items: "Items",
+      view: "View",
+      comment: "Comment",
+      delete: "Delete",
+    };
   const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<FileRow[]>(initialFiles);
   const [query, setQuery] = useState("");
@@ -64,8 +100,8 @@ export default function FileUploadPage() {
     <main className="fileUploadPage">
       <header className="fileUploadPage__header">
         <div>
-          <h1>File management</h1>
-          <p>Upload and manage files for your business. You can upload files up to 20 MB.</p>
+          <h1>{copy.title}</h1>
+          <p>{copy.intro}</p>
         </div>
       </header>
 
@@ -83,25 +119,25 @@ export default function FileUploadPage() {
         onDrop={handleDrop}
       >
         <button type="button" className="fileUploadPage__select" onClick={() => inputRef.current?.click()}>
-          Select file
+          {copy.select}
         </button>
-        <span>or drag and drop your file</span>
+        <span>{copy.drop}</span>
       </div>
 
       <div className="fileUploadPage__toolbar">
         <label className="fileUploadPage__search">
           <Icon type="search" aria-hidden />
-          <span className="fileUploadPage__srOnly">Search files</span>
+          <span className="fileUploadPage__srOnly">{copy.searchLabel}</span>
           <input
             type="search"
-            placeholder="Search..."
+            placeholder={copy.searchPlaceholder}
             value={query}
             onChange={(event) => setQuery(event.target.value)}
           />
         </label>
         <button type="button" className="fileUploadPage__filter">
           <Icon type="filter" aria-hidden />
-          Filter
+          {copy.filter}
         </button>
       </div>
 
@@ -109,14 +145,7 @@ export default function FileUploadPage() {
         <table className="fileUploadPage__table">
           <thead>
             <tr>
-              <th>Name</th>
-              <th>File size</th>
-              <th>Date added</th>
-              <th>Added by</th>
-              <th>Upload status</th>
-              <th>View</th>
-              <th>Comments</th>
-              <th>Delete</th>
+              {copy.headers.map((header) => <th key={header}>{header}</th>)}
             </tr>
           </thead>
           <tbody>
@@ -126,18 +155,18 @@ export default function FileUploadPage() {
                 <td>{file.size}</td>
                 <td>{file.dateAdded}</td>
                 <td>{file.addedBy}</td>
-                <td><span className="fileUploadPage__status">{file.status}</span></td>
-                <td><button type="button" className="fileUploadPage__iconButton" aria-label={`View ${file.name}`}><Icon type="view" aria-hidden /></button></td>
-                <td><button type="button" className="fileUploadPage__iconButton" aria-label={`Comment on ${file.name}`}><Icon type="chat" aria-hidden /></button></td>
-                <td><button type="button" className="fileUploadPage__iconButton fileUploadPage__iconButton--delete" aria-label={`Delete ${file.name}`} onClick={() => setFiles((current) => current.filter((item) => item !== file))}><Icon type="bin" aria-hidden /></button></td>
+                <td><span className="fileUploadPage__status">{isFrench ? copy.uploaded : file.status}</span></td>
+                <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.view} ${file.name}`}><Icon type="view" aria-hidden /></button></td>
+                <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.comment} ${file.name}`}><Icon type="chat" aria-hidden /></button></td>
+                <td><button type="button" className="fileUploadPage__iconButton fileUploadPage__iconButton--delete" aria-label={`${copy.delete} ${file.name}`} onClick={() => setFiles((current) => current.filter((item) => item !== file))}><Icon type="bin" aria-hidden /></button></td>
               </tr>
             ))}
             {!visibleFiles.length && (
-              <tr><td colSpan={8} className="fileUploadPage__empty">No files found.</td></tr>
+              <tr><td colSpan={8} className="fileUploadPage__empty">{copy.empty}</td></tr>
             )}
           </tbody>
           <tfoot>
-            <tr><td colSpan={8}>Items: {visibleFiles.length}</td></tr>
+            <tr><td colSpan={8}>{copy.items}: {visibleFiles.length}</td></tr>
           </tfoot>
         </table>
       </div>

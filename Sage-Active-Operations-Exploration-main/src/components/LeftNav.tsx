@@ -5,6 +5,7 @@ import Icon from "carbon-react/lib/components/icon";
 import Portrait from "carbon-react/lib/components/portrait";
 import { PRIMARY_NAV_ITEMS, type PrimaryNavItem, type SubmenuLink } from "../data/primaryNav";
 import { useNavMode } from "../context/useNavMode";
+import { useLanguage } from "../context/useLanguage";
 import { currentUser } from "../data/currentUser";
 import { ROUTES } from "../routes";
 
@@ -27,6 +28,59 @@ type FlyoutContent = {
   groups: FlyoutLink[][];
 };
 
+const FRENCH_NAV_LABELS: Record<string, string> = {
+  Dashboard: "Tableau de bord",
+  Sales: "Ventes",
+  "Sales quotes": "Devis de vente",
+  "Sales orders": "Commandes de vente",
+  "Sales delivery notes": "Bons de livraison de vente",
+  "Sales invoices": "Factures de vente",
+  "Recurring invoices": "Factures récurrentes",
+  Purchases: "Achats",
+  "Purchase orders": "Commandes d’achat",
+  "Purchase invoices": "Factures d’achat",
+  Contacts: "Contacts",
+  Customers: "Clients",
+  Suppliers: "Fournisseurs",
+  Employees: "Employés",
+  "Products and services": "Produits et services",
+  Items: "Articles",
+  "Price lists": "Listes de prix",
+  "Discount groups": "Groupes de remise",
+  Banking: "Banque",
+  "Bank movements": "Mouvements bancaires",
+  Accounting: "Comptabilité",
+  "Journal entries": "Écritures comptables",
+  "Account matching": "Lettrage des comptes",
+  "By third party": "Par tiers",
+  "By ledger accounts": "Par comptes du grand livre",
+  "Fixed assets": "Immobilisations",
+  "Fixed asset transactions": "Mouvements d’immobilisations",
+  Compliance: "Conformité",
+  "Tax returns": "Déclarations fiscales",
+  Reports: "Rapports",
+  Settings: "Paramètres",
+  "Sale invoices": "Factures de vente",
+  "File upload": "Téléversement de fichiers",
+  "Project calculator": "Calculateur de projet",
+  "Financial documents": "Documents financiers",
+  "Year end meeting": "Réunion de fin d’exercice",
+  Conversations: "Conversations",
+  "AI Advisor": "Conseiller IA",
+  "My profile": "Mon profil",
+  "Switch business": "Changer d’entreprise",
+  Chat: "Discussion",
+  Insights: "Analyses",
+  "Copilot settings": "Paramètres Copilot",
+  Help: "Aide",
+  Expand: "Développer",
+  Collapse: "Réduire",
+};
+
+function translateNavLabel(label: string, language: "English" | "French") {
+  return language === "French" ? FRENCH_NAV_LABELS[label] ?? label : label;
+}
+
 const ADDITIONAL_NAV_ITEMS: PrimaryNavItem[] = [
   {
     id: "sales-invoices",
@@ -46,8 +100,8 @@ const ADDITIONAL_NAV_ITEMS: PrimaryNavItem[] = [
   },
   {
     id: "projects",
-    label: "Projects",
-    iconType: "business",
+    label: "Project calculator",
+    iconType: "percentage_boxed",
     path: ROUTES.projects,
     hasSubmenu: false,
     isActive: (pathname) => pathname === ROUTES.projects,
@@ -135,6 +189,7 @@ type SubmenuRowProps = {
   expandedKeys: Set<string>;
   toggleExpanded: (key: string) => void;
   go: (path: string) => void;
+  language: "English" | "French";
 };
 
 function SubmenuRow({
@@ -145,6 +200,7 @@ function SubmenuRow({
   expandedKeys,
   toggleExpanded,
   go,
+  language,
 }: SubmenuRowProps) {
   const key = `${keyPrefix}/${link.path ?? link.label}`;
   const hasChildren = Boolean(link.children?.length);
@@ -177,7 +233,7 @@ function SubmenuRow({
           }
         }}
       >
-        <span className="leftNav__itemLabel">{link.label}</span>
+        <span className="leftNav__itemLabel">{translateNavLabel(link.label, language)}</span>
         {hasChildren && (
           <Icon
             type="caret_right"
@@ -199,6 +255,7 @@ function SubmenuRow({
               expandedKeys={expandedKeys}
               toggleExpanded={toggleExpanded}
               go={go}
+              language={language}
             />
           ))}
         </ul>
@@ -213,7 +270,7 @@ export default function LeftNav() {
   const { mode } = useNavMode();
   const navItems =
     mode === "essentials"
-      ? PRIMARY_NAV_ITEMS
+      ? PRIMARY_NAV_ITEMS.filter((item) => !["accounting", "compliance"].includes(item.id))
       : [
           ...PRIMARY_NAV_ITEMS.filter((item) => item.id === "dashboard"),
           ...ADDITIONAL_NAV_ITEMS.filter((item) => item.id !== "sales-invoices"),
@@ -237,7 +294,7 @@ export default function LeftNav() {
 
   const [footerFlyout, setFooterFlyout] = useState<FooterFlyoutId>(null);
   const [anchor, setAnchor] = useState<FlyoutAnchor | null>(null);
-  const [language, setLanguage] = useState<"English" | "French">("English");
+  const { language, setLanguage } = useLanguage();
 
   const closeFooterFlyout = () => setFooterFlyout(null);
 
@@ -376,7 +433,7 @@ export default function LeftNav() {
                 }}
               >
                 <Icon type={item.iconType} className="leftNav__itemIcon" aria-hidden />
-                <span className="leftNav__itemLabel">{item.label}</span>
+                <span className="leftNav__itemLabel">{translateNavLabel(item.label, language)}</span>
                 {hasSubmenu && (
                   <Icon
                     type="caret_right"
@@ -398,6 +455,7 @@ export default function LeftNav() {
                       expandedKeys={expandedKeys}
                       toggleExpanded={toggleExpanded}
                       go={go}
+                      language={language}
                     />
                   ))}
                 </ul>
@@ -443,7 +501,7 @@ export default function LeftNav() {
           onClick={(e) => toggleFooterFlyout("copilot", e.currentTarget)}
         >
           <img src="/copilot-logo.svg" alt="" width={20} height={20} className="leftNav__itemIcon" />
-          <span className="leftNav__itemLabel">Copilot</span>
+          <span className="leftNav__itemLabel">{translateNavLabel("Copilot", language)}</span>
         </button>
 
         <button
@@ -454,7 +512,7 @@ export default function LeftNav() {
           onClick={(e) => toggleFooterFlyout("help", e.currentTarget)}
         >
           <Icon type="help" className="leftNav__itemIcon" aria-hidden />
-          <span className="leftNav__itemLabel">Help</span>
+          <span className="leftNav__itemLabel">{translateNavLabel("Help", language)}</span>
         </button>
 
         <button
@@ -467,7 +525,7 @@ export default function LeftNav() {
           }}
         >
           <Icon type="box_arrow_left" className="leftNav__itemIcon" aria-hidden />
-          <span className="leftNav__itemLabel">{isCollapsed ? "Expand" : "Collapse"}</span>
+          <span className="leftNav__itemLabel">{translateNavLabel(isCollapsed ? "Expand" : "Collapse", language)}</span>
         </button>
       </div>
 
@@ -502,7 +560,9 @@ export default function LeftNav() {
                       aria-pressed={link.selected}
                       onClick={link.onClick}
                     >
-                      {link.label}
+                      {link.key === "language-english" || link.key === "language-french"
+                        ? link.label
+                        : translateNavLabel(link.label, language)}
                       {link.selected && (
                         <span className="leftNav__flyoutSelectedPill">
                           {language === "French" ? "Sélectionné" : "Selected"}

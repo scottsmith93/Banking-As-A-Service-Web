@@ -4,11 +4,9 @@ import { NavModeContext, type NavMode } from "./navModeStore";
 const STORAGE_KEY = "nav-mode";
 
 function readStoredMode(): NavMode {
-  if (typeof window === "undefined") return "essentials";
-  return window.localStorage.getItem(STORAGE_KEY) === "portal" ||
-    window.localStorage.getItem(STORAGE_KEY) === "operations"
-    ? "portal"
-    : "essentials";
+  if (typeof window === "undefined") return "portal";
+  const storedMode = window.localStorage.getItem(STORAGE_KEY);
+  return storedMode === "essentials" ? "essentials" : "portal";
 }
 
 export function NavModeProvider({ children }: { children: ReactNode }) {

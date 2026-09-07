@@ -15,6 +15,7 @@ export const salesListingGridTheme = themeQuartz.withParams({
   rowBorder: false,
   columnBorder: false,
   headerColumnBorder: false,
+  pinnedColumnBorder: false,
   spacing: 8,
   fontFamily: "inherit",
 });

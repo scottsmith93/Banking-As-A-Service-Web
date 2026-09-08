@@ -126,5 +126,6 @@ export const ROUTES = {
   financialDocuments: "/financial-documents",
   yearEndMeeting: "/year-end-meeting",
   conversations: "/conversations",
+  aiAdvisor: "/ai-advisor",
   myProfile: "/my-profile",
 } as const;

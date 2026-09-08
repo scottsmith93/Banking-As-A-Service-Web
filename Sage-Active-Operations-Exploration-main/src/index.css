@@ -121,6 +121,215 @@ body {
   font-size: 14px;
 }
 
+/* AI Advisor conversation workspace */
+.aiAdvisorPage {
+  min-height: 100vh;
+  padding: 40px 32px 56px;
+  background: #f9fafb;
+}
+
+.aiAdvisorPage__layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 48px;
+  max-width: 1280px;
+  margin: 0 auto;
+}
+
+.aiAdvisorPage__main > h1 {
+  margin: 0 0 6px;
+  color: #202b2f;
+}
+
+.aiAdvisorPage__subtitle {
+  margin: 0 0 28px;
+  color: #52636a;
+}
+
+.aiAdvisorPage__composer {
+  position: relative;
+  min-height: 112px;
+  margin-bottom: 24px;
+  padding: 20px 20px 52px;
+  box-sizing: border-box;
+  border: 1px solid #d9e2e5;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 4px 12px rgba(32, 43, 47, 0.08);
+}
+
+.aiAdvisorPage__composer label {
+  color: #66767d;
+  font-size: 14px;
+}
+
+.aiAdvisorPage__composer textarea {
+  display: block;
+  width: 100%;
+  min-height: 40px;
+  margin-top: 8px;
+  resize: vertical;
+  border: 0;
+  outline: 0;
+  font: inherit;
+}
+
+.aiAdvisorPage__composerActions {
+  position: absolute;
+  right: 12px;
+  bottom: 10px;
+  left: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.aiAdvisorPage__quickActions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 14px 0 42px;
+}
+
+.aiAdvisorPage__sectionHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.aiAdvisorPage__sectionHeader h2,
+.aiAdvisorPage__activity h2 {
+  margin: 0;
+  color: #202b2f;
+}
+
+.aiAdvisorPage__sectionHeader svg {
+  color: #52636a;
+}
+
+.aiAdvisorPage__threads {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.aiAdvisorPage__thread {
+  padding: 26px 24px 20px;
+  border: 1px solid #d9e2e5;
+  border-radius: 8px;
+  background: #ffffff;
+}
+
+.aiAdvisorPage__thread h3 {
+  margin: 0 0 12px;
+}
+
+.aiAdvisorPage__thread > p {
+  margin: 0;
+  line-height: 1.5;
+}
+
+.aiAdvisorPage__thread ul {
+  display: flex;
+  flex-direction: column;
+  gap: 9px;
+  margin: 18px 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.aiAdvisorPage__thread li {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  color: #52636a;
+}
+
+.aiAdvisorPage__thread li svg {
+  color: #00854a;
+}
+
+.aiAdvisorPage__threadFooter {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 20px;
+  color: #66767d;
+}
+
+.aiAdvisorPage__threadFooter p {
+  margin: 0;
+}
+
+.aiAdvisorPage__threadFooter > span {
+  font-size: 22px;
+  line-height: 1;
+}
+
+.aiAdvisorPage__activity {
+  padding-top: 4px;
+}
+
+.aiAdvisorPage__activity ol {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 26px;
+  margin: 28px 0 18px;
+  padding: 0 0 0 22px;
+  list-style: none;
+}
+
+.aiAdvisorPage__activity ol::before {
+  position: absolute;
+  top: 5px;
+  bottom: 0;
+  left: 4px;
+  width: 1px;
+  background: #d9e2e5;
+  content: "";
+}
+
+.aiAdvisorPage__activity li {
+  position: relative;
+}
+
+.aiAdvisorPage__activityDot {
+  position: absolute;
+  top: 3px;
+  left: -24px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #c8d5d9;
+}
+
+.aiAdvisorPage__activity p {
+  margin: 0 0 5px;
+  line-height: 1.35;
+}
+
+.aiAdvisorPage__activity a {
+  color: #00854a;
+  font-weight: 600;
+}
+
+@media (max-width: 850px) {
+  .aiAdvisorPage {
+    padding: 28px 20px 40px;
+  }
+
+  .aiAdvisorPage__layout {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .aiAdvisorPage__activity {
+    max-width: 520px;
+  }
+}
+
 /* ─── Global focus ring (matches Carbon's add-focus-styling) ─── */
 
 :focus:not(:where([data-component] *)) {

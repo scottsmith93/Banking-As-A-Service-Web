@@ -16,6 +16,7 @@ import FileUploadPage from "./pages/reports/FileUploadPage";
 import ProjectsPage from "./pages/ProjectsPage";
 import FinancialDocumentsPage from "./pages/FinancialDocumentsPage";
 import YearEndMeetingPage from "./pages/YearEndMeetingPage";
+import AIAdvisorPage from "./pages/AIAdvisorPage";
 import SettingsPage from "./pages/settings/SettingsPage";
 import MyProfilePage from "./pages/MyProfilePage";
 import InvoiceDetailPage from "./pages/InvoiceDetailPage";
@@ -68,7 +69,6 @@ import PasswordGate from "./components/PasswordGate";
 // generically via PlaceholderPage rather than one bespoke page component
 // each. Update here (and in src/data/operationsNav.ts) as real pages land.
 const PLACEHOLDER_ROUTES: { path: string; title: string; section: string }[] = [
-  { path: ROUTES.conversations, title: "Conversations", section: "Business" },
 
   { path: ROUTES.sales.orderMassAllocation, title: "Sales order mass allocation", section: "Sales" },
   { path: ROUTES.sales.deliveryNoteMassShipment, title: "Mass shipment creation", section: "Sales" },
@@ -127,6 +127,8 @@ export default function App() {
         <Routes>
             <Route path={ROUTES.home} element={<DashboardPage />} />
             <Route path={ROUTES.myProfile} element={<MyProfilePage />} />
+            <Route path={ROUTES.aiAdvisor} element={<AIAdvisorPage />} />
+            <Route path={ROUTES.conversations} element={<Navigate to={ROUTES.aiAdvisor} replace />} />
             <Route path={ROUTES.playgroundHome} element={<DesignPlaygroundPage />} />
             <Route
               path="/example-page-1"

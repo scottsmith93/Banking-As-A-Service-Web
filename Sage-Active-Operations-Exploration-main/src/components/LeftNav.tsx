@@ -68,7 +68,8 @@ const FRENCH_NAV_LABELS: Record<string, string> = {
   Conversations: "Conversations",
   "AI Advisor": "Conseiller IA",
   "My profile": "Mon profil",
-  "Switch business": "Changer d’entreprise",
+  "Switch to Accountant": "Passer au mode Comptable",
+  "Switch to Client": "Passer au mode Client",
   Chat: "Discussion",
   Insights: "Analyses",
   "Copilot settings": "Paramètres Copilot",
@@ -123,19 +124,12 @@ const ADDITIONAL_NAV_ITEMS: PrimaryNavItem[] = [
     isActive: (pathname) => pathname === ROUTES.yearEndMeeting,
   },
   {
-    id: "conversations",
-    label: "Conversations",
-    iconType: "chat",
-    path: ROUTES.conversations,
-    hasSubmenu: false,
-    isActive: (pathname) => pathname === ROUTES.conversations,
-  },
-  {
     id: "ai-advisor",
     label: "AI Advisor",
     iconType: "lightbulb_on",
+    path: ROUTES.aiAdvisor,
     hasSubmenu: false,
-    isActive: () => false,
+    isActive: (pathname) => pathname === ROUTES.aiAdvisor,
   },
 ];
 
@@ -267,7 +261,7 @@ function SubmenuRow({
 export default function LeftNav() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { mode } = useNavMode();
+  const { mode, setMode } = useNavMode();
   const navItems =
     mode === "essentials"
       ? PRIMARY_NAV_ITEMS.filter((item) => !["accounting", "compliance"].includes(item.id))
@@ -352,7 +346,26 @@ export default function LeftNav() {
               },
             },
           ],
-          [{ key: "switch-business", label: "Switch business", onClick: closeFooterFlyout }],
+          [
+            {
+              key: "switch-accountant",
+              label: "Switch to Accountant",
+              selected: mode === "essentials",
+              onClick: () => {
+                setMode("essentials");
+                closeFooterFlyout();
+              },
+            },
+            {
+              key: "switch-client",
+              label: "Switch to Client",
+              selected: mode === "portal",
+              onClick: () => {
+                setMode("portal");
+                closeFooterFlyout();
+              },
+            },
+          ],
         ],
       };
     }
@@ -413,14 +426,8 @@ export default function LeftNav() {
                 type="button"
                 className={`leftNav__item${active ? " leftNav__item--active" : ""}`}
                 aria-current={active ? "page" : undefined}
-                aria-expanded={item.id === "ai-advisor" ? isAiAdvisorOpen : hasSubmenu ? isExpanded : undefined}
-                aria-haspopup={item.id === "ai-advisor" ? "dialog" : undefined}
+                aria-expanded={hasSubmenu ? isExpanded : undefined}
                 onClick={(e) => {
-                  if (item.id === "ai-advisor") {
-                    closeFooterFlyout();
-                    setIsAiAdvisorOpen(true);
-                    return;
-                  }
                   if (hasSubmenu && (e.target as HTMLElement).closest(".leftNav__itemCaret")) {
                     toggleExpanded(item.id);
                     return;

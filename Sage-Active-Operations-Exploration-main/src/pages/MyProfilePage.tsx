@@ -9,11 +9,15 @@ import { subscriptionPlans, SUBSCRIPTION_VAT_RATE } from "../data/subscriptionPl
 import { useSubscription } from "../context/useSubscription";
 import { useNavMode } from "../context/useNavMode";
 import { ROUTES } from "../routes";
+import { useLanguage } from "../context/useLanguage";
+import { getLocale } from "../locales";
 
 export default function MyProfilePage() {
   const navigate = useNavigate();
   const { activePlanId, setActivePlanId } = useSubscription();
   const { mode, setMode } = useNavMode();
+  const { language } = useLanguage();
+  const locale = getLocale(language);
   const defaultPlanId = subscriptionPlans.find((plan) => plan.isActive)?.id ?? subscriptionPlans[0].id;
   const [selectedPlanId, setSelectedPlanId] = useState<string | null>(null);
   const [upgradeDialogPlanId, setUpgradeDialogPlanId] = useState<string | null>(null);
@@ -29,10 +33,10 @@ export default function MyProfilePage() {
       <Box className="myProfilePage__content">
         <Box className="directoryPage__intro">
           <Typography variant="h1" as="h1" className="directoryPage__title">
-            Manage Sage Active subscription
+            {locale.profile.title}
           </Typography>
           <Typography variant="p" as="p" className="directoryPage__subtitle">
-            Manage your Sage Active subscription and see what's included in each plan.
+            {locale.profile.subtitle}
           </Typography>
         </Box>
 

@@ -1,0 +1,52 @@
+{
+  "profile": {
+    "title": "Gérer l’abonnement Sage Active",
+    "subtitle": "Gérez votre abonnement Sage Active et découvrez ce qui est inclus dans chaque formule.",
+    "monthlyAllocation": "Allocation mensuelle :",
+    "includedUserRoles": "Rôles utilisateurs inclus :",
+    "viewAdditionalFees": "Voir les frais supplémentaires",
+    "providedByAccountant": "Fourni par le comptable",
+    "perMonth": "par mois",
+    "cancelSubscription": "Annuler l’abonnement",
+    "deselect": "Désélectionner",
+    "selectSubscription": "Sélectionner l’abonnement",
+    "currentSubscription": "Abonnement actuel",
+    "subscriptionSelected": "Abonnement sélectionné",
+    "subscriptionCostPerMonth": "Coût mensuel de l’abonnement",
+    "vat": "TVA",
+    "cancel": "Annuler",
+    "subscribe": "S’abonner",
+    "plans": {
+      "portal": {
+        "name": "Portal",
+        "description": "Une vue simplifiée de l’activité avec des fonctions de partage de fichiers pour faciliter la communication entre le client et le comptable.",
+        "allowance": ["1 utilisateur"],
+        "roles": ["1 administrateur", "1 comptable"]
+      },
+      "starter": {
+        "name": "Starter",
+        "description": "Les fonctionnalités essentielles pour les nouvelles entreprises et celles qui confient leur comptabilité à un conseiller.",
+        "allowance": ["5 utilisateurs", "300 factures", "10 paiements en ligne"],
+        "roles": ["1 administrateur", "1 comptable", "3 utilisateurs salariés"]
+      },
+      "essentials": {
+        "name": "Essentials",
+        "description": "Des fonctionnalités plus avancées pour les entreprises exigeantes et celles qui gèrent leur comptabilité en interne.",
+        "allowance": ["10 utilisateurs", "500 factures", "20 paiements en ligne"],
+        "roles": ["2 administrateurs", "2 comptables", "6 utilisateurs salariés"]
+      },
+      "control": {
+        "name": "Standard",
+        "description": "Une gestion avancée des stocks pour les entreprises qui suivent leurs stocks sur plusieurs sites, entrepôts et canaux.",
+        "allowance": ["15 utilisateurs", "1 000 factures", "30 paiements en ligne"],
+        "roles": ["2 administrateurs", "3 comptables", "10 utilisateurs salariés"]
+      },
+      "scale": {
+        "name": "Avancé",
+        "description": "Des fonctionnalités complètes de fabrication pour gérer la production, les ordres de fabrication et les matières premières.",
+        "allowance": ["20 utilisateurs", "1 200 factures", "40 paiements en ligne"],
+        "roles": ["2 administrateurs", "3 comptables", "15 utilisateurs salariés"]
+      }
+    }
+  }
+}

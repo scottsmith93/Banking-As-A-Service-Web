@@ -1,0 +1,52 @@
+{
+  "profile": {
+    "title": "Manage Sage Active subscription",
+    "subtitle": "Manage your Sage Active subscription and see what's included in each plan.",
+    "monthlyAllocation": "Monthly allocation:",
+    "includedUserRoles": "Included user roles:",
+    "viewAdditionalFees": "View additional fees",
+    "providedByAccountant": "Provided by Accountant",
+    "perMonth": "per month",
+    "cancelSubscription": "Cancel subscription",
+    "deselect": "Deselect",
+    "selectSubscription": "Select subscription",
+    "currentSubscription": "Current subscription",
+    "subscriptionSelected": "Subscription selected",
+    "subscriptionCostPerMonth": "Subscription cost per month",
+    "vat": "VAT",
+    "cancel": "Cancel",
+    "subscribe": "Subscribe",
+    "plans": {
+      "portal": {
+        "name": "Portal",
+        "description": "A lightweight business overview with file sharing capabilities to support communication between Client and Accountant.",
+        "allowance": ["1 user"],
+        "roles": ["1 Admin", "1 Accountant"]
+      },
+      "starter": {
+        "name": "Starter",
+        "description": "Standard features for new businesses and also for those that outsource accounting management to an advisor.",
+        "allowance": ["5 users", "300 invoices", "10 Online Payments"],
+        "roles": ["1 Admin", "1 Accountant", "3 Staff users"]
+      },
+      "essentials": {
+        "name": "Essentials",
+        "description": "More advanced features for demanding businesses and companies with in-house accounting management.",
+        "allowance": ["10 users", "500 invoices", "20 Online Payments"],
+        "roles": ["2 Admins", "2 Accountants", "6 Staff users"]
+      },
+      "control": {
+        "name": "Standard",
+        "description": "Advanced inventory and stock management for businesses tracking stock across multiple locations, warehouses, and channels.",
+        "allowance": ["15 users", "1000 invoices", "30 Online Payments"],
+        "roles": ["2 Admins", "3 Accountants", "10 Staff users"]
+      },
+      "scale": {
+        "name": "Advanced",
+        "description": "Full manufacturing capabilities for businesses managing production, work orders, and materials from raw stock to finished goods.",
+        "allowance": ["20 users", "1200 invoices", "40 Online Payments"],
+        "roles": ["2 Admins", "3 Accountants", "15 Staff users"]
+      }
+    }
+  }
+}

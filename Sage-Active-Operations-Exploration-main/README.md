@@ -43,6 +43,7 @@ npm run preview  # preview a production build locally
 | `src/pages/*` | Top-level screens, wired up in `src/routes.ts` |
 | `src/components/*` | Shared UI components built from Carbon primitives |
 | `src/data/*` | In-memory mock data used across the prototype |
+| `src/locales/*` | English and French localisation catalogues for content managed by the localisation team |
 | `src/context/*` | Cross-page React context (nav mode, subscription state, stock alerts) |
 | `AGENTS.md` | Conventions and implementation rules for this codebase |
 | `docs/` | Reference docs (Carbon/token usage, prototyping guidelines) |
@@ -51,3 +52,9 @@ npm run preview  # preview a production build locally
 
 This prototype uses `carbon-react` (Sage's Carbon), not IBM's `@carbon/react`.
 See `AGENTS.md` for the conventions this codebase follows.
+
+## Localisation
+
+English and French content is maintained in [`src/locales/en.json`](src/locales/en.json)
+and [`src/locales/fr.json`](src/locales/fr.json). See [`src/locales/README.md`](src/locales/README.md)
+for the key structure and update workflow.

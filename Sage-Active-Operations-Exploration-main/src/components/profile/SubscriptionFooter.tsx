@@ -2,6 +2,8 @@ import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
 import FooterKpiTile from "../FooterKpiTile";
 import { formatEur } from "../../utils/formatCurrency";
+import { useLanguage } from "../../context/useLanguage";
+import { getLocale } from "../../locales";
 
 type SubscriptionFooterProps = {
   monthlyCost: number;
@@ -18,16 +20,18 @@ export default function SubscriptionFooter({
   onCancel,
   onSubscribe,
 }: SubscriptionFooterProps) {
+  const { language } = useLanguage();
+  const locale = getLocale(language);
   return (
     <Box className="subscriptionFooter" display="flex" alignItems="center" justifyContent="flex-end">
       <Box className="subscriptionFooter__kpis" display="flex" alignItems="center">
-        <FooterKpiTile amount={formatEur(monthlyCost)} label="Subscription cost per month" />
-        <FooterKpiTile amount={formatEur(vatAmount)} label="VAT" />
+        <FooterKpiTile amount={formatEur(monthlyCost)} label={locale.profile.subscriptionCostPerMonth} />
+        <FooterKpiTile amount={formatEur(vatAmount)} label={locale.profile.vat} />
       </Box>
 
       <Box className="subscriptionFooter__actions" display="flex" alignItems="center">
         <Button variant="default" variantType="tertiary" size="medium" onClick={onCancel}>
-          Cancel
+          {locale.profile.cancel}
         </Button>
         <Button
           variant="default"
@@ -36,7 +40,7 @@ export default function SubscriptionFooter({
           disabled={subscribeDisabled}
           onClick={onSubscribe}
         >
-          Subscribe
+          {locale.profile.subscribe}
         </Button>
       </Box>
     </Box>

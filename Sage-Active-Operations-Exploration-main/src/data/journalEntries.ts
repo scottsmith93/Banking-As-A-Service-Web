@@ -82,7 +82,7 @@ export function createStockReceiptJournalEntries(receipt: PurchaseReceipt): Jour
   const netTotalGbp = Number(
     receipt.lines.reduce((sum, line) => sum + line.quantityPurchaseUnit * line.netPriceGbp, 0).toFixed(2),
   );
-  const month = new Date(receipt.receiptDate).toLocaleDateString("en-GB", { month: "long" });
+  const month = new Date(receipt.receiptDate).toLocaleDateString("fr-FR", { month: "long" });
 
   const entries: JournalEntryLine[] = [
     {

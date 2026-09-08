@@ -14,12 +14,12 @@ import IconButton from "carbon-react/lib/components/icon-button";
 import Pill from "carbon-react/lib/components/pill";
 import { quotes, type Quote, type QuoteStatus } from "../../data/quotes";
 
-const gbpFormatter = new Intl.NumberFormat("en-GB", {
+const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
   currency: "EUR",
 });
 
-const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   day: "2-digit",
   month: "short",
   year: "numeric",

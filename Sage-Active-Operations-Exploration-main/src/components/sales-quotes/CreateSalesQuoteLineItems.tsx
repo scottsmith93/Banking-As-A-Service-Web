@@ -14,7 +14,7 @@ import IconButton from "carbon-react/lib/components/icon-button";
 import Typography from "carbon-react/lib/components/typography";
 import type { QuoteLineItem } from "../../data/salesQuoteForm";
 
-const gbpFormatter = new Intl.NumberFormat("en-GB", {
+const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
   currency: "EUR",
 });

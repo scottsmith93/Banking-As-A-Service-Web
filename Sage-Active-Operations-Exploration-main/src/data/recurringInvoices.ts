@@ -30,7 +30,7 @@ const customers = [
   "ABC Portage Services",
   "Northbridge Office Supplies Ltd",
   "Cedar & Co. Chartered Accountants",
-  "Amazon UK Services Ltd",
+  "Amazon France SAS",
   "Willowbrook Veterinary Practice",
   "Harbour Lane Property Management",
   "Brightfield Marketing Collective",

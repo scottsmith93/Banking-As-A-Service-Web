@@ -18,7 +18,7 @@ export default function SalesInvoicesPage() {
   const headerActions = (
     <>
       <Button variantType="tertiary" iconType="info" iconPosition="before">
-        Filter invoices without Cash VAT
+        Filter invoices without VAT on cash receipts
       </Button>
       <Button variantType="tertiary" iconType="settings" iconPosition="before">
         Manage online payments

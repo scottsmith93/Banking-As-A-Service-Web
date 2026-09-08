@@ -6798,3 +6798,36 @@ nav.directoryMenu,
     flex-shrink: 0;
   }
 }
+
+/* Shared page rhythm: every screen starts from the same left edge and
+   content inset. Page-specific surfaces can still use their own background,
+   but must not introduce a second outer margin. */
+.pageContent {
+  width: 100%;
+  box-sizing: border-box;
+  margin: 0;
+  padding: 32px;
+  gap: 32px;
+  align-items: stretch;
+}
+
+.pageContent.dashboardPage,
+.pageContent.aiAdvisorPage,
+.pageContent.fileUploadPage,
+.pageContent.projectsPage,
+.pageContent.yearEndMeetingPage {
+  margin: 0;
+  padding: 32px;
+}
+
+@media (max-width: 700px) {
+  .pageContent,
+  .pageContent.dashboardPage,
+  .pageContent.aiAdvisorPage,
+  .pageContent.fileUploadPage,
+  .pageContent.projectsPage,
+  .pageContent.yearEndMeetingPage {
+    padding: 24px 16px 32px;
+    gap: 24px;
+  }
+}

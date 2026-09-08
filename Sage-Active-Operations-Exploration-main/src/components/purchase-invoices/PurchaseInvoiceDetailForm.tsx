@@ -30,7 +30,7 @@ export default function PurchaseInvoiceDetailForm({
   const [supplier, setSupplier] = useState(invoice.supplier);
   const [invoiceNumber, setInvoiceNumber] = useState(invoice.invoiceNumber);
   const [invoiceDate, setInvoiceDate] = useState(
-    new Date(invoice.invoiceDate).toLocaleDateString("en-GB"),
+    new Date(invoice.invoiceDate).toLocaleDateString("fr-FR"),
   );
   const [cashVat, setCashVat] = useState(detail.cashVat);
   const [vatRows, setVatRows] = useState<PurchaseInvoiceVatRow[]>(detail.vatRows);
@@ -170,7 +170,7 @@ export default function PurchaseInvoiceDetailForm({
         <Box className="purchaseInvoiceDetail__formCell purchaseInvoiceDetail__formCell--narrow">
           <Switch
             id="purchase-invoice-cash-vat"
-            label="Cash VAT"
+            label="VAT on cash receipts"
             checked={cashVat}
             onChange={(event) => setCashVat(event.target.checked)}
           />

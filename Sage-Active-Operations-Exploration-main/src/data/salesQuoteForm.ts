@@ -8,7 +8,7 @@ export const quotePrefixOptions = [
 ] as const;
 
 export const quoteCountryOptions = [
-  { text: "GB - UK", value: "GB" },
+  { text: "FR - France", value: "GB" },
   { text: "FR - FR", value: "FR" },
   { text: "IE - IE", value: "IE" },
 ] as const;

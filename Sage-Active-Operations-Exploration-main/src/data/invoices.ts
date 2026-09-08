@@ -29,7 +29,7 @@ export type Invoice = {
 const customers = [
   { code: "ABCPORTAGE", name: "ABC Portage Services" },
   { code: "BHCAPITAL", name: "BH Capital Partners" },
-  { code: "AMAZON", name: "Amazon UK Services Ltd" },
+  { code: "AMAZON", name: "Amazon France SAS" },
   { code: "C01", name: "Northbridge Office Supplies Ltd" },
   { code: "C02", name: "Cedar & Co. Chartered Accountants" },
   { code: "C03", name: "Willowbrook Veterinary Practice" },

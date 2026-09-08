@@ -38,7 +38,7 @@ const suppliers = [
   "Amazon Web Services",
   "Office Supplies Direct",
   "National Grid",
-  "FedEx UK",
+  "FedEx France SAS",
   "Adobe Systems",
   "Sage Software",
 ] as const;
@@ -179,7 +179,7 @@ const supplierDetails: Record<
   },
   "British Telecom": {
     addressLines: ["1 Braham Street"],
-    cityCountry: "London, United Kingdom",
+    cityCountry: "Paris, France",
     category: "Telecoms",
   },
   "Amazon Web Services": {
@@ -189,17 +189,17 @@ const supplierDetails: Record<
   },
   "Office Supplies Direct": {
     addressLines: ["Unit 4, Brunswick Business Park"],
-    cityCountry: "Manchester, United Kingdom",
+    cityCountry: "Lyon, France",
     category: "Office supplies",
   },
   "National Grid": {
     addressLines: ["1-3 Strand"],
-    cityCountry: "London, United Kingdom",
+    cityCountry: "Marseille, France",
     category: "Utilities",
   },
-  "FedEx UK": {
+  "FedEx France SAS": {
     addressLines: ["Fedex House, Garston Lane"],
-    cityCountry: "Watford, United Kingdom",
+    cityCountry: "Lille, France",
     category: "Shipping",
   },
   "Adobe Systems": {
@@ -209,16 +209,16 @@ const supplierDetails: Record<
   },
   "Sage Software": {
     addressLines: ["North Park, Newcastle Business Park"],
-    cityCountry: "Newcastle upon Tyne, United Kingdom",
+    cityCountry: "Toulouse, France",
     category: "Software",
   },
 };
 
-const UK_VAT_RATE = 0.2;
+const FRENCH_STANDARD_VAT_RATE = 0.2;
 
 export function getPurchaseInvoiceDetail(invoice: PurchaseInvoice): PurchaseInvoiceDetail {
   const supplier = supplierDetails[invoice.supplier as (typeof suppliers)[number]];
-  const taxableAmountGbp = Number((invoice.totalGbp / (1 + UK_VAT_RATE)).toFixed(2));
+  const taxableAmountGbp = Number((invoice.totalGbp / (1 + FRENCH_STANDARD_VAT_RATE)).toFixed(2));
   const vatAmountGbp = Number((invoice.totalGbp - taxableAmountGbp).toFixed(2));
   const invoiceIndex = purchaseInvoices.findIndex((item) => item.id === invoice.id);
 
@@ -231,7 +231,7 @@ export function getPurchaseInvoiceDetail(invoice: PurchaseInvoice): PurchaseInvo
     vatRows: [
       {
         id: `${invoice.id}-vat-1`,
-        taxRatePercent: UK_VAT_RATE * 100,
+        taxRatePercent: FRENCH_STANDARD_VAT_RATE * 100,
         taxableAmountGbp,
         vatAmountGbp,
         category: supplier.category,

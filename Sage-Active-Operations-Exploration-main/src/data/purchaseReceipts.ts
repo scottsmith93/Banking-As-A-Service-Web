@@ -38,7 +38,7 @@ const suppliers = [
   "Amazon Web Services",
   "Office Supplies Direct",
   "National Grid",
-  "FedEx UK",
+  "FedEx France SAS",
   "Adobe Systems",
   "Sage Software",
 ] as const;
@@ -74,7 +74,7 @@ const itemsBySupplier: Record<(typeof suppliers)[number], { name: string; id: st
     { name: "Electricity supply - quarterly", id: "ITM-2601" },
     { name: "Half-hourly metering service", id: "ITM-2602" },
   ],
-  "FedEx UK": [
+  "FedEx France SAS": [
     { name: "Express freight - pallet", id: "ITM-2701" },
     { name: "Customs clearance service", id: "ITM-2702" },
   ],

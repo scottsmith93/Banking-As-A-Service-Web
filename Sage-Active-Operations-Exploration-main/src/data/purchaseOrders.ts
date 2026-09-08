@@ -43,7 +43,7 @@ const suppliers = [
   "Amazon Web Services",
   "Office Supplies Direct",
   "National Grid",
-  "FedEx UK",
+  "FedEx France SAS",
   "Adobe Systems",
   "Sage Software",
 ] as const;
@@ -63,7 +63,7 @@ const lineDesignationsBySupplier: Record<(typeof suppliers)[number], string[]> =
   "Amazon Web Services": ["EC2 reserved instance - 1yr", "S3 storage capacity"],
   "Office Supplies Direct": ["A4 copier paper - box of 5", "Toner cartridge - black"],
   "National Grid": ["Electricity supply - quarterly", "Half-hourly metering service"],
-  "FedEx UK": ["Express freight - pallet", "Customs clearance service"],
+  "FedEx France SAS": ["Express freight - pallet", "Customs clearance service"],
   "Adobe Systems": ["Creative Cloud licence - annual", "Acrobat Pro licence"],
   "Sage Software": ["Sage 200 user licence", "Implementation support hours"],
 };
@@ -112,10 +112,10 @@ function buildLines(
   });
 }
 
-const UK_VAT_RATE = 0.2;
+const FRENCH_STANDARD_VAT_RATE = 0.2;
 
 export function getLineAmountWithVat(line: PurchaseOrderLine) {
-  return Number((line.quantity * line.netPriceGbp * (1 + UK_VAT_RATE)).toFixed(2));
+  return Number((line.quantity * line.netPriceGbp * (1 + FRENCH_STANDARD_VAT_RATE)).toFixed(2));
 }
 
 export function getOrderTotals(order: PurchaseOrder) {
@@ -123,7 +123,7 @@ export function getOrderTotals(order: PurchaseOrder) {
     (sum, line) => sum + line.quantity * line.netPriceGbp,
     0,
   );
-  const vatTotalGbp = netTotalGbp * UK_VAT_RATE;
+  const vatTotalGbp = netTotalGbp * FRENCH_STANDARD_VAT_RATE;
 
   return {
     netTotalGbp: Number(netTotalGbp.toFixed(2)),
@@ -146,7 +146,7 @@ function buildPurchaseOrder(index: number): PurchaseOrder {
 
   const lines = buildLines(index, supplier, purchasingSite, earliestExpectedDate, status);
   const netTotalGbp = lines.reduce((sum, line) => sum + line.quantity * line.netPriceGbp, 0);
-  const totalIncludingTaxGbp = Number((netTotalGbp * (1 + UK_VAT_RATE)).toFixed(2));
+  const totalIncludingTaxGbp = Number((netTotalGbp * (1 + FRENCH_STANDARD_VAT_RATE)).toFixed(2));
 
   return {
     id: `purchase-order-${String(index + 1).padStart(3, "0")}`,
@@ -193,7 +193,7 @@ export function createPurchaseOrder(input: CreatePurchaseOrderInput): PurchaseOr
   }));
 
   const netTotalGbp = lines.reduce((sum, line) => sum + line.quantity * line.netPriceGbp, 0);
-  const totalIncludingTaxGbp = Number((netTotalGbp * (1 + UK_VAT_RATE)).toFixed(2));
+  const totalIncludingTaxGbp = Number((netTotalGbp * (1 + FRENCH_STANDARD_VAT_RATE)).toFixed(2));
 
   const order: PurchaseOrder = {
     id: `purchase-order-${String(index + 1).padStart(3, "0")}`,

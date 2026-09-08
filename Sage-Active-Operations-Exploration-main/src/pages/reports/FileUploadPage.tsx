@@ -28,7 +28,7 @@ function describeFile(file: File): FileRow {
   return {
     name: file.name,
     size,
-    dateAdded: new Intl.DateTimeFormat("en-GB").format(new Date()),
+    dateAdded: new Intl.DateTimeFormat("fr-FR").format(new Date()),
     addedBy: "Nadia Benhamed",
     status: "File uploaded",
   };

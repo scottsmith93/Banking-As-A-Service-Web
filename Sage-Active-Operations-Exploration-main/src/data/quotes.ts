@@ -23,7 +23,7 @@ const customers = [
   { code: "C03", name: "Willowbrook Veterinary Practice" },
   { code: "C04", name: "Harbour Lane Property Management" },
   { code: "C05", name: "Brightfield Marketing Collective" },
-  { code: "AMAZON", name: "Amazon UK Services Ltd" },
+  { code: "AMAZON", name: "Amazon France SAS" },
   { code: "C06", name: "Red Kite Engineering Services" },
   { code: "C07", name: "Elm Street Bakery (Trading as Elm Street)" },
   { code: "C08", name: "Summit Legal Partners LLP" },

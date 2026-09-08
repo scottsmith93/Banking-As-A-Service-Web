@@ -30,7 +30,7 @@ const supplierOptions = [
   "Amazon Web Services",
   "Office Supplies Direct",
   "National Grid",
-  "FedEx UK",
+  "FedEx France SAS",
   "Adobe Systems",
   "Sage Software",
 ] as const;
@@ -55,13 +55,13 @@ type PrefillState = {
 };
 
 function todayIso() {
-  return new Date().toLocaleDateString("en-GB");
+  return new Date().toLocaleDateString("fr-FR");
 }
 
 function inWeekIso() {
   const date = new Date();
   date.setDate(date.getDate() + 7);
-  return date.toLocaleDateString("en-GB");
+  return date.toLocaleDateString("fr-FR");
 }
 
 let draftLineSequence = 0;

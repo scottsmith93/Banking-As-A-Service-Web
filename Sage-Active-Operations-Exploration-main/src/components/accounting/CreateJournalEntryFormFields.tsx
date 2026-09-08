@@ -208,7 +208,7 @@ export default function CreateJournalEntryFormFields({
             {...fullWidthFieldProps}
           >
             <Option text="EUR" value="EUR" />
-            <Option text="GBP" value="GBP" />
+            <Option text="EUR" value="EUR" />
             <Option text="USD" value="USD" />
           </Select>
         </RecordFormCell>

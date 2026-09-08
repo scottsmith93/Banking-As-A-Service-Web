@@ -16,7 +16,7 @@ export type DeliveryNote = {
 };
 
 const customers = [
-  { code: "AMAZON", name: "Amazon UK Services Ltd" },
+  { code: "AMAZON", name: "Amazon France SAS" },
   { code: "ABCPORTAGE", name: "ABC Portage Services" },
   { code: "COD01", name: "Almacenes la Central" },
   { code: "C01", name: "Northbridge Office Supplies Ltd" },

@@ -3,7 +3,7 @@ import Sidebar from "carbon-react/lib/components/sidebar";
 import Typography from "carbon-react/lib/components/typography";
 import type { Customer } from "../../data/customers";
 
-const gbpFormatter = new Intl.NumberFormat("en-GB", {
+const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
   currency: "EUR",
 });

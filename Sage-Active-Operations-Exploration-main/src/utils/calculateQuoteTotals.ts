@@ -1,6 +1,6 @@
 import type { QuoteLineItem } from "../data/salesQuoteForm";
 
-const UK_VAT_RATE = 0.2;
+const FRENCH_STANDARD_VAT_RATE = 0.2;
 
 export type QuoteTotals = {
   taxableAmountGbp: number;
@@ -15,7 +15,7 @@ export function calculateQuoteTotals(lineItems: QuoteLineItem[]): QuoteTotals {
     return sum + lineTotal;
   }, 0);
 
-  const vatAmountGbp = taxableAmountGbp * UK_VAT_RATE;
+  const vatAmountGbp = taxableAmountGbp * FRENCH_STANDARD_VAT_RATE;
   const totalGbp = taxableAmountGbp + vatAmountGbp;
 
   return { taxableAmountGbp, vatAmountGbp, totalGbp };

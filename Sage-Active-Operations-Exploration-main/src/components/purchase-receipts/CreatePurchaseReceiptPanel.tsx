@@ -41,7 +41,7 @@ type CreatePurchaseReceiptPanelProps = {
 };
 
 function todayIso() {
-  return new Date().toLocaleDateString("en-GB");
+  return new Date().toLocaleDateString("fr-FR");
 }
 
 export default function CreatePurchaseReceiptPanel({

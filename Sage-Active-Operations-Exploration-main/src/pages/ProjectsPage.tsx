@@ -25,7 +25,7 @@ const decisionCopy: Record<Language, Record<Decision, { label: string; amountLab
 };
 
 const formatCurrency = (amount: number) =>
-  new Intl.NumberFormat("en-GB", { style: "currency", currency: "GBP", maximumFractionDigits: 0 }).format(amount);
+  new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(amount);
 
 export default function ProjectsPage() {
   const { language } = useLanguage();
@@ -101,7 +101,7 @@ export default function ProjectsPage() {
           <div className="projectsPage__amountBlock">
             <label htmlFor="project-amount">{copy.amountLabel}</label>
             <span className="projectsPage__inputWrap">
-              <span>£</span>
+              <span>€</span>
               <input
                 id="project-amount"
                 type="number"
@@ -123,11 +123,11 @@ export default function ProjectsPage() {
             <div className="projectsPage__inputGrid">
               <label>
                 {isFrench ? "Solde de trésorerie actuel" : "Current cash balance"}
-                <span className="projectsPage__inputWrap"><span>£</span><input type="number" min="0" value={cashBalance} onChange={(event) => setCashBalance(Number(event.target.value))} /></span>
+                <span className="projectsPage__inputWrap"><span>€</span><input type="number" min="0" value={cashBalance} onChange={(event) => setCashBalance(Number(event.target.value))} /></span>
               </label>
               <label>
                 {isFrench ? "Seuil de sécurité" : "Safety threshold"}
-                <span className="projectsPage__inputWrap"><span>£</span><input type="number" min="0" value={safetyThreshold} onChange={(event) => setSafetyThreshold(Number(event.target.value))} /></span>
+                <span className="projectsPage__inputWrap"><span>€</span><input type="number" min="0" value={safetyThreshold} onChange={(event) => setSafetyThreshold(Number(event.target.value))} /></span>
               </label>
             </div>
             <p className="projectsPage__assumptionNote"><Icon type="info" aria-hidden /> {isFrench ? "Ces chiffres sont des hypothèses pour cette simulation. Connectez vos données comptables pour les remplacer par des soldes réels." : "These figures are assumptions for this simulation. Connect your accounting data to replace them with live balances."}</p>
@@ -141,7 +141,6 @@ export default function ProjectsPage() {
 
         <aside className={`projectsPage__result projectsPage__result--${result.status}`} aria-live="polite">
           <div className="projectsPage__resultTop">
-            <div className="projectsPage__statusIcon"><Icon type={result.status === "feasible" ? "tick" : result.status === "borderline" ? "alert" : "blocked"} aria-hidden /></div>
             <div className="projectsPage__resultHeading">
             <h3>{isFrench ? ({ feasible: "Faisable", borderline: "À la limite", "not-feasible": "Non faisable" }[result.status]) : result.status === "not-feasible" ? "Not feasible" : result.status.charAt(0).toUpperCase() + result.status.slice(1)}</h3>
               <p>{result.status === "feasible" ? (isFrench ? `Votre trésorerie prévisionnelle reste supérieure à votre seuil de sécurité après l’opération « ${calculatedCopy.label.toLowerCase()} ».` : `Your projected cash stays above your safety threshold after you ${calculatedCopy.label.toLowerCase()}.`) : result.status === "borderline" ? (isFrench ? "Cette décision vous rapproche de votre seuil de sécurité. Vérifiez les hypothèses avant de continuer." : "This decision brings you close to your safety threshold. Review the assumptions before proceeding.") : (isFrench ? "Cette décision ferait passer votre trésorerie prévisionnelle sous votre seuil de sécurité." : "This decision would take your projected cash below your safety threshold.")}</p>

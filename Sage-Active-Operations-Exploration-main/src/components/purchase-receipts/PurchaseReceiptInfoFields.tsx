@@ -17,7 +17,7 @@ export default function PurchaseReceiptInfoFields({ receipt }: PurchaseReceiptIn
   const [supplier, setSupplier] = useState(receipt.supplier);
   const [number, setNumber] = useState(receipt.receiptId);
   const [receiptDate, setReceiptDate] = useState(
-    new Date(receipt.receiptDate).toLocaleDateString("en-GB"),
+    new Date(receipt.receiptDate).toLocaleDateString("fr-FR"),
   );
 
   return (

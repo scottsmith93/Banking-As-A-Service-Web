@@ -4,7 +4,7 @@ import SplitButton from "carbon-react/lib/components/split-button";
 import FooterKpiTile from "../FooterKpiTile";
 import type { InvoiceSummary } from "../../utils/calculateInvoiceTotals";
 
-const gbpFormatter = new Intl.NumberFormat("en-GB", {
+const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
   currency: "EUR",
 });

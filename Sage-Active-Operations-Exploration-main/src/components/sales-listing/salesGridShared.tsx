@@ -20,12 +20,12 @@ export const salesListingGridTheme = themeQuartz.withParams({
   fontFamily: "inherit",
 });
 
-const gbpFormatter = new Intl.NumberFormat("en-GB", {
+const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
   currency: "EUR",
 });
 
-const dateFormatter = new Intl.DateTimeFormat("en-GB", {
+const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   day: "2-digit",
   month: "short",
   year: "numeric",

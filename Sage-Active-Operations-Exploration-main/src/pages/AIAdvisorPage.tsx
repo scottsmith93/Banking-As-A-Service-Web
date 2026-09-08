@@ -6,10 +6,10 @@ import Button from "carbon-react/lib/components/button/__next__";
 import { useLanguage } from "../context/useLanguage";
 
 const threads = [
-  { title: "Afternoon briefing", body: "7 incoming bank transactions need review across BNP Paribas, Crédit Agricole, and American Express. Cash sits at 20 436,06 €, with overdue invoices and bills due soon.", items: ["Review 7 pending bank transactions", "Chase 675,75 € across 3 overdue invoices", "Pay 2 bills due this week totaling 606,40 €"], action: "Open briefing", time: "8 minutes" },
-  { title: "VAT return 1 April to 30 June 2026", body: "Needs submitting by 7 August 2026. Net VAT to pay is 15 470,00 € — the checks are complete and the return is ready to send to the DGFiP.", items: ["Sales invoices match taxable outputs", "Purchase invoices match deductible inputs", "French VAT rates have been applied correctly"], action: "Review VAT", time: "3 minutes" },
-  { title: "Bank transactions to review", body: "64 transactions were coded automatically. 7 have category suggestions ready for review.", items: [], action: "Review transactions", time: "5 minutes" },
-  { title: "Verify supplier bank details", body: "Fournitures Montclair payment is on hold until the new French bank account is confirmed.", items: [], action: "Review payment hold", time: "" },
+  { title: "Documents needed for your VAT return", body: "Your accountant is preparing the VAT return for the period ending 30 June 2026. Please upload the remaining documents before 7 August so they can complete the review.", items: ["Upload missing purchase invoices", "Add receipts for business expenses", "Confirm any credit notes issued in June"], action: "View document request", time: "8 minutes" },
+  { title: "Year-end documents to upload", body: "Your accountant has requested a few documents ahead of the year-end review. Upload them by 15 September to keep the accounts preparation on schedule.", items: ["Upload the latest bank statements", "Share asset purchase invoices and finance agreements", "Add details of outstanding customer balances"], action: "Upload documents", time: "5 minutes" },
+  { title: "Accountant comments to review", body: "Camille Martin has added comments to three documents in your client file. Review the questions and reply before the next accounts review.", items: ["Confirm the purpose of the largest expense", "Answer the question on the supplier invoice", "Approve the draft document summary"], action: "Review comments", time: "4 minutes" },
+  { title: "Document deadline approaching", body: "The deadline to send supporting documents for Boulangerie des Lilas is approaching. Your accountant is waiting for the final sales export and insurance certificate.", items: [], action: "Send documents", time: "" },
 ];
 
 const activity = [
@@ -33,8 +33,7 @@ export default function AIAdvisorPage() {
             {isFrench ? "Posez une question à l’IA sur votre entreprise ou envoyez un message à votre comptable." : "Ask AI about your business or send messages to your Accountant."}
           </Typography>
           <Box className="aiAdvisorPage__composer">
-            <label htmlFor="advisor-question">{isFrench ? "Envoyer un message à l’AI Advisor" : "Message AI Advisor"}</label>
-            <textarea id="advisor-question" value={question} onChange={(event) => setQuestion(event.target.value)} placeholder={isFrench ? "Posez une question sur votre entreprise" : "Ask a question about your business"} />
+            <textarea id="advisor-question" aria-label={isFrench ? "Envoyer un message à l’AI Advisor" : "Message AI Advisor"} value={question} onChange={(event) => setQuestion(event.target.value)} placeholder={isFrench ? "Posez une question sur votre entreprise" : "Ask a question about your business"} />
             <Box className="aiAdvisorPage__composerActions"><Button variant="default" variantType="tertiary" size="small" aria-label={isFrench ? "Ajouter" : "Add"}>+</Button><Button variant="default" variantType="primary" size="small" aria-label={isFrench ? "Envoyer" : "Send"} disabled={!question.trim()}>↑</Button></Box>
           </Box>
           <Box className="aiAdvisorPage__sectionHeader"><Typography variant="h2" as="h2">{isFrench ? "Pour vous" : "For you"}</Typography></Box>

@@ -81,7 +81,7 @@ export const customers: Customer[] = [
   {
     id: "cl-006",
     customerCode: "AMAZON",
-    name: "Amazon UK Services Ltd",
+    name: "Amazon France SAS",
     contactName: "Accounts Payable",
     email: "ap-uk@amazon.co.uk",
     phone: "020 7084 1111",

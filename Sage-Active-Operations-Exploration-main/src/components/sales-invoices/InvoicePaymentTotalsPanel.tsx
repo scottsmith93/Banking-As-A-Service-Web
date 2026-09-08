@@ -6,7 +6,7 @@ import Typography from "carbon-react/lib/components/typography";
 import { paymentTerms } from "../../data/invoiceCreateForm";
 import type { InvoiceSummary } from "../../utils/calculateInvoiceTotals";
 
-const gbpFormatter = new Intl.NumberFormat("en-GB", {
+const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
   currency: "EUR",
 });

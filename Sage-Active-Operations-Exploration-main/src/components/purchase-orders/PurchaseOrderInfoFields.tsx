@@ -20,10 +20,10 @@ export default function PurchaseOrderInfoFields({ order }: PurchaseOrderInfoFiel
   const [supplier, setSupplier] = useState(order.supplier);
   const [purchasingSite, setPurchasingSite] = useState(order.purchasingSite);
   const [orderDate, setOrderDate] = useState(
-    new Date(order.orderDate).toLocaleDateString("en-GB"),
+    new Date(order.orderDate).toLocaleDateString("fr-FR"),
   );
   const [earliestExpectedDate, setEarliestExpectedDate] = useState(
-    new Date(order.earliestExpectedDate).toLocaleDateString("en-GB"),
+    new Date(order.earliestExpectedDate).toLocaleDateString("fr-FR"),
   );
 
   return (

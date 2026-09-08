@@ -9,7 +9,7 @@ import FixedAssetTransactionsGrid from "../../components/accounting/FixedAssetTr
 import { fixedAssetOptions, fixedAssets } from "../../data/fixedAssets";
 import { fixedAssetTransactions } from "../../data/fixedAssetTransactions";
 
-const gbpFormatter = new Intl.NumberFormat("en-GB", {
+const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
   currency: "EUR",
 });

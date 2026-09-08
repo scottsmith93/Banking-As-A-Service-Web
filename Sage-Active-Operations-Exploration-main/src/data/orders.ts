@@ -17,7 +17,7 @@ export type SalesOrder = {
 
 const customers = [
   { code: "001", name: "Anna Marti" },
-  { code: "AMAZON", name: "Amazon UK Services Ltd" },
+  { code: "AMAZON", name: "Amazon France SAS" },
   { code: "C0001", name: "Almacenes Central Ltd" },
   { code: "ABCPORTAGE", name: "ABC Portage Services" },
   { code: "BHCAPITAL", name: "BH Capital Partners" },

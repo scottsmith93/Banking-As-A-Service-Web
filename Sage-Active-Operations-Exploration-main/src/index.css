@@ -284,24 +284,12 @@ body {
   line-height: 1.5;
 }
 
-.aiAdvisorPage__thread ul {
+.aiAdvisorPage__threadTags {
   display: flex;
-  flex-direction: column;
-  gap: 9px;
+  flex-wrap: wrap;
+  column-gap: 8px;
+  row-gap: 8px;
   margin: 18px 0 24px;
-  padding: 0;
-  list-style: none;
-}
-
-.aiAdvisorPage__thread li {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  color: #52636a;
-}
-
-.aiAdvisorPage__thread li svg {
-  color: #00854a;
 }
 
 .aiAdvisorPage__threadFooter {
@@ -1444,6 +1432,13 @@ body {
   font: inherit;
 }
 
+.projectsPage__amountSlider {
+  display: block;
+  width: 100%;
+  margin: 16px 0 10px;
+  accent-color: var(--colorsActionMajor500, #007e45);
+}
+
 .projectsPage__assumptionNote {
   display: flex;
   align-items: flex-start;
@@ -1806,6 +1801,229 @@ body {
   cursor: pointer;
 }
 
+.yearEndMeetingPage__yearLayout {
+  display: grid;
+  grid-template-columns: 160px minmax(0, 1fr);
+  gap: var(--spacing400);
+  align-items: start;
+}
+
+.yearEndMeetingPage__yearTabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing050);
+  border-left: 1px solid var(--colorsUtilityMajor100);
+}
+
+.yearEndMeetingPage__yearTab {
+  border: 0;
+  border-left: 3px solid transparent;
+  background: transparent;
+  color: var(--colorsUtilityYin065);
+  cursor: pointer;
+  font: inherit;
+  padding: var(--spacing200) var(--spacing300);
+  text-align: left;
+}
+
+.yearEndMeetingPage__yearTab:hover,
+.yearEndMeetingPage__yearTab:focus-visible,
+.yearEndMeetingPage__yearTab--active {
+  color: var(--colorsActionMajor500);
+  background: var(--colorsUtilityMajor025);
+}
+
+.yearEndMeetingPage__yearTab--active {
+  border-left-color: var(--colorsActionMajor500);
+  font-weight: 700;
+}
+
+.yearEndMeetingPage__yearContent {
+  min-width: 0;
+}
+
+.yearEndMeetingPage__history {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing300);
+}
+
+.yearEndMeetingPage__historyHeader,
+.yearEndMeetingPage__historyKpis,
+.yearEndMeetingPage__historyGrid {
+  display: grid;
+  gap: var(--spacing300);
+}
+
+.yearEndMeetingPage__historyHeader {
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+}
+
+.yearEndMeetingPage__historyHeader h2,
+.yearEndMeetingPage__historyHeader p,
+.yearEndMeetingPage__historyPanel h3 {
+  margin: 0;
+}
+
+.yearEndMeetingPage__historyHeader p {
+  color: var(--colorsUtilityYin065);
+  margin-top: var(--spacing100);
+}
+
+.yearEndMeetingPage__historyHeader > span {
+  grid-column: 2;
+  justify-self: end;
+  color: var(--colorsUtilityYin065);
+  font-size: 13px;
+  padding: var(--spacing100) var(--spacing200);
+  border: 1px solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+}
+
+.yearEndMeetingPage__historyKpis {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.yearEndMeetingPage__historyKpi,
+.yearEndMeetingPage__historyPanel {
+  background: var(--colorsUtilityYang100);
+  border: 1px solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+  padding: var(--spacing300);
+}
+
+.yearEndMeetingPage__historyKpi {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing100);
+}
+
+.yearEndMeetingPage__historyKpi strong {
+  color: var(--colorsUtilityYin100);
+  font-size: 22px;
+}
+
+.yearEndMeetingPage__historyKpi span {
+  color: var(--colorsUtilityYin065);
+  font-size: 14px;
+}
+
+.yearEndMeetingPage__historyGrid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.yearEndMeetingPage__historyPanel {
+  min-height: 290px;
+}
+
+.yearEndMeetingPage__historyChart {
+  display: flex;
+  align-items: end;
+  gap: var(--spacing100);
+  height: 210px;
+  margin-top: var(--spacing400);
+  padding: var(--spacing200) 0 0;
+  border-bottom: 1px solid var(--colorsUtilityMajor100);
+}
+
+.yearEndMeetingPage__historyChartFrame {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing100);
+  margin-top: var(--spacing400);
+}
+
+.yearEndMeetingPage__historyYAxis {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 54px;
+  height: 210px;
+  padding: var(--spacing200) 0 0;
+  box-sizing: border-box;
+  color: var(--colorsUtilityYin065);
+  font-size: 10px;
+  text-align: right;
+}
+
+.yearEndMeetingPage__historyChartFrame .yearEndMeetingPage__historyChart {
+  flex: 1;
+  min-width: 0;
+  margin-top: 0;
+}
+
+.yearEndMeetingPage__historyBarGroup {
+  display: flex;
+  align-items: end;
+  justify-content: center;
+  gap: 2px;
+  flex: 1;
+  height: 100%;
+  position: relative;
+}
+
+.yearEndMeetingPage__historyBarGroup > span {
+  width: 70%;
+  background: var(--colorsActionMajor500);
+  border-radius: 4px 4px 0 0;
+}
+
+.yearEndMeetingPage__historyBarGroup small {
+  position: absolute;
+  bottom: -24px;
+  color: var(--colorsUtilityYin065);
+  font-size: 11px;
+}
+
+.yearEndMeetingPage__historyChart--dual .yearEndMeetingPage__historyBarGroup > span {
+  width: 42%;
+}
+
+.yearEndMeetingPage__historyBar--revenue {
+  background: var(--colorsActionMajor500) !important;
+}
+
+.yearEndMeetingPage__historyBar--cost {
+  background: var(--colorsSemanticInfo500, #20617b) !important;
+}
+
+@media (max-width: 900px) {
+  .yearEndMeetingPage__yearLayout,
+  .yearEndMeetingPage__historyGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .yearEndMeetingPage__yearTabs {
+    flex-direction: row;
+    border-left: 0;
+    border-bottom: 1px solid var(--colorsUtilityMajor100);
+  }
+
+  .yearEndMeetingPage__yearTab {
+    border-left: 0;
+    border-bottom: 3px solid transparent;
+  }
+
+  .yearEndMeetingPage__yearTab--active {
+    border-bottom-color: var(--colorsActionMajor500);
+  }
+
+  .yearEndMeetingPage__historyHeader > span {
+    grid-column: 1;
+  }
+
+  .yearEndMeetingPage__historyKpis {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 520px) {
+  .yearEndMeetingPage__historyKpis {
+    grid-template-columns: 1fr;
+  }
+}
+
 @media (max-width: 800px) {
   .yearEndMeetingPage__grid {
     grid-template-columns: 1fr;
@@ -1975,6 +2193,12 @@ body {
 .fileUploadPage__table th:nth-child(4) { width: 14%; }
 .fileUploadPage__table th:nth-child(5) { width: 17%; }
 .fileUploadPage__table th:nth-child(n + 6) { width: 5%; text-align: center; }
+.fileUploadPage__table--upload th:nth-child(6) { width: 4%; }
+.fileUploadPage__table--upload th:nth-child(7) { width: 10%; }
+.fileUploadPage__table--upload th:nth-child(1) { width: 24%; }
+.fileUploadPage__table--upload th:nth-child(8) { width: 8%; }
+.fileUploadPage__table--financial th:nth-child(6) { width: 6%; }
+.fileUploadPage__table--financial th:nth-child(7) { width: 12%; }
 .fileUploadPage__table td:nth-child(n + 6) { text-align: center; }
 
 .fileUploadPage__iconButton {

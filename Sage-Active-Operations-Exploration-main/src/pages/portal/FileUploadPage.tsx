@@ -111,7 +111,7 @@ export default function FileUploadPage() {
       </div>
 
       <div className="fileUploadPage__tableWrap">
-        <table className="fileUploadPage__table">
+        <table className="fileUploadPage__table fileUploadPage__table--upload">
           <thead>
             <tr>
               {copy.headers.map((header) => <th key={header}>{header}</th>)}

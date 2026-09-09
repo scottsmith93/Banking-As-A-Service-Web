@@ -92,11 +92,22 @@ export default function ProjectsPage() {
                 id="project-amount"
                 type="number"
                 min="0"
+                max="100000"
                 step="500"
                 value={amount}
-                onChange={(event) => setAmount(Number(event.target.value))}
+                onChange={(event) => setAmount(Math.min(100000, Math.max(0, Number(event.target.value))))}
               />
             </span>
+            <input
+              className="projectsPage__amountSlider"
+              type="range"
+              min="0"
+              max="100000"
+              step="500"
+              value={amount}
+              aria-label={copy.amountSliderLabel}
+              onChange={(event) => setAmount(Number(event.target.value))}
+            />
             <p>{decisionCopy.helper}</p>
           </div>
 

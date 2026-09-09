@@ -217,7 +217,10 @@ export default function LeftNav() {
   const { mode } = useNavMode();
   const navItems =
     mode === "essentials"
-      ? PRIMARY_NAV_ITEMS.filter((item) => !["accounting", "compliance"].includes(item.id))
+      ? [
+          ...PRIMARY_NAV_ITEMS.filter((item) => !["accounting", "compliance"].includes(item.id)),
+          ...ADDITIONAL_NAV_ITEMS.filter((item) => item.id !== "sales-invoices"),
+        ]
       : [
           ...PRIMARY_NAV_ITEMS.filter((item) => item.id === "dashboard"),
           ...ADDITIONAL_NAV_ITEMS.filter((item) => item.id !== "sales-invoices"),

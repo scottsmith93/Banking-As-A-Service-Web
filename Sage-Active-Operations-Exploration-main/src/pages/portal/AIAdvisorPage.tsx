@@ -3,6 +3,7 @@ import Box from "carbon-react/lib/components/box";
 import Icon from "carbon-react/lib/components/icon";
 import Typography from "carbon-react/lib/components/typography";
 import Button from "carbon-react/lib/components/button/__next__";
+import Pill from "carbon-react/lib/components/pill";
 import Switch from "carbon-react/lib/components/switch";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";
@@ -41,7 +42,7 @@ export default function AIAdvisorPage() {
           </Box>
           <Box className="aiAdvisorPage__sectionHeader"><Typography variant="h2" as="h2">{copy.forYou}</Typography></Box>
           <Box className="aiAdvisorPage__threads">
-            {copy.threads.map((thread) => <Box className="aiAdvisorPage__thread" key={thread.title}><Typography variant="h3" as="h3">{thread.title}</Typography><Typography variant="p" as="p">{thread.body}</Typography>{thread.items.length > 0 && <ul>{thread.items.map((item) => <li key={item}><Icon type="tick" aria-hidden />{item}</li>)}</ul>}<Box className="aiAdvisorPage__threadFooter"><Typography variant="p" as="p">{thread.time && `${copy.estimatedTime} ${thread.time}`}</Typography><Button variant="default" variantType="secondary" size="small">{thread.action}</Button><span aria-hidden="true">⋮</span></Box></Box>)}
+            {copy.threads.map((thread) => <Box className="aiAdvisorPage__thread" key={thread.title}><Typography variant="h3" as="h3">{thread.title}</Typography><Typography variant="p" as="p">{thread.body}</Typography>{thread.items.length > 0 && <Box className="aiAdvisorPage__threadTags" aria-label={copy.relatedTopics}>{thread.items.map((item) => <Pill key={item} pillRole="tag" colorVariant="neutral" size="S">{item}</Pill>)}</Box>}<Box className="aiAdvisorPage__threadFooter"><Typography variant="p" as="p">{thread.time}</Typography><Button variant="default" variantType="secondary" size="small">{thread.action}</Button><span aria-hidden="true">⋮</span></Box></Box>)}
           </Box>
           </Box>
           <Box className="aiAdvisorPage__activity"><Typography variant="h2" as="h2">{copy.recentActivity}</Typography><ol>{copy.activity.map(([author, time, message]) => <li key={`${author}-${time}`}><span className="aiAdvisorPage__activityDot" aria-hidden="true" /><Box><Typography variant="small" as="p"><strong>{author}</strong> {time}</Typography><Typography variant="p" as="p">{message}</Typography><Typography variant="small" as="p">{copy.activityBasis}</Typography></Box></li>)}</ol><a href="#activity">{copy.viewActivity}</a></Box>

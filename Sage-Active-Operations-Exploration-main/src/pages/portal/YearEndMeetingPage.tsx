@@ -11,14 +11,42 @@ type ChecklistItem = {
   description: string;
 };
 
+const historicalData: Record<number, { cash: number[]; revenue: number[]; costs: number[] }> = {
+  2024: {
+    cash: [28400, 30100, 29600, 31800, 33700, 35200, 34100, 36500, 38200, 39100, 40500, 42800],
+    revenue: [18200, 19600, 21100, 20500, 22400, 23100, 24600, 25200, 26900, 27500, 28800, 30100],
+    costs: [12400, 13100, 13500, 12900, 14200, 14600, 15100, 15500, 16300, 16800, 17200, 17900],
+  },
+  2025: {
+    cash: [42800, 44100, 45200, 44600, 46300, 47100, 45800, 47900, 49200, 50100, 51600, 53400],
+    revenue: [30100, 31500, 32800, 32200, 34100, 35600, 36200, 37900, 38800, 40100, 41400, 42800],
+    costs: [17900, 18300, 19100, 18800, 19700, 20400, 21100, 21600, 22400, 23100, 23900, 24500],
+  },
+};
+
+function formatHistoryEuro(value: number, language: "English" | "French") {
+  return new Intl.NumberFormat(language === "French" ? "fr-FR" : "en-GB", {
+    style: "currency",
+    currency: "EUR",
+    maximumFractionDigits: 0,
+  }).format(value);
+}
+
 export default function YearEndMeetingPage() {
   const { language } = useLanguage();
   const copy = getLocale(language).yearEndMeeting;
   const checklist = copy.checklist as ChecklistItem[];
   const [completedItems, setCompletedItems] = useState<Set<string>>(new Set(["statements"]));
+  const [selectedYear, setSelectedYear] = useState(2026);
   const completedCount = completedItems.size;
   const progress = Math.round((completedCount / checklist.length) * 100);
   const progressLabel = useMemo(() => copy.ready.replace("{count}", String(completedCount)).replace("{total}", String(checklist.length)), [completedCount, checklist.length, copy.ready]);
+  const history = copy.history;
+  const historyData = historicalData[selectedYear];
+  const maxHistoryValue = historyData
+    ? Math.max(...historyData.cash, ...historyData.revenue, ...historyData.costs)
+    : 0;
+  const historyAxisLabels = [maxHistoryValue, maxHistoryValue / 2, 0];
 
   const toggleChecklistItem = (id: string) => {
     setCompletedItems((current) => {
@@ -34,6 +62,24 @@ export default function YearEndMeetingPage() {
       <header className="yearEndMeetingPage__header">
         <div><h1>{copy.title}</h1><p>{copy.intro}</p></div>
       </header>
+
+      <div className="yearEndMeetingPage__yearLayout">
+        <nav className="yearEndMeetingPage__yearTabs" aria-label={copy.yearSelection}>
+          {[2026, 2025, 2024].map((year) => (
+            <button
+              key={year}
+              type="button"
+              className={`yearEndMeetingPage__yearTab${selectedYear === year ? " yearEndMeetingPage__yearTab--active" : ""}`}
+              aria-current={selectedYear === year ? "page" : undefined}
+              onClick={() => setSelectedYear(year)}
+            >
+              {year}
+            </button>
+          ))}
+        </nav>
+
+        <div className="yearEndMeetingPage__yearContent">
+        {selectedYear === 2026 ? <>
 
       <section className="yearEndMeetingPage__progress" aria-label={copy.progressLabel}>
         <div>
@@ -99,6 +145,25 @@ export default function YearEndMeetingPage() {
           <button type="button" className="yearEndMeetingPage__addButton"><Icon type="plus" aria-hidden /> {copy.addAgenda}</button>
         </div>
       </section>
+
+        </> : (
+          <section className="yearEndMeetingPage__history" aria-label={`${history.title} ${selectedYear}`}>
+            <div className="yearEndMeetingPage__historyKpis">
+              {[
+                [history.cashPosition, historyData.cash[11]],
+                [history.revenue, historyData.revenue.reduce((sum, value) => sum + value, 0)],
+                [history.operatingCosts, historyData.costs.reduce((sum, value) => sum + value, 0)],
+                [history.closingPosition, historyData.cash[11]],
+              ].map(([label, value]) => <div className="yearEndMeetingPage__historyKpi" key={label}><strong>{formatHistoryEuro(Number(value), language)}</strong><span>{label}</span></div>)}
+            </div>
+            <div className="yearEndMeetingPage__historyGrid">
+              <div className="yearEndMeetingPage__historyPanel"><h3>{history.cashTrend}</h3><div className="yearEndMeetingPage__historyChartFrame"><div className="yearEndMeetingPage__historyYAxis">{historyAxisLabels.map((value) => <span key={value}>{formatHistoryEuro(value, language)}</span>)}</div><div className="yearEndMeetingPage__historyChart">{historyData.cash.map((value, index) => <div className="yearEndMeetingPage__historyBarGroup" key={history.months[index]}><span style={{ height: `${Math.max(8, (value / maxHistoryValue) * 100)}%` }} /><small>{history.months[index]}</small></div>)}</div></div></div>
+              <div className="yearEndMeetingPage__historyPanel"><h3>{history.revenueTrend}</h3><div className="yearEndMeetingPage__historyChartFrame"><div className="yearEndMeetingPage__historyYAxis">{historyAxisLabels.map((value) => <span key={value}>{formatHistoryEuro(value, language)}</span>)}</div><div className="yearEndMeetingPage__historyChart yearEndMeetingPage__historyChart--dual">{historyData.revenue.map((value, index) => <div className="yearEndMeetingPage__historyBarGroup" key={history.months[index]}><span className="yearEndMeetingPage__historyBar--revenue" style={{ height: `${Math.max(8, (value / maxHistoryValue) * 100)}%` }} /><span className="yearEndMeetingPage__historyBar--cost" style={{ height: `${Math.max(8, (historyData.costs[index] / maxHistoryValue) * 100)}%` }} /><small>{history.months[index]}</small></div>)}</div></div></div>
+            </div>
+          </section>
+        )}
+        </div>
+      </div>
 
     </main>
   );

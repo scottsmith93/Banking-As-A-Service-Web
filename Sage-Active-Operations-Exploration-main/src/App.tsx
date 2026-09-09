@@ -1,7 +1,6 @@
 import { Routes, Route, Navigate } from "react-router-dom";
 import Box from "carbon-react/lib/components/box";
 import LeftNav from "./components/LeftNav";
-import NavModeToggle from "./components/NavModeToggle";
 import RouteErrorBoundary from "./components/RouteErrorBoundary";
 import { NavModeProvider } from "./context/NavModeContext";
 import { LanguageProvider } from "./context/LanguageContext";
@@ -10,13 +9,13 @@ import { StockAlertProvider } from "./context/StockAlertContext";
 import PlaceholderPage from "./pages/PlaceholderPage";
 import DesignPlaygroundPage from "./pages/DesignPlaygroundPage";
 import CarbonComponentsPage from "./pages/CarbonComponentsPage";
-import DashboardPage from "./pages/DashboardPage";
+import DashboardPage from "./pages/portal/DashboardPage";
 import ReportsPage from "./pages/reports/ReportsPage";
-import FileUploadPage from "./pages/reports/FileUploadPage";
-import ProjectsPage from "./pages/ProjectsPage";
-import FinancialDocumentsPage from "./pages/FinancialDocumentsPage";
-import YearEndMeetingPage from "./pages/YearEndMeetingPage";
-import AIAdvisorPage from "./pages/AIAdvisorPage";
+import FileUploadPage from "./pages/portal/FileUploadPage";
+import ProjectsPage from "./pages/portal/ProjectsPage";
+import FinancialDocumentsPage from "./pages/portal/FinancialDocumentsPage";
+import YearEndMeetingPage from "./pages/portal/YearEndMeetingPage";
+import AIAdvisorPage from "./pages/portal/AIAdvisorPage";
 import SettingsPage from "./pages/settings/SettingsPage";
 import MyProfilePage from "./pages/MyProfilePage";
 import InvoiceDetailPage from "./pages/InvoiceDetailPage";
@@ -122,7 +121,6 @@ export default function App() {
     <NavModeProvider>
     <Box display="flex" minHeight="100vh" className="appBody">
       <LeftNav />
-      <NavModeToggle />
       <Box as="main" flex={1} className="mainContent">
         <Routes>
             <Route path={ROUTES.home} element={<DashboardPage />} />

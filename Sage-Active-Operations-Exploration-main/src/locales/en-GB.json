@@ -4,7 +4,7 @@
     "subtitle": "Manage your Sage Active subscription and see what's included in each plan.",
     "monthlyAllocation": "Monthly allocation:",
     "includedUserRoles": "Included user roles:",
-    "viewAdditionalFees": "View additional fees",
+    "viewDemo": "View demo",
     "providedByAccountant": "Provided by Accountant",
     "perMonth": "per month",
     "cancelSubscription": "Cancel subscription",
@@ -77,5 +77,120 @@
     "items": "Items",
     "view": "View",
     "comment": "Comment"
+  },
+  "projects": {
+    "title": "Project calculator",
+    "intro": "Explore the impact of a business decision before you commit. Adjust the assumptions to see what your cash position could look like.",
+    "workspaceLabel": "Project feasibility simulator",
+    "considering": "What are you considering?",
+    "assumptions": "Check your assumptions",
+    "cashBalance": "Current cash balance",
+    "safetyThreshold": "Safety threshold",
+    "assumptionNote": "These figures are assumptions for this simulation. Connect your accounting data to replace them with live balances.",
+    "calculate": "Calculate",
+    "projectedCash": "Projected cash after impact",
+    "decision": "Decision",
+    "feasible": "Feasible",
+    "borderline": "Borderline",
+    "notFeasible": "Not feasible",
+    "feasibleMessage": "Your projected cash stays above your safety threshold after you {decision}.",
+    "borderlineMessage": "This decision brings you close to your safety threshold. Review the assumptions before proceeding.",
+    "notFeasibleMessage": "This decision would take your projected cash below your safety threshold.",
+    "resultFootnote": "We subtract the decision amount from your current cash balance, then compare the projected cash with your safety threshold. The result is feasible above the threshold, borderline near it, and not feasible below it.",
+    "decisions": {
+      "hire": { "label": "Hire", "description": "Add a person to the team", "amountLabel": "Fully-loaded monthly cost", "helper": "Include salary, tax, benefits and other regular costs.", "defaultAmount": 4200 },
+      "invest": { "label": "Invest", "description": "Put money into the business", "amountLabel": "Initial investment", "helper": "Enter the amount you plan to put into the business.", "defaultAmount": 12000 },
+      "spend": { "label": "Spend", "description": "Make a one-off purchase", "amountLabel": "One-off spend", "helper": "Enter the total cost of the purchase or project.", "defaultAmount": 2500 }
+    }
+  },
+  "yearEndMeeting": {
+    "title": "Year end meeting",
+    "intro": "Prepare for a focused conversation with your accountant about the year ahead.",
+    "progressLabel": "Meeting preparation progress",
+    "preparation": "Meeting preparation",
+    "progressIncomplete": "Complete the checklist before you meet with your accountant.",
+    "progressComplete": "Everything is ready for your meeting.",
+    "ready": "{count} of {total} ready",
+    "checklistTitle": "Preparation checklist",
+    "checklistIntro": "Keep the essentials in one place.",
+    "agendaTitle": "Suggested agenda",
+    "agendaIntro": "Use supplied documents, calendar details and conversations to inform the discussion.",
+    "agendaItem": "Agenda item",
+    "addAgenda": "Add an agenda point",
+    "checklist": [
+      { "id": "statements", "label": "Previous financial statements", "description": "Review the latest statements before the meeting." },
+      { "id": "agenda", "label": "Agenda confirmed", "description": "Agree the topics and questions to cover together." },
+      { "id": "documents", "label": "Documents gathered", "description": "Make sure your accountant has the documents they need." },
+      { "id": "points", "label": "Points to address", "description": "Capture decisions, concerns and follow-up questions." },
+      { "id": "client-pack", "label": "Client pack ready", "description": "Prepare the final pack to take away after the meeting." }
+    ],
+    "agenda": [
+      { "time": "10 min", "title": "Review the year", "detail": "Look back at performance and key financial statements." },
+      { "time": "15 min", "title": "Open points", "detail": "Work through questions, missing documents and decisions." },
+      { "time": "15 min", "title": "Plan ahead", "detail": "Agree actions, owners and priorities for the next period." }
+    ]
+  },
+  "dashboard": {
+    "greeting": "Hello",
+    "greetingSubtitle": "A simple view of your cash position, financial health and the actions that need your attention. KPIs update every 5 minutes.",
+    "financialTrends": "Financial trends",
+    "financialTrendsSubtitle": "Track how your cash position and trading activity are moving.",
+    "cashPosition": "Cash position",
+    "salesAndPurchases": "Sales and purchases",
+    "lastSixMonths": "Last six months",
+    "postedValueByMonth": "Posted value by month",
+    "cashTrendLabel": "Cash position trend over six months",
+    "salesPurchasesChartLabel": "Sales and purchases chart",
+    "showGettingStarted": "Show 'Getting started' tab",
+    "gettingStarted": "Getting started",
+    "accounting": "Accounting",
+    "salesPurchasesTab": "Sales and purchases",
+    "whatsNew": "What's new",
+    "sectionsLabel": "Dashboard sections",
+    "updatesPlaceholder": "Product updates and announcements will appear here",
+    "healthScoreLabel": "Health score 82 out of 100",
+    "switchOn": "ON",
+    "switchOff": "OFF",
+    "portalMetrics": {
+      "collectedRevenue": { "title": "Collected revenue", "detail": "Year to date" },
+      "overdueInvoices": { "title": "Overdue invoices", "detail": "12,360 € outstanding" },
+      "blockingDocuments": { "title": "Blocking documents", "detail": "Waiting for information from you" },
+      "healthScore": { "title": "Health score", "detail": "Good standing" }
+    },
+    "priorityActions": "Priority actions",
+    "priorityActionsSubtitle": "A short list of the things most likely to help right now.",
+    "actions": [
+      { "label": "Upload blocking documents", "detail": "2 documents are needed by your accountant" },
+      { "label": "Prepare for your year end meeting", "detail": "Review the checklist and suggested agenda" }
+    ]
+  },
+  "aiAdvisor": {
+    "title": "AI Advisor",
+    "subtitle": "Ask AI about your business or send messages to your Accountant.",
+    "enabledSwitch": "AI Advisor enabled (prototype)",
+    "messageLabel": "Message AI Advisor",
+    "placeholder": "Ask a question about your business",
+    "add": "Add",
+    "send": "Send",
+    "forYou": "For you",
+    "estimatedTime": "Estimated time to complete:",
+    "recentActivity": "Recent activity",
+    "activityBasis": "Based on the latest activity…",
+    "viewActivity": "View activity →",
+    "emptyTitle": "AI Advisor isn’t enabled yet",
+    "emptyBody": "Your Accountant needs to enable AI Advisor for your business. Once it’s enabled, you’ll be able to ask questions about your business and message your Accountant.",
+    "threads": [
+      { "title": "Documents needed for your VAT return", "body": "Your accountant is preparing the VAT return for the period ending 30 June 2026. Please upload the remaining documents before 7 August so they can complete the review.", "items": ["Upload missing purchase invoices", "Add receipts for business expenses", "Confirm any credit notes issued in June"], "action": "View document request", "time": "8 minutes" },
+      { "title": "Year-end documents to upload", "body": "Your accountant has requested a few documents ahead of the year-end review. Upload them by 15 September to keep the accounts preparation on schedule.", "items": ["Upload the latest bank statements", "Share asset purchase invoices and finance agreements", "Add details of outstanding customer balances"], "action": "Upload documents", "time": "5 minutes" },
+      { "title": "Accountant comments to review", "body": "Camille Martin has added comments to three documents in your client file. Review the questions and reply before the next accounts review.", "items": ["Confirm the purpose of the largest expense", "Answer the question on the supplier invoice", "Approve the draft document summary"], "action": "Review comments", "time": "4 minutes" },
+      { "title": "Document deadline approaching", "body": "The deadline to send supporting documents for Boulangerie des Lilas is approaching. Your accountant is waiting for the final sales export and insurance certificate.", "items": [], "action": "Send documents", "time": "" }
+    ],
+    "activity": [
+      ["Copilot", "15:48", "Sales invoice for Boulangerie des Lilas: 523.14 €"],
+      ["Copilot", "16:41", "Quote DV-1184 sent to Atelier Lumière"],
+      ["Camille", "16:12", "DSN submitted for 14 employees"],
+      ["Copilot", "07:40", "64 bank transactions automatically matched"],
+      ["You", "4 Sep", "Supplier payment of 18,420.60 € approved"]
+    ]
   }
 }

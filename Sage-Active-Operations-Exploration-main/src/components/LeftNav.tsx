@@ -2,6 +2,7 @@ import { useState, type ReactNode } from "react";
 import { createPortal } from "react-dom";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Icon from "carbon-react/lib/components/icon";
+import Pill from "carbon-react/lib/components/pill";
 import Portrait from "carbon-react/lib/components/portrait";
 import { PRIMARY_NAV_ITEMS, type PrimaryNavItem, type SubmenuLink } from "../data/primaryNav";
 import { useNavMode } from "../context/useNavMode";
@@ -68,8 +69,8 @@ const FRENCH_NAV_LABELS: Record<string, string> = {
   Conversations: "Conversations",
   "AI Advisor": "Conseiller IA",
   "My profile": "Mon profil",
-  "Switch to Accountant": "Passer au mode Comptable",
-  "Switch to Client": "Passer au mode Client",
+  Client: "Client",
+  Accountant: "Comptable",
   Chat: "Discussion",
   Insights: "Analyses",
   "Copilot settings": "Paramètres Copilot",
@@ -348,20 +349,20 @@ export default function LeftNav() {
           ],
           [
             {
-              key: "switch-accountant",
-              label: "Switch to Accountant",
-              selected: mode === "essentials",
+              key: "switch-client",
+              label: "Client",
+              selected: mode === "portal",
               onClick: () => {
-                setMode("essentials");
+                setMode("portal");
                 closeFooterFlyout();
               },
             },
             {
-              key: "switch-client",
-              label: "Switch to Client",
-              selected: mode === "portal",
+              key: "switch-accountant",
+              label: "Accountant",
+              selected: mode === "essentials",
               onClick: () => {
-                setMode("portal");
+                setMode("essentials");
                 closeFooterFlyout();
               },
             },
@@ -441,6 +442,11 @@ export default function LeftNav() {
               >
                 <Icon type={item.iconType} className="leftNav__itemIcon" aria-hidden />
                 <span className="leftNav__itemLabel">{translateNavLabel(item.label, language)}</span>
+                {item.id === "ai-advisor" && (
+                  <span className="leftNav__upgradePill">
+                    <Pill pillRole="tag" colorVariant="positive" isDarkBackground size="S">Upgrade</Pill>
+                  </span>
+                )}
                 {hasSubmenu && (
                   <Icon
                     type="caret_right"

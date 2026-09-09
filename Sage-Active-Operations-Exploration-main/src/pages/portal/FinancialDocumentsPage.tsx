@@ -1,7 +1,8 @@
 import { useMemo, useState } from "react";
 import Icon from "carbon-react/lib/components/icon";
-import { useLanguage } from "../context/useLanguage";
-import { getLocale } from "../locales";
+import Pill from "carbon-react/lib/components/pill";
+import { useLanguage } from "../../context/useLanguage";
+import { getLocale } from "../../locales";
 
 type FinancialDocument = {
   name: string;
@@ -112,7 +113,7 @@ export default function FinancialDocumentsPage() {
                 <td>{document.size}</td>
                 <td>{document.dateAdded}</td>
                 <td>{document.addedBy}</td>
-                <td><span className="fileUploadPage__status">{copy.status}</span></td>
+                <td><Pill pillRole="status" colorVariant="positive" size="S">{copy.status}</Pill></td>
                 <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.view} ${document.name}`}><Icon type="view" aria-hidden /></button></td>
                 <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.comment} ${document.name}`}><Icon type="chat" aria-hidden /></button></td>
               </tr>

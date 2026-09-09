@@ -1,5 +1,6 @@
 import { useMemo, useRef, useState, type ChangeEvent, type DragEvent } from "react";
 import Icon from "carbon-react/lib/components/icon";
+import Pill from "carbon-react/lib/components/pill";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";
 
@@ -123,7 +124,7 @@ export default function FileUploadPage() {
                 <td>{file.size}</td>
                 <td>{file.dateAdded}</td>
                 <td>{file.addedBy}</td>
-                <td><span className="fileUploadPage__status">{copy.uploaded}</span></td>
+                <td><Pill pillRole="status" colorVariant="positive" size="S">{copy.uploaded}</Pill></td>
                 <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.view} ${file.name}`}><Icon type="view" aria-hidden /></button></td>
                 <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.comment} ${file.name}`}><Icon type="chat" aria-hidden /></button></td>
                 <td><button type="button" className="fileUploadPage__iconButton fileUploadPage__iconButton--delete" aria-label={`${copy.delete} ${file.name}`} onClick={() => setFiles((current) => current.filter((item) => item !== file))}><Icon type="bin" aria-hidden /></button></td>

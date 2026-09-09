@@ -14,7 +14,7 @@ import { getLocale } from "../locales";
 
 export default function MyProfilePage() {
   const navigate = useNavigate();
-  const { activePlanId, setActivePlanId } = useSubscription();
+  const { setActivePlanId } = useSubscription();
   const { mode, setMode } = useNavMode();
   const { language } = useLanguage();
   const locale = getLocale(language);
@@ -24,7 +24,9 @@ export default function MyProfilePage() {
 
   const selectedPlan = subscriptionPlans.find((plan) => plan.id === selectedPlanId) ?? null;
   const upgradeDialogPlan = subscriptionPlans.find((plan) => plan.id === upgradeDialogPlanId) ?? null;
-  const currentPlanId = mode === "portal" ? "portal" : activePlanId;
+  // The profile prototype presents Starter or Portal as the demo subscription;
+  // Essentials is an underlying plan but is never shown as current here.
+  const currentPlanId = mode === "portal" ? "portal" : "starter";
   const monthlyCost = selectedPlan?.priceAmount ?? 0;
   const vatAmount = Math.round(monthlyCost * SUBSCRIPTION_VAT_RATE * 100) / 100;
 
@@ -50,6 +52,13 @@ export default function MyProfilePage() {
                 plan={plan}
                 state={state}
                 onSelect={() => setSelectedPlanId(plan.id)}
+                onViewDemo={
+                  plan.id === "starter"
+                    ? () => setMode("essentials")
+                    : plan.id === "portal"
+                      ? () => setMode("portal")
+                      : undefined
+                }
                 onDeselect={() => setSelectedPlanId(null)}
                 onCancelSubscription={() => {
                   // PROTOTYPE: no downgrade flow yet — cancelling just

@@ -13,6 +13,7 @@ type SubscriptionPlanCardProps = {
   plan: SubscriptionPlan;
   state: SubscriptionPlanCardState;
   onSelect?: () => void;
+  onViewDemo?: () => void;
   onDeselect?: () => void;
   onCancelSubscription?: () => void;
 };
@@ -33,6 +34,7 @@ export default function SubscriptionPlanCard({
   plan,
   state,
   onSelect,
+  onViewDemo,
   onDeselect,
   onCancelSubscription,
 }: SubscriptionPlanCardProps) {
@@ -77,12 +79,6 @@ export default function SubscriptionPlanCard({
           <AllowanceBulletList items={roles} />
         </Box>
 
-        {plan.id !== "portal" && (
-          <Button variant="default" variantType="secondary" size="medium" fullWidth>
-            {locale.profile.viewAdditionalFees}
-          </Button>
-        )}
-
         <Box className="subscriptionPlanCard__priceBox">
           <Typography variant="p" as="p" className="subscriptionPlanCard__price">
             {plan.id === "portal"
@@ -90,6 +86,12 @@ export default function SubscriptionPlanCard({
               : plan.priceLabel ?? `${formatEur(plan.priceAmount)} ${locale.profile.perMonth}`}
           </Typography>
         </Box>
+
+        {onViewDemo && (
+          <Button variant="default" variantType="tertiary" size="medium" fullWidth onClick={onViewDemo}>
+            {locale.profile.viewDemo}
+          </Button>
+        )}
 
         {state === "current" && plan.id !== "portal" && (
           <Button

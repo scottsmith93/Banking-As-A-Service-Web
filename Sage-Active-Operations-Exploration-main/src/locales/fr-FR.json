@@ -4,7 +4,7 @@
     "subtitle": "Gérez votre abonnement Sage Active et découvrez ce qui est inclus dans chaque formule.",
     "monthlyAllocation": "Allocation mensuelle :",
     "includedUserRoles": "Rôles utilisateurs inclus :",
-    "viewAdditionalFees": "Voir les frais supplémentaires",
+    "viewDemo": "Voir la démo",
     "providedByAccountant": "Fourni par le comptable",
     "perMonth": "par mois",
     "cancelSubscription": "Annuler l’abonnement",
@@ -77,5 +77,120 @@
     "items": "Éléments",
     "view": "Voir",
     "comment": "Commenter"
+  },
+  "projects": {
+    "title": "Calculateur de projet",
+    "intro": "Évaluez l’impact d’une décision avant de vous engager. Ajustez les hypothèses pour voir l’évolution possible de votre trésorerie.",
+    "workspaceLabel": "Simulateur de faisabilité du projet",
+    "considering": "Quelle décision envisagez-vous ?",
+    "assumptions": "Vérifiez vos hypothèses",
+    "cashBalance": "Solde de trésorerie actuel",
+    "safetyThreshold": "Seuil de sécurité",
+    "assumptionNote": "Ces chiffres sont des hypothèses pour cette simulation. Connectez vos données comptables pour les remplacer par des soldes réels.",
+    "calculate": "Calculer",
+    "projectedCash": "Trésorerie prévisionnelle après impact",
+    "decision": "Décision",
+    "feasible": "Faisable",
+    "borderline": "À la limite",
+    "notFeasible": "Non faisable",
+    "feasibleMessage": "Votre trésorerie prévisionnelle reste supérieure à votre seuil de sécurité après l’opération « {decision} ».",
+    "borderlineMessage": "Cette décision vous rapproche de votre seuil de sécurité. Vérifiez les hypothèses avant de continuer.",
+    "notFeasibleMessage": "Cette décision ferait passer votre trésorerie prévisionnelle sous votre seuil de sécurité.",
+    "resultFootnote": "Nous soustrayons le montant de la décision de votre solde de trésorerie actuel, puis comparons la trésorerie prévisionnelle à votre seuil de sécurité. Le résultat est faisable au-dessus du seuil, à la limite à proximité et non faisable en dessous.",
+    "decisions": {
+      "hire": { "label": "Recruter", "description": "Ajouter une personne à l’équipe", "amountLabel": "Coût mensuel total", "helper": "Incluez le salaire, les taxes, les avantages et les autres coûts réguliers.", "defaultAmount": 4200 },
+      "invest": { "label": "Investir", "description": "Investir dans l’entreprise", "amountLabel": "Investissement initial", "helper": "Saisissez le montant que vous prévoyez d’investir dans l’entreprise.", "defaultAmount": 12000 },
+      "spend": { "label": "Dépenser", "description": "Effectuer un achat ponctuel", "amountLabel": "Dépense ponctuelle", "helper": "Saisissez le coût total de l’achat ou du projet.", "defaultAmount": 2500 }
+    }
+  },
+  "yearEndMeeting": {
+    "title": "Réunion de fin d’exercice",
+    "intro": "Préparez une conversation ciblée avec votre comptable sur l’année à venir.",
+    "progressLabel": "Progression de la préparation de la réunion",
+    "preparation": "Préparation de la réunion",
+    "progressIncomplete": "Complétez la liste avant de rencontrer votre comptable.",
+    "progressComplete": "Tout est prêt pour votre réunion.",
+    "ready": "{count} sur {total} prêts",
+    "checklistTitle": "Liste de préparation",
+    "checklistIntro": "Gardez l’essentiel au même endroit.",
+    "agendaTitle": "Ordre du jour suggéré",
+    "agendaIntro": "Utilisez les documents fournis, les détails du calendrier et les conversations pour préparer la discussion.",
+    "agendaItem": "Point de l’ordre du jour",
+    "addAgenda": "Ajouter un point à l’ordre du jour",
+    "checklist": [
+      { "id": "statements", "label": "États financiers précédents", "description": "Consultez les derniers états avant la réunion." },
+      { "id": "agenda", "label": "Ordre du jour confirmé", "description": "Convenez ensemble des sujets et des questions à traiter." },
+      { "id": "documents", "label": "Documents réunis", "description": "Vérifiez que votre comptable dispose des documents nécessaires." },
+      { "id": "points", "label": "Points à aborder", "description": "Notez les décisions, préoccupations et questions de suivi." },
+      { "id": "client-pack", "label": "Dossier client prêt", "description": "Préparez le dossier final à emporter après la réunion." }
+    ],
+    "agenda": [
+      { "time": "10 min", "title": "Revoir l’année", "detail": "Examinez les résultats et les principaux états financiers." },
+      { "time": "15 min", "title": "Points ouverts", "detail": "Traitez les questions, les documents manquants et les décisions." },
+      { "time": "15 min", "title": "Préparer la suite", "detail": "Convenez des actions, des responsables et des priorités pour la prochaine période." }
+    ]
+  },
+  "dashboard": {
+    "greeting": "Bonjour",
+    "greetingSubtitle": "Une vue simple de votre trésorerie, de votre santé financière et des actions qui nécessitent votre attention. Les indicateurs sont mis à jour toutes les 5 minutes.",
+    "financialTrends": "Tendances financières",
+    "financialTrendsSubtitle": "Suivez l’évolution de votre trésorerie et de votre activité.",
+    "cashPosition": "Position de trésorerie",
+    "salesAndPurchases": "Ventes et achats",
+    "lastSixMonths": "Six derniers mois",
+    "postedValueByMonth": "Valeur comptabilisée par mois",
+    "cashTrendLabel": "Évolution de la position de trésorerie sur six mois",
+    "salesPurchasesChartLabel": "Graphique des ventes et achats",
+    "showGettingStarted": "Afficher l’onglet « Bien démarrer »",
+    "gettingStarted": "Bien démarrer",
+    "accounting": "Comptabilité",
+    "salesPurchasesTab": "Ventes et achats",
+    "whatsNew": "Nouveautés",
+    "sectionsLabel": "Sections du tableau de bord",
+    "updatesPlaceholder": "Les mises à jour et annonces produit apparaîtront ici",
+    "healthScoreLabel": "Score de santé : 82 sur 100",
+    "switchOn": "Activé",
+    "switchOff": "Désactivé",
+    "portalMetrics": {
+      "collectedRevenue": { "title": "Chiffre d’affaires encaissé", "detail": "Depuis le début de l’année" },
+      "overdueInvoices": { "title": "Factures en retard", "detail": "12 360 € en attente" },
+      "blockingDocuments": { "title": "Documents bloquants", "detail": "Informations attendues de votre part" },
+      "healthScore": { "title": "Score de santé", "detail": "Situation saine" }
+    },
+    "priorityActions": "Actions prioritaires",
+    "priorityActionsSubtitle": "Une courte liste des actions les plus utiles actuellement.",
+    "actions": [
+      { "label": "Téléverser les documents bloquants", "detail": "2 documents sont nécessaires à votre comptable" },
+      { "label": "Préparer votre réunion de fin d’exercice", "detail": "Consultez la liste et l’ordre du jour suggéré" }
+    ]
+  },
+  "aiAdvisor": {
+    "title": "Conseiller IA",
+    "subtitle": "Posez une question à l’IA sur votre entreprise ou envoyez un message à votre comptable.",
+    "enabledSwitch": "Conseiller IA activé (prototype)",
+    "messageLabel": "Envoyer un message au Conseiller IA",
+    "placeholder": "Posez une question sur votre entreprise",
+    "add": "Ajouter",
+    "send": "Envoyer",
+    "forYou": "Pour vous",
+    "estimatedTime": "Temps estimé :",
+    "recentActivity": "Activité récente",
+    "activityBasis": "Mis à jour récemment…",
+    "viewActivity": "Voir toute l’activité →",
+    "emptyTitle": "Le Conseiller IA n’est pas encore activé",
+    "emptyBody": "Votre comptable doit activer le Conseiller IA pour votre entreprise. Une fois activé, vous pourrez poser des questions sur votre activité et envoyer des messages à votre comptable.",
+    "threads": [
+      { "title": "Documents nécessaires pour votre déclaration de TVA", "body": "Votre comptable prépare la déclaration de TVA pour la période se terminant le 30 juin 2026. Veuillez importer les documents restants avant le 7 août afin de terminer la vérification.", "items": ["Importer les factures d’achat manquantes", "Ajouter les justificatifs des dépenses professionnelles", "Confirmer les avoirs émis en juin"], "action": "Consulter la demande de documents", "time": "8 minutes" },
+      { "title": "Documents de fin d’exercice à importer", "body": "Votre comptable a demandé plusieurs documents avant la revue de fin d’exercice. Importez-les avant le 15 septembre pour maintenir la préparation des comptes dans les délais.", "items": ["Importer les derniers relevés bancaires", "Partager les factures d’immobilisations et contrats de financement", "Ajouter les détails des soldes clients impayés"], "action": "Importer les documents", "time": "5 minutes" },
+      { "title": "Commentaires du comptable à vérifier", "body": "Camille Martin a ajouté des commentaires sur trois documents de votre dossier client. Consultez les questions et répondez avant la prochaine revue des comptes.", "items": ["Confirmer l’objet de la dépense la plus importante", "Répondre à la question sur la facture fournisseur", "Approuver le brouillon du récapitulatif des documents"], "action": "Consulter les commentaires", "time": "4 minutes" },
+      { "title": "Échéance documentaire prochaine", "body": "La date limite d’envoi des pièces justificatives pour Boulangerie des Lilas approche. Votre comptable attend l’export final des ventes et l’attestation d’assurance.", "items": [], "action": "Envoyer les documents", "time": "" }
+    ],
+    "activity": [
+      ["Copilot", "15:48", "Facture de vente pour Boulangerie des Lilas : 523,14 €"],
+      ["Copilot", "16:41", "Devis DV-1184 envoyé à Atelier Lumière"],
+      ["Camille", "16:12", "Déclaration sociale nominative (DSN) transmise pour 14 salariés"],
+      ["Copilot", "07:40", "64 opérations bancaires lettrées automatiquement"],
+      ["Vous", "4 sept.", "Virement fournisseur de 18 420,60 € approuvé"]
+    ]
   }
 }

@@ -48,5 +48,34 @@
         "roles": ["2 administrateurs", "3 comptables", "15 utilisateurs salariés"]
       }
     }
+  },
+  "fileUpload": {
+    "title": "Gestion des fichiers",
+    "intro": "Téléversez et gérez les fichiers de votre entreprise. Vous pouvez téléverser des fichiers jusqu’à 20 Mo.",
+    "select": "Sélectionner un fichier",
+    "drop": "ou glissez-déposez votre fichier",
+    "searchLabel": "Rechercher des fichiers",
+    "searchPlaceholder": "Rechercher…",
+    "filter": "Filtrer",
+    "headers": ["Nom", "Taille du fichier", "Date d’ajout", "Ajouté par", "Statut du téléversement", "Voir", "Commentaires", "Supprimer"],
+    "uploaded": "Fichier téléversé",
+    "empty": "Aucun fichier trouvé.",
+    "items": "Éléments",
+    "view": "Voir",
+    "comment": "Commenter",
+    "delete": "Supprimer"
+  },
+  "financialDocuments": {
+    "title": "Documents financiers",
+    "intro": "Documents et vidéos téléversés par votre comptable. De nouveaux documents financiers apparaîtront lorsqu’ils seront prêts.",
+    "searchLabel": "Rechercher des documents financiers",
+    "searchPlaceholder": "Rechercher…",
+    "filter": "Filtrer",
+    "headers": ["Nom", "Taille du fichier", "Date d’ajout", "Ajouté par", "Disponibilité", "Voir", "Commentaires"],
+    "status": "Disponible à la consultation",
+    "empty": "Aucun document financier trouvé.",
+    "items": "Éléments",
+    "view": "Voir",
+    "comment": "Commenter"
   }
 }

@@ -7,6 +7,7 @@ import "carbon-react/lib/style/fonts.css";
 import "./fonts.css";
 import "./index.css";
 import App from "./App";
+import "./i18n";
 
 // NOTE: Keep StrictMode disabled here.
 // Carbon overlay components (e.g. Sidebar/Dialog/Confirm/ActionPopover)

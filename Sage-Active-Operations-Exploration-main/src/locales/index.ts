@@ -1,5 +1,5 @@
-import en from "./en.json";
-import fr from "./fr.json";
+import en from "./en-GB.json";
+import fr from "./fr-FR.json";
 import type { Language } from "../context/languageStore";
 
 const catalogs = { English: en, French: fr } as const;

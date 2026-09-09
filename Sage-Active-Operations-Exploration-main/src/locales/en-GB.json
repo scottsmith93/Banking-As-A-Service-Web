@@ -48,5 +48,34 @@
         "roles": ["2 Admins", "3 Accountants", "15 Staff users"]
       }
     }
+  },
+  "fileUpload": {
+    "title": "File management",
+    "intro": "Upload and manage files for your business. You can upload files up to 20 MB.",
+    "select": "Select file",
+    "drop": "or drag and drop your file",
+    "searchLabel": "Search files",
+    "searchPlaceholder": "Search…",
+    "filter": "Filter",
+    "headers": ["Name", "File size", "Date added", "Added by", "Upload status", "View", "Comments", "Delete"],
+    "uploaded": "File uploaded",
+    "empty": "No files found.",
+    "items": "Items",
+    "view": "View",
+    "comment": "Comment",
+    "delete": "Delete"
+  },
+  "financialDocuments": {
+    "title": "Financial documents",
+    "intro": "Documents and videos uploaded by your accountant for you. New financial documents will appear when they are ready for you.",
+    "searchLabel": "Search financial documents",
+    "searchPlaceholder": "Search…",
+    "filter": "Filter",
+    "headers": ["Name", "File size", "Date added", "Added by", "Availability", "View", "Comments"],
+    "status": "Available to view",
+    "empty": "No financial documents found.",
+    "items": "Items",
+    "view": "View",
+    "comment": "Comment"
   }
 }

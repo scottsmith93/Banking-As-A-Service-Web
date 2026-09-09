@@ -55,6 +55,7 @@ See `AGENTS.md` for the conventions this codebase follows.
 
 ## Localisation
 
-English and French content is maintained in [`src/locales/en.json`](src/locales/en.json)
-and [`src/locales/fr.json`](src/locales/fr.json). See [`src/locales/README.md`](src/locales/README.md)
-for the key structure and update workflow.
+English and French content is maintained in [`src/locales/en-GB.json`](src/locales/en-GB.json)
+and [`src/locales/fr-FR.json`](src/locales/fr-FR.json). The app uses `i18next` and
+`react-i18next`; see [`src/locales/README.md`](src/locales/README.md) for the key structure
+and update workflow.

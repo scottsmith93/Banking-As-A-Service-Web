@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import Icon from "carbon-react/lib/components/icon";
 import { useLanguage } from "../context/useLanguage";
+import { getLocale } from "../locales";
 
 type FinancialDocument = {
   name: string;
@@ -64,34 +65,7 @@ const documents: FinancialDocument[] = [
 
 export default function FinancialDocumentsPage() {
   const { language } = useLanguage();
-  const isFrench = language === "French";
-  const copy = isFrench
-    ? {
-      title: "Documents financiers",
-      intro: "Documents et vidéos téléversés par votre comptable. De nouveaux documents financiers apparaîtront lorsqu’ils seront prêts.",
-      searchLabel: "Rechercher des documents financiers",
-      searchPlaceholder: "Rechercher…",
-      filter: "Filtrer",
-      headers: ["Nom", "Taille du fichier", "Date d’ajout", "Ajouté par", "Disponibilité", "Voir", "Commentaires"],
-      status: "Disponible à la consultation",
-      empty: "Aucun document financier trouvé.",
-      items: "Articles",
-      view: "Voir",
-      comment: "Commenter",
-    }
-    : {
-      title: "Financial documents",
-      intro: "Documents and videos uploaded by your accountant for you. New financial documents will appear when they are ready for you.",
-      searchLabel: "Search financial documents",
-      searchPlaceholder: "Search…",
-      filter: "Filter",
-      headers: ["Name", "File size", "Date added", "Added by", "Availability", "View", "Comments"],
-      status: "Available to view",
-      empty: "No financial documents found.",
-      items: "Items",
-      view: "View",
-      comment: "Comment",
-    };
+  const copy = getLocale(language).financialDocuments;
   const [query, setQuery] = useState("");
   const visibleDocuments = useMemo(
     () => documents.filter((document) => document.name.toLowerCase().includes(query.toLowerCase())),
@@ -138,7 +112,7 @@ export default function FinancialDocumentsPage() {
                 <td>{document.size}</td>
                 <td>{document.dateAdded}</td>
                 <td>{document.addedBy}</td>
-                <td><span className="fileUploadPage__status">{isFrench ? copy.status : document.status}</span></td>
+                <td><span className="fileUploadPage__status">{copy.status}</span></td>
                 <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.view} ${document.name}`}><Icon type="view" aria-hidden /></button></td>
                 <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.comment} ${document.name}`}><Icon type="chat" aria-hidden /></button></td>
               </tr>

@@ -1,6 +1,7 @@
 import { useMemo, useRef, useState, type ChangeEvent, type DragEvent } from "react";
 import Icon from "carbon-react/lib/components/icon";
 import { useLanguage } from "../../context/useLanguage";
+import { getLocale } from "../../locales";
 
 type FileRow = {
   name: string;
@@ -36,40 +37,7 @@ function describeFile(file: File): FileRow {
 
 export default function FileUploadPage() {
   const { language } = useLanguage();
-  const isFrench = language === "French";
-  const copy = isFrench
-    ? {
-      title: "Gestion des fichiers",
-      intro: "Téléversez et gérez les fichiers de votre entreprise. Vous pouvez téléverser des fichiers jusqu’à 20 Mo.",
-      select: "Sélectionner un fichier",
-      drop: "ou glissez-déposez votre fichier",
-      searchLabel: "Rechercher des fichiers",
-      searchPlaceholder: "Rechercher…",
-      filter: "Filtrer",
-      headers: ["Nom", "Taille du fichier", "Date d’ajout", "Ajouté par", "Statut du téléversement", "Voir", "Commentaires", "Supprimer"],
-      uploaded: "Fichier téléversé",
-      empty: "Aucun fichier trouvé.",
-      items: "Articles",
-      view: "Voir",
-      comment: "Commenter",
-      delete: "Supprimer",
-    }
-    : {
-      title: "File management",
-      intro: "Upload and manage files for your business. You can upload files up to 20 MB.",
-      select: "Select file",
-      drop: "or drag and drop your file",
-      searchLabel: "Search files",
-      searchPlaceholder: "Search…",
-      filter: "Filter",
-      headers: ["Name", "File size", "Date added", "Added by", "Upload status", "View", "Comments", "Delete"],
-      uploaded: "File uploaded",
-      empty: "No files found.",
-      items: "Items",
-      view: "View",
-      comment: "Comment",
-      delete: "Delete",
-    };
+  const copy = getLocale(language).fileUpload;
   const inputRef = useRef<HTMLInputElement>(null);
   const [files, setFiles] = useState<FileRow[]>(initialFiles);
   const [query, setQuery] = useState("");
@@ -155,7 +123,7 @@ export default function FileUploadPage() {
                 <td>{file.size}</td>
                 <td>{file.dateAdded}</td>
                 <td>{file.addedBy}</td>
-                <td><span className="fileUploadPage__status">{isFrench ? copy.uploaded : file.status}</span></td>
+                <td><span className="fileUploadPage__status">{copy.uploaded}</span></td>
                 <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.view} ${file.name}`}><Icon type="view" aria-hidden /></button></td>
                 <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.comment} ${file.name}`}><Icon type="chat" aria-hidden /></button></td>
                 <td><button type="button" className="fileUploadPage__iconButton fileUploadPage__iconButton--delete" aria-label={`${copy.delete} ${file.name}`} onClick={() => setFiles((current) => current.filter((item) => item !== file))}><Icon type="bin" aria-hidden /></button></td>

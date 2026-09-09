@@ -1,4 +1,7 @@
 {
+  "navigation": {
+    "Dashboard": "Tableau de bord", "Sales": "Ventes", "Sales quotes": "Devis de vente", "Sales orders": "Commandes de vente", "Sales delivery notes": "Bons de livraison de vente", "Sales invoices": "Factures de vente", "Recurring invoices": "Factures récurrentes", "Purchases": "Achats", "Purchase orders": "Commandes d’achat", "Purchase invoices": "Factures d’achat", "Contacts": "Contacts", "Customers": "Clients", "Suppliers": "Fournisseurs", "Employees": "Employés", "Products and services": "Produits et services", "Items": "Articles", "Price lists": "Listes de prix", "Discount groups": "Groupes de remise", "Banking": "Banque", "Bank movements": "Mouvements bancaires", "Reports": "Rapports", "Settings": "Paramètres", "File upload": "Téléversement de fichiers", "Project calculator": "Calculateur de projet", "Financial documents": "Documents financiers", "Year end meeting": "Réunion de fin d’exercice", "AI Advisor": "Conseiller IA", "Manage subscription": "Gérer l’abonnement", "Copilot": "Copilot", "Chat": "Discussion", "Insights": "Analyses", "Copilot settings": "Paramètres Copilot", "Help": "Aide", "Expand": "Développer", "Collapse": "Réduire", "Close menu": "Fermer le menu", "Close AI Advisor": "Fermer le Conseiller IA"
+  },
   "profile": {
     "title": "Gérer l’abonnement Sage Active",
     "subtitle": "Gérez votre abonnement Sage Active et découvrez ce qui est inclus dans chaque formule.",

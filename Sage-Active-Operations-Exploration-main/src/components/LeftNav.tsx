@@ -9,6 +9,7 @@ import { useNavMode } from "../context/useNavMode";
 import { useLanguage } from "../context/useLanguage";
 import { currentUser } from "../data/currentUser";
 import { ROUTES } from "../routes";
+import { getLocale } from "../locales";
 
 type FooterFlyoutId = "profile" | "copilot" | "help" | null;
 
@@ -29,58 +30,9 @@ type FlyoutContent = {
   groups: FlyoutLink[][];
 };
 
-const FRENCH_NAV_LABELS: Record<string, string> = {
-  Dashboard: "Tableau de bord",
-  Sales: "Ventes",
-  "Sales quotes": "Devis de vente",
-  "Sales orders": "Commandes de vente",
-  "Sales delivery notes": "Bons de livraison de vente",
-  "Sales invoices": "Factures de vente",
-  "Recurring invoices": "Factures récurrentes",
-  Purchases: "Achats",
-  "Purchase orders": "Commandes d’achat",
-  "Purchase invoices": "Factures d’achat",
-  Contacts: "Contacts",
-  Customers: "Clients",
-  Suppliers: "Fournisseurs",
-  Employees: "Employés",
-  "Products and services": "Produits et services",
-  Items: "Articles",
-  "Price lists": "Listes de prix",
-  "Discount groups": "Groupes de remise",
-  Banking: "Banque",
-  "Bank movements": "Mouvements bancaires",
-  Accounting: "Comptabilité",
-  "Journal entries": "Écritures comptables",
-  "Account matching": "Lettrage des comptes",
-  "By third party": "Par tiers",
-  "By ledger accounts": "Par comptes du grand livre",
-  "Fixed assets": "Immobilisations",
-  "Fixed asset transactions": "Mouvements d’immobilisations",
-  Compliance: "Conformité",
-  "Tax returns": "Déclarations fiscales",
-  Reports: "Rapports",
-  Settings: "Paramètres",
-  "Sale invoices": "Factures de vente",
-  "File upload": "Téléversement de fichiers",
-  "Project calculator": "Calculateur de projet",
-  "Financial documents": "Documents financiers",
-  "Year end meeting": "Réunion de fin d’exercice",
-  Conversations: "Conversations",
-  "AI Advisor": "Conseiller IA",
-  "Manage subscription": "Gérer l’abonnement",
-  Client: "Client",
-  Accountant: "Comptable",
-  Chat: "Discussion",
-  Insights: "Analyses",
-  "Copilot settings": "Paramètres Copilot",
-  Help: "Aide",
-  Expand: "Développer",
-  Collapse: "Réduire",
-};
-
 function translateNavLabel(label: string, language: "English" | "French") {
-  return language === "French" ? FRENCH_NAV_LABELS[label] ?? label : label;
+  const navigation = getLocale(language).navigation as Record<string, string>;
+  return navigation[label] ?? label;
 }
 
 const ADDITIONAL_NAV_ITEMS: PrimaryNavItem[] = [
@@ -529,7 +481,7 @@ export default function LeftNav() {
             <button
               type="button"
               className="leftNav__flyoutBackdrop"
-              aria-label="Close menu"
+              aria-label={translateNavLabel("Close menu", language)}
               onClick={closeFooterFlyout}
             />
             <div
@@ -575,7 +527,7 @@ export default function LeftNav() {
             <button
               type="button"
               className="aiAdvisor__backdrop"
-              aria-label="Close AI Advisor"
+              aria-label={translateNavLabel("Close AI Advisor", language)}
               onClick={() => setIsAiAdvisorOpen(false)}
             />
             <aside
@@ -592,7 +544,7 @@ export default function LeftNav() {
                 <button
                   type="button"
                   className="aiAdvisor__close"
-                  aria-label="Close AI Advisor"
+                  aria-label={translateNavLabel("Close AI Advisor", language)}
                   onClick={() => setIsAiAdvisorOpen(false)}
                 >
                   <Icon type="cross" aria-hidden />

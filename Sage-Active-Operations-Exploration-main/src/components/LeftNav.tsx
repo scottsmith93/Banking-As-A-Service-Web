@@ -68,7 +68,7 @@ const FRENCH_NAV_LABELS: Record<string, string> = {
   "Year end meeting": "Réunion de fin d’exercice",
   Conversations: "Conversations",
   "AI Advisor": "Conseiller IA",
-  "My profile": "Mon profil",
+  "Manage subscription": "Gérer l’abonnement",
   Client: "Client",
   Accountant: "Comptable",
   Chat: "Discussion",
@@ -262,7 +262,7 @@ function SubmenuRow({
 export default function LeftNav() {
   const navigate = useNavigate();
   const { pathname } = useLocation();
-  const { mode, setMode } = useNavMode();
+  const { mode } = useNavMode();
   const navItems =
     mode === "essentials"
       ? PRIMARY_NAV_ITEMS.filter((item) => !["accounting", "compliance"].includes(item.id))
@@ -324,8 +324,7 @@ export default function LeftNav() {
       return {
         groups: [
           [
-            { key: "my-profile", label: "My profile", onClick: () => go(ROUTES.myProfile) },
-            { key: "settings", label: "Settings", onClick: closeFooterFlyout },
+            { key: "my-profile", label: "Manage subscription", onClick: () => go(ROUTES.myProfile) },
           ],
           [
             {
@@ -343,26 +342,6 @@ export default function LeftNav() {
               selected: language === "French",
               onClick: () => {
                 setLanguage("French");
-                closeFooterFlyout();
-              },
-            },
-          ],
-          [
-            {
-              key: "switch-client",
-              label: "Client",
-              selected: mode === "portal",
-              onClick: () => {
-                setMode("portal");
-                closeFooterFlyout();
-              },
-            },
-            {
-              key: "switch-accountant",
-              label: "Accountant",
-              selected: mode === "essentials",
-              onClick: () => {
-                setMode("essentials");
                 closeFooterFlyout();
               },
             },

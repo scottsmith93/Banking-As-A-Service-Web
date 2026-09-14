@@ -6,6 +6,7 @@ import { getLocale } from "../../locales";
 
 type FileRow = {
   name: string;
+  nameKey?: string;
   size: string;
   dateAdded: string;
   addedBy: string;
@@ -15,6 +16,7 @@ type FileRow = {
 const initialFiles: FileRow[] = [
   {
     name: "Query (5).xlsx",
+    nameKey: "query5",
     size: "19.4 KB",
     dateAdded: "16/12/2025",
     addedBy: "Nadia Benhamed",
@@ -43,10 +45,13 @@ export default function FileUploadPage() {
   const [files, setFiles] = useState<FileRow[]>(initialFiles);
   const [query, setQuery] = useState("");
   const [isDragging, setIsDragging] = useState(false);
+  const getFileName = (file: FileRow) => file.nameKey
+    ? copy.fileNames[file.nameKey as keyof typeof copy.fileNames]
+    : file.name;
 
   const visibleFiles = useMemo(
-    () => files.filter((file) => file.name.toLowerCase().includes(query.toLowerCase())),
-    [files, query],
+    () => files.filter((file) => getFileName(file).toLowerCase().includes(query.toLowerCase())),
+    [files, query, copy.fileNames],
   );
 
   const addFiles = (selectedFiles: FileList | null) => {
@@ -120,14 +125,14 @@ export default function FileUploadPage() {
           <tbody>
             {visibleFiles.map((file) => (
               <tr key={`${file.name}-${file.dateAdded}`}>
-                <td>{file.name}</td>
+                <td>{getFileName(file)}</td>
                 <td>{file.size}</td>
                 <td>{file.dateAdded}</td>
                 <td>{file.addedBy}</td>
                 <td><Pill pillRole="status" colorVariant="positive" size="S">{copy.uploaded}</Pill></td>
-                <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.view} ${file.name}`}><Icon type="view" aria-hidden /></button></td>
-                <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.comment} ${file.name}`}><Icon type="chat" aria-hidden /></button></td>
-                <td><button type="button" className="fileUploadPage__iconButton fileUploadPage__iconButton--delete" aria-label={`${copy.delete} ${file.name}`} onClick={() => setFiles((current) => current.filter((item) => item !== file))}><Icon type="bin" aria-hidden /></button></td>
+                <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.view} ${getFileName(file)}`}><Icon type="view" aria-hidden /></button></td>
+                <td><button type="button" className="fileUploadPage__iconButton" aria-label={`${copy.comment} ${getFileName(file)}`}><Icon type="chat" aria-hidden /></button></td>
+                <td><button type="button" className="fileUploadPage__iconButton fileUploadPage__iconButton--delete" aria-label={`${copy.delete} ${getFileName(file)}`} onClick={() => setFiles((current) => current.filter((item) => item !== file))}><Icon type="bin" aria-hidden /></button></td>
               </tr>
             ))}
             {!visibleFiles.length && (

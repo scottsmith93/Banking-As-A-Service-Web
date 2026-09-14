@@ -3,8 +3,8 @@
 import { ROUTES } from "../routes";
 
 /** Format amounts to match the dashboard design (EUR, space thousands separator). */
-export function formatDashboardEuro(amount: number): string {
-  const formatted = new Intl.NumberFormat("fr-FR", {
+export function formatDashboardEuro(amount: number, locale = "fr-FR"): string {
+  const formatted = new Intl.NumberFormat(locale, {
     minimumFractionDigits: 2,
     maximumFractionDigits: 2,
   }).format(amount);

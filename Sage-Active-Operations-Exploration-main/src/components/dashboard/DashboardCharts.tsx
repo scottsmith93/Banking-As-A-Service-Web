@@ -20,36 +20,35 @@ const chartTheme = {
   legends: { text: { fill: "#354349", fontSize: 12 } },
 };
 
-const cashTrend = [
-  {
-    id: "Cash position",
-    data: [
-      { x: "Apr", y: 32_500 },
-      { x: "May", y: 38_400 },
-      { x: "Jun", y: 35_200 },
-      { x: "Jul", y: 42_800 },
-      { x: "Aug", y: 45_600 },
-      { x: "Sep", y: 48_000 },
-    ],
-  },
+const cashTrendValues = [32_500, 38_400, 35_200, 42_800, 45_600, 48_000];
+
+const salesAndPurchasesValues = [
+  { sales: 21_400, purchases: 15_600 },
+  { sales: 24_100, purchases: 16_900 },
+  { sales: 22_800, purchases: 17_200 },
+  { sales: 26_500, purchases: 18_400 },
+  { sales: 28_200, purchases: 19_100 },
+  { sales: 30_400, purchases: 20_300 },
 ];
 
-const salesAndPurchases = [
-  { month: "Apr", sales: 21_400, purchases: 15_600 },
-  { month: "May", sales: 24_100, purchases: 16_900 },
-  { month: "Jun", sales: 22_800, purchases: 17_200 },
-  { month: "Jul", sales: 26_500, purchases: 18_400 },
-  { month: "Aug", sales: 28_200, purchases: 19_100 },
-  { month: "Sep", sales: 30_400, purchases: 20_300 },
-];
-
-function formatAxisEuro(value: number) {
-  return `${Math.round(value / 1000)}k €`;
+function formatAxisEuro(value: number, locale: string) {
+  return `${new Intl.NumberFormat(locale, { maximumFractionDigits: 0 }).format(value / 1000)}k €`;
 }
 
 export default function DashboardCharts() {
   const { language } = useLanguage();
   const copy = getLocale(language).dashboard;
+  const locale = language === "French" ? "fr-FR" : "en-GB";
+  const cashTrend = [{
+    id: copy.chartSeries.cashPosition,
+    data: copy.chartMonths.map((month, index) => ({ x: month, y: cashTrendValues[index] })),
+  }];
+  const chartKeys = [copy.chartSeries.sales, copy.chartSeries.purchases];
+  const salesAndPurchases = salesAndPurchasesValues.map((values, index) => ({
+    month: copy.chartMonths[index],
+    [copy.chartSeries.sales]: values.sales,
+    [copy.chartSeries.purchases]: values.purchases,
+  }));
   return (
     <Box className="dashboardCharts" display="flex" flexDirection="column">
       <Box className="dashboardCharts__header">
@@ -73,7 +72,7 @@ export default function DashboardCharts() {
               </Typography>
             </Box>
             <Typography variant="strong" as="p" className="dashboardChartCard__value">
-              {formatDashboardEuro(48_000)}
+              {formatDashboardEuro(48_000, locale)}
             </Typography>
           </Box>
           <Box className="dashboardChartCard__chart" aria-label={copy.cashTrendLabel}>
@@ -96,12 +95,12 @@ export default function DashboardCharts() {
               axisTop={null}
               axisRight={null}
               axisBottom={{ tickSize: 0, tickPadding: 10 }}
-              axisLeft={{ tickSize: 0, tickPadding: 8, tickValues: 3, format: formatAxisEuro }}
+              axisLeft={{ tickSize: 0, tickPadding: 8, tickValues: 3, format: (value: number) => formatAxisEuro(value, locale) }}
               theme={chartTheme}
               useMesh
               animate={false}
               tooltip={({ point }) => (
-                <strong className="dashboardChartTooltip">{point.data.xFormatted}: {formatDashboardEuro(Number(point.data.y))}</strong>
+                <strong className="dashboardChartTooltip">{point.data.xFormatted}: {formatDashboardEuro(Number(point.data.y), locale)}</strong>
               )}
             />
           </Box>
@@ -118,13 +117,13 @@ export default function DashboardCharts() {
               </Typography>
             </Box>
             <Typography variant="strong" as="p" className="dashboardChartCard__value">
-              {formatDashboardEuro(30_400)}
+              {formatDashboardEuro(30_400, locale)}
             </Typography>
           </Box>
           <Box className="dashboardChartCard__chart" aria-label={copy.salesPurchasesChartLabel}>
             <ResponsiveBar
               data={salesAndPurchases}
-              keys={["sales", "purchases"]}
+              keys={chartKeys}
               indexBy="month"
               margin={{ top: 12, right: 12, bottom: 36, left: 48 }}
               padding={0.28}
@@ -136,7 +135,7 @@ export default function DashboardCharts() {
               axisTop={null}
               axisRight={null}
               axisBottom={{ tickSize: 0, tickPadding: 10 }}
-              axisLeft={{ tickSize: 0, tickPadding: 8, tickValues: 3, format: formatAxisEuro }}
+              axisLeft={{ tickSize: 0, tickPadding: 8, tickValues: 3, format: (value: number) => formatAxisEuro(value, locale) }}
               legends={[{
                 dataFrom: "keys",
                 anchor: "bottom-left",
@@ -153,7 +152,7 @@ export default function DashboardCharts() {
               role="img"
               ariaLabel={copy.salesPurchasesChartLabel}
               tooltip={({ id, value, indexValue }) => (
-                <strong className="dashboardChartTooltip">{indexValue} · {id}: {formatDashboardEuro(Number(value))}</strong>
+                <strong className="dashboardChartTooltip">{indexValue} · {id}: {formatDashboardEuro(Number(value), locale)}</strong>
               )}
             />
           </Box>

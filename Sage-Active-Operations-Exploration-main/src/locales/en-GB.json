@@ -66,7 +66,10 @@
     "items": "Items",
     "view": "View",
     "comment": "Comment",
-    "delete": "Delete"
+    "delete": "Delete",
+    "fileNames": {
+      "query5": "Query (5).xlsx"
+    }
   },
   "financialDocuments": {
     "title": "Financial documents",
@@ -79,7 +82,16 @@
     "empty": "No financial documents found.",
     "items": "Items",
     "view": "View",
-    "comment": "Comment"
+    "comment": "Comment",
+    "fileNames": {
+      "financialStatements2025": "Financial statements 2025.pdf",
+      "taxReturnManuallyExported": "Tax return - manually exported.pdf",
+      "reportPackQ42025": "Report pack - Q4 2025.pdf",
+      "accountsReviewVideo": "Accounts review video.mp4",
+      "commentsAndActionPlan": "Comments and action plan.pdf",
+      "linkedSupportingDocuments": "Linked supporting documents.zip",
+      "rawDataForInsight": "Raw data for insight.xlsx"
+    }
   },
   "projects": {
     "title": "Project calculator",
@@ -91,6 +103,7 @@
     "safetyThreshold": "Safety threshold",
     "assumptionNote": "These figures are assumptions for this simulation. Connect your accounting data to replace them with live balances.",
     "calculate": "Calculate",
+    "amountSliderLabel": "Decision amount",
     "projectedCash": "Projected cash after impact",
     "decision": "Decision",
     "feasible": "Feasible",
@@ -120,6 +133,7 @@
     "agendaIntro": "Use supplied documents, calendar details and conversations to inform the discussion.",
     "agendaItem": "Agenda item",
     "addAgenda": "Add an agenda point",
+    "yearSelection": "Year selection",
     "checklist": [
       { "id": "statements", "label": "Previous financial statements", "description": "Review the latest statements before the meeting." },
       { "id": "agenda", "label": "Agenda confirmed", "description": "Agree the topics and questions to cover together." },
@@ -131,7 +145,19 @@
       { "time": "10 min", "title": "Review the year", "detail": "Look back at performance and key financial statements." },
       { "time": "15 min", "title": "Open points", "detail": "Work through questions, missing documents and decisions." },
       { "time": "15 min", "title": "Plan ahead", "detail": "Agree actions, owners and priorities for the next period." }
-    ]
+    ],
+    "history": {
+      "title": "12-month overview",
+      "subtitle": "Review the financial picture from this year end period.",
+      "cashPosition": "Cash position",
+      "revenue": "Revenue",
+      "operatingCosts": "Operating costs",
+      "closingPosition": "Closing position",
+      "monthlyActivity": "Monthly activity",
+      "cashTrend": "Cash position over 12 months",
+      "revenueTrend": "Revenue and operating costs over 12 months",
+      "months": ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+    }
   },
   "dashboard": {
     "greeting": "Hello",
@@ -144,6 +170,8 @@
     "postedValueByMonth": "Posted value by month",
     "cashTrendLabel": "Cash position trend over six months",
     "salesPurchasesChartLabel": "Sales and purchases chart",
+    "chartMonths": ["Apr", "May", "Jun", "Jul", "Aug", "Sep"],
+    "chartSeries": { "cashPosition": "Cash position", "sales": "Sales", "purchases": "Purchases" },
     "showGettingStarted": "Show 'Getting started' tab",
     "gettingStarted": "Getting started",
     "accounting": "Accounting",
@@ -169,24 +197,24 @@
   },
   "aiAdvisor": {
     "title": "AI Advisor",
-    "subtitle": "Ask AI about your business or send messages to your Accountant.",
+    "subtitle": "Ask about everyday business information and get quick answers without emailing your Accountant.",
     "enabledSwitch": "AI Advisor enabled (prototype)",
     "messageLabel": "Message AI Advisor",
     "placeholder": "Ask a question about your business",
     "add": "Add",
     "send": "Send",
-    "forYou": "For you",
-    "estimatedTime": "Estimated time to complete:",
+    "forYou": "Recent conversations",
+    "relatedTopics": "Related topics",
     "recentActivity": "Recent activity",
     "activityBasis": "Based on the latest activity…",
     "viewActivity": "View activity →",
     "emptyTitle": "AI Advisor isn’t enabled yet",
     "emptyBody": "Your Accountant needs to enable AI Advisor for your business. Once it’s enabled, you’ll be able to ask questions about your business and message your Accountant.",
     "threads": [
-      { "title": "Documents needed for your VAT return", "body": "Your accountant is preparing the VAT return for the period ending 30 June 2026. Please upload the remaining documents before 7 August so they can complete the review.", "items": ["Upload missing purchase invoices", "Add receipts for business expenses", "Confirm any credit notes issued in June"], "action": "View document request", "time": "8 minutes" },
-      { "title": "Year-end documents to upload", "body": "Your accountant has requested a few documents ahead of the year-end review. Upload them by 15 September to keep the accounts preparation on schedule.", "items": ["Upload the latest bank statements", "Share asset purchase invoices and finance agreements", "Add details of outstanding customer balances"], "action": "Upload documents", "time": "5 minutes" },
-      { "title": "Accountant comments to review", "body": "Camille Martin has added comments to three documents in your client file. Review the questions and reply before the next accounts review.", "items": ["Confirm the purpose of the largest expense", "Answer the question on the supplier invoice", "Approve the draft document summary"], "action": "Review comments", "time": "4 minutes" },
-      { "title": "Document deadline approaching", "body": "The deadline to send supporting documents for Boulangerie des Lilas is approaching. Your accountant is waiting for the final sales export and insurance certificate.", "items": [], "action": "Send documents", "time": "" }
+      { "title": "Latest tax returns", "body": "You asked AI to find the latest tax returns available for your business, including the relevant tax period and filing date.", "items": ["Most recent tax return", "Tax period and filing date"], "action": "View conversation", "time": "9 Sep 2026, 10:24" },
+      { "title": "Subscription spend", "body": "You asked for the total amount spent on subscriptions across your business and reviewed the period included.", "items": ["Total subscription cost", "Period included"], "action": "View conversation", "time": "8 Sep 2026, 16:41" },
+      { "title": "Recent business document", "body": "You asked AI to locate a document in your client file instead of sending an email to your Accountant.", "items": ["Uploaded documents", "Document date and type"], "action": "View conversation", "time": "3 Sep 2026, 14:08" },
+      { "title": "Business total", "body": "You asked for a quick answer about a business total or recent transaction before contacting your Accountant.", "items": ["Recent activity", "Period covered"], "action": "View conversation", "time": "2 Sep 2026, 09:17" }
     ],
     "activity": [
       ["Copilot", "15:48", "Sales invoice for Boulangerie des Lilas: 523.14 €"],

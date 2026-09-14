@@ -22,7 +22,7 @@
     "Bank movements": "Mouvements bancaires",
     "Reports": "Rapports",
     "Settings": "Paramètres",
-    "File upload": "Téléversement de fichiers",
+    "File upload": "Dépôt",
     "Project calculator": "Calculateur de projet",
     "Financial documents": "Documents financiers",
     "Year end meeting": "Réunion de fin d’exercice",
@@ -44,7 +44,7 @@
     "monthlyAllocation": "Inclus chaque mois",
     "includedUserRoles": "Profils utilisateurs inclus",
     "viewDemo": "Regarder une démo",
-    "providedByAccountant": "Fourni par votre expert comptable",
+    "providedByAccountant": "Fourni par votre expert-comptable",
     "perMonth": "par mois",
     "cancelSubscription": "Annuler l’abonnement",
     "deselect": "Désélectionner",
@@ -101,7 +101,7 @@
     "empty": "Aucun fichier trouvé.",
     "items": "Éléments",
     "view": "Afficher",
-    "comment": "Commentaire",
+    "comment": "Commenter",
     "delete": "Supprimer",
     "fileNames": {
       "query5": "Requête (5).xlsx"
@@ -118,7 +118,7 @@
     "empty": "Aucun document financier trouvé.",
     "items": "Éléments",
     "view": "Afficher",
-    "comment": "Commentaire",
+    "comment": "Commenter",
     "fileNames": {
       "financialStatements2025": "États financiers 2025.pdf",
       "taxReturnManuallyExported": "Déclaration fiscale - export manuel.pdf",
@@ -145,7 +145,7 @@
     "feasible": "Projet réalisable",
     "borderline": "Projet à surveiller",
     "notFeasible": "Projet non réalisable",
-    "feasibleMessage": "Votre trésorerie reste supérieure au seuil de sécurité après la prise en compte du projet : {decision}.",
+    "feasibleMessage": "Votre trésorerie reste supérieure au seuil de sécurité après la prise en compte du projet : {decision}.",
     "borderlineMessage": "Cette décision vous rapproche de votre seuil de sécurité. Vérifiez les données avant de continuer.",
     "notFeasibleMessage": "Cette décision ferait passer votre trésorerie prévisionnelle en dessous de votre seuil de sécurité.",
     "resultFootnote": "Le coût du projet est déduit de votre trésorerie disponible, puis le montant prévisionnel obtenu est comparé à votre seuil de sécurité. Le projet est considéré comme réalisable au-dessus de ce seuil, à surveiller lorsqu’il s’en approche et non réalisable en dessous.",
@@ -180,7 +180,7 @@
     "agenda": [
       { "time": "10 min", "title": "Bilan de l'année", "detail": "Analysez les résultats obtenus et les principaux indicateurs financiers." },
       { "time": "15 min", "title": "Points en suspens", "detail": "Passez en revue les questions ouvertes, les documents manquants et les décisions à prendre." },
-      { "time": "15 min", "title": "Préparer l'avenir", "detail": "Définissez les actions, les responsables et les priorités pour la période à venir." }
+      { "time": "15 min", "title": "Préparer l'avenir", "detail": "Définissez les actions, les responsabilités et les priorités pour la période à venir." }
     ],
     "history": {
       "title": "Vue d’ensemble sur 12 mois",
@@ -197,7 +197,7 @@
   },
   "dashboard": {
     "greeting": "Bonjour",
-    "greetingSubtitle": "Un aperçu simple de votre trésorerie, de votre santé financière de votre entreprise et des mesures qui nécessitent votre attention. Les indicateurs clés sont atualisés toutes les 5 minutes.",
+    "greetingSubtitle": "Un aperçu simple de votre trésorerie, de la santé financière de votre entreprise et des mesures qui nécessitent votre attention. Les indicateurs clés sont atualisés toutes les 5 minutes.",
     "financialTrends": "Evolution financière",
     "financialTrendsSubtitle": "Suivez l'évolution de votre trésorerie et de votre activité.",
     "cashPosition": "Trésorerie",
@@ -249,8 +249,8 @@
     "emptyBody": "Votre expert-comptable doit activer le Conseiller IA pour votre entreprise. Une fois activé, vous pourrez poser des questions sur votre activité et échanger avec votre expert-comptable.",
     "threads": [
       { "title": "Documents requis pour votre déclaration de TVA", "body": "Votre expert-comptable prépare la déclaration de TVA de la période clôturée au 30 juin 2026. Déposez les documents manquants avant le 7 août afin de finaliser la révision.", "items": ["Déposez les factures d’achat manquantes", "Ajoutez les justificatifs de frais professionnels", "Confirmez les avoirs émis en juin"], "action": "Voir la demande de documents", "time": "8 minutes" },
-      { "title": "Documents à fournir pour la clôture annuelle", "body": "Votre expert-comptable a demandé plusieurs documents en préparation de la clôture annuelle. Transmettez-les avant le 15 septembre afin de respecter le calendrier de préparation des comptes.", "items": ["Déposer les derniers relevés bancaires", "Transmettez les factures d'immobilisations et les contrats de financement", "Indiquez le détail des créances clients en attente de règlement"], "action": "Déposer les documents", "time": "5 minutes" },
-      { "title": "Commentaires de votre expert-comptable à consulter", "body": "Camille Martin a ajouté des commentaires sur 3 documents de votre dossier. Consultez les questions et apportez vos réponses avant la prochaine révision des comptes.", "items": ["Précisez la nature de la dépense la plus importante", "Répondez à la question concernant la facture fournisseur", "Valider le résumé du document"], "action": "Consulter les commentaires", "time": "4 minutes" },
+      { "title": "Documents à fournir pour la clôture annuelle", "body": "Votre expert-comptable a demandé plusieurs documents en préparation de la clôture annuelle. Transmettez-les avant le 15 septembre afin de respecter le calendrier de préparation des comptes.", "items": ["Déposer les derniers relevés bancaires", "Transmetter les factures d'immobilisations et les contrats de financement", "Indiquer le détail des créances clients en attente de règlement"], "action": "Déposer les documents", "time": "5 minutes" },
+      { "title": "Commentaires de votre expert-comptable à consulter", "body": "Camille Martin a ajouté des commentaires sur 3 documents de votre dossier. Consultez les questions et apportez vos réponses avant la prochaine révision des comptes.", "items": ["Préciser la nature de la dépense la plus importante", "Répondre à la question concernant la facture fournisseur", "Valider le résumé du document"], "action": "Consulter les commentaires", "time": "4 minutes" },
       { "title": "Échéance de transmission imminente", "body": "La date limite d'envoi des pièces justificatives de Boulangerie des Lilas approche. Votre expert-comptable attend l'export final des ventes ainsi que l'attestation d'assurance.", "items": [], "action": "Transmettre les documents", "time": "" }
     ],
     "activity": [
@@ -258,7 +258,7 @@
       ["Copilot", "16:41", "Devis DV-1184 envoyé à Atelier Lumière"],
       ["Camille", "16:12", "DSN transmise pour 14 salariés"],
       ["Copilot", "07:40", "64 transactions bancaires automatiquement réconciliées"],
-      ["Vous", "4 Sept", "Paiement fournisseur de 18.420,60€ approuvé"]
+      ["Vous", "4 Sept", "Paiement fournisseur de 18 420,60€ approuvé"]
     ]
   }
 }

@@ -16,8 +16,10 @@
     "validate:tokens": "node scripts/validate-tokens.mjs",
     "validate": "npm run validate:locales && npm run validate:tokens",
     "build": "npm run validate && tsc -b && vite build",
+    "build:uifork": "npm run validate && tsc -b && vite build --mode uifork",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "uifork:watch": "uifork watch ./src --port 3030"
   },
   "dependencies": {
     "@nivo/bar": "^0.99.0",
@@ -45,6 +47,10 @@
     "globals": "^16.5.0",
     "typescript": "~5.9.3",
     "typescript-eslint": "^8.48.0",
+    "uifork": "0.0.14",
     "vite": "^7.3.1"
+  },
+  "overrides": {
+    "ws": "8.21.3"
   }
 }

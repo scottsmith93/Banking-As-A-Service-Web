@@ -78,6 +78,16 @@ Most users of this tool are designers who are new to code and prototyping. The a
 
 ---
 
+## UI variation workflow
+
+- UI Fork is approved as development tooling for comparing component variants. Read `docs/uifork.md` and use the repo-scoped `uifork` skill before initializing, forking, renaming, deleting, or promoting a version.
+- UI Fork is not an alternative product component library. Its internal Base UI, Tabler, Floating UI, and Motion dependencies are limited to its development widget; prototype code must continue to use Sage Carbon and Sage design tokens.
+- Every version file must follow the same localization, accessibility, token, mock-data, and documentation rules as the original component.
+- The standard `npm run build` must not expose the UI Fork widget. Use `npm run build:uifork` only for an intentional internal manual publication, and never for a production handoff.
+- Inspect the exact component and the Git diff before running a mutating UI Fork command. Treat `delete` and `promote` as destructive because they remove version files.
+
+---
+
 ## Starter pages
 
 When the playground is scaffolded, it should include a set of example pages that give designers a working starting point. These are not templates to copy — they are live, editable references that demonstrate Carbon components, layout patterns, and prototype conventions in context.
@@ -258,3 +268,4 @@ Never silently break a rule to fulfil a request.
 - `docs/design-tokens.md` — authoritative package roles, import rules, token selection, and upgrade guidance.
 - `docs/localization.md` — localization scope, catalogue structure, formatting, and validation workflow.
 - `docs/prototyping-guidelines.md` — Flow, mock data, routing, accessibility, and prototype workflow guidance.
+- `docs/uifork.md` — component variation workflow, commands, build modes, and Sage guardrails.

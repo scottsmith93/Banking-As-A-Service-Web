@@ -18,6 +18,8 @@ for exploring UI flows and design ideas quickly. New prototypes should follow
 - [`@sage/design-tokens`](https://github.com/Sage/design-tokens) for spacing, color, and typography
 - [AG Grid](https://www.ag-grid.com/) and [Nivo](https://nivo.rocks/) in existing
   showcase screens only; they are not defaults for new prototypes
+- [UI Fork](https://github.com/sambernhardt/uifork) for development-only component
+  variation and in-context comparison
 
 ## Getting started
 
@@ -39,6 +41,18 @@ npm run lint     # run ESLint
 npm run preview  # preview a production build locally
 ```
 
+UI Fork is available automatically during local development. To create or edit
+component versions from its floating widget, run its watch server in a second
+terminal:
+
+```bash
+npm run uifork:watch
+```
+
+Read [`docs/uifork.md`](docs/uifork.md) before versioning a component. The normal
+build excludes the widget; `npm run build:uifork` creates an intentional internal
+manual-preview build that includes it.
+
 ## Project structure
 
 | Path | Purpose |
@@ -49,8 +63,8 @@ npm run preview  # preview a production build locally
 | `src/locales/*` | English and French localisation catalogues for content managed by the localisation team |
 | `src/context/*` | Cross-page React context (nav mode, subscription state, stock alerts) |
 | `AGENTS.md` | Conventions and implementation rules for this codebase |
-| `docs/` | Reference docs for Carbon, design tokens, localization, and prototype workflow |
-| `.agents/skills/*` | Repo-scoped Codex skills that load the right guidance for prototype, localization, and token work |
+| `docs/` | Reference docs for Carbon, design tokens, localization, UI Fork, and prototype workflow |
+| `.agents/skills/*` | Repo-scoped Codex skills that load the right guidance for prototype, localization, tokens, and UI variation work |
 
 ## Notes
 

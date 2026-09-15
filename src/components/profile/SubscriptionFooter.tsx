@@ -25,8 +25,8 @@ export default function SubscriptionFooter({
   return (
     <Box className="subscriptionFooter" display="flex" alignItems="center" justifyContent="flex-end">
       <Box className="subscriptionFooter__kpis" display="flex" alignItems="center">
-        <FooterKpiTile amount={formatEur(monthlyCost)} label={locale.profile.subscriptionCostPerMonth} />
-        <FooterKpiTile amount={formatEur(vatAmount)} label={locale.profile.vat} />
+        <FooterKpiTile amount={formatEur(monthlyCost, language)} label={locale.profile.subscriptionCostPerMonth} />
+        <FooterKpiTile amount={formatEur(vatAmount, language)} label={locale.profile.vat} />
       </Box>
 
       <Box className="subscriptionFooter__actions" display="flex" alignItems="center">

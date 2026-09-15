@@ -45,7 +45,7 @@
     "includedUserRoles": "Profils utilisateurs inclus",
     "viewDemo": "Regarder une démo",
     "providedByAccountant": "Fourni par votre expert-comptable",
-    "perMonth": "par mois",
+    "pricePerMonth": "{price} par mois",
     "cancelSubscription": "Annuler l’abonnement",
     "deselect": "Désélectionner",
     "selectSubscription": "Choisir cet abonnement",
@@ -145,7 +145,11 @@
     "feasible": "Projet réalisable",
     "borderline": "Projet à surveiller",
     "notFeasible": "Projet non réalisable",
-    "feasibleMessage": "Votre trésorerie reste supérieure au seuil de sécurité après la prise en compte du projet : {decision}.",
+    "feasibleMessages": {
+      "hire": "Votre trésorerie reste supérieure au seuil de sécurité après ce recrutement.",
+      "invest": "Votre trésorerie reste supérieure au seuil de sécurité après cet investissement.",
+      "spend": "Votre trésorerie reste supérieure au seuil de sécurité après cet achat ponctuel."
+    },
     "borderlineMessage": "Cette décision vous rapproche de votre seuil de sécurité. Vérifiez les données avant de continuer.",
     "notFeasibleMessage": "Cette décision ferait passer votre trésorerie prévisionnelle en dessous de votre seuil de sécurité.",
     "resultFootnote": "Le coût du projet est déduit de votre trésorerie disponible, puis le montant prévisionnel obtenu est comparé à votre seuil de sécurité. Le projet est considéré comme réalisable au-dessus de ce seuil, à surveiller lorsqu’il s’en approche et non réalisable en dessous.",
@@ -220,7 +224,7 @@
     "switchOff": "Non",
     "portalMetrics": {
       "collectedRevenue": { "title": "Chiffres d’affaires", "detail": "Depuis le début de l'année" },
-      "overdueInvoices": { "title": "Factures en retard de paiement", "detail": "12 360 € restant à encaisser" },
+      "overdueInvoices": { "title": "Factures en retard de paiement", "detail": "{amount} restant à encaisser" },
       "blockingDocuments": { "title": "Documents manquants bloquants", "detail": "En attente d’information de votre part" },
       "healthScore": { "title": "Indice de santé", "detail": "Situation satisfaisante" }
     },
@@ -241,7 +245,6 @@
     "send": "Envoyer",
     "forYou": "Pour vous",
     "relatedTopics": "Sujets associés",
-    "estimatedTime": "Temps estimé",
     "recentActivity": "Activité récente",
     "activityBasis": "Basé sur l'activité récente...",
     "viewActivity": "Voir l'activité →",
@@ -254,11 +257,11 @@
       { "title": "Échéance de transmission imminente", "body": "La date limite d'envoi des pièces justificatives de Boulangerie des Lilas approche. Votre expert-comptable attend l'export final des ventes ainsi que l'attestation d'assurance.", "items": [], "action": "Transmettre les documents", "time": "" }
     ],
     "activity": [
-      ["Copilot", "15:48", "Facture de ventes pour Boulangerie des Lilas 523,14 €"],
-      ["Copilot", "16:41", "Devis DV-1184 envoyé à Atelier Lumière"],
-      ["Camille", "16:12", "DSN transmise pour 14 salariés"],
-      ["Copilot", "07:40", "64 transactions bancaires automatiquement réconciliées"],
-      ["Vous", "4 Sept", "Paiement fournisseur de 18 420,60€ approuvé"]
+      { "author": "Copilot", "time": "15:48", "message": "Facture de vente pour Boulangerie des Lilas : {amount}", "amount": 523.14 },
+      { "author": "Copilot", "time": "16:41", "message": "Devis DV-1184 envoyé à Atelier Lumière", "amount": null },
+      { "author": "Camille", "time": "16:12", "message": "DSN transmise pour 14 salariés", "amount": null },
+      { "author": "Copilot", "time": "07:40", "message": "64 transactions bancaires automatiquement réconciliées", "amount": null },
+      { "author": "Vous", "time": "4 sept.", "message": "Paiement fournisseur de {amount} approuvé", "amount": 18420.6 }
     ]
   }
 }

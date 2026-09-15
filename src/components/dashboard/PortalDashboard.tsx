@@ -4,14 +4,14 @@ import Icon from "carbon-react/lib/components/icon";
 import Typography from "carbon-react/lib/components/typography";
 import type { IconType } from "carbon-react/lib/components/icon";
 import { ROUTES } from "../../routes";
-import { formatDashboardEuro } from "../../data/dashboard";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";
+import { formatWholeEur } from "../../utils/formatCurrency";
 
 type SummaryMetric = {
   id: string;
   title: string;
-  value: string;
+  value: string | number;
   detail: string;
   iconType: IconType;
   tone: "positive" | "neutral" | "caution" | "info";
@@ -21,7 +21,7 @@ const summaryMetrics: SummaryMetric[] = [
   {
     id: "collected-revenue",
     title: "collectedRevenue",
-    value: formatDashboardEuro(139_022),
+    value: 139_022,
     detail: "",
     iconType: "chart_bar",
     tone: "info",
@@ -58,8 +58,14 @@ export default function PortalDashboard() {
   const metrics = summaryMetrics.map((metric) => ({
     ...metric,
     title: copy.portalMetrics[metric.title as keyof typeof copy.portalMetrics].title,
+    value: typeof metric.value === "number"
+      ? formatWholeEur(metric.value, language)
+      : metric.value,
     detail: metric.id === "overdue-invoices"
-      ? copy.portalMetrics.overdueInvoices.detail
+      ? copy.portalMetrics.overdueInvoices.detail.replace(
+          "{amount}",
+          formatWholeEur(12_360, language),
+        )
       : copy.portalMetrics[metric.title as keyof typeof copy.portalMetrics].detail,
   }));
   const actions = copy.actions.map((action, index) => ({

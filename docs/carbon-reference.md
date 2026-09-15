@@ -1,13 +1,15 @@
 # Carbon reference
 
-This is the reference doc for Carbon, tokens, and import patterns in this playground.
+This is the reference doc for Carbon components and import patterns in this playground.
 
-For enforcement rules, see `AGENTS.md`. For prototype workflow guidance, see `docs/prototyping-guidelines.md`.
+For enforcement rules, see `AGENTS.md`. For token package roles and usage, see
+`docs/design-tokens.md`. For prototype workflow guidance, see
+`docs/prototyping-guidelines.md`.
 
 ## Core stack
 - Use `carbon-react` for UI components.
 - Do not use `@carbon/react`.
-- Use `@sage/design-tokens` for any custom styling outside Carbon components.
+- Use the token packages described in `docs/design-tokens.md` for any custom styling outside Carbon components.
 
 ## How to confirm a component exists
 Treat Carbon Storybook and the Carbon export list as the canonical source for the available component set.
@@ -44,14 +46,8 @@ When wiring Carbon at the app root, use:
 The expected order is `CarbonProvider` -> `GlobalStyle` -> `TokensWrapper` -> app content.
 
 ## Design tokens
-Source: [Sage/design-tokens](https://github.com/Sage/design-tokens)
 
-- Package: `@sage/design-tokens`
-- Use tokens for custom CSS, inline styles, and layout values that are not already handled by Carbon.
-- Do not hardcode colors, spacing, or typography values.
-
-### Token usage examples
-- CSS: `@import url("@sage/design-tokens/css/light.css");`
-- JS/TS: `import { ... } from "@sage/design-tokens/js/es6";`
-
-The package also provides additional formats such as SCSS and CommonJS if needed.
+Read `docs/design-tokens.md` before adding custom CSS, choosing a variable, changing
+themes, or upgrading either token dependency. Keeping this material separate avoids
+confusing Carbon's legacy peer dependency with the modern token output used by
+selected custom patterns.

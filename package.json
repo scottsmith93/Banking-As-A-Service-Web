@@ -3,15 +3,19 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "packageManager": "npm@10.9.2",
+  "packageManager": "npm@11.11.1",
   "engines": {
-    "node": ">=20.19 <24"
+    "node": ">=20.19 <24",
+    "npm": ">=11.11.1"
   },
   "scripts": {
     "setup": "npm install",
     "predev": "node scripts/ensure-deps.mjs",
     "dev": "vite --port 5173 --strictPort",
-    "build": "tsc -b && vite build",
+    "validate:locales": "node scripts/validate-locales.mjs",
+    "validate:tokens": "node scripts/validate-tokens.mjs",
+    "validate": "npm run validate:locales && npm run validate:tokens",
+    "build": "npm run validate && tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview"
   },
@@ -19,7 +23,7 @@
     "@nivo/bar": "^0.99.0",
     "@nivo/line": "^0.99.0",
     "@sage/design-tokens": "^4.35.0",
-    "@sage/design-tokens-fusion": "npm:@sage/design-tokens@^18.5.0",
+    "@sage/design-tokens-fusion": "npm:@sage/design-tokens@^18.14.2",
     "ag-grid-community": "^35.3.1",
     "ag-grid-react": "^35.3.1",
     "carbon-react": "^159.2.0",

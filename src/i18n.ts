@@ -9,7 +9,9 @@ void i18n.use(initReactI18next).init({
     "fr-FR": { translation: frFR },
   },
   lng: "en-GB",
-  fallbackLng: "en-GB",
+  // Missing translated copy must remain visible as a validation problem rather
+  // than silently showing English in a French prototype.
+  fallbackLng: false,
   interpolation: { escapeValue: false },
 });
 

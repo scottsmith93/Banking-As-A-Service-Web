@@ -9,7 +9,7 @@
     "includedUserRoles": "Included user roles:",
     "viewDemo": "View demo",
     "providedByAccountant": "Provided by Accountant",
-    "perMonth": "per month",
+    "pricePerMonth": "{price} per month",
     "cancelSubscription": "Cancel subscription",
     "deselect": "Deselect",
     "selectSubscription": "Select subscription",
@@ -109,7 +109,11 @@
     "feasible": "Feasible",
     "borderline": "Borderline",
     "notFeasible": "Not feasible",
-    "feasibleMessage": "Your projected cash stays above your safety threshold after you {decision}.",
+    "feasibleMessages": {
+      "hire": "Your projected cash stays above your safety threshold after hiring a new team member.",
+      "invest": "Your projected cash stays above your safety threshold after making this investment.",
+      "spend": "Your projected cash stays above your safety threshold after making this one-off purchase."
+    },
     "borderlineMessage": "This decision brings you close to your safety threshold. Review the assumptions before proceeding.",
     "notFeasibleMessage": "This decision would take your projected cash below your safety threshold.",
     "resultFootnote": "We subtract the decision amount from your current cash balance, then compare the projected cash with your safety threshold. The result is feasible above the threshold, borderline near it, and not feasible below it.",
@@ -184,7 +188,7 @@
     "switchOff": "OFF",
     "portalMetrics": {
       "collectedRevenue": { "title": "Collected revenue", "detail": "Year to date" },
-      "overdueInvoices": { "title": "Overdue invoices", "detail": "12,360 € outstanding" },
+      "overdueInvoices": { "title": "Overdue invoices", "detail": "{amount} outstanding" },
       "blockingDocuments": { "title": "Blocking documents", "detail": "Waiting for information from you" },
       "healthScore": { "title": "Health score", "detail": "Good standing" }
     },
@@ -217,11 +221,11 @@
       { "title": "Business total", "body": "You asked for a quick answer about a business total or recent transaction before contacting your Accountant.", "items": ["Recent activity", "Period covered"], "action": "View conversation", "time": "2 Sep 2026, 09:17" }
     ],
     "activity": [
-      ["Copilot", "15:48", "Sales invoice for Boulangerie des Lilas: 523.14 €"],
-      ["Copilot", "16:41", "Quote DV-1184 sent to Atelier Lumière"],
-      ["Camille", "16:12", "DSN submitted for 14 employees"],
-      ["Copilot", "07:40", "64 bank transactions automatically matched"],
-      ["You", "4 Sep", "Supplier payment of 18,420.60 € approved"]
+      { "author": "Copilot", "time": "15:48", "message": "Sales invoice for Boulangerie des Lilas: {amount}", "amount": 523.14 },
+      { "author": "Copilot", "time": "16:41", "message": "Quote DV-1184 sent to Atelier Lumière", "amount": null },
+      { "author": "Camille", "time": "16:12", "message": "DSN submitted for 14 employees", "amount": null },
+      { "author": "Copilot", "time": "07:40", "message": "64 bank transactions automatically matched", "amount": null },
+      { "author": "You", "time": "4 Sep", "message": "Supplier payment of {amount} approved", "amount": 18420.6 }
     ]
   }
 }

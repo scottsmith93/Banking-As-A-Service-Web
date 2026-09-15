@@ -3,6 +3,7 @@ import Button from "carbon-react/lib/components/button/__next__";
 import Icon from "carbon-react/lib/components/icon";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";
+import { formatWholeEur, getEurInputAffix } from "../../utils/formatCurrency";
 
 type Decision = "hire" | "invest" | "spend";
 
@@ -12,12 +13,10 @@ const decisionOptions: { id: Decision; icon: "people" | "business" | "cash" }[] 
   { id: "spend", icon: "cash" },
 ];
 
-const formatCurrency = (amount: number) =>
-  new Intl.NumberFormat("fr-FR", { style: "currency", currency: "EUR", maximumFractionDigits: 0 }).format(amount);
-
 export default function ProjectsPage() {
   const { language } = useLanguage();
   const copy = getLocale(language).projects;
+  const currencyAffix = getEurInputAffix(language);
   const [decision, setDecision] = useState<Decision>("hire");
   const [amount, setAmount] = useState(copy.decisions.hire.defaultAmount);
   const [cashBalance, setCashBalance] = useState(48000);
@@ -87,7 +86,7 @@ export default function ProjectsPage() {
           <div className="projectsPage__amountBlock">
             <label htmlFor="project-amount">{decisionCopy.amountLabel}</label>
             <span className="projectsPage__inputWrap">
-              <span>€</span>
+              {currencyAffix.position === "before" && <span aria-hidden>{currencyAffix.symbol}</span>}
               <input
                 id="project-amount"
                 type="number"
@@ -97,6 +96,7 @@ export default function ProjectsPage() {
                 value={amount}
                 onChange={(event) => setAmount(Math.min(100000, Math.max(0, Number(event.target.value))))}
               />
+              {currencyAffix.position === "after" && <span aria-hidden>{currencyAffix.symbol}</span>}
             </span>
             <input
               className="projectsPage__amountSlider"
@@ -120,11 +120,19 @@ export default function ProjectsPage() {
             <div className="projectsPage__inputGrid">
               <label>
                 {copy.cashBalance}
-                <span className="projectsPage__inputWrap"><span>€</span><input type="number" min="0" value={cashBalance} onChange={(event) => setCashBalance(Number(event.target.value))} /></span>
+                <span className="projectsPage__inputWrap">
+                  {currencyAffix.position === "before" && <span aria-hidden>{currencyAffix.symbol}</span>}
+                  <input type="number" min="0" value={cashBalance} onChange={(event) => setCashBalance(Number(event.target.value))} />
+                  {currencyAffix.position === "after" && <span aria-hidden>{currencyAffix.symbol}</span>}
+                </span>
               </label>
               <label>
                 {copy.safetyThreshold}
-                <span className="projectsPage__inputWrap"><span>€</span><input type="number" min="0" value={safetyThreshold} onChange={(event) => setSafetyThreshold(Number(event.target.value))} /></span>
+                <span className="projectsPage__inputWrap">
+                  {currencyAffix.position === "before" && <span aria-hidden>{currencyAffix.symbol}</span>}
+                  <input type="number" min="0" value={safetyThreshold} onChange={(event) => setSafetyThreshold(Number(event.target.value))} />
+                  {currencyAffix.position === "after" && <span aria-hidden>{currencyAffix.symbol}</span>}
+                </span>
               </label>
             </div>
             <p className="projectsPage__assumptionNote"><Icon type="info" aria-hidden /> {copy.assumptionNote}</p>
@@ -140,12 +148,12 @@ export default function ProjectsPage() {
           <div className="projectsPage__resultTop">
             <div className="projectsPage__resultHeading">
             <h3>{result.status === "feasible" ? copy.feasible : result.status === "borderline" ? copy.borderline : copy.notFeasible}</h3>
-              <p>{result.status === "feasible" ? copy.feasibleMessage.replace("{decision}", calculatedCopy.label.toLowerCase()) : result.status === "borderline" ? copy.borderlineMessage : copy.notFeasibleMessage}</p>
+              <p>{result.status === "feasible" ? copy.feasibleMessages[calculation.decision] : result.status === "borderline" ? copy.borderlineMessage : copy.notFeasibleMessage}</p>
             </div>
           </div>
           <dl className="projectsPage__resultDetails">
-            <div><dt>{copy.projectedCash}</dt><dd>{formatCurrency(result.projectedCash)}</dd></div>
-            <div><dt>{copy.safetyThreshold}</dt><dd>{formatCurrency(calculation.safetyThreshold)}</dd></div>
+            <div><dt>{copy.projectedCash}</dt><dd>{formatWholeEur(result.projectedCash, language)}</dd></div>
+            <div><dt>{copy.safetyThreshold}</dt><dd>{formatWholeEur(calculation.safetyThreshold, language)}</dd></div>
             <div><dt>{copy.decision}</dt><dd>{calculatedCopy.label}</dd></div>
           </dl>
           <div className="projectsPage__resultBar"><span style={{ width: `${Math.min(100, Math.max(0, (result.projectedCash / Math.max(calculation.safetyThreshold, 1)) * 100))}%` }} /></div>

@@ -11,7 +11,6 @@ export type SubscriptionPlan = {
   userRoleBullets: string[];
   /** Monthly cost in EUR, excluding VAT. */
   priceAmount: number;
-  priceLabel?: string;
 };
 
 // General VAT rate applied across the app's mock data (see productsAndServices.ts).
@@ -27,7 +26,6 @@ export const subscriptionPlans: SubscriptionPlan[] = [
     allowanceBullets: ["1 user"],
     userRoleBullets: ["1 Admin", "1 Accountant"],
     priceAmount: 0,
-    priceLabel: "Provided by Accountant",
   },
   {
     id: "starter",

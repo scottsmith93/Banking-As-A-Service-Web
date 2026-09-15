@@ -83,7 +83,10 @@ export default function SubscriptionPlanCard({
           <Typography variant="p" as="p" className="subscriptionPlanCard__price">
             {plan.id === "portal"
               ? locale.profile.providedByAccountant
-              : plan.priceLabel ?? `${formatEur(plan.priceAmount)} ${locale.profile.perMonth}`}
+              : locale.profile.pricePerMonth.replace(
+                  "{price}",
+                  formatEur(plan.priceAmount, language),
+                )}
           </Typography>
         </Box>
 

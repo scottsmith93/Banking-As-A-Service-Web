@@ -1,11 +1,17 @@
-# Localization and translation prompt
+# Localization and translation
 
-Use this note when adding or refining user-facing copy in the Sage Active
-prototype.
+This is the governing reference for adding or refining user-facing copy in the
+Sage Design Playground. `AGENTS.md` and the repo-scoped localization skill both
+route localization work here.
 
-## Scope
+## Scope declaration
 
-The current prototype scope is the active Portal/Client journey:
+Every prototype must state its localization scope in its page-level `README.md`.
+New prototypes are localization-ready by default: all user-facing copy belongs in
+the locale catalogues unless the README explicitly records a narrower scope and
+lists localization as a known limitation.
+
+The currently implemented localized scope is the Portal/Client journey:
 
 - Dashboard
 - File management
@@ -15,10 +21,11 @@ The current prototype scope is the active Portal/Client journey:
 - AI Advisor
 - Manage subscription
 
-Sales, purchasing, accounting, banking, compliance, settings, playground, and
-other operational/demo routes are outside the current prototype scope. Do not
-add localization keys for those routes unless they are intentionally brought
-into the Portal/Client experience.
+Existing sales, purchasing, accounting, banking, compliance, settings,
+playground, and other operational/demo routes predate this localization scope.
+Do not treat their current hardcoded copy as a pattern for new work. When one of
+those routes is intentionally changed or promoted into an active prototype,
+declare its scope in its README and migrate the touched user-facing copy.
 
 ## Source of truth
 
@@ -32,9 +39,12 @@ Do not add English/French ternaries, hardcoded headings, button labels,
 descriptions, empty states, status text, aria labels, placeholders, chart
 labels, or tooltip copy directly to TSX.
 
-Use `getLocale(language)` for page and component copy. Keep language selection
-out of presentation components wherever possible; components should receive
-copy or read the active catalog rather than deciding translations themselves.
+Use `getLocale(language)` for the existing catalogue-object pattern, or
+`getTranslation(language, path)` when a component genuinely needs a dynamic key.
+Keep language selection out of presentation components wherever possible;
+components should receive copy or read the active catalogue rather than deciding
+translations themselves. `i18next` mirrors the selected language for integrations,
+but it is not a second source of copy.
 
 ## JSON format
 
@@ -76,8 +86,9 @@ Follow these rules:
 
 ## Interpolation
 
-Use named placeholders for dynamic values and preserve the exact placeholder
-names in every language:
+Store a complete, natural sentence for each message. Use named placeholders only
+for genuinely dynamic data, such as a name, count, date, or amount, and preserve
+the exact placeholder names in every language:
 
 ```json
 {
@@ -88,6 +99,39 @@ names in every language:
 The French value must also contain `{count}` and `{total}`. Replace or render
 these values through a small helper rather than duplicating sentence logic in
 TSX.
+
+Do not use a variable to replace a translatable word or grammatical fragment
+inside a sentence. Do not concatenate translated strings or fragments to build
+a message. Word order, articles, agreement, and plural forms vary by language,
+so each complete message must have its own catalogue entry.
+
+```tsx
+// Avoid: the placeholder replaces translated grammar.
+t("invoice.status", { status: t("status.overdue") });
+
+// Avoid: translators cannot safely change the sentence structure.
+t("invoice.prefix") + customerName + t("invoice.suffix");
+
+// Prefer: one complete message with only genuine dynamic data.
+t("invoice.overdueForCustomer", { customerName });
+```
+
+## Currency
+
+Keep amounts as numbers in data and format them with the active locale. For euro
+amounts, use `Intl.NumberFormat` with `style: "currency"` and `currency: "EUR"`:
+
+```ts
+new Intl.NumberFormat(locale, {
+  style: "currency",
+  currency: "EUR",
+}).format(amount);
+```
+
+Do not insert the `€` symbol manually or hardcode separators and spacing. The
+same numeric value is displayed differently by locale—for example, English uses
+`€1,234.56`, while French places the symbol after the amount and uses localized
+separators.
 
 ## Translation quality
 
@@ -103,16 +147,21 @@ Before handoff, check that:
 - Dates, currency, decimals, thousands separators, and plural wording are
   appropriate for the target locale.
 
+Use `Intl.DateTimeFormat`, `Intl.NumberFormat`, or a shared wrapper around them
+for values. Do not assemble localized dates, money, percentages, or plural forms
+with string concatenation.
+
 ## Required workflow
 
-When adding or changing Portal copy:
+When adding or changing in-scope copy:
 
 1. Add the English key and value to `en-GB.json`.
 2. Add the identical key path to `fr-FR.json` with an approved translation.
 3. Move the TSX copy to `getLocale(language)` or a component copy prop.
 4. Check that no user-facing string remains hardcoded in the in-scope TSX.
-5. Validate JSON parsing, matching leaf keys, and matching placeholder tokens.
-6. Run `npm run build`.
+5. Run `npm run validate:locales` to check JSON parsing, matching leaf keys, and
+   matching placeholder tokens.
+6. Run `npm run build` (which repeats locale validation).
 7. Review the English and French screens at desktop and mobile widths.
 
 Do not add fallback English copy silently for a missing French key. A missing
@@ -121,7 +170,7 @@ resolve it before release.
 
 ## Handoff checklist
 
-- [ ] Copy is limited to the active Portal/Client scope.
+- [ ] The prototype README declares the localization scope and known limitations.
 - [ ] No new user-facing strings are hardcoded in in-scope TSX.
 - [ ] English and French leaf-key paths match.
 - [ ] Placeholder names and counts match.

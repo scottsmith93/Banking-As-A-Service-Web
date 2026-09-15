@@ -1,7 +1,7 @@
 # Sage Design Playground — Agent Instructions
 
-Last updated: 2026-03-25
-Version: 3.1
+Last updated: 2026-09-15
+Version: 0.1
 
 This file defines the rules an agent must follow before proposing or making code changes in the Sage Design Playground. Rules include brief rationale so the agent can make informed decisions in edge cases.
 
@@ -24,7 +24,9 @@ Most users of this tool are designers who are new to code and prototyping. The a
 
 - **Use Sage Carbon only: `carbon-react`.** This is Sage's own component library. It is not the same as IBM's Carbon. Never use `@carbon/react` — that is IBM's open-source package and it will introduce conflicting styles, missing Sage customisations, and broken theming. If you encounter documentation or examples referencing `@carbon/react`, do not follow them. Always use `carbon-react` from the Sage registry.
 - **Do not add other UI libraries** unless the user explicitly asks and the repo context supports it. Keeping dependencies lean ensures prototypes remain lightweight and easy to hand off.
-- **For any styling outside Sage Carbon, use `@sage/design-tokens`.** This ensures theme consistency, dark mode support, and alignment with Sage's visual language. Do not hardcode colours, spacing, or typography values.
+- **For any styling outside Sage Carbon, use the approved Sage token packages defined in `docs/design-tokens.md`.** This keeps custom UI aligned with Sage's visual language. Do not hardcode colours, spacing, or typography values, and do not claim dark-mode support unless the prototype imports and verifies a dark theme.
+- Before adding custom styling or changing either token dependency, read `docs/design-tokens.md`. This repository deliberately keeps a Carbon-compatible token package and a separately aliased modern token package; they are not interchangeable.
+- Run `npm run validate:tokens` after changing custom CSS or token imports. It fails when CSS references a variable not defined by the loaded token files or local CSS.
 
 ---
 
@@ -64,6 +66,15 @@ Most users of this tool are designers who are new to code and prototyping. The a
   - Utility files and hooks: `camelCase` (e.g. `useChat.js`, `formatCurrency.js`).
   - Folders: `kebab-case` where they represent feature groupings (e.g. `src/components/chat-panel/`).
 - Keep dependencies lean and avoid introducing new libraries unless they are clearly needed for the prototype.
+
+## Localization
+
+- Before adding or changing user-facing copy, locale-aware formatting, or language support, read `docs/localization.md`.
+- New prototype READMEs must state their localization scope. Unless a README explicitly records a narrower scope and limitation, all user-facing strings in the prototype are localization-ready.
+- Keep the English and French catalogue structures and interpolation placeholders aligned. `npm run validate:locales` enforces this and also runs as part of `npm run build`.
+- Store complete, natural sentences in the locale catalogues. Do not use a variable to replace a translatable word or grammatical fragment inside a sentence; named placeholders are only for genuinely dynamic data such as names, counts, dates, and amounts.
+- Do not build user-facing copy by concatenating translated strings or sentence fragments. Add a complete catalogue entry for each message so translators can change word order and grammar safely.
+- Keep monetary values numeric in data and format EUR with `Intl.NumberFormat` using the active locale and `currency: "EUR"`. Do not hardcode the `€` position, decimal separator, thousands separator, or spacing; these differ between English and French.
 
 ---
 
@@ -243,5 +254,7 @@ Never silently break a rule to fulfil a request.
 
 ## Supporting docs
 
-- `docs/carbon-reference.md` — Sage Carbon component, token, and import reference.
+- `docs/carbon-reference.md` — Sage Carbon component and import reference.
+- `docs/design-tokens.md` — authoritative package roles, import rules, token selection, and upgrade guidance.
+- `docs/localization.md` — localization scope, catalogue structure, formatting, and validation workflow.
 - `docs/prototyping-guidelines.md` — Flow, mock data, routing, accessibility, and prototype workflow guidance.

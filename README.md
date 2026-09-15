@@ -1,12 +1,13 @@
-# Sage Active Operations Exploration
+# Sage Design Playground
 
-A React + TypeScript prototype exploring "Operations mode" flows for Sage
-Active — purchasing, inventory, purchase receipts, and subscription
-management — built with **Carbon by Sage** (`carbon-react`) and
-**Sage design tokens** for styling.
+A reusable React + TypeScript starting point for Sage prototypes, built with
+**Carbon by Sage** (`carbon-react`) and **Sage design tokens**. The repository
+currently includes substantial Operations and Portal/Client showcases; these
+are reference implementations, not the default scope of every new prototype.
 
-This is a clickable prototype backed by in-memory mock data (no backend),
-intended for exploring UI flows and design ideas quickly.
+The included experiences use in-memory mock data (no backend) and are intended
+for exploring UI flows and design ideas quickly. New prototypes should follow
+`AGENTS.md`, use an isolated route/page folder, and include their own README.
 
 ## Tech stack
 
@@ -15,11 +16,13 @@ intended for exploring UI flows and design ideas quickly.
 - [React Router v7](https://reactrouter.com/) for client-side routing
 - [Carbon by Sage](https://carbon.sage.com) (`carbon-react`) component library
 - [`@sage/design-tokens`](https://github.com/Sage/design-tokens) for spacing, color, and typography
-- [AG Grid](https://www.ag-grid.com/) for data tables/listings
+- [AG Grid](https://www.ag-grid.com/) and [Nivo](https://nivo.rocks/) in existing
+  showcase screens only; they are not defaults for new prototypes
 
 ## Getting started
 
-Requires Node `>=20.19 <24`.
+Requires Node `>=20.19 <24` and npm `>=11.11.1`. The repository's `.nvmrc`
+selects Node 22.13.0 when using `nvm`.
 
 ```bash
 npm install
@@ -46,16 +49,25 @@ npm run preview  # preview a production build locally
 | `src/locales/*` | English and French localisation catalogues for content managed by the localisation team |
 | `src/context/*` | Cross-page React context (nav mode, subscription state, stock alerts) |
 | `AGENTS.md` | Conventions and implementation rules for this codebase |
-| `docs/` | Reference docs (Carbon/token usage, prototyping guidelines) |
+| `docs/` | Reference docs for Carbon, design tokens, localization, and prototype workflow |
+| `.agents/skills/*` | Repo-scoped Codex skills that load the right guidance for prototype, localization, and token work |
 
 ## Notes
 
 This prototype uses `carbon-react` (Sage's Carbon), not IBM's `@carbon/react`.
-See `AGENTS.md` for the conventions this codebase follows.
+See [`AGENTS.md`](AGENTS.md) for the conventions this codebase follows,
+[`docs/carbon-reference.md`](docs/carbon-reference.md) for component imports, and
+[`docs/design-tokens.md`](docs/design-tokens.md) before adding custom styles.
 
 ## Localisation
 
 English and French content is maintained in [`src/locales/en-GB.json`](src/locales/en-GB.json)
 and [`src/locales/fr-FR.json`](src/locales/fr-FR.json). The app uses `i18next` and
-`react-i18next`; see [`src/locales/README.md`](src/locales/README.md) for the key structure
-and update workflow.
+`react-i18next`; read [`docs/localization.md`](docs/localization.md) for the governing
+rules and [`src/locales/README.md`](src/locales/README.md) for the file-level workflow.
+
+Validate both catalogues with `npm run validate:locales`. The same validation runs
+automatically before every production build.
+
+Validate that custom CSS only references loaded token variables with
+`npm run validate:tokens`. `npm run validate` runs both repository checks.

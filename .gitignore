@@ -27,9 +27,3 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
-
-# Local Netlify folder
-.netlify
-
-# Deno lockfile generated locally by the Netlify CLI when bundling edge functions
-deno.lock

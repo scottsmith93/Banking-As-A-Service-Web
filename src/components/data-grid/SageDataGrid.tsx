@@ -1,5 +1,11 @@
 import { useMemo } from "react";
-import { AG_GRID_LOCALE_EN, AG_GRID_LOCALE_FR } from "@ag-grid-community/locale";
+import {
+  AG_GRID_LOCALE_DE,
+  AG_GRID_LOCALE_EN,
+  AG_GRID_LOCALE_ES,
+  AG_GRID_LOCALE_FR,
+  AG_GRID_LOCALE_PT,
+} from "@ag-grid-community/locale";
 import {
   AllCommunityModule,
   type ColDef,
@@ -13,9 +19,17 @@ import {
   type AgGridReactProps,
 } from "ag-grid-react";
 import { useLanguage } from "../../context/useLanguage";
+import type { Language } from "../../locales";
 import { sageDataGridTheme } from "./sageDataGridTheme";
 
 const communityModules = [AllCommunityModule];
+const gridLocaleByLanguage = {
+  English: AG_GRID_LOCALE_EN,
+  Spanish: AG_GRID_LOCALE_ES,
+  French: AG_GRID_LOCALE_FR,
+  German: AG_GRID_LOCALE_DE,
+  Portuguese: AG_GRID_LOCALE_PT,
+} satisfies Record<Language, LocaleText>;
 
 const baseColumnDefinition = {
   filter: true,
@@ -59,8 +73,7 @@ export function SageDataGrid<TData>({
   ...gridProps
 }: SageDataGridProps<TData>) {
   const { language } = useLanguage();
-  const resolvedLocaleText =
-    localeText ?? (language === "French" ? AG_GRID_LOCALE_FR : AG_GRID_LOCALE_EN);
+  const resolvedLocaleText = localeText ?? gridLocaleByLanguage[language];
   const resolvedColumnDefinition = useMemo<ColDef<TData>>(
     () => ({ ...baseColumnDefinition, ...defaultColDef }),
     [defaultColDef],

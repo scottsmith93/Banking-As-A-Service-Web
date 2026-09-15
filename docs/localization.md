@@ -32,10 +32,16 @@ declare its scope in its README and migrate the touched user-facing copy.
 The locale catalogs are:
 
 - `src/locales/en-GB.json` — source English copy
+- `src/locales/es-ES.json` — Spanish translation
 - `src/locales/fr-FR.json` — French translation
+- `src/locales/de-DE.json` — German translation
+- `src/locales/pt-PT.json` — Portuguese translation
+
+English is the default language. A localized requirement is incomplete until
+the same structure, content intent, and placeholders exist in all five files.
 
 Every user-facing string in an in-scope page must come from a locale catalog.
-Do not add English/French ternaries, hardcoded headings, button labels,
+Do not add language ternaries, hardcoded headings, button labels,
 descriptions, empty states, status text, aria labels, placeholders, chart
 labels, or tooltip copy directly to TSX.
 
@@ -69,7 +75,7 @@ Use one namespace per feature or page. Keep keys semantic and stable:
 
 Follow these rules:
 
-1. Keep the same key structure in `en-GB.json` and `fr-FR.json`.
+1. Keep the same key and indexed-array structure in all five catalogues.
 2. Use camelCase keys; do not use English copy as a key.
 3. Group related copy under a feature namespace rather than creating a flat
    global list.
@@ -79,7 +85,7 @@ Follow these rules:
 5. Keep values that are data, currencies, dates, and numbers separate from
    translated labels. Format those values in code using locale-aware formatters.
 6. Keep brand and product names such as Sage Active, Copilot, and AI Advisor
-   consistent unless an approved French product name exists.
+   consistent unless an approved localized product name exists.
 7. Keep punctuation, capitalization, spacing, and inclusive language natural
    for each language; do not translate word-for-word when that produces poor
    UX copy.
@@ -96,9 +102,9 @@ the exact placeholder names in every language:
 }
 ```
 
-The French value must also contain `{count}` and `{total}`. Replace or render
-these values through a small helper rather than duplicating sentence logic in
-TSX.
+Every translated value must also contain `{count}` and `{total}`. Replace or
+render these values through a small helper rather than duplicating sentence
+logic in TSX.
 
 Do not use a variable to replace a translatable word or grammatical fragment
 inside a sentence. Do not concatenate translated strings or fragments to build
@@ -130,14 +136,15 @@ new Intl.NumberFormat(locale, {
 
 Do not insert the `€` symbol manually or hardcode separators and spacing. The
 same numeric value is displayed differently by locale—for example, English uses
-`€1,234.56`, while French places the symbol after the amount and uses localized
-separators.
+`€1,234.56`, while several continental European locales place the symbol after
+the amount and use localized separators.
 
 ## Translation quality
 
 Before handoff, check that:
 
-- French is consistent with Sage terminology and the surrounding page.
+- Spanish, French, German, and Portuguese are consistent with Sage terminology
+  and the surrounding page.
 - Labels are concise enough for buttons, navigation, pills, and table headers.
 - Formal/informal address is consistent; use the established French tone.
 - Accessibility copy is translated too, including `aria-label`, `alt`, and
@@ -155,16 +162,18 @@ with string concatenation.
 
 When adding or changing in-scope copy:
 
-1. Add the English key and value to `en-GB.json`.
-2. Add the identical key path to `fr-FR.json` with an approved translation.
+1. Add the source key and value to `en-GB.json`.
+2. Add the identical key path to `es-ES.json`, `fr-FR.json`, `de-DE.json`, and
+   `pt-PT.json` with approved translations.
 3. Move the TSX copy to `getLocale(language)` or a component copy prop.
 4. Check that no user-facing string remains hardcoded in the in-scope TSX.
-5. Run `npm run validate:locales` to check JSON parsing, matching leaf keys, and
-   matching placeholder tokens.
+5. Run `npm run validate:locales` to check JSON parsing, indexed leaf keys, and
+   placeholder tokens across all five catalogues.
 6. Run `npm run build` (which repeats locale validation).
-7. Review the English and French screens at desktop and mobile widths.
+7. Review all five languages at desktop and mobile widths, including text
+   expansion in German and Portuguese.
 
-Do not add fallback English copy silently for a missing French key. A missing
+Do not add fallback English copy silently for a missing translation. A missing
 key should fail validation or be reported clearly so the localization team can
 resolve it before release.
 
@@ -172,9 +181,10 @@ resolve it before release.
 
 - [ ] The prototype README declares the localization scope and known limitations.
 - [ ] No new user-facing strings are hardcoded in in-scope TSX.
-- [ ] English and French leaf-key paths match.
+- [ ] All five indexed leaf-key paths match.
 - [ ] Placeholder names and counts match.
 - [ ] Accessibility strings are translated.
 - [ ] Numbers, dates, currencies, and plurals are locale-aware.
 - [ ] `npm run build` passes.
-- [ ] The change has been reviewed in both English and French.
+- [ ] The change has been reviewed in English, Spanish, French, German, and
+      Portuguese.

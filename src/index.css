@@ -7240,22 +7240,14 @@ nav.directoryMenu,
   gap: 16px;
 }
 
-/* Carbon's switch state label is aria-hidden and uses its own locale hook.
-   Keep the visual state aligned with the prototype language selector. */
-.portalLanguageSwitch--french [class*="StyledSwitchStateText"] {
-  font-size: 0;
+/* Carbon owns the switch semantics; the prototype supplies the visible state
+   label from its JSON catalogues so all supported languages stay aligned. */
+.portalLanguageSwitch [class*="StyledSwitchStateText"] {
+  display: none;
 }
 
-.portalLanguageSwitch--french [class*="StyledSwitchStateText"]::after {
+.portalLanguageSwitch__state {
   font-size: 12px;
-}
-
-.portalLanguageSwitch--french.portalLanguageSwitch--on [class*="StyledSwitchStateText"]::after {
-  content: "Activé";
-}
-
-.portalLanguageSwitch--french.portalLanguageSwitch--off [class*="StyledSwitchStateText"]::after {
-  content: "Désactivé";
 }
 
 @media (max-width: 700px) {

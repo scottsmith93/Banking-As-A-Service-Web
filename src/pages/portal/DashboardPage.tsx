@@ -53,7 +53,7 @@ export default function DashboardPage() {
           <Box className="dashboardPage__tabs">
             {isPortal && hasGettingStartedTasks && (
               <Box className="dashboardPage__gettingStartedToggle" display="flex" justifyContent="flex-end">
-                <span className={`portalLanguageSwitch${language === "French" ? " portalLanguageSwitch--french" : ""}${showGettingStarted ? " portalLanguageSwitch--on" : " portalLanguageSwitch--off"}`}>
+                <span className={`portalLanguageSwitch${showGettingStarted ? " portalLanguageSwitch--on" : " portalLanguageSwitch--off"}`}>
                   <Switch
                     checked={showGettingStarted}
                     onChange={(event) => setShowGettingStarted(event.target.checked)}
@@ -61,6 +61,9 @@ export default function DashboardPage() {
                     labelInline
                     size="small"
                   />
+                  <span className="portalLanguageSwitch__state" aria-hidden="true">
+                    {showGettingStarted ? copy.switchOn : copy.switchOff}
+                  </span>
                 </span>
               </Box>
             )}

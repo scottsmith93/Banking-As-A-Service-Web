@@ -4,7 +4,7 @@ import Box from "carbon-react/lib/components/box";
 import Typography from "carbon-react/lib/components/typography";
 import { formatDashboardEuro } from "../../data/dashboard";
 import { useLanguage } from "../../context/useLanguage";
-import { getLocale } from "../../locales";
+import { getLocale, getLocaleCode } from "../../locales";
 
 const chartTheme = {
   text: {
@@ -38,7 +38,7 @@ function formatAxisEuro(value: number, locale: string) {
 export default function DashboardCharts() {
   const { language } = useLanguage();
   const copy = getLocale(language).dashboard;
-  const locale = language === "French" ? "fr-FR" : "en-GB";
+  const locale = getLocaleCode(language);
   const cashTrend = [{
     id: copy.chartSeries.cashPosition,
     data: copy.chartMonths.map((month, index) => ({ x: month, y: cashTrendValues[index] })),

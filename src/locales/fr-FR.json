@@ -1,4 +1,14 @@
 {
+  "localization": {
+    "selected": "Sélectionné",
+    "languages": {
+      "English": "Anglais",
+      "Spanish": "Espagnol",
+      "French": "Français",
+      "German": "Allemand",
+      "Portuguese": "Portugais"
+    }
+  },
   "navigation": {
     "Dashboard": "Tableau de bord",
     "Sales": "Ventes",
@@ -251,10 +261,10 @@
     "emptyTitle": "Le Conseiller IA n'est pas encore activé.",
     "emptyBody": "Votre expert-comptable doit activer le Conseiller IA pour votre entreprise. Une fois activé, vous pourrez poser des questions sur votre activité et échanger avec votre expert-comptable.",
     "threads": [
-      { "title": "Documents requis pour votre déclaration de TVA", "body": "Votre expert-comptable prépare la déclaration de TVA de la période clôturée au 30 juin 2026. Déposez les documents manquants avant le 7 août afin de finaliser la révision.", "items": ["Déposez les factures d’achat manquantes", "Ajoutez les justificatifs de frais professionnels", "Confirmez les avoirs émis en juin"], "action": "Voir la demande de documents", "time": "8 minutes" },
-      { "title": "Documents à fournir pour la clôture annuelle", "body": "Votre expert-comptable a demandé plusieurs documents en préparation de la clôture annuelle. Transmettez-les avant le 15 septembre afin de respecter le calendrier de préparation des comptes.", "items": ["Déposer les derniers relevés bancaires", "Transmetter les factures d'immobilisations et les contrats de financement", "Indiquer le détail des créances clients en attente de règlement"], "action": "Déposer les documents", "time": "5 minutes" },
-      { "title": "Commentaires de votre expert-comptable à consulter", "body": "Camille Martin a ajouté des commentaires sur 3 documents de votre dossier. Consultez les questions et apportez vos réponses avant la prochaine révision des comptes.", "items": ["Préciser la nature de la dépense la plus importante", "Répondre à la question concernant la facture fournisseur", "Valider le résumé du document"], "action": "Consulter les commentaires", "time": "4 minutes" },
-      { "title": "Échéance de transmission imminente", "body": "La date limite d'envoi des pièces justificatives de Boulangerie des Lilas approche. Votre expert-comptable attend l'export final des ventes ainsi que l'attestation d'assurance.", "items": [], "action": "Transmettre les documents", "time": "" }
+      { "title": "Dernières déclarations fiscales", "body": "Vous avez demandé à l’IA de trouver les dernières déclarations fiscales disponibles pour votre entreprise, avec la période fiscale et la date de dépôt correspondantes.", "items": ["Déclaration fiscale la plus récente", "Période fiscale et date de dépôt"], "action": "Voir la conversation", "time": "9 sept. 2026, 10:24" },
+      { "title": "Dépenses d’abonnement", "body": "Vous avez demandé le montant total consacré aux abonnements dans votre entreprise et consulté la période prise en compte.", "items": ["Coût total des abonnements", "Période prise en compte"], "action": "Voir la conversation", "time": "8 sept. 2026, 16:41" },
+      { "title": "Document d’entreprise récent", "body": "Vous avez demandé à l’IA de retrouver un document dans votre dossier client plutôt que d’envoyer un e-mail à votre expert-comptable.", "items": ["Documents déposés", "Date et type du document"], "action": "Voir la conversation", "time": "3 sept. 2026, 14:08" },
+      { "title": "Total de l’entreprise", "body": "Vous avez demandé une réponse rapide concernant un total de l’entreprise ou une transaction récente avant de contacter votre expert-comptable.", "items": ["Activité récente", "Période couverte"], "action": "Voir la conversation", "time": "2 sept. 2026, 09:17" }
     ],
     "activity": [
       { "author": "Copilot", "time": "15:48", "message": "Facture de vente pour Boulangerie des Lilas : {amount}", "amount": 523.14 },

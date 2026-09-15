@@ -35,8 +35,9 @@ const columns: ColDef<CustomerRow>[] = [
 
 `SageDataGrid` supplies Community modules, the Sage token theme, sortable and
 resizable column defaults, stable DOM order, disabled row animation, and the
-English or French AG Grid locale selected by `LanguageContext`. The instance is
-recreated when the language changes because AG Grid reads locale text at startup.
+English, Spanish, French, German, or Portuguese AG Grid locale selected by
+`LanguageContext`. The instance is recreated when the language changes because
+AG Grid reads locale text at startup.
 
 ## Extension points
 
@@ -59,8 +60,8 @@ feature; never include the package speculatively.
 ## Product rules
 
 - Column headings, tooltips, empty states, action labels, and accessible names
-  belong in the English and French feature catalogues. The locale package covers
-  AG Grid's own controls only.
+  belong in all five feature catalogues. The locale package covers AG Grid's own
+  controls only.
 - Keep amounts numeric and format them with the active locale. Monetary columns
   are right-aligned and use `currency: "EUR"` unless the prototype says otherwise.
 - Preserve keyboard cell focus. Do not set `suppressCellFocus`; it prevents users
@@ -70,7 +71,7 @@ feature; never include the package speculatively.
   built-in pagination panel.
 - Use Carbon loaders and skeletons around the grid for loading states. Provide
   explicit empty and error states appropriate to the feature.
-- Test the affected screen at desktop and tablet widths, in English and French.
+- Test the affected screen at desktop and tablet widths in all five languages.
 
 ## Dependency upgrades
 

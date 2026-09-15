@@ -71,7 +71,7 @@ to prefer Carbon tables, how localization works, and how to add future modules.
 | `src/pages/*` | Top-level screens, wired up in `src/routes.ts` |
 | `src/components/*` | Shared UI components and approved adapters around non-Carbon dependencies |
 | `src/data/*` | In-memory mock data used across the prototype |
-| `src/locales/*` | English and French localisation catalogues for content managed by the localisation team |
+| `src/locales/*` | English, Spanish, French, German, and Portuguese localisation catalogues |
 | `src/context/*` | Cross-page React context (nav mode, subscription state, stock alerts) |
 | `AGENTS.md` | Conventions and implementation rules for this codebase |
 | `docs/` | Reference docs for Carbon, AG Grid, design tokens, localization, Impeccable, UI Fork, and prototype workflow |
@@ -86,10 +86,11 @@ See [`AGENTS.md`](AGENTS.md) for the conventions this codebase follows,
 
 ## Localisation
 
-English and French content is maintained in [`src/locales/en-GB.json`](src/locales/en-GB.json)
-and [`src/locales/fr-FR.json`](src/locales/fr-FR.json). The app uses `i18next` and
-`react-i18next`; read [`docs/localization.md`](docs/localization.md) for the governing
-rules and [`src/locales/README.md`](src/locales/README.md) for the file-level workflow.
+English, Spanish, French, German, and Portuguese content is maintained in
+[`src/locales`](src/locales). English is the default. The app uses `i18next` and
+`react-i18next`; read [`docs/localization.md`](docs/localization.md) for the
+governing rules and [`src/locales/README.md`](src/locales/README.md) for the
+file-level workflow.
 
 Validate both catalogues with `npm run validate:locales`. The same validation runs
 automatically before every production build.

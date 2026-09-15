@@ -1,4 +1,14 @@
 {
+  "localization": {
+    "selected": "Selected",
+    "languages": {
+      "English": "English",
+      "Spanish": "Spanish",
+      "French": "French",
+      "German": "German",
+      "Portuguese": "Portuguese"
+    }
+  },
   "navigation": {
     "Dashboard": "Dashboard", "Sales": "Sales", "Sales quotes": "Sales quotes", "Sales orders": "Sales orders", "Sales delivery notes": "Sales delivery notes", "Sales invoices": "Sales invoices", "Recurring invoices": "Recurring invoices", "Purchases": "Purchases", "Purchase orders": "Purchase orders", "Purchase invoices": "Purchase invoices", "Contacts": "Contacts", "Customers": "Customers", "Suppliers": "Suppliers", "Employees": "Employees", "Products and services": "Products and services", "Items": "Items", "Price lists": "Price lists", "Discount groups": "Discount groups", "Banking": "Banking", "Bank movements": "Bank movements", "Reports": "Reports", "Settings": "Settings", "File upload": "File upload", "Project calculator": "Project calculator", "Financial documents": "Financial documents", "Year end meeting": "Year end meeting", "AI Advisor": "AI Advisor", "Manage subscription": "Manage subscription", "Copilot": "Copilot", "Chat": "Chat", "Insights": "Insights", "Copilot settings": "Copilot settings", "Help": "Help", "Expand": "Expand", "Collapse": "Collapse", "Close menu": "Close menu", "Close AI Advisor": "Close AI Advisor"
   },

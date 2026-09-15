@@ -9,9 +9,12 @@ Read `docs/localization.md` completely before changing copy, catalogue structure
 formatting, or language behavior. That file is the source of truth; do not copy
 its rules into this skill.
 
-Confirm the prototype's page-level README declares localization scope. Keep
-`en-GB.json` and `fr-FR.json` structurally aligned, preserve named placeholders,
-and localize accessibility and interaction-state copy as well as visible labels.
+Confirm the prototype's page-level README declares localization scope. Keep the
+English, Spanish, French, German, and Portuguese JSON catalogues structurally
+aligned, preserve named placeholders, and localize accessibility and
+interaction-state copy as well as visible labels. English is the source and
+default language; a new requirement is incomplete until all five catalogues
+contain its copy.
 Use the existing catalogue helpers and locale-aware `Intl` formatting rather than
 language ternaries or concatenated strings.
 

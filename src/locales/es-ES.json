@@ -1,0 +1,241 @@
+{
+  "localization": {
+    "selected": "Seleccionado",
+    "languages": {
+      "English": "Inglés",
+      "Spanish": "Español",
+      "French": "Francés",
+      "German": "Alemán",
+      "Portuguese": "Portugués"
+    }
+  },
+  "navigation": {
+    "Dashboard": "Panel", "Sales": "Ventas", "Sales quotes": "Presupuestos de venta", "Sales orders": "Pedidos de venta", "Sales delivery notes": "Albaranes de venta", "Sales invoices": "Facturas de venta", "Recurring invoices": "Facturas recurrentes", "Purchases": "Compras", "Purchase orders": "Pedidos de compra", "Purchase invoices": "Facturas de compra", "Contacts": "Contactos", "Customers": "Clientes", "Suppliers": "Proveedores", "Employees": "Empleados", "Products and services": "Productos y servicios", "Items": "Artículos", "Price lists": "Listas de precios", "Discount groups": "Grupos de descuento", "Banking": "Banca", "Bank movements": "Movimientos bancarios", "Reports": "Informes", "Settings": "Configuración", "File upload": "Carga de archivos", "Project calculator": "Calculadora de proyectos", "Financial documents": "Documentos financieros", "Year end meeting": "Reunión de cierre del ejercicio", "AI Advisor": "Asesor de IA", "Manage subscription": "Gestionar suscripción", "Copilot": "Copilot", "Chat": "Chat", "Insights": "Análisis", "Copilot settings": "Configuración de Copilot", "Help": "Ayuda", "Expand": "Expandir", "Collapse": "Contraer", "Close menu": "Cerrar menú", "Close AI Advisor": "Cerrar el Asesor de IA"
+  },
+  "profile": {
+    "title": "Gestionar la suscripción a Sage Active",
+    "subtitle": "Gestiona tu suscripción a Sage Active y consulta qué incluye cada plan.",
+    "monthlyAllocation": "Asignación mensual:",
+    "includedUserRoles": "Roles de usuario incluidos:",
+    "viewDemo": "Ver demostración",
+    "providedByAccountant": "Proporcionado por el asesor contable",
+    "pricePerMonth": "{price} al mes",
+    "cancelSubscription": "Cancelar suscripción",
+    "deselect": "Deseleccionar",
+    "selectSubscription": "Seleccionar suscripción",
+    "currentSubscription": "Suscripción actual",
+    "subscriptionSelected": "Suscripción seleccionada",
+    "subscriptionCostPerMonth": "Coste mensual de la suscripción",
+    "vat": "IVA",
+    "cancel": "Cancelar",
+    "subscribe": "Suscribirse",
+    "plans": {
+      "portal": {
+        "name": "Portal",
+        "description": "Una visión sencilla del negocio con funciones para compartir archivos y facilitar la comunicación entre el cliente y el asesor contable.",
+        "allowance": ["1 usuario"],
+        "roles": ["1 administrador", "1 asesor contable"]
+      },
+      "starter": {
+        "name": "Starter",
+        "description": "Funciones estándar para nuevas empresas y para aquellas que externalizan la gestión contable con un asesor.",
+        "allowance": ["5 usuarios", "300 facturas", "10 pagos en línea"],
+        "roles": ["1 administrador", "1 asesor contable", "3 usuarios del equipo"]
+      },
+      "essentials": {
+        "name": "Essentials",
+        "description": "Funciones más avanzadas para empresas exigentes y organizaciones que gestionan la contabilidad internamente.",
+        "allowance": ["10 usuarios", "500 facturas", "20 pagos en línea"],
+        "roles": ["2 administradores", "2 asesores contables", "6 usuarios del equipo"]
+      },
+      "control": {
+        "name": "Standard",
+        "description": "Gestión avanzada de inventario y existencias para empresas que controlan stock en varias ubicaciones, almacenes y canales.",
+        "allowance": ["15 usuarios", "1000 facturas", "30 pagos en línea"],
+        "roles": ["2 administradores", "3 asesores contables", "10 usuarios del equipo"]
+      },
+      "scale": {
+        "name": "Advanced",
+        "description": "Funciones completas de fabricación para empresas que gestionan producción, órdenes de trabajo y materiales desde la materia prima hasta el producto terminado.",
+        "allowance": ["20 usuarios", "1200 facturas", "40 pagos en línea"],
+        "roles": ["2 administradores", "3 asesores contables", "15 usuarios del equipo"]
+      }
+    }
+  },
+  "fileUpload": {
+    "title": "Gestión de archivos",
+    "intro": "Carga y gestiona los archivos de tu empresa. Puedes cargar archivos de hasta 20 MB.",
+    "select": "Seleccionar archivo",
+    "drop": "o arrastra y suelta el archivo",
+    "searchLabel": "Buscar archivos",
+    "searchPlaceholder": "Buscar…",
+    "filter": "Filtrar",
+    "headers": ["Nombre", "Tamaño del archivo", "Fecha de incorporación", "Añadido por", "Estado de carga", "Ver", "Comentarios", "Eliminar"],
+    "uploaded": "Archivo cargado",
+    "empty": "No se han encontrado archivos.",
+    "items": "Elementos",
+    "view": "Ver",
+    "comment": "Comentar",
+    "delete": "Eliminar",
+    "fileNames": {
+      "query5": "Consulta (5).xlsx"
+    }
+  },
+  "financialDocuments": {
+    "title": "Documentos financieros",
+    "intro": "Consulta los documentos y vídeos que ha cargado tu asesor contable. Los nuevos documentos financieros aparecerán cuando estén disponibles.",
+    "searchLabel": "Buscar documentos financieros",
+    "searchPlaceholder": "Buscar…",
+    "filter": "Filtrar",
+    "headers": ["Nombre", "Tamaño del archivo", "Fecha de incorporación", "Añadido por", "Disponibilidad", "Ver", "Comentarios"],
+    "status": "Disponible para consultar",
+    "empty": "No se han encontrado documentos financieros.",
+    "items": "Elementos",
+    "view": "Ver",
+    "comment": "Comentar",
+    "fileNames": {
+      "financialStatements2025": "Estados financieros 2025.pdf",
+      "taxReturnManuallyExported": "Declaración fiscal - exportada manualmente.pdf",
+      "reportPackQ42025": "Paquete de informes - T4 2025.pdf",
+      "accountsReviewVideo": "Vídeo de revisión de cuentas.mp4",
+      "commentsAndActionPlan": "Comentarios y plan de acción.pdf",
+      "linkedSupportingDocuments": "Documentos justificativos vinculados.zip",
+      "rawDataForInsight": "Datos sin procesar para análisis.xlsx"
+    }
+  },
+  "projects": {
+    "title": "Calculadora de proyectos",
+    "intro": "Explora el impacto de una decisión empresarial antes de comprometerte. Ajusta las hipótesis para ver cómo podría quedar tu posición de tesorería.",
+    "workspaceLabel": "Simulador de viabilidad de proyectos",
+    "considering": "¿Qué estás considerando?",
+    "assumptions": "Revisa tus hipótesis",
+    "cashBalance": "Saldo de tesorería actual",
+    "safetyThreshold": "Umbral de seguridad",
+    "assumptionNote": "Estas cifras son hipótesis para esta simulación. Conecta tus datos contables para sustituirlas por saldos reales.",
+    "calculate": "Calcular",
+    "amountSliderLabel": "Importe de la decisión",
+    "projectedCash": "Tesorería prevista tras el impacto",
+    "decision": "Decisión",
+    "feasible": "Viable",
+    "borderline": "Al límite",
+    "notFeasible": "No viable",
+    "feasibleMessages": {
+      "hire": "La tesorería prevista se mantiene por encima del umbral de seguridad después de contratar a una nueva persona.",
+      "invest": "La tesorería prevista se mantiene por encima del umbral de seguridad después de realizar esta inversión.",
+      "spend": "La tesorería prevista se mantiene por encima del umbral de seguridad después de realizar esta compra puntual."
+    },
+    "borderlineMessage": "Esta decisión te acerca al umbral de seguridad. Revisa las hipótesis antes de continuar.",
+    "notFeasibleMessage": "Esta decisión situaría la tesorería prevista por debajo del umbral de seguridad.",
+    "resultFootnote": "Restamos el importe de la decisión del saldo de tesorería actual y comparamos la tesorería prevista con el umbral de seguridad. El resultado es viable por encima del umbral, está al límite cerca de él y no es viable por debajo.",
+    "decisions": {
+      "hire": { "label": "Contratar", "description": "Incorporar una persona al equipo", "amountLabel": "Coste mensual total", "helper": "Incluye salario, impuestos, prestaciones y otros costes habituales.", "defaultAmount": 4200 },
+      "invest": { "label": "Invertir", "description": "Aportar dinero a la empresa", "amountLabel": "Inversión inicial", "helper": "Introduce el importe que tienes previsto aportar a la empresa.", "defaultAmount": 12000 },
+      "spend": { "label": "Gastar", "description": "Realizar una compra puntual", "amountLabel": "Gasto puntual", "helper": "Introduce el coste total de la compra o del proyecto.", "defaultAmount": 2500 }
+    }
+  },
+  "yearEndMeeting": {
+    "title": "Reunión de cierre del ejercicio",
+    "intro": "Prepara una conversación centrada con tu asesor contable sobre el próximo ejercicio.",
+    "progressLabel": "Progreso de preparación de la reunión",
+    "preparation": "Preparación de la reunión",
+    "progressIncomplete": "Completa la lista antes de reunirte con tu asesor contable.",
+    "progressComplete": "Todo está listo para la reunión.",
+    "ready": "{count} de {total} listos",
+    "checklistTitle": "Lista de preparación",
+    "checklistIntro": "Mantén lo esencial en un solo lugar.",
+    "agendaTitle": "Orden del día sugerido",
+    "agendaIntro": "Utiliza los documentos proporcionados, los datos del calendario y las conversaciones para orientar el debate.",
+    "agendaItem": "Punto del orden del día",
+    "addAgenda": "Añadir un punto al orden del día",
+    "yearSelection": "Selección del ejercicio",
+    "checklist": [
+      { "id": "statements", "label": "Estados financieros anteriores", "description": "Revisa los estados más recientes antes de la reunión." },
+      { "id": "agenda", "label": "Orden del día confirmado", "description": "Acordad los temas y preguntas que trataréis juntos." },
+      { "id": "documents", "label": "Documentos recopilados", "description": "Asegúrate de que tu asesor contable dispone de los documentos necesarios." },
+      { "id": "points", "label": "Puntos pendientes", "description": "Registra decisiones, dudas y preguntas de seguimiento." },
+      { "id": "client-pack", "label": "Paquete del cliente preparado", "description": "Prepara el paquete final para entregar después de la reunión." }
+    ],
+    "agenda": [
+      { "time": "10 min", "title": "Revisar el ejercicio", "detail": "Repasa el rendimiento y los principales estados financieros." },
+      { "time": "15 min", "title": "Puntos pendientes", "detail": "Revisa preguntas, documentos que faltan y decisiones." },
+      { "time": "15 min", "title": "Planificar el futuro", "detail": "Acordad acciones, responsables y prioridades para el siguiente periodo." }
+    ],
+    "history": {
+      "title": "Resumen de 12 meses",
+      "subtitle": "Revisa la situación financiera de este cierre del ejercicio.",
+      "cashPosition": "Posición de tesorería",
+      "revenue": "Ingresos",
+      "operatingCosts": "Costes operativos",
+      "closingPosition": "Posición al cierre",
+      "monthlyActivity": "Actividad mensual",
+      "cashTrend": "Posición de tesorería durante 12 meses",
+      "revenueTrend": "Ingresos y costes operativos durante 12 meses",
+      "months": ["Ene", "Feb", "Mar", "Abr", "May", "Jun", "Jul", "Ago", "Sep", "Oct", "Nov", "Dic"]
+    }
+  },
+  "dashboard": {
+    "greeting": "Hola",
+    "greetingSubtitle": "Una visión sencilla de tu posición de tesorería, tu salud financiera y las acciones que requieren atención. Los KPI se actualizan cada 5 minutos.",
+    "financialTrends": "Tendencias financieras",
+    "financialTrendsSubtitle": "Sigue la evolución de tu posición de tesorería y de la actividad comercial.",
+    "cashPosition": "Posición de tesorería",
+    "salesAndPurchases": "Ventas y compras",
+    "lastSixMonths": "Últimos seis meses",
+    "postedValueByMonth": "Valor contabilizado por mes",
+    "cashTrendLabel": "Tendencia de la posición de tesorería durante seis meses",
+    "salesPurchasesChartLabel": "Gráfico de ventas y compras",
+    "chartMonths": ["Abr", "May", "Jun", "Jul", "Ago", "Sep"],
+    "chartSeries": { "cashPosition": "Posición de tesorería", "sales": "Ventas", "purchases": "Compras" },
+    "showGettingStarted": "Mostrar la pestaña «Primeros pasos»",
+    "gettingStarted": "Primeros pasos",
+    "accounting": "Contabilidad",
+    "salesPurchasesTab": "Ventas y compras",
+    "whatsNew": "Novedades",
+    "sectionsLabel": "Secciones del panel",
+    "updatesPlaceholder": "Las novedades y los anuncios del producto aparecerán aquí",
+    "healthScoreLabel": "Puntuación de salud: 82 de 100",
+    "switchOn": "ACTIVADO",
+    "switchOff": "DESACTIVADO",
+    "portalMetrics": {
+      "collectedRevenue": { "title": "Ingresos cobrados", "detail": "Acumulado del ejercicio" },
+      "overdueInvoices": { "title": "Facturas vencidas", "detail": "{amount} pendientes" },
+      "blockingDocuments": { "title": "Documentos bloqueantes", "detail": "A la espera de información por tu parte" },
+      "healthScore": { "title": "Puntuación de salud", "detail": "Buena situación" }
+    },
+    "priorityActions": "Acciones prioritarias",
+    "priorityActionsSubtitle": "Una breve lista de las acciones que más pueden ayudarte ahora.",
+    "actions": [
+      { "label": "Cargar documentos bloqueantes", "detail": "Tu asesor contable necesita 2 documentos" },
+      { "label": "Preparar la reunión de cierre del ejercicio", "detail": "Revisa la lista y el orden del día sugerido" }
+    ]
+  },
+  "aiAdvisor": {
+    "title": "Asesor de IA",
+    "subtitle": "Consulta información cotidiana de tu empresa y obtén respuestas rápidas sin enviar un correo a tu asesor contable.",
+    "enabledSwitch": "Asesor de IA activado (prototipo)",
+    "messageLabel": "Mensaje para el Asesor de IA",
+    "placeholder": "Haz una pregunta sobre tu empresa",
+    "add": "Añadir",
+    "send": "Enviar",
+    "forYou": "Conversaciones recientes",
+    "relatedTopics": "Temas relacionados",
+    "recentActivity": "Actividad reciente",
+    "activityBasis": "Basado en la actividad más reciente…",
+    "viewActivity": "Ver actividad →",
+    "emptyTitle": "El Asesor de IA todavía no está activado",
+    "emptyBody": "Tu asesor contable debe activar el Asesor de IA para tu empresa. Cuando esté activado, podrás hacer preguntas sobre tu negocio y enviar mensajes a tu asesor contable.",
+    "threads": [
+      { "title": "Últimas declaraciones fiscales", "body": "Pediste a la IA que buscara las últimas declaraciones fiscales disponibles para tu empresa, incluidos el periodo fiscal correspondiente y la fecha de presentación.", "items": ["Declaración fiscal más reciente", "Periodo fiscal y fecha de presentación"], "action": "Ver conversación", "time": "9 sep 2026, 10:24" },
+      { "title": "Gasto en suscripciones", "body": "Solicitaste el importe total gastado en suscripciones de la empresa y revisaste el periodo incluido.", "items": ["Coste total de suscripciones", "Periodo incluido"], "action": "Ver conversación", "time": "8 sep 2026, 16:41" },
+      { "title": "Documento empresarial reciente", "body": "Pediste a la IA que localizara un documento en el archivo del cliente en lugar de enviar un correo a tu asesor contable.", "items": ["Documentos cargados", "Fecha y tipo de documento"], "action": "Ver conversación", "time": "3 sep 2026, 14:08" },
+      { "title": "Total de la empresa", "body": "Solicitaste una respuesta rápida sobre un total de la empresa o una transacción reciente antes de contactar con tu asesor contable.", "items": ["Actividad reciente", "Periodo cubierto"], "action": "Ver conversación", "time": "2 sep 2026, 09:17" }
+    ],
+    "activity": [
+      { "author": "Copilot", "time": "15:48", "message": "Factura de venta de Boulangerie des Lilas: {amount}", "amount": 523.14 },
+      { "author": "Copilot", "time": "16:41", "message": "Presupuesto DV-1184 enviado a Atelier Lumière", "amount": null },
+      { "author": "Camille", "time": "16:12", "message": "DSN presentada para 14 empleados", "amount": null },
+      { "author": "Copilot", "time": "07:40", "message": "64 transacciones bancarias conciliadas automáticamente", "amount": null },
+      { "author": "Tú", "time": "4 sep", "message": "Pago al proveedor de {amount} aprobado", "amount": 18420.6 }
+    ]
+  }
+}

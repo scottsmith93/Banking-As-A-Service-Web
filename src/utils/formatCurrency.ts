@@ -1,33 +1,27 @@
 import type { Language } from "../context/languageStore";
+import { getLocaleCode, SUPPORTED_LANGUAGES } from "../locales";
 
-const localeByLanguage: Record<Language, "en-GB" | "fr-FR"> = {
-  English: "en-GB",
-  French: "fr-FR",
-};
+function createEurFormatters(
+  options: Intl.NumberFormatOptions,
+): Record<Language, Intl.NumberFormat> {
+  return Object.fromEntries(
+    SUPPORTED_LANGUAGES.map(({ id }) => [
+      id,
+      new Intl.NumberFormat(getLocaleCode(id), options),
+    ]),
+  ) as Record<Language, Intl.NumberFormat>;
+}
 
-const eurFormatters: Record<Language, Intl.NumberFormat> = {
-  English: new Intl.NumberFormat(localeByLanguage.English, {
-    style: "currency",
-    currency: "EUR",
-  }),
-  French: new Intl.NumberFormat(localeByLanguage.French, {
-    style: "currency",
-    currency: "EUR",
-  }),
-};
+const eurFormatters = createEurFormatters({
+  style: "currency",
+  currency: "EUR",
+});
 
-const wholeEurFormatters: Record<Language, Intl.NumberFormat> = {
-  English: new Intl.NumberFormat(localeByLanguage.English, {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }),
-  French: new Intl.NumberFormat(localeByLanguage.French, {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }),
-};
+const wholeEurFormatters = createEurFormatters({
+  style: "currency",
+  currency: "EUR",
+  maximumFractionDigits: 0,
+});
 
 export function formatEur(amount: number, language: Language): string {
   return eurFormatters[language].format(amount);

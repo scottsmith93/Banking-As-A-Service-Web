@@ -4,6 +4,7 @@ import { Checkbox } from "carbon-react/lib/components/checkbox";
 import Icon from "carbon-react/lib/components/icon";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";
+import { formatWholeEur } from "../../utils/formatCurrency";
 
 type ChecklistItem = {
   id: string;
@@ -23,14 +24,6 @@ const historicalData: Record<number, { cash: number[]; revenue: number[]; costs:
     costs: [17900, 18300, 19100, 18800, 19700, 20400, 21100, 21600, 22400, 23100, 23900, 24500],
   },
 };
-
-function formatHistoryEuro(value: number, language: "English" | "French") {
-  return new Intl.NumberFormat(language === "French" ? "fr-FR" : "en-GB", {
-    style: "currency",
-    currency: "EUR",
-    maximumFractionDigits: 0,
-  }).format(value);
-}
 
 export default function YearEndMeetingPage() {
   const { language } = useLanguage();
@@ -154,11 +147,11 @@ export default function YearEndMeetingPage() {
                 [history.revenue, historyData.revenue.reduce((sum, value) => sum + value, 0)],
                 [history.operatingCosts, historyData.costs.reduce((sum, value) => sum + value, 0)],
                 [history.closingPosition, historyData.cash[11]],
-              ].map(([label, value]) => <div className="yearEndMeetingPage__historyKpi" key={label}><strong>{formatHistoryEuro(Number(value), language)}</strong><span>{label}</span></div>)}
+              ].map(([label, value]) => <div className="yearEndMeetingPage__historyKpi" key={label}><strong>{formatWholeEur(Number(value), language)}</strong><span>{label}</span></div>)}
             </div>
             <div className="yearEndMeetingPage__historyGrid">
-              <div className="yearEndMeetingPage__historyPanel"><h3>{history.cashTrend}</h3><div className="yearEndMeetingPage__historyChartFrame"><div className="yearEndMeetingPage__historyYAxis">{historyAxisLabels.map((value) => <span key={value}>{formatHistoryEuro(value, language)}</span>)}</div><div className="yearEndMeetingPage__historyChart">{historyData.cash.map((value, index) => <div className="yearEndMeetingPage__historyBarGroup" key={history.months[index]}><span style={{ height: `${Math.max(8, (value / maxHistoryValue) * 100)}%` }} /><small>{history.months[index]}</small></div>)}</div></div></div>
-              <div className="yearEndMeetingPage__historyPanel"><h3>{history.revenueTrend}</h3><div className="yearEndMeetingPage__historyChartFrame"><div className="yearEndMeetingPage__historyYAxis">{historyAxisLabels.map((value) => <span key={value}>{formatHistoryEuro(value, language)}</span>)}</div><div className="yearEndMeetingPage__historyChart yearEndMeetingPage__historyChart--dual">{historyData.revenue.map((value, index) => <div className="yearEndMeetingPage__historyBarGroup" key={history.months[index]}><span className="yearEndMeetingPage__historyBar--revenue" style={{ height: `${Math.max(8, (value / maxHistoryValue) * 100)}%` }} /><span className="yearEndMeetingPage__historyBar--cost" style={{ height: `${Math.max(8, (historyData.costs[index] / maxHistoryValue) * 100)}%` }} /><small>{history.months[index]}</small></div>)}</div></div></div>
+              <div className="yearEndMeetingPage__historyPanel"><h3>{history.cashTrend}</h3><div className="yearEndMeetingPage__historyChartFrame"><div className="yearEndMeetingPage__historyYAxis">{historyAxisLabels.map((value) => <span key={value}>{formatWholeEur(value, language)}</span>)}</div><div className="yearEndMeetingPage__historyChart">{historyData.cash.map((value, index) => <div className="yearEndMeetingPage__historyBarGroup" key={history.months[index]}><span style={{ height: `${Math.max(8, (value / maxHistoryValue) * 100)}%` }} /><small>{history.months[index]}</small></div>)}</div></div></div>
+              <div className="yearEndMeetingPage__historyPanel"><h3>{history.revenueTrend}</h3><div className="yearEndMeetingPage__historyChartFrame"><div className="yearEndMeetingPage__historyYAxis">{historyAxisLabels.map((value) => <span key={value}>{formatWholeEur(value, language)}</span>)}</div><div className="yearEndMeetingPage__historyChart yearEndMeetingPage__historyChart--dual">{historyData.revenue.map((value, index) => <div className="yearEndMeetingPage__historyBarGroup" key={history.months[index]}><span className="yearEndMeetingPage__historyBar--revenue" style={{ height: `${Math.max(8, (value / maxHistoryValue) * 100)}%` }} /><span className="yearEndMeetingPage__historyBar--cost" style={{ height: `${Math.max(8, (historyData.costs[index] / maxHistoryValue) * 100)}%` }} /><small>{history.months[index]}</small></div>)}</div></div></div>
             </div>
           </section>
         )}

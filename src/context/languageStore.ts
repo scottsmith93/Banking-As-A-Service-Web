@@ -1,6 +1,7 @@
 import { createContext } from "react";
+import type { Language } from "../locales/languages";
 
-export type Language = "English" | "French";
+export type { Language } from "../locales/languages";
 
 export type LanguageContextValue = {
   language: Language;

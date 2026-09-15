@@ -31,7 +31,7 @@ export default function AIAdvisorPage() {
             {copy.subtitle}
           </Typography>
         </Box>
-        <span className={`portalLanguageSwitch${language === "French" ? " portalLanguageSwitch--french" : ""}${isEnabled ? " portalLanguageSwitch--on" : " portalLanguageSwitch--off"}`}>
+        <span className={`portalLanguageSwitch${isEnabled ? " portalLanguageSwitch--on" : " portalLanguageSwitch--off"}`}>
           <Switch
             checked={isEnabled}
             onChange={(event) => setIsEnabled(event.target.checked)}
@@ -39,6 +39,9 @@ export default function AIAdvisorPage() {
             labelInline
             size="small"
           />
+          <span className="portalLanguageSwitch__state" aria-hidden="true">
+            {isEnabled ? getLocale(language).dashboard.switchOn : getLocale(language).dashboard.switchOff}
+          </span>
         </span>
       </Box>
 

@@ -1,0 +1,241 @@
+{
+  "localization": {
+    "selected": "Ausgewählt",
+    "languages": {
+      "English": "Englisch",
+      "Spanish": "Spanisch",
+      "French": "Französisch",
+      "German": "Deutsch",
+      "Portuguese": "Portugiesisch"
+    }
+  },
+  "navigation": {
+    "Dashboard": "Übersicht", "Sales": "Verkauf", "Sales quotes": "Verkaufsangebote", "Sales orders": "Verkaufsaufträge", "Sales delivery notes": "Verkaufslieferscheine", "Sales invoices": "Verkaufsrechnungen", "Recurring invoices": "Wiederkehrende Rechnungen", "Purchases": "Einkauf", "Purchase orders": "Bestellungen", "Purchase invoices": "Eingangsrechnungen", "Contacts": "Kontakte", "Customers": "Kunden", "Suppliers": "Lieferanten", "Employees": "Mitarbeitende", "Products and services": "Produkte und Dienstleistungen", "Items": "Artikel", "Price lists": "Preislisten", "Discount groups": "Rabattgruppen", "Banking": "Banking", "Bank movements": "Bankbewegungen", "Reports": "Berichte", "Settings": "Einstellungen", "File upload": "Datei-Upload", "Project calculator": "Projektkalkulator", "Financial documents": "Finanzdokumente", "Year end meeting": "Jahresabschlussgespräch", "AI Advisor": "KI-Assistent", "Manage subscription": "Abonnement verwalten", "Copilot": "Copilot", "Chat": "Chat", "Insights": "Einblicke", "Copilot settings": "Copilot-Einstellungen", "Help": "Hilfe", "Expand": "Erweitern", "Collapse": "Reduzieren", "Close menu": "Menü schließen", "Close AI Advisor": "KI-Assistent schließen"
+  },
+  "profile": {
+    "title": "Sage Active-Abonnement verwalten",
+    "subtitle": "Verwalten Sie Ihr Sage Active-Abonnement und sehen Sie, welche Leistungen die einzelnen Tarife enthalten.",
+    "monthlyAllocation": "Monatliches Kontingent:",
+    "includedUserRoles": "Enthaltene Benutzerrollen:",
+    "viewDemo": "Demo ansehen",
+    "providedByAccountant": "Vom Steuerberater bereitgestellt",
+    "pricePerMonth": "{price} pro Monat",
+    "cancelSubscription": "Abonnement kündigen",
+    "deselect": "Auswahl aufheben",
+    "selectSubscription": "Abonnement auswählen",
+    "currentSubscription": "Aktuelles Abonnement",
+    "subscriptionSelected": "Abonnement ausgewählt",
+    "subscriptionCostPerMonth": "Monatliche Abonnementkosten",
+    "vat": "MwSt.",
+    "cancel": "Abbrechen",
+    "subscribe": "Abonnieren",
+    "plans": {
+      "portal": {
+        "name": "Portal",
+        "description": "Eine kompakte Geschäftsübersicht mit Dateifreigabe zur Unterstützung der Zusammenarbeit zwischen Kunde und Steuerberater.",
+        "allowance": ["1 Benutzer"],
+        "roles": ["1 Administrator", "1 Steuerberater"]
+      },
+      "starter": {
+        "name": "Starter",
+        "description": "Standardfunktionen für neue Unternehmen und für Unternehmen, die ihre Buchhaltung an einen Berater auslagern.",
+        "allowance": ["5 Benutzer", "300 Rechnungen", "10 Online-Zahlungen"],
+        "roles": ["1 Administrator", "1 Steuerberater", "3 Mitarbeitende"]
+      },
+      "essentials": {
+        "name": "Essentials",
+        "description": "Erweiterte Funktionen für anspruchsvolle Unternehmen und Firmen mit interner Buchhaltung.",
+        "allowance": ["10 Benutzer", "500 Rechnungen", "20 Online-Zahlungen"],
+        "roles": ["2 Administratoren", "2 Steuerberater", "6 Mitarbeitende"]
+      },
+      "control": {
+        "name": "Standard",
+        "description": "Erweiterte Lager- und Bestandsverwaltung für Unternehmen, die Bestände über mehrere Standorte, Lager und Kanäle verfolgen.",
+        "allowance": ["15 Benutzer", "1000 Rechnungen", "30 Online-Zahlungen"],
+        "roles": ["2 Administratoren", "3 Steuerberater", "10 Mitarbeitende"]
+      },
+      "scale": {
+        "name": "Advanced",
+        "description": "Umfassende Fertigungsfunktionen für Unternehmen, die Produktion, Arbeitsaufträge und Materialien vom Rohbestand bis zum Fertigprodukt verwalten.",
+        "allowance": ["20 Benutzer", "1200 Rechnungen", "40 Online-Zahlungen"],
+        "roles": ["2 Administratoren", "3 Steuerberater", "15 Mitarbeitende"]
+      }
+    }
+  },
+  "fileUpload": {
+    "title": "Dateiverwaltung",
+    "intro": "Laden Sie Dateien für Ihr Unternehmen hoch und verwalten Sie sie. Sie können Dateien mit einer Größe von bis zu 20 MB hochladen.",
+    "select": "Datei auswählen",
+    "drop": "oder Datei hierher ziehen",
+    "searchLabel": "Dateien durchsuchen",
+    "searchPlaceholder": "Suchen…",
+    "filter": "Filtern",
+    "headers": ["Name", "Dateigröße", "Hinzugefügt am", "Hinzugefügt von", "Upload-Status", "Anzeigen", "Kommentare", "Löschen"],
+    "uploaded": "Datei hochgeladen",
+    "empty": "Keine Dateien gefunden.",
+    "items": "Elemente",
+    "view": "Anzeigen",
+    "comment": "Kommentieren",
+    "delete": "Löschen",
+    "fileNames": {
+      "query5": "Anfrage (5).xlsx"
+    }
+  },
+  "financialDocuments": {
+    "title": "Finanzdokumente",
+    "intro": "Sehen Sie sich die von Ihrem Steuerberater hochgeladenen Dokumente und Videos an. Neue Finanzdokumente erscheinen, sobald sie verfügbar sind.",
+    "searchLabel": "Finanzdokumente durchsuchen",
+    "searchPlaceholder": "Suchen…",
+    "filter": "Filtern",
+    "headers": ["Name", "Dateigröße", "Hinzugefügt am", "Hinzugefügt von", "Verfügbarkeit", "Anzeigen", "Kommentare"],
+    "status": "Zur Ansicht verfügbar",
+    "empty": "Keine Finanzdokumente gefunden.",
+    "items": "Elemente",
+    "view": "Anzeigen",
+    "comment": "Kommentieren",
+    "fileNames": {
+      "financialStatements2025": "Jahresabschluss 2025.pdf",
+      "taxReturnManuallyExported": "Steuererklärung - manuell exportiert.pdf",
+      "reportPackQ42025": "Berichtspaket - Q4 2025.pdf",
+      "accountsReviewVideo": "Video zur Abschlussprüfung.mp4",
+      "commentsAndActionPlan": "Kommentare und Maßnahmenplan.pdf",
+      "linkedSupportingDocuments": "Verknüpfte Belege.zip",
+      "rawDataForInsight": "Rohdaten für Analysen.xlsx"
+    }
+  },
+  "projects": {
+    "title": "Projektkalkulator",
+    "intro": "Prüfen Sie die Auswirkungen einer Geschäftsentscheidung, bevor Sie sich festlegen. Passen Sie die Annahmen an, um die mögliche Entwicklung Ihrer Liquidität zu sehen.",
+    "workspaceLabel": "Simulator für Projektrentabilität",
+    "considering": "Was erwägen Sie?",
+    "assumptions": "Annahmen prüfen",
+    "cashBalance": "Aktueller Kassenbestand",
+    "safetyThreshold": "Sicherheitsschwelle",
+    "assumptionNote": "Diese Werte sind Annahmen für die Simulation. Verbinden Sie Ihre Buchhaltungsdaten, um sie durch aktuelle Salden zu ersetzen.",
+    "calculate": "Berechnen",
+    "amountSliderLabel": "Entscheidungsbetrag",
+    "projectedCash": "Voraussichtlicher Kassenbestand nach Auswirkung",
+    "decision": "Entscheidung",
+    "feasible": "Machbar",
+    "borderline": "Grenzwertig",
+    "notFeasible": "Nicht machbar",
+    "feasibleMessages": {
+      "hire": "Ihr voraussichtlicher Kassenbestand bleibt nach der Einstellung eines neuen Teammitglieds über der Sicherheitsschwelle.",
+      "invest": "Ihr voraussichtlicher Kassenbestand bleibt nach dieser Investition über der Sicherheitsschwelle.",
+      "spend": "Ihr voraussichtlicher Kassenbestand bleibt nach diesem einmaligen Kauf über der Sicherheitsschwelle."
+    },
+    "borderlineMessage": "Diese Entscheidung bringt Sie nahe an Ihre Sicherheitsschwelle. Prüfen Sie die Annahmen, bevor Sie fortfahren.",
+    "notFeasibleMessage": "Diese Entscheidung würde den voraussichtlichen Kassenbestand unter Ihre Sicherheitsschwelle senken.",
+    "resultFootnote": "Wir ziehen den Entscheidungsbetrag vom aktuellen Kassenbestand ab und vergleichen den voraussichtlichen Kassenbestand mit der Sicherheitsschwelle. Das Ergebnis ist oberhalb der Schwelle machbar, in ihrer Nähe grenzwertig und darunter nicht machbar.",
+    "decisions": {
+      "hire": { "label": "Einstellen", "description": "Eine Person ins Team aufnehmen", "amountLabel": "Vollständige monatliche Kosten", "helper": "Berücksichtigen Sie Gehalt, Steuern, Zusatzleistungen und weitere regelmäßige Kosten.", "defaultAmount": 4200 },
+      "invest": { "label": "Investieren", "description": "Geld in das Unternehmen investieren", "amountLabel": "Anfangsinvestition", "helper": "Geben Sie den Betrag ein, den Sie in das Unternehmen investieren möchten.", "defaultAmount": 12000 },
+      "spend": { "label": "Ausgeben", "description": "Einen einmaligen Kauf tätigen", "amountLabel": "Einmalige Ausgabe", "helper": "Geben Sie die Gesamtkosten des Kaufs oder Projekts ein.", "defaultAmount": 2500 }
+    }
+  },
+  "yearEndMeeting": {
+    "title": "Jahresabschlussgespräch",
+    "intro": "Bereiten Sie ein fokussiertes Gespräch mit Ihrem Steuerberater über das kommende Jahr vor.",
+    "progressLabel": "Fortschritt der Gesprächsvorbereitung",
+    "preparation": "Gesprächsvorbereitung",
+    "progressIncomplete": "Vervollständigen Sie die Checkliste vor dem Gespräch mit Ihrem Steuerberater.",
+    "progressComplete": "Alles ist für Ihr Gespräch vorbereitet.",
+    "ready": "{count} von {total} bereit",
+    "checklistTitle": "Vorbereitungscheckliste",
+    "checklistIntro": "Bewahren Sie alles Wesentliche an einem Ort auf.",
+    "agendaTitle": "Vorgeschlagene Tagesordnung",
+    "agendaIntro": "Nutzen Sie bereitgestellte Dokumente, Kalenderdaten und Gespräche als Grundlage für die Besprechung.",
+    "agendaItem": "Tagesordnungspunkt",
+    "addAgenda": "Tagesordnungspunkt hinzufügen",
+    "yearSelection": "Jahresauswahl",
+    "checklist": [
+      { "id": "statements", "label": "Vorherige Jahresabschlüsse", "description": "Prüfen Sie vor dem Gespräch die aktuellen Abschlüsse." },
+      { "id": "agenda", "label": "Tagesordnung bestätigt", "description": "Stimmen Sie die gemeinsam zu behandelnden Themen und Fragen ab." },
+      { "id": "documents", "label": "Dokumente zusammengestellt", "description": "Stellen Sie sicher, dass Ihr Steuerberater alle benötigten Dokumente hat." },
+      { "id": "points", "label": "Zu klärende Punkte", "description": "Halten Sie Entscheidungen, Bedenken und Rückfragen fest." },
+      { "id": "client-pack", "label": "Kundenpaket vorbereitet", "description": "Bereiten Sie das abschließende Paket für die Zeit nach dem Gespräch vor." }
+    ],
+    "agenda": [
+      { "time": "10 Min.", "title": "Jahr prüfen", "detail": "Betrachten Sie die Entwicklung und die wichtigsten Finanzberichte." },
+      { "time": "15 Min.", "title": "Offene Punkte", "detail": "Bearbeiten Sie Fragen, fehlende Dokumente und Entscheidungen." },
+      { "time": "15 Min.", "title": "Vorausplanen", "detail": "Vereinbaren Sie Maßnahmen, Verantwortliche und Prioritäten für den nächsten Zeitraum." }
+    ],
+    "history": {
+      "title": "12-Monats-Übersicht",
+      "subtitle": "Prüfen Sie die Finanzlage für diesen Jahresabschlusszeitraum.",
+      "cashPosition": "Liquiditätsposition",
+      "revenue": "Umsatz",
+      "operatingCosts": "Betriebskosten",
+      "closingPosition": "Endbestand",
+      "monthlyActivity": "Monatliche Aktivität",
+      "cashTrend": "Liquiditätsposition über 12 Monate",
+      "revenueTrend": "Umsatz und Betriebskosten über 12 Monate",
+      "months": ["Jan", "Feb", "Mär", "Apr", "Mai", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dez"]
+    }
+  },
+  "dashboard": {
+    "greeting": "Hallo",
+    "greetingSubtitle": "Eine einfache Übersicht über Ihre Liquidität, finanzielle Lage und anstehende Aufgaben. Die KPIs werden alle 5 Minuten aktualisiert.",
+    "financialTrends": "Finanztrends",
+    "financialTrendsSubtitle": "Verfolgen Sie die Entwicklung Ihrer Liquidität und Geschäftstätigkeit.",
+    "cashPosition": "Liquiditätsposition",
+    "salesAndPurchases": "Verkauf und Einkauf",
+    "lastSixMonths": "Letzte sechs Monate",
+    "postedValueByMonth": "Gebuchter Wert pro Monat",
+    "cashTrendLabel": "Entwicklung der Liquiditätsposition über sechs Monate",
+    "salesPurchasesChartLabel": "Diagramm für Verkauf und Einkauf",
+    "chartMonths": ["Apr", "Mai", "Jun", "Jul", "Aug", "Sep"],
+    "chartSeries": { "cashPosition": "Liquiditätsposition", "sales": "Verkauf", "purchases": "Einkauf" },
+    "showGettingStarted": "Registerkarte „Erste Schritte“ anzeigen",
+    "gettingStarted": "Erste Schritte",
+    "accounting": "Buchhaltung",
+    "salesPurchasesTab": "Verkauf und Einkauf",
+    "whatsNew": "Neuigkeiten",
+    "sectionsLabel": "Bereiche der Übersicht",
+    "updatesPlaceholder": "Produktneuigkeiten und Ankündigungen werden hier angezeigt",
+    "healthScoreLabel": "Gesundheitswert: 82 von 100",
+    "switchOn": "EIN",
+    "switchOff": "AUS",
+    "portalMetrics": {
+      "collectedRevenue": { "title": "Eingegangener Umsatz", "detail": "Seit Jahresbeginn" },
+      "overdueInvoices": { "title": "Überfällige Rechnungen", "detail": "{amount} ausstehend" },
+      "blockingDocuments": { "title": "Blockierende Dokumente", "detail": "Informationen von Ihnen werden erwartet" },
+      "healthScore": { "title": "Gesundheitswert", "detail": "Guter Stand" }
+    },
+    "priorityActions": "Prioritäre Aufgaben",
+    "priorityActionsSubtitle": "Eine kurze Liste der Maßnahmen, die jetzt am meisten helfen können.",
+    "actions": [
+      { "label": "Blockierende Dokumente hochladen", "detail": "Ihr Steuerberater benötigt 2 Dokumente" },
+      { "label": "Jahresabschlussgespräch vorbereiten", "detail": "Prüfen Sie die Checkliste und die vorgeschlagene Tagesordnung" }
+    ]
+  },
+  "aiAdvisor": {
+    "title": "KI-Assistent",
+    "subtitle": "Fragen Sie alltägliche Geschäftsinformationen ab und erhalten Sie schnell Antworten, ohne Ihrem Steuerberater eine E-Mail zu senden.",
+    "enabledSwitch": "KI-Assistent aktiviert (Prototyp)",
+    "messageLabel": "Nachricht an den KI-Assistenten",
+    "placeholder": "Stellen Sie eine Frage zu Ihrem Unternehmen",
+    "add": "Hinzufügen",
+    "send": "Senden",
+    "forYou": "Letzte Gespräche",
+    "relatedTopics": "Verwandte Themen",
+    "recentActivity": "Letzte Aktivität",
+    "activityBasis": "Basierend auf der letzten Aktivität…",
+    "viewActivity": "Aktivität anzeigen →",
+    "emptyTitle": "Der KI-Assistent ist noch nicht aktiviert",
+    "emptyBody": "Ihr Steuerberater muss den KI-Assistenten für Ihr Unternehmen aktivieren. Danach können Sie Fragen zu Ihrem Unternehmen stellen und Ihrem Steuerberater Nachrichten senden.",
+    "threads": [
+      { "title": "Neueste Steuererklärungen", "body": "Sie haben die KI gebeten, die neuesten verfügbaren Steuererklärungen Ihres Unternehmens einschließlich Steuerzeitraum und Einreichungsdatum zu finden.", "items": ["Neueste Steuererklärung", "Steuerzeitraum und Einreichungsdatum"], "action": "Gespräch anzeigen", "time": "9. Sep. 2026, 10:24" },
+      { "title": "Abonnementausgaben", "body": "Sie haben nach den gesamten Abonnementausgaben Ihres Unternehmens gefragt und den enthaltenen Zeitraum geprüft.", "items": ["Gesamte Abonnementkosten", "Enthaltener Zeitraum"], "action": "Gespräch anzeigen", "time": "8. Sep. 2026, 16:41" },
+      { "title": "Aktuelles Geschäftsdokument", "body": "Sie haben die KI gebeten, ein Dokument in Ihrer Kundenakte zu finden, anstatt Ihrem Steuerberater eine E-Mail zu senden.", "items": ["Hochgeladene Dokumente", "Dokumentdatum und -art"], "action": "Gespräch anzeigen", "time": "3. Sep. 2026, 14:08" },
+      { "title": "Geschäftssumme", "body": "Sie haben vor der Kontaktaufnahme mit Ihrem Steuerberater eine schnelle Antwort zu einer Geschäftssumme oder einer aktuellen Transaktion angefordert.", "items": ["Letzte Aktivität", "Abgedeckter Zeitraum"], "action": "Gespräch anzeigen", "time": "2. Sep. 2026, 09:17" }
+    ],
+    "activity": [
+      { "author": "Copilot", "time": "15:48", "message": "Verkaufsrechnung für Boulangerie des Lilas: {amount}", "amount": 523.14 },
+      { "author": "Copilot", "time": "16:41", "message": "Angebot DV-1184 an Atelier Lumière gesendet", "amount": null },
+      { "author": "Camille", "time": "16:12", "message": "DSN für 14 Mitarbeitende eingereicht", "amount": null },
+      { "author": "Copilot", "time": "07:40", "message": "64 Banktransaktionen automatisch abgeglichen", "amount": null },
+      { "author": "Sie", "time": "4. Sep.", "message": "Lieferantenzahlung über {amount} genehmigt", "amount": 18420.6 }
+    ]
+  }
+}

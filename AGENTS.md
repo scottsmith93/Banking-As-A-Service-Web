@@ -70,11 +70,12 @@ Most users of this tool are designers who are new to code and prototyping. The a
 ## Localization
 
 - Before adding or changing user-facing copy, locale-aware formatting, or language support, read `docs/localization.md`.
-- New prototype READMEs must state their localization scope. Unless a README explicitly records a narrower scope and limitation, all user-facing strings in the prototype are localization-ready.
-- Keep the English and French catalogue structures and interpolation placeholders aligned. `npm run validate:locales` enforces this and also runs as part of `npm run build`.
+- New prototype READMEs must state their localization scope. Unless a README explicitly records a narrower scope and limitation, all user-facing strings in the prototype are localization-ready in English, Spanish, French, German, and Portuguese.
+- English (`en-GB`) is the source and default language. Every new localized requirement must be completed in all five JSON catalogues: `en-GB`, `es-ES`, `fr-FR`, `de-DE`, and `pt-PT`.
+- Keep all five catalogue structures and interpolation placeholders aligned. `npm run validate:locales` enforces this and also runs as part of `npm run build`.
 - Store complete, natural sentences in the locale catalogues. Do not use a variable to replace a translatable word or grammatical fragment inside a sentence; named placeholders are only for genuinely dynamic data such as names, counts, dates, and amounts.
 - Do not build user-facing copy by concatenating translated strings or sentence fragments. Add a complete catalogue entry for each message so translators can change word order and grammar safely.
-- Keep monetary values numeric in data and format EUR with `Intl.NumberFormat` using the active locale and `currency: "EUR"`. Do not hardcode the `€` position, decimal separator, thousands separator, or spacing; these differ between English and French.
+- Keep monetary values numeric in data and format EUR with `Intl.NumberFormat` using the active locale and `currency: "EUR"`. Do not hardcode the `€` position, decimal separator, thousands separator, or spacing; these differ across the five supported locales.
 
 ---
 

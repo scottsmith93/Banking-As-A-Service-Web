@@ -1,8 +1,25 @@
+import de from "./de-DE.json";
 import en from "./en-GB.json";
+import es from "./es-ES.json";
 import fr from "./fr-FR.json";
-import type { Language } from "../context/languageStore";
+import pt from "./pt-PT.json";
+import type { Language } from "./languages";
 
-const catalogs = { English: en, French: fr } as const;
+const catalogs = {
+  English: en,
+  Spanish: es,
+  French: fr,
+  German: de,
+  Portuguese: pt,
+} as const;
+
+export {
+  DEFAULT_LANGUAGE,
+  DEFAULT_LOCALE,
+  getLocaleCode,
+  SUPPORTED_LANGUAGES,
+} from "./languages";
+export type { Language, LocaleCode } from "./languages";
 
 export function getLocale(language: Language) {
   return catalogs[language];

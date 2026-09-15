@@ -6,10 +6,10 @@ import Pill from "carbon-react/lib/components/pill";
 import Portrait from "carbon-react/lib/components/portrait";
 import { PRIMARY_NAV_ITEMS, type PrimaryNavItem, type SubmenuLink } from "../data/primaryNav";
 import { useNavMode } from "../context/useNavMode";
-import { useLanguage } from "../context/useLanguage";
+import { useLanguage, type Language } from "../context/useLanguage";
 import { currentUser } from "../data/currentUser";
 import { ROUTES } from "../routes";
-import { getLocale } from "../locales";
+import { getLocale, SUPPORTED_LANGUAGES } from "../locales";
 
 type FooterFlyoutId = "profile" | "copilot" | "help" | null;
 
@@ -30,7 +30,7 @@ type FlyoutContent = {
   groups: FlyoutLink[][];
 };
 
-function translateNavLabel(label: string, language: "English" | "French") {
+function translateNavLabel(label: string, language: Language) {
   const navigation = getLocale(language).navigation as Record<string, string>;
   return navigation[label] ?? label;
 }
@@ -136,7 +136,7 @@ type SubmenuRowProps = {
   expandedKeys: Set<string>;
   toggleExpanded: (key: string) => void;
   go: (path: string) => void;
-  language: "English" | "French";
+  language: Language;
 };
 
 function SubmenuRow({
@@ -245,6 +245,7 @@ export default function LeftNav() {
   const [footerFlyout, setFooterFlyout] = useState<FooterFlyoutId>(null);
   const [anchor, setAnchor] = useState<FlyoutAnchor | null>(null);
   const { language, setLanguage } = useLanguage();
+  const localizationCopy = getLocale(language).localization;
 
   const closeFooterFlyout = () => setFooterFlyout(null);
 
@@ -281,26 +282,15 @@ export default function LeftNav() {
           [
             { key: "my-profile", label: "Manage subscription", onClick: () => go(ROUTES.myProfile) },
           ],
-          [
-            {
-              key: "language-english",
-              label: "English",
-              selected: language === "English",
-              onClick: () => {
-                setLanguage("English");
-                closeFooterFlyout();
-              },
+          SUPPORTED_LANGUAGES.map(({ id }) => ({
+            key: `language-${id.toLowerCase()}`,
+            label: localizationCopy.languages[id],
+            selected: language === id,
+            onClick: () => {
+              setLanguage(id);
+              closeFooterFlyout();
             },
-            {
-              key: "language-french",
-              label: "French",
-              selected: language === "French",
-              onClick: () => {
-                setLanguage("French");
-                closeFooterFlyout();
-              },
-            },
-          ],
+          })),
         ],
       };
     }
@@ -507,12 +497,12 @@ export default function LeftNav() {
                       aria-pressed={link.selected}
                       onClick={link.onClick}
                     >
-                      {link.key === "language-english" || link.key === "language-french"
+                      {link.key.startsWith("language-")
                         ? link.label
                         : translateNavLabel(link.label, language)}
                       {link.selected && (
                         <span className="leftNav__flyoutSelectedPill">
-                          {language === "French" ? "Sélectionné" : "Selected"}
+                          {localizationCopy.selected}
                         </span>
                       )}
                     </button>

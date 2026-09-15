@@ -16,8 +16,9 @@ for exploring UI flows and design ideas quickly. New prototypes should follow
 - [React Router v7](https://reactrouter.com/) for client-side routing
 - [Carbon by Sage](https://carbon.sage.com) (`carbon-react`) component library
 - [`@sage/design-tokens`](https://github.com/Sage/design-tokens) for spacing, color, and typography
-- [AG Grid](https://www.ag-grid.com/) and [Nivo](https://nivo.rocks/) in existing
-  showcase screens only; they are not defaults for new prototypes
+- [AG Grid](https://www.ag-grid.com/) through the reusable `SageDataGrid` adapter
+  for data-heavy tables, and [Nivo](https://nivo.rocks/) for showcase charts;
+  neither is the default for a new prototype
 - [UI Fork](https://github.com/sambernhardt/uifork) for development-only component
   variation and in-context comparison
 - [Impeccable](https://github.com/pbakaus/impeccable) as a repo-scoped agent skill
@@ -59,17 +60,21 @@ Impeccable adds no application dependency or runtime code. Read
 [`docs/impeccable.md`](docs/impeccable.md) before invoking `$impeccable`; its
 engine, hooks, live mode, and shared design artifacts are opt-in.
 
+Use [`SageDataGrid`](src/components/data-grid/SageDataGrid.tsx) instead of
+instantiating AG Grid directly. [`docs/ag-grid.md`](docs/ag-grid.md) explains when
+to prefer Carbon tables, how localization works, and how to add future modules.
+
 ## Project structure
 
 | Path | Purpose |
 |---|---|
 | `src/pages/*` | Top-level screens, wired up in `src/routes.ts` |
-| `src/components/*` | Shared UI components built from Carbon primitives |
+| `src/components/*` | Shared UI components and approved adapters around non-Carbon dependencies |
 | `src/data/*` | In-memory mock data used across the prototype |
 | `src/locales/*` | English and French localisation catalogues for content managed by the localisation team |
 | `src/context/*` | Cross-page React context (nav mode, subscription state, stock alerts) |
 | `AGENTS.md` | Conventions and implementation rules for this codebase |
-| `docs/` | Reference docs for Carbon, design tokens, localization, Impeccable, UI Fork, and prototype workflow |
+| `docs/` | Reference docs for Carbon, AG Grid, design tokens, localization, Impeccable, UI Fork, and prototype workflow |
 | `.agents/skills/*` | Repo-scoped Codex skills for prototype implementation, localization, tokens, design quality, and UI variation |
 
 ## Notes

@@ -1,19 +1,16 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import { priceLists, type PriceList } from "../../data/priceLists";
 import { ActiveCellRenderer } from "../sales-listing/activeCellRenderer";
 import {
   createDeleteCellRenderer,
   createEditCellRenderer,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 type PriceListsGridProps = {
@@ -75,16 +72,6 @@ export default function PriceListsGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<PriceList>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<PriceList>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -107,22 +94,12 @@ export default function PriceListsGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid">
-        <AgGridReact<PriceList>
-          theme={salesListingGridTheme}
-          rowData={priceLists}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<PriceList>
+      rowData={priceLists}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+    />
   );
 }

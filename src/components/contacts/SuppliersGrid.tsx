@@ -1,14 +1,12 @@
 import { useCallback, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type CellClickedEvent,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import { suppliers, type Supplier } from "../../data/suppliers";
 import { ActiveInactiveStatusCellRenderer } from "./contactGridShared";
 import {
@@ -16,7 +14,6 @@ import {
   createEditCellRenderer,
   formatCurrencyGbp,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 import { ROUTES } from "../../routes";
 
@@ -84,16 +81,6 @@ export default function SuppliersGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<Supplier>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<Supplier>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -127,23 +114,14 @@ export default function SuppliersGrid({
   );
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid salesGrid--wide salesGrid--clickableRows">
-        <AgGridReact<Supplier>
-          theme={salesListingGridTheme}
-          rowData={suppliers}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          onCellClicked={handleCellClicked}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<Supplier>
+      containerClassName="sageDataGrid--clickableRows"
+      rowData={suppliers}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+      onCellClicked={handleCellClicked}
+    />
   );
 }

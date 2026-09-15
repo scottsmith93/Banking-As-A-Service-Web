@@ -99,6 +99,17 @@ Most users of this tool are designers who are new to code and prototyping. The a
 
 ---
 
+## Data grid workflow
+
+- Read `docs/ag-grid.md` before adding or changing an AG Grid table.
+- Use the shared `SageDataGrid` adapter from `src/components/data-grid`; do not instantiate `AgGridReact`, `AgGridProvider`, or `AllCommunityModule` in feature components.
+- Use Carbon `FlatTable` for small, mostly static tables. AG Grid is reserved for data-heavy interactions that need capabilities such as filtering, sorting, selection, editing, or virtualization.
+- Keep feature columns, data, renderers, and events outside the shared adapter. Add per-grid modules through its `modules` prop instead of global registration.
+- Keep `ag-grid-community`, `ag-grid-react`, and `@ag-grid-community/locale` on the same version range. Enterprise packages and licences are opt-in for a named prototype requirement.
+- Never disable AG Grid cell focus. Use translated product copy in the feature catalogues; the official locale package translates AG Grid's own controls only.
+
+---
+
 ## Starter pages
 
 When the playground is scaffolded, it should include a set of example pages that give designers a working starting point. These are not templates to copy — they are live, editable references that demonstrate Carbon components, layout patterns, and prototype conventions in context.
@@ -275,6 +286,7 @@ Never silently break a rule to fulfil a request.
 
 ## Supporting docs
 
+- `docs/ag-grid.md` — reusable adapter, extension boundaries, localization, accessibility, and upgrade guidance.
 - `docs/carbon-reference.md` — Sage Carbon component and import reference.
 - `docs/design-tokens.md` — authoritative package roles, import rules, token selection, and upgrade guidance.
 - `docs/localization.md` — localization scope, catalogue structure, formatting, and validation workflow.

@@ -1,18 +1,15 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import type { FixedAssetTransaction } from "../../data/fixedAssetTransactions";
 import {
   createActionsCellRenderer,
   formatCurrencyGbp,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 type FixedAssetTransactionsGridProps = {
@@ -77,16 +74,6 @@ export default function FixedAssetTransactionsGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<FixedAssetTransaction>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<FixedAssetTransaction>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -115,23 +102,13 @@ export default function FixedAssetTransactionsGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid">
-        <AgGridReact<FixedAssetTransaction>
-          theme={salesListingGridTheme}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          onRowDataUpdated={handleRowDataUpdated}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<FixedAssetTransaction>
+      rowData={rowData}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+      onRowDataUpdated={handleRowDataUpdated}
+    />
   );
 }

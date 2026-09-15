@@ -1,24 +1,9 @@
-import { themeQuartz, type ICellRendererParams } from "ag-grid-community";
+import type { ICellRendererParams } from "../data-grid";
 import Icon from "carbon-react/lib/components/icon";
 import IconButton from "carbon-react/lib/components/icon-button";
 import Pill from "carbon-react/lib/components/pill";
 import Portrait from "carbon-react/lib/components/portrait";
 import { getProductImage } from "../../data/productImages";
-
-export const salesListingGridTheme = themeQuartz.withParams({
-  headerBackgroundColor: "var(--colorsUtilityMajor025, #f2f2f2)",
-  headerTextColor: "var(--colorsUtilityYin090, #333333)",
-  backgroundColor: "var(--colorsUtilityYang100, #ffffff)",
-  oddRowBackgroundColor: "var(--colorsUtilityMajor010, #fafafa)",
-  borderColor: "var(--colorsUtilityMajor050, #cccccc)",
-  wrapperBorder: true,
-  rowBorder: false,
-  columnBorder: false,
-  headerColumnBorder: false,
-  pinnedColumnBorder: false,
-  spacing: 8,
-  fontFamily: "inherit",
-});
 
 const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",

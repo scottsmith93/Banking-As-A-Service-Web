@@ -1,19 +1,16 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import { fixedAssets, type FixedAsset } from "../../data/fixedAssets";
 import {
   createDeleteCellRenderer,
   createEditCellRenderer,
   formatCurrencyGbp,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 type FixedAssetsGridProps = {
@@ -69,16 +66,6 @@ export default function FixedAssetsGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<FixedAsset>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<FixedAsset>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -101,22 +88,12 @@ export default function FixedAssetsGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid">
-        <AgGridReact<FixedAsset>
-          theme={salesListingGridTheme}
-          rowData={fixedAssets}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<FixedAsset>
+      rowData={fixedAssets}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+    />
   );
 }

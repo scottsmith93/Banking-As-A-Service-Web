@@ -1,14 +1,11 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
-  themeQuartz,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
   type ICellRendererParams,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import Icon from "carbon-react/lib/components/icon";
 import IconButton from "carbon-react/lib/components/icon-button";
 import Pill from "carbon-react/lib/components/pill";
@@ -93,20 +90,6 @@ function QuoteDeleteCellRenderer(_params: ICellRendererParams<Quote>) {
     </span>
   );
 }
-
-const salesQuotesTheme = themeQuartz.withParams({
-  headerBackgroundColor: "var(--colorsUtilityMajor025, #f2f2f2)",
-  headerTextColor: "var(--colorsUtilityYin090, #333333)",
-  backgroundColor: "var(--colorsUtilityYang100, #ffffff)",
-  oddRowBackgroundColor: "var(--colorsUtilityMajor010, #fafafa)",
-  borderColor: "var(--colorsUtilityMajor050, #cccccc)",
-  wrapperBorder: true,
-  rowBorder: false,
-  columnBorder: false,
-  headerColumnBorder: false,
-  spacing: 8,
-  fontFamily: "inherit",
-});
 
 type QuotesGridProps = {
   quickFilterText?: string;
@@ -194,16 +177,6 @@ export default function QuotesGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<Quote>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<Quote>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -226,22 +199,12 @@ export default function QuotesGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid quotesGrid">
-        <AgGridReact<Quote>
-          theme={salesQuotesTheme}
-          rowData={quotes}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<Quote>
+      rowData={quotes}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+    />
   );
 }

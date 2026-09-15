@@ -1,13 +1,10 @@
 import { useMemo } from "react";
-import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModule, type ColDef, type ICellRendererParams } from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+import { SageDataGrid, type ColDef, type ICellRendererParams } from "../data-grid";
 import Pill from "carbon-react/lib/components/pill";
 import type { PurchaseReceiptLine, PurchaseReceiptLineStatus } from "../../data/purchaseReceipts";
 import {
   createActionsCellRenderer,
   formatCurrencyGbp,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 function getLineStatusLabel(status: PurchaseReceiptLineStatus) {
@@ -108,29 +105,17 @@ export default function PurchaseReceiptLinesGrid({ lines }: PurchaseReceiptLines
   );
 
   const defaultColDef = useMemo<ColDef<PurchaseReceiptLine>>(
-    () => ({
-      sortable: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
+    () => ({ filter: false }),
     [],
   );
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid salesGrid--wide purchaseOrderDetail__linesGrid">
-        <AgGridReact<PurchaseReceiptLine>
-          theme={salesListingGridTheme}
-          rowData={lines}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-          domLayout="autoHeight"
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<PurchaseReceiptLine>
+      containerClassName="purchaseOrderDetail__linesGrid"
+      rowData={lines}
+      columnDefs={columnDefs}
+      defaultColDef={defaultColDef}
+      domLayout="autoHeight"
+    />
   );
 }

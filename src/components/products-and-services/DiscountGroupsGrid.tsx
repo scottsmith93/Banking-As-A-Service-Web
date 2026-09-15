@@ -1,19 +1,16 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import { discountGroups, type DiscountGroup } from "../../data/discountGroups";
 import { ActiveCellRenderer } from "../sales-listing/activeCellRenderer";
 import {
   createDeleteCellRenderer,
   createEditCellRenderer,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 type DiscountGroupsGridProps = {
@@ -74,16 +71,6 @@ export default function DiscountGroupsGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<DiscountGroup>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<DiscountGroup>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -106,22 +93,12 @@ export default function DiscountGroupsGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid">
-        <AgGridReact<DiscountGroup>
-          theme={salesListingGridTheme}
-          rowData={discountGroups}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<DiscountGroup>
+      rowData={discountGroups}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+    />
   );
 }

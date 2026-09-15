@@ -1,4 +1,4 @@
-import type { ICellRendererParams } from "ag-grid-community";
+import type { ICellRendererParams } from "../data-grid";
 import Icon from "carbon-react/lib/components/icon";
 
 export function ActiveCellRenderer(params: ICellRendererParams<{ active: boolean }, boolean>) {

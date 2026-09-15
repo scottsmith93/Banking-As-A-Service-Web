@@ -1,13 +1,11 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
   type ICellRendererParams,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import Pill from "carbon-react/lib/components/pill";
 import {
   recurringInvoices,
@@ -19,7 +17,6 @@ import {
   createEditCellRenderer,
   formatCurrencyGbp,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 function RecurringStatusCellRenderer(
@@ -144,16 +141,6 @@ export default function RecurringInvoicesGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<RecurringInvoice>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<RecurringInvoice>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -176,22 +163,12 @@ export default function RecurringInvoicesGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid">
-        <AgGridReact<RecurringInvoice>
-          theme={salesListingGridTheme}
-          rowData={recurringInvoices}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<RecurringInvoice>
+      rowData={recurringInvoices}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+    />
   );
 }

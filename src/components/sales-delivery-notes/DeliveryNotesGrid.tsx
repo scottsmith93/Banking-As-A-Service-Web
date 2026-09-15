@@ -1,12 +1,10 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import { deliveryNotes, type DeliveryNote } from "../../data/deliveryNotes";
 import {
   createDeleteCellRenderer,
@@ -14,7 +12,6 @@ import {
   formatCurrencyGbp,
   formatListingDate,
   PendingClosedStatusCellRenderer,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 type DeliveryNotesGridProps = {
@@ -103,16 +100,6 @@ export default function DeliveryNotesGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<DeliveryNote>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<DeliveryNote>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -135,22 +122,12 @@ export default function DeliveryNotesGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid">
-        <AgGridReact<DeliveryNote>
-          theme={salesListingGridTheme}
-          rowData={deliveryNotes}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<DeliveryNote>
+      rowData={deliveryNotes}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+    />
   );
 }

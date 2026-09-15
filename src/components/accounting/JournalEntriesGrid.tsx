@@ -1,19 +1,16 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import { journalEntryLines, type JournalEntryLine } from "../../data/journalEntries";
 import {
   createDeleteCellRenderer,
   createEditCellRenderer,
   formatCurrencyGbp,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 type JournalEntriesGridProps = {
@@ -90,16 +87,6 @@ export default function JournalEntriesGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<JournalEntryLine>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<JournalEntryLine>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -122,22 +109,12 @@ export default function JournalEntriesGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid salesGrid--wide">
-        <AgGridReact<JournalEntryLine>
-          theme={salesListingGridTheme}
-          rowData={journalEntryLines}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<JournalEntryLine>
+      rowData={journalEntryLines}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+    />
   );
 }

@@ -1,19 +1,16 @@
 import { useCallback, useMemo, useRef } from "react";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import { employees, type Employee } from "../../data/employees";
 import { EmployeeStatusCellRenderer } from "./contactGridShared";
 import {
   createDeleteCellRenderer,
   createEditCellRenderer,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 type EmployeesGridProps = {
@@ -70,16 +67,6 @@ export default function EmployeesGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<Employee>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<Employee>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -102,22 +89,12 @@ export default function EmployeesGrid({
   }, [updateDisplayedCount]);
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid salesGrid--wide">
-        <AgGridReact<Employee>
-          theme={salesListingGridTheme}
-          rowData={employees}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<Employee>
+      rowData={employees}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+    />
   );
 }

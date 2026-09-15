@@ -1,7 +1,5 @@
 import { useMemo } from "react";
-import { AgGridReact } from "ag-grid-react";
-import { AllCommunityModule, type ColDef, type ICellRendererParams } from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+import { SageDataGrid, type ColDef, type ICellRendererParams } from "../data-grid";
 import Pill from "carbon-react/lib/components/pill";
 import {
   getLineAmountWithVat,
@@ -12,7 +10,6 @@ import {
   createActionsCellRenderer,
   formatCurrencyGbp,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 
 function getLineStatusLabel(status: PurchaseOrderLineStatus) {
@@ -105,29 +102,17 @@ export default function PurchaseOrderLinesGrid({ lines }: PurchaseOrderLinesGrid
   );
 
   const defaultColDef = useMemo<ColDef<PurchaseOrderLine>>(
-    () => ({
-      sortable: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
+    () => ({ filter: false }),
     [],
   );
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid salesGrid--wide purchaseOrderDetail__linesGrid">
-        <AgGridReact<PurchaseOrderLine>
-          theme={salesListingGridTheme}
-          rowData={lines}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-          domLayout="autoHeight"
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<PurchaseOrderLine>
+      containerClassName="purchaseOrderDetail__linesGrid"
+      rowData={lines}
+      columnDefs={columnDefs}
+      defaultColDef={defaultColDef}
+      domLayout="autoHeight"
+    />
   );
 }

@@ -1,15 +1,13 @@
 import { useCallback, useMemo, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { AgGridReact } from "ag-grid-react";
 import {
-  AllCommunityModule,
+  SageDataGrid,
   type CellClickedEvent,
   type ColDef,
   type GridApi,
   type GridReadyEvent,
   type ICellRendererParams,
-} from "ag-grid-community";
-import { AgGridProvider } from "ag-grid-react";
+} from "../data-grid";
 import Pill from "carbon-react/lib/components/pill";
 import type {
   PurchaseInvoice,
@@ -20,7 +18,6 @@ import {
   createEditCellRenderer,
   formatCurrencyGbp,
   formatListingDate,
-  salesListingGridTheme,
 } from "../sales-listing/salesGridShared";
 import { ROUTES } from "../../routes";
 
@@ -169,16 +166,6 @@ export default function PurchaseInvoicesGrid({
     [],
   );
 
-  const defaultColDef = useMemo<ColDef<PurchaseInvoice>>(
-    () => ({
-      sortable: true,
-      filter: true,
-      resizable: true,
-      suppressMovable: true,
-    }),
-    [],
-  );
-
   const updateDisplayedCount = useCallback(
     (api: GridApi<PurchaseInvoice>) => {
       onDisplayedRowCountChange?.(api.getDisplayedRowCount());
@@ -218,24 +205,15 @@ export default function PurchaseInvoicesGrid({
   );
 
   return (
-    <AgGridProvider modules={[AllCommunityModule]}>
-      <div className="salesGrid salesGrid--wide salesGrid--clickableRows">
-        <AgGridReact<PurchaseInvoice>
-          theme={salesListingGridTheme}
-          rowData={rowData}
-          columnDefs={columnDefs}
-          defaultColDef={defaultColDef}
-          quickFilterText={quickFilterText}
-          onGridReady={handleGridReady}
-          onFilterChanged={handleFilterChanged}
-          onRowDataUpdated={handleRowDataUpdated}
-          onCellClicked={handleCellClicked}
-          suppressCellFocus
-          animateRows={false}
-          headerHeight={40}
-          rowHeight={44}
-        />
-      </div>
-    </AgGridProvider>
+    <SageDataGrid<PurchaseInvoice>
+      containerClassName="sageDataGrid--clickableRows"
+      rowData={rowData}
+      columnDefs={columnDefs}
+      quickFilterText={quickFilterText}
+      onGridReady={handleGridReady}
+      onFilterChanged={handleFilterChanged}
+      onRowDataUpdated={handleRowDataUpdated}
+      onCellClicked={handleCellClicked}
+    />
   );
 }

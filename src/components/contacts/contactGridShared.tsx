@@ -1,4 +1,4 @@
-import type { ICellRendererParams } from "ag-grid-community";
+import type { ICellRendererParams } from "../data-grid";
 import Pill from "carbon-react/lib/components/pill";
 
 type ActiveInactiveStatus = "active" | "inactive";

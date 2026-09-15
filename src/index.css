@@ -2649,28 +2649,24 @@ body {
   line-height: 20px;
 }
 
-.salesGrid,
-.quotesGrid {
+.sageDataGrid {
   width: 100%;
   height: calc(100vh - 300px);
   min-height: 480px;
-}
-
-.salesGrid--wide {
   min-width: 0;
 }
 
-.salesGrid--clickableRows .ag-row {
+.sageDataGrid--clickableRows .ag-row {
   cursor: pointer;
 }
 
-/* Every table in the app shares this .salesGrid wrapper — vertically
+/* Every AG Grid table in the app shares this .sageDataGrid wrapper — vertically
    centering cell content here keeps text/pills consistent across all of
    them, and is what actually matters once a row grows past a single line
    (e.g. the Items list, sized to fit its 60px thumbnails), where content
    would otherwise sit at the top of the row instead of alongside the
    thumbnail. */
-.salesGrid .ag-cell {
+.sageDataGrid .ag-cell {
   display: flex;
   align-items: center;
   /* Lets cells using .salesGrid__truncatedCell (text-overflow: ellipsis)
@@ -2682,15 +2678,15 @@ body {
 /* AG Grid supplies the table structure and pinned action columns. Keep the
    visual language row-led: no vertical cell dividers, and a quiet separation
    where pinned actions meet horizontally scrolling data. */
-.salesGrid .ag-cell,
-.salesGrid .ag-header-cell,
-.salesGrid .ag-header-group-cell {
+.sageDataGrid .ag-cell,
+.sageDataGrid .ag-header-cell,
+.sageDataGrid .ag-header-group-cell {
   border-right: 0 !important;
   border-left: 0 !important;
 }
 
-.salesGrid .ag-pinned-right-header,
-.salesGrid .ag-pinned-right-cols-container {
+.sageDataGrid .ag-pinned-right-header,
+.sageDataGrid .ag-pinned-right-cols-container {
   box-shadow: -8px 0 14px -12px rgba(0, 20, 30, 0.7);
   z-index: 2;
 }

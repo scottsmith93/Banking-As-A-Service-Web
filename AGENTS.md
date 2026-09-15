@@ -88,6 +88,17 @@ Most users of this tool are designers who are new to code and prototyping. The a
 
 ---
 
+## Design quality workflow
+
+- Impeccable is the approved specialist skill for an intentional UI critique, audit, polish, hardening, optimization, adaptation, or explicit redesign. Read `docs/impeccable.md` before using it.
+- Use `sage-prototype-ui` for ordinary implementation and architecture, Impeccable for focused design-quality passes, and UI Fork when the user needs parallel component variants. Combine them only when the request genuinely crosses those boundaries.
+- `AGENTS.md`, Sage Carbon, Sage design tokens, and the repository localization rules always override Impeccable's generic aesthetic recommendations. “Bolder” never authorizes another component library, font, icon set, palette, focus treatment, or motion language.
+- For product screens, use Impeccable's `Operate` mode by default: task completion, scanability, consistency, accessibility, and familiar Sage patterns outrank decorative novelty.
+- Do not enable Impeccable hooks or live browser injection automatically. Both are opt-in workflows, and the first engine invocation downloads and verifies a version-pinned binary in the user's local Impeccable cache.
+- Do not create or rewrite `PRODUCT.md`, `DESIGN.md`, or shared surface briefs unless the user invokes the corresponding Impeccable setup/documentation workflow. Existing prototype READMEs remain required.
+
+---
+
 ## Starter pages
 
 When the playground is scaffolded, it should include a set of example pages that give designers a working starting point. These are not templates to copy — they are live, editable references that demonstrate Carbon components, layout patterns, and prototype conventions in context.
@@ -267,5 +278,6 @@ Never silently break a rule to fulfil a request.
 - `docs/carbon-reference.md` — Sage Carbon component and import reference.
 - `docs/design-tokens.md` — authoritative package roles, import rules, token selection, and upgrade guidance.
 - `docs/localization.md` — localization scope, catalogue structure, formatting, and validation workflow.
+- `docs/impeccable.md` — design-quality skill boundaries, security model, artifacts, and recommended commands.
 - `docs/prototyping-guidelines.md` — Flow, mock data, routing, accessibility, and prototype workflow guidance.
 - `docs/uifork.md` — component variation workflow, commands, build modes, and Sage guardrails.

@@ -5,20 +5,25 @@
   "type": "module",
   "packageManager": "npm@11.11.1",
   "engines": {
-    "node": ">=20.19 <24",
+    "node": "^20.19.0 || >=22.12.0 <24",
     "npm": ">=11.11.1"
   },
   "scripts": {
+    "preinstall": "node scripts/check-runtime.mjs",
     "setup": "npm install",
     "predev": "node scripts/ensure-deps.mjs",
     "dev": "vite --port 5173 --strictPort",
+    "check:runtime": "node scripts/check-runtime.mjs",
     "validate:locales": "node scripts/validate-locales.mjs",
     "validate:reference-catalogues": "node .agents/skills/sage-frontend-reference/scripts/validate-catalogues.mjs",
     "validate:tokens": "node scripts/validate-tokens.mjs",
     "validate": "npm run validate:locales && npm run validate:reference-catalogues && npm run validate:tokens",
+    "prebuild": "node scripts/check-runtime.mjs",
     "build": "npm run validate && tsc -b && vite build",
+    "prebuild:uifork": "node scripts/check-runtime.mjs",
     "build:uifork": "npm run validate && tsc -b && vite build --mode uifork",
     "lint": "eslint .",
+    "prepreview": "node scripts/check-runtime.mjs",
     "preview": "vite preview",
     "uifork:watch": "uifork watch ./src --port 3030"
   },

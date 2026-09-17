@@ -1,5 +1,6 @@
 #!/usr/bin/env node
 
+import "./check-runtime.mjs";
 import { existsSync } from "node:fs";
 import { spawnSync } from "node:child_process";
 import { join } from "node:path";

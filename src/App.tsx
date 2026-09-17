@@ -62,7 +62,6 @@ import TaxReturnsPage from "./pages/compliance/TaxReturnsPage";
 import NotFoundPage from "./pages/NotFoundPage";
 import LegacyInvoiceRedirect from "./components/LegacyInvoiceRedirect";
 import { ROUTES } from "./routes";
-import PasswordGate from "./components/PasswordGate";
 
 // Operations-mode-only screens with no real functionality yet — rendered
 // generically via PlaceholderPage rather than one bespoke page component
@@ -114,7 +113,6 @@ const PLACEHOLDER_ROUTES: { path: string; title: string; section: string }[] = [
 
 export default function App() {
   return (
-    <PasswordGate>
     <LanguageProvider>
     <SubscriptionProvider>
     <StockAlertProvider>
@@ -301,6 +299,5 @@ export default function App() {
     </StockAlertProvider>
     </SubscriptionProvider>
     </LanguageProvider>
-    </PasswordGate>
   );
 }

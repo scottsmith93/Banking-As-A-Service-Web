@@ -26,10 +26,12 @@ for exploring UI flows and design ideas quickly. New prototypes should follow
 
 ## Getting started
 
-Requires Node `>=20.19 <24` and npm `>=11.11.1`. The repository's `.nvmrc`
-selects Node 22.13.0 when using `nvm`.
+Requires Node `^20.19.0` or `>=22.12.0 <24`, plus npm `>=11.11.1`. The
+repository's `.nvmrc` selects Node 22.13.0 when using `nvm`.
 
 ```bash
+nvm install
+nvm use
 npm install
 npm run dev
 ```

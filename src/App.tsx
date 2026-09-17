@@ -37,7 +37,7 @@ import PurchaseOrderCreatePage from "./pages/purchases/PurchaseOrderCreatePage";
 import PurchaseOrderDetailPage from "./pages/purchases/PurchaseOrderDetailPage";
 import PurchaseReceiptsPage from "./pages/purchases/PurchaseReceiptsPage";
 import PurchaseReceiptDetailPage from "./pages/purchases/PurchaseReceiptDetailPage";
-import CustomersPage from "./pages/contacts/CustomersPage";
+import CustomersPage from "./pages/contacts/customer-management/CustomersPage";
 import CustomerCreatePage from "./pages/contacts/CustomerCreatePage";
 import SuppliersPage from "./pages/contacts/SuppliersPage";
 import SupplierCreatePage from "./pages/contacts/SupplierCreatePage";

@@ -20,6 +20,7 @@ The currently implemented localized scope is the Portal/Client journey:
 - Year end meeting
 - AI Advisor
 - Manage subscription
+- Customer management
 
 Existing sales, purchasing, accounting, banking, compliance, settings,
 playground, and other operational/demo routes predate this localization scope.

@@ -11,6 +11,30 @@
       "Portuguese": "Portugais"
     }
   },
+  "customerManagement": {
+    "title": "Clients",
+    "description": "Gérez l’identification, les coordonnées et le statut des comptes clients.",
+    "details": { "title": "Informations du client" },
+    "actions": { "create": "Nouveau client", "edit": "Modifier la sélection", "delete": "Supprimer la sélection", "save": "Enregistrer le client", "saveChanges": "Enregistrer les modifications", "cancel": "Annuler" },
+    "search": { "label": "Rechercher des clients", "placeholder": "Rechercher par nom, code, contact ou e-mail" },
+    "filters": { "status": "Statut", "allStatuses": "Tous les statuts" },
+    "columns": { "code": "Code client", "name": "Client", "type": "Type de client", "country": "Pays", "contact": "Contact principal", "email": "E-mail", "status": "Statut", "balanceDue": "Solde dû", "lastActivity": "Dernière activité" },
+    "types": { "business": "Entreprise", "individual": "Particulier" },
+    "statuses": { "active": "Actif", "inactive": "Inactif" },
+    "countries": { "DE": "Allemagne", "ES": "Espagne", "FR": "France", "GB": "Royaume-Uni", "PT": "Portugal" },
+    "selection": { "none": "Sélectionnez un client pour le modifier ou le supprimer.", "one": "1 client sélectionné", "many": "{count} clients sélectionnés" },
+    "summary": { "customerCount": "{count} clients" },
+    "states": { "loadingTitle": "Chargement des clients", "loadingBody": "Préparation de la liste des clients.", "emptyTitle": "Aucun client trouvé", "emptyBody": "Essayez une autre recherche ou créez un client." },
+    "form": {
+      "createTitle": "Nouveau client", "editTitle": "Modifier le client", "description": "Gérez l’identification du client et les coordonnées de son contact principal.",
+      "sections": { "business": "Informations sur l’entreprise", "contact": "Contact principal" },
+      "fields": { "code": "Code client", "name": "Nom du client", "type": "Type de client", "vatNumber": "N° de TVA ou d’identification", "contactName": "Nom du contact", "email": "E-mail", "phone": "Téléphone", "town": "Ville", "country": "Pays", "status": "Statut" },
+      "validation": { "summaryTitle": "Vérifiez les informations du client", "summaryBody": "Corrigez les champs signalés avant d’enregistrer.", "required": "Ce champ est obligatoire.", "email": "Saisissez une adresse e-mail valide.", "duplicateCode": "Utilisez un code client unique." }
+    },
+    "deleteDialog": { "singleTitle": "Supprimer {customerName} ?", "multipleTitle": "Supprimer {count} clients ?", "singleBody": "Cette action supprime {customerName} de ce prototype et ne peut pas être annulée.", "multipleBody": "Cette action supprime les fiches clients sélectionnées de ce prototype et ne peut pas être annulée.", "confirm": "Supprimer", "cancel": "Annuler" },
+    "feedback": { "created": "Client créé.", "updated": "Client mis à jour.", "deletedSingle": "Client supprimé.", "deletedMultiple": "{count} clients supprimés.", "dismiss": "Fermer la notification" },
+    "grid": { "ariaLabel": "Liste des clients" }
+  },
   "navigation": {
     "Dashboard": "Tableau de bord",
     "Sales": "Ventes",

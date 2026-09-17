@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 import Box from "carbon-react/lib/components/box";
 import Typography from "carbon-react/lib/components/typography";
 import Button from "carbon-react/lib/components/button/__next__";
@@ -22,7 +22,7 @@ const PAGE_SIZE = 10;
 
 type ClientFilter = "all" | ClientStatus;
 
-const gbpFormatter = new Intl.NumberFormat("fr-FR", {
+const eurFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
   currency: "EUR",
 });
@@ -33,8 +33,8 @@ const dateFormatter = new Intl.DateTimeFormat("fr-FR", {
   year: "numeric",
 });
 
-function formatBalance(amountGbp: number) {
-  return gbpFormatter.format(amountGbp);
+function formatBalance(amountEur: number) {
+  return eurFormatter.format(amountEur);
 }
 
 function formatLastActivity(isoDate: string) {
@@ -57,10 +57,6 @@ export default function ExamplePage1() {
     return filteredClients.slice(start, start + PAGE_SIZE);
   }, [filteredClients, page]);
 
-  useEffect(() => {
-    setPage(1);
-  }, [filter]);
-
   return (
     <Box className="pageContent">
       <Box display="flex" justifyContent="space-between" alignItems="center">
@@ -74,7 +70,10 @@ export default function ExamplePage1() {
         id="client-list-filter"
         label="Show"
         value={filter}
-        onChange={(_event, value) => setFilter((value as ClientFilter) ?? "all")}
+        onChange={(_event, value) => {
+          setFilter((value as ClientFilter) ?? "all");
+          setPage(1);
+        }}
       >
         <ButtonToggle value="all">All</ButtonToggle>
         <ButtonToggle value="active">Active</ButtonToggle>
@@ -113,7 +112,7 @@ export default function ExamplePage1() {
                     as="span"
                     className="numericValue"
                   >
-                    {formatBalance(client.balanceDueGbp)}
+                    {formatBalance(client.balanceDueEur)}
                   </Typography>
                 </FlatTableCell>
                 <FlatTableCell>

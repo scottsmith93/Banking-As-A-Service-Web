@@ -11,6 +11,30 @@
       "Portuguese": "Portugiesisch"
     }
   },
+  "customerManagement": {
+    "title": "Kunden",
+    "description": "Verwalten Sie Identifikation, Kontaktdaten und Kontostatus Ihrer Kunden.",
+    "details": { "title": "Kundendetails" },
+    "actions": { "create": "Neuer Kunde", "edit": "Auswahl bearbeiten", "delete": "Auswahl löschen", "save": "Kunde speichern", "saveChanges": "Änderungen speichern", "cancel": "Abbrechen" },
+    "search": { "label": "Kunden suchen", "placeholder": "Nach Name, Code, Kontakt oder E-Mail suchen" },
+    "filters": { "status": "Status", "allStatuses": "Alle Status" },
+    "columns": { "code": "Kundencode", "name": "Kunde", "type": "Kundentyp", "country": "Land", "contact": "Hauptkontakt", "email": "E-Mail", "status": "Status", "balanceDue": "Offener Saldo", "lastActivity": "Letzte Aktivität" },
+    "types": { "business": "Unternehmen", "individual": "Privatperson" },
+    "statuses": { "active": "Aktiv", "inactive": "Inaktiv" },
+    "countries": { "DE": "Deutschland", "ES": "Spanien", "FR": "Frankreich", "GB": "Vereinigtes Königreich", "PT": "Portugal" },
+    "selection": { "none": "Wählen Sie einen Kunden zum Bearbeiten oder Löschen aus.", "one": "1 Kunde ausgewählt", "many": "{count} Kunden ausgewählt" },
+    "summary": { "customerCount": "{count} Kunden" },
+    "states": { "loadingTitle": "Kunden werden geladen", "loadingBody": "Die Kundenliste wird vorbereitet.", "emptyTitle": "Keine Kunden gefunden", "emptyBody": "Versuchen Sie eine andere Suche oder erstellen Sie einen Kunden." },
+    "form": {
+      "createTitle": "Neuer Kunde", "editTitle": "Kunde bearbeiten", "description": "Pflegen Sie die Identifikation und die Daten des Hauptkontakts.",
+      "sections": { "business": "Unternehmensinformationen", "contact": "Hauptkontakt" },
+      "fields": { "code": "Kundencode", "name": "Kundenname", "type": "Kundentyp", "vatNumber": "USt-IdNr. oder Identifikationsnummer", "contactName": "Kontaktname", "email": "E-Mail", "phone": "Telefon", "town": "Ort", "country": "Land", "status": "Status" },
+      "validation": { "summaryTitle": "Prüfen Sie die Kundendaten", "summaryBody": "Korrigieren Sie die markierten Felder vor dem Speichern.", "required": "Dieses Feld ist erforderlich.", "email": "Geben Sie eine gültige E-Mail-Adresse ein.", "duplicateCode": "Verwenden Sie einen eindeutigen Kundencode." }
+    },
+    "deleteDialog": { "singleTitle": "{customerName} löschen?", "multipleTitle": "{count} Kunden löschen?", "singleBody": "Dadurch wird {customerName} aus diesem Prototyp entfernt. Diese Aktion kann nicht rückgängig gemacht werden.", "multipleBody": "Dadurch werden die ausgewählten Kundendatensätze aus diesem Prototyp entfernt. Diese Aktion kann nicht rückgängig gemacht werden.", "confirm": "Löschen", "cancel": "Abbrechen" },
+    "feedback": { "created": "Kunde erstellt.", "updated": "Kunde aktualisiert.", "deletedSingle": "Kunde gelöscht.", "deletedMultiple": "{count} Kunden gelöscht.", "dismiss": "Benachrichtigung schließen" },
+    "grid": { "ariaLabel": "Kundenliste" }
+  },
   "navigation": {
     "Dashboard": "Übersicht", "Sales": "Verkauf", "Sales quotes": "Verkaufsangebote", "Sales orders": "Verkaufsaufträge", "Sales delivery notes": "Verkaufslieferscheine", "Sales invoices": "Verkaufsrechnungen", "Recurring invoices": "Wiederkehrende Rechnungen", "Purchases": "Einkauf", "Purchase orders": "Bestellungen", "Purchase invoices": "Eingangsrechnungen", "Contacts": "Kontakte", "Customers": "Kunden", "Suppliers": "Lieferanten", "Employees": "Mitarbeitende", "Products and services": "Produkte und Dienstleistungen", "Items": "Artikel", "Price lists": "Preislisten", "Discount groups": "Rabattgruppen", "Banking": "Banking", "Bank movements": "Bankbewegungen", "Reports": "Berichte", "Settings": "Einstellungen", "File upload": "Datei-Upload", "Project calculator": "Projektkalkulator", "Financial documents": "Finanzdokumente", "Year end meeting": "Jahresabschlussgespräch", "AI Advisor": "KI-Assistent", "Manage subscription": "Abonnement verwalten", "Copilot": "Copilot", "Chat": "Chat", "Insights": "Einblicke", "Copilot settings": "Copilot-Einstellungen", "Help": "Hilfe", "Expand": "Erweitern", "Collapse": "Reduzieren", "Close menu": "Menü schließen", "Close AI Advisor": "KI-Assistent schließen"
   },

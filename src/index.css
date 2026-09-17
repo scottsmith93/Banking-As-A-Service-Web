@@ -2649,6 +2649,63 @@ body {
   line-height: 20px;
 }
 
+/* ─── Customer management ──────────────────────────────── */
+
+.customerManagement__toolbar,
+.customerManagement__toolbarStart,
+.customerManagement__filters,
+.customerManagement__footer {
+  gap: var(--spacing200);
+  flex-wrap: wrap;
+}
+
+.customerManagement__selection {
+  margin: 0;
+  color: var(--colorsUtilityYin065);
+}
+
+.customerManagement__state {
+  gap: var(--spacing200);
+  padding: var(--spacing500);
+}
+
+.customerManagement__state p,
+.customerManagement__footer p,
+.customerEditor__section h3 {
+  margin: 0;
+}
+
+.customerEditor__sections,
+.customerEditor__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing300);
+}
+
+.customerEditor__sections {
+  gap: var(--spacing400);
+}
+
+.customerEditor__fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing200) var(--spacing300);
+}
+
+@media (max-width: 700px) {
+  .customerManagement__toolbar,
+  .customerManagement__toolbarStart,
+  .customerManagement__filters,
+  .customerManagement__footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .customerEditor__fieldGrid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
 .sageDataGrid {
   width: 100%;
   height: calc(100vh - 300px);

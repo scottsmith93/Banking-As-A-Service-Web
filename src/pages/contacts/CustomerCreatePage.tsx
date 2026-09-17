@@ -11,7 +11,7 @@ export default function CustomerCreatePage() {
   const [phone, setPhone] = useState("");
   const [town, setTown] = useState("");
   const [status, setStatus] = useState<"active" | "inactive">("active");
-  const [balanceDueGbp, setBalanceDueGbp] = useState("");
+  const [balanceDueEur, setBalanceDueEur] = useState("");
   const [lastActivity, setLastActivity] = useState("");
 
   return (
@@ -28,7 +28,7 @@ export default function CustomerCreatePage() {
         phone={phone}
         town={town}
         status={status}
-        balanceGbp={balanceDueGbp}
+        balanceGbp={balanceDueEur}
         lastActivity={lastActivity}
         onCodeChange={setCustomerCode}
         onNameChange={setName}
@@ -37,7 +37,7 @@ export default function CustomerCreatePage() {
         onPhoneChange={setPhone}
         onTownChange={setTown}
         onStatusChange={setStatus}
-        onBalanceChange={setBalanceDueGbp}
+        onBalanceChange={setBalanceDueEur}
         onLastActivityChange={setLastActivity}
       />
     </CreateRecordPage>

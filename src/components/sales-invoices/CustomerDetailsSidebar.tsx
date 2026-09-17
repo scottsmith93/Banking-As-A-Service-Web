@@ -1,12 +1,10 @@
 import Box from "carbon-react/lib/components/box";
 import Sidebar from "carbon-react/lib/components/sidebar";
 import Typography from "carbon-react/lib/components/typography";
+import { useLanguage } from "../../context/useLanguage";
 import type { Customer } from "../../data/customers";
-
-const gbpFormatter = new Intl.NumberFormat("fr-FR", {
-  style: "currency",
-  currency: "EUR",
-});
+import { getLocale } from "../../locales";
+import { formatEur } from "../../utils/formatCurrency";
 
 type DetailRowProps = {
   label: string;
@@ -37,29 +35,32 @@ export default function CustomerDetailsSidebar({
   open,
   onCancel,
 }: CustomerDetailsSidebarProps) {
+  const { language } = useLanguage();
+  const copy = getLocale(language).customerManagement;
+
   return (
     <Sidebar
       open={open}
       onCancel={onCancel}
       position="right"
       size="small"
-      header={customer?.name ?? "Customer details"}
-      aria-label="Customer details"
+      header={customer?.name ?? copy.details.title}
+      aria-label={copy.details.title}
     >
       {customer && (
         <Box className="customerDetailsSidebar__content">
-          <DetailRow label="Customer code" value={customer.customerCode} />
-          <DetailRow label="Contact name" value={customer.contactName} />
-          <DetailRow label="Email" value={customer.email} />
-          <DetailRow label="Phone" value={customer.phone} />
-          <DetailRow label="Town" value={customer.town} />
+          <DetailRow label={copy.columns.code} value={customer.customerCode} />
+          <DetailRow label={copy.form.fields.contactName} value={customer.contactName} />
+          <DetailRow label={copy.columns.email} value={customer.email} />
+          <DetailRow label={copy.form.fields.phone} value={customer.phone} />
+          <DetailRow label={copy.form.fields.town} value={customer.town} />
           <DetailRow
-            label="Balance due"
-            value={gbpFormatter.format(customer.balanceDueGbp)}
+            label={copy.columns.balanceDue}
+            value={formatEur(customer.balanceDueEur, language)}
           />
           <DetailRow
-            label="Status"
-            value={customer.status === "active" ? "Active" : "Inactive"}
+            label={copy.columns.status}
+            value={copy.statuses[customer.status]}
           />
         </Box>
       )}

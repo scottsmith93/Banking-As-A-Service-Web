@@ -11,6 +11,30 @@
       "Portuguese": "Portuguese"
     }
   },
+  "customerManagement": {
+    "title": "Customers",
+    "description": "Manage customer identification, contact details and account status.",
+    "details": { "title": "Customer details" },
+    "actions": { "create": "New customer", "edit": "Edit selected", "delete": "Delete selected", "save": "Save customer", "saveChanges": "Save changes", "cancel": "Cancel" },
+    "search": { "label": "Search customers", "placeholder": "Search by name, code, contact or email" },
+    "filters": { "status": "Status", "allStatuses": "All statuses" },
+    "columns": { "code": "Customer code", "name": "Customer", "type": "Customer type", "country": "Country", "contact": "Main contact", "email": "Email", "status": "Status", "balanceDue": "Balance due", "lastActivity": "Last activity" },
+    "types": { "business": "Business", "individual": "Individual" },
+    "statuses": { "active": "Active", "inactive": "Inactive" },
+    "countries": { "DE": "Germany", "ES": "Spain", "FR": "France", "GB": "United Kingdom", "PT": "Portugal" },
+    "selection": { "none": "Select a customer to edit or delete.", "one": "1 customer selected", "many": "{count} customers selected" },
+    "summary": { "customerCount": "{count} customers" },
+    "states": { "loadingTitle": "Loading customers", "loadingBody": "Preparing the customer list.", "emptyTitle": "No customers found", "emptyBody": "Try another search or create a customer." },
+    "form": {
+      "createTitle": "New customer", "editTitle": "Edit customer", "description": "Maintain the customer's identification and primary contact details.",
+      "sections": { "business": "Business information", "contact": "Primary contact" },
+      "fields": { "code": "Customer code", "name": "Customer name", "type": "Customer type", "vatNumber": "VAT or identification number", "contactName": "Contact name", "email": "Email", "phone": "Phone", "town": "Town or city", "country": "Country", "status": "Status" },
+      "validation": { "summaryTitle": "Check the customer details", "summaryBody": "Correct the highlighted fields before saving.", "required": "This field is required.", "email": "Enter a valid email address.", "duplicateCode": "Use a unique customer code." }
+    },
+    "deleteDialog": { "singleTitle": "Delete {customerName}?", "multipleTitle": "Delete {count} customers?", "singleBody": "This removes {customerName} from this prototype. This action cannot be undone.", "multipleBody": "This removes the selected customer records from this prototype. This action cannot be undone.", "confirm": "Delete", "cancel": "Cancel" },
+    "feedback": { "created": "Customer created.", "updated": "Customer updated.", "deletedSingle": "Customer deleted.", "deletedMultiple": "{count} customers deleted.", "dismiss": "Dismiss notification" },
+    "grid": { "ariaLabel": "Customer list" }
+  },
   "navigation": {
     "Dashboard": "Dashboard", "Sales": "Sales", "Sales quotes": "Sales quotes", "Sales orders": "Sales orders", "Sales delivery notes": "Sales delivery notes", "Sales invoices": "Sales invoices", "Recurring invoices": "Recurring invoices", "Purchases": "Purchases", "Purchase orders": "Purchase orders", "Purchase invoices": "Purchase invoices", "Contacts": "Contacts", "Customers": "Customers", "Suppliers": "Suppliers", "Employees": "Employees", "Products and services": "Products and services", "Items": "Items", "Price lists": "Price lists", "Discount groups": "Discount groups", "Banking": "Banking", "Bank movements": "Bank movements", "Reports": "Reports", "Settings": "Settings", "File upload": "File upload", "Project calculator": "Project calculator", "Financial documents": "Financial documents", "Year end meeting": "Year end meeting", "AI Advisor": "AI Advisor", "Manage subscription": "Manage subscription", "Copilot": "Copilot", "Chat": "Chat", "Insights": "Insights", "Copilot settings": "Copilot settings", "Help": "Help", "Expand": "Expand", "Collapse": "Collapse", "Close menu": "Close menu", "Close AI Advisor": "Close AI Advisor"
   },

@@ -11,6 +11,30 @@
       "Portuguese": "Português"
     }
   },
+  "customerManagement": {
+    "title": "Clientes",
+    "description": "Faça a gestão da identificação, dos contactos e do estado das contas dos clientes.",
+    "details": { "title": "Dados do cliente" },
+    "actions": { "create": "Novo cliente", "edit": "Editar seleção", "delete": "Eliminar seleção", "save": "Guardar cliente", "saveChanges": "Guardar alterações", "cancel": "Cancelar" },
+    "search": { "label": "Pesquisar clientes", "placeholder": "Pesquisar por nome, código, contacto ou e-mail" },
+    "filters": { "status": "Estado", "allStatuses": "Todos os estados" },
+    "columns": { "code": "Código de cliente", "name": "Cliente", "type": "Tipo de cliente", "country": "País", "contact": "Contacto principal", "email": "E-mail", "status": "Estado", "balanceDue": "Saldo em dívida", "lastActivity": "Última atividade" },
+    "types": { "business": "Empresa", "individual": "Particular" },
+    "statuses": { "active": "Ativo", "inactive": "Inativo" },
+    "countries": { "DE": "Alemanha", "ES": "Espanha", "FR": "França", "GB": "Reino Unido", "PT": "Portugal" },
+    "selection": { "none": "Selecione um cliente para editar ou eliminar.", "one": "1 cliente selecionado", "many": "{count} clientes selecionados" },
+    "summary": { "customerCount": "{count} clientes" },
+    "states": { "loadingTitle": "A carregar clientes", "loadingBody": "A preparar a lista de clientes.", "emptyTitle": "Não foram encontrados clientes", "emptyBody": "Tente outra pesquisa ou crie um cliente." },
+    "form": {
+      "createTitle": "Novo cliente", "editTitle": "Editar cliente", "description": "Mantenha a identificação e os dados do contacto principal do cliente.",
+      "sections": { "business": "Informações da empresa", "contact": "Contacto principal" },
+      "fields": { "code": "Código de cliente", "name": "Nome do cliente", "type": "Tipo de cliente", "vatNumber": "N.º de IVA ou de identificação", "contactName": "Nome do contacto", "email": "E-mail", "phone": "Telefone", "town": "Localidade", "country": "País", "status": "Estado" },
+      "validation": { "summaryTitle": "Verifique os dados do cliente", "summaryBody": "Corrija os campos assinalados antes de guardar.", "required": "Este campo é obrigatório.", "email": "Introduza um endereço de e-mail válido.", "duplicateCode": "Utilize um código de cliente único." }
+    },
+    "deleteDialog": { "singleTitle": "Eliminar {customerName}?", "multipleTitle": "Eliminar {count} clientes?", "singleBody": "Esta ação remove {customerName} deste protótipo e não pode ser anulada.", "multipleBody": "Esta ação remove os registos de clientes selecionados deste protótipo e não pode ser anulada.", "confirm": "Eliminar", "cancel": "Cancelar" },
+    "feedback": { "created": "Cliente criado.", "updated": "Cliente atualizado.", "deletedSingle": "Cliente eliminado.", "deletedMultiple": "Foram eliminados {count} clientes.", "dismiss": "Fechar notificação" },
+    "grid": { "ariaLabel": "Lista de clientes" }
+  },
   "navigation": {
     "Dashboard": "Painel", "Sales": "Vendas", "Sales quotes": "Orçamentos de venda", "Sales orders": "Encomendas de venda", "Sales delivery notes": "Guias de remessa", "Sales invoices": "Faturas de venda", "Recurring invoices": "Faturas recorrentes", "Purchases": "Compras", "Purchase orders": "Encomendas de compra", "Purchase invoices": "Faturas de compra", "Contacts": "Contactos", "Customers": "Clientes", "Suppliers": "Fornecedores", "Employees": "Colaboradores", "Products and services": "Produtos e serviços", "Items": "Artigos", "Price lists": "Listas de preços", "Discount groups": "Grupos de desconto", "Banking": "Banca", "Bank movements": "Movimentos bancários", "Reports": "Relatórios", "Settings": "Definições", "File upload": "Carregamento de ficheiros", "Project calculator": "Calculadora de projetos", "Financial documents": "Documentos financeiros", "Year end meeting": "Reunião de fecho do exercício", "AI Advisor": "Assistente de IA", "Manage subscription": "Gerir subscrição", "Copilot": "Copilot", "Chat": "Chat", "Insights": "Informações", "Copilot settings": "Definições do Copilot", "Help": "Ajuda", "Expand": "Expandir", "Collapse": "Recolher", "Close menu": "Fechar menu", "Close AI Advisor": "Fechar Assistente de IA"
   },

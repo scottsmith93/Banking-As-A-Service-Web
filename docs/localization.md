@@ -40,6 +40,24 @@ The locale catalogs are:
 English is the default language. A localized requirement is incomplete until
 the same structure, content intent, and placeholders exist in all five files.
 
+## Frontend reference catalogues
+
+The repo-scoped `sage-frontend-reference` skill contains larger product
+catalogues under `.agents/skills/sage-frontend-reference/references/catalogues/`.
+Use their hierarchy as optional evidence for existing page groupings, fields,
+actions, states, and terminology when building related screens.
+
+These reference files are deliberately separate from `src/locales/*`. Do not
+import them into the application, use them as a fallback, or make their French
+catalogue the runtime source of truth. When reference copy is adopted, add it to
+the normal semantic feature namespace in all five runtime catalogues; English
+remains the source and default language.
+
+Future reference files must use the `frontend_<locale>.json` naming convention
+documented by the skill and remain structurally identical. Run
+`npm run validate:reference-catalogues` after adding or replacing one. The normal
+`npm run validate` workflow includes this structural check.
+
 Every user-facing string in an in-scope page must come from a locale catalog.
 Do not add language ternaries, hardcoded headings, button labels,
 descriptions, empty states, status text, aria labels, placeholders, chart

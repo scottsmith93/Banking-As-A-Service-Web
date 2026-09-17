@@ -76,6 +76,7 @@ Most users of this tool are designers who are new to code and prototyping. The a
 - Store complete, natural sentences in the locale catalogues. Do not use a variable to replace a translatable word or grammatical fragment inside a sentence; named placeholders are only for genuinely dynamic data such as names, counts, dates, and amounts.
 - Do not build user-facing copy by concatenating translated strings or sentence fragments. Add a complete catalogue entry for each message so translators can change word order and grammar safely.
 - Keep monetary values numeric in data and format EUR with `Intl.NumberFormat` using the active locale and `currency: "EUR"`. Do not hardcode the `€` position, decimal separator, thousands separator, or spacing; these differ across the five supported locales.
+- When an established Sage product flow could inform a new screen, use the repo-scoped `sage-frontend-reference` skill. Its JSON catalogues are optional product and content references, not runtime translation files or mandatory page schemas.
 
 ---
 

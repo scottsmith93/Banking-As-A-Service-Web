@@ -75,7 +75,7 @@ to prefer Carbon tables, how localization works, and how to add future modules.
 | `src/context/*` | Cross-page React context (nav mode, subscription state, stock alerts) |
 | `AGENTS.md` | Conventions and implementation rules for this codebase |
 | `docs/` | Reference docs for Carbon, AG Grid, design tokens, localization, Impeccable, UI Fork, and prototype workflow |
-| `.agents/skills/*` | Repo-scoped Codex skills for prototype implementation, localization, tokens, design quality, and UI variation |
+| `.agents/skills/*` | Repo-scoped Codex skills for prototype implementation, localization, frontend product references, tokens, design quality, and UI variation |
 
 ## Notes
 
@@ -91,6 +91,10 @@ English, Spanish, French, German, and Portuguese content is maintained in
 `react-i18next`; read [`docs/localization.md`](docs/localization.md) for the
 governing rules and [`src/locales/README.md`](src/locales/README.md) for the
 file-level workflow.
+
+The `sage-frontend-reference` skill keeps larger product catalogues outside the
+application bundle. Their hierarchy can inform related screens and terminology,
+but it does not replace the five runtime catalogues or dictate page structure.
 
 Validate both catalogues with `npm run validate:locales`. The same validation runs
 automatically before every production build.

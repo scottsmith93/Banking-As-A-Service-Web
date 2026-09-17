@@ -17,6 +17,9 @@ Before implementation:
 - Read `docs/design-tokens.md` before adding custom styling.
 - If the work adds or changes user-facing copy, also read
   `docs/localization.md` and declare the prototype's localization scope.
+- When an established Sage product flow could inform the screen, also use
+  `sage-frontend-reference` to inspect the relevant JSON branches without
+  treating their hierarchy as a mandatory UI schema.
 
 Prefer existing composed patterns in `src/components` before creating another.
 Keep route-level composition in `src/pages`, reusable UI in `src/components`, and

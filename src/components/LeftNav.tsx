@@ -11,7 +11,7 @@ import { currentUser } from "../data/currentUser";
 import { ROUTES } from "../routes";
 import { getLocale, SUPPORTED_LANGUAGES } from "../locales";
 
-type FooterFlyoutId = "profile" | "copilot" | "help" | null;
+type FooterFlyoutId = "profile" | "language" | "copilot" | "help" | null;
 
 type FlyoutAnchor = {
   left: number;
@@ -282,6 +282,13 @@ export default function LeftNav() {
           [
             { key: "my-profile", label: "Manage subscription", onClick: () => go(ROUTES.myProfile) },
           ],
+        ],
+      };
+    }
+
+    if (footerFlyout === "language") {
+      return {
+        groups: [
           SUPPORTED_LANGUAGES.map(({ id }) => ({
             key: `language-${id.toLowerCase()}`,
             label: localizationCopy.languages[id],
@@ -433,6 +440,19 @@ export default function LeftNav() {
         <button
           type="button"
           className="leftNav__item"
+          aria-label={localizationCopy.changeLanguage}
+          aria-haspopup="menu"
+          aria-expanded={footerFlyout === "language"}
+          onClick={(e) => toggleFooterFlyout("language", e.currentTarget)}
+        >
+          <Icon type="worldwide_location" className="leftNav__itemIcon" aria-hidden />
+          <span className="leftNav__itemLabel">{localizationCopy.language}</span>
+          <Icon type="caret_right" className="leftNav__itemCaret" aria-hidden />
+        </button>
+
+        <button
+          type="button"
+          className="leftNav__item"
           aria-haspopup="menu"
           aria-expanded={footerFlyout === "copilot"}
           onClick={(e) => toggleFooterFlyout("copilot", e.currentTarget)}
@@ -494,7 +514,8 @@ export default function LeftNav() {
                       key={link.key}
                       type="button"
                       className="leftNav__flyoutItem"
-                      aria-pressed={link.selected}
+                      role={link.selected === undefined ? "menuitem" : "menuitemradio"}
+                      aria-checked={link.selected}
                       onClick={link.onClick}
                     >
                       {link.key.startsWith("language-")

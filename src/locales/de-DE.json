@@ -1,5 +1,7 @@
 {
   "localization": {
+    "language": "Sprache",
+    "changeLanguage": "Sprache ändern",
     "selected": "Ausgewählt",
     "languages": {
       "English": "Englisch",

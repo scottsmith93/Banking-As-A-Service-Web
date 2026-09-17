@@ -753,10 +753,21 @@ body {
 
 .leftNav__primaryCaret {
   position: absolute;
+  top: 50%;
   right: var(--spacing300);
-  width: var(--spacing200) !important;
-  height: var(--spacing200) !important;
-  color: var(--mode-color-generic-txt-inverse-moderate) !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing200);
+  height: var(--spacing200);
+  color: var(--mode-color-generic-txt-inverse-moderate);
+  transform: translateY(-50%);
+}
+
+.leftNav__primaryCaret [data-component="icon"] {
+  width: 100% !important;
+  height: 100% !important;
+  color: currentColor !important;
   font-size: var(--fontSizes200) !important;
 }
 

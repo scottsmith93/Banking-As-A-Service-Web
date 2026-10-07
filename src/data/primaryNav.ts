@@ -37,7 +37,6 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
       { label: "Sales delivery notes", path: ROUTES.sales.deliveryNotes },
       { label: "Sales invoices", path: ROUTES.sales.invoices },
       { label: "Recurring invoices", path: ROUTES.sales.recurringInvoices },
-      { label: "Sales receipts", path: ROUTES.sales.receipts },
     ],
     isActive: (pathname) => pathname.startsWith("/sales"),
   },
@@ -71,15 +70,13 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
     hasSubmenu: true,
     submenu: [
       {
-        label: "Products and services",
+        label: "Items",
         path: ROUTES.productsAndServices.catalog,
       },
+      { label: "Price lists", path: ROUTES.productsAndServices.priceLists },
       {
-        label: "Prices and discounts",
-        children: [
-          { label: "Price lists", path: ROUTES.productsAndServices.priceLists },
-          { label: "Discount groups", path: ROUTES.productsAndServices.discountGroups },
-        ],
+        label: "Discount groups",
+        path: ROUTES.productsAndServices.discountGroups,
       },
     ],
     isActive: (pathname) => pathname.startsWith("/products-and-services"),
@@ -104,17 +101,7 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
       { label: "Journal entries", path: ROUTES.accounting.journalEntries },
       {
         label: "Account matching",
-        children: [
-          { label: "By third party", path: ROUTES.accounting.matchingThirdParty },
-          { label: "By ledger accounts", path: ROUTES.accounting.matchingLedgerAccounts },
-        ],
-      },
-      {
-        label: "Closing",
-        children: [
-          { label: "Year-end closing", path: ROUTES.accounting.closingYearEnd },
-          { label: "Month-end closing", path: ROUTES.accounting.closingMonthEnd },
-        ],
+        children: [{ label: "By third party" }, { label: "By ledger accounts" }],
       },
       { label: "Fixed assets", path: ROUTES.accounting.fixedAssets },
       {
@@ -126,11 +113,11 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   },
   {
     id: "compliance",
-    label: "Tax returns",
+    label: "Compliance",
     iconType: "euro",
-    path: ROUTES.compliance.taxReturns,
-    hasSubmenu: false,
-    isActive: (pathname) => pathname === ROUTES.compliance.taxReturns,
+    hasSubmenu: true,
+    submenu: [{ label: "Tax returns", path: ROUTES.compliance.taxReturns }],
+    isActive: (pathname) => pathname.startsWith("/compliance"),
   },
   {
     id: "reports",
@@ -148,12 +135,4 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
     hasSubmenu: false,
     isActive: (pathname) => pathname === ROUTES.settings,
   },
-];
-
-export const ADDITIONAL_NAV_ITEMS: PrimaryNavItem[] = [
-  { id: "file-upload", label: "File upload", iconType: "upload", path: ROUTES.fileUpload, hasSubmenu: false, isActive: (pathname) => pathname === ROUTES.fileUpload },
-  { id: "projects", label: "Project calculator", iconType: "percentage_boxed", path: ROUTES.projects, hasSubmenu: false, isActive: (pathname) => pathname === ROUTES.projects },
-  { id: "financial-documents", label: "Financial documents", iconType: "document_vertical_lines", path: ROUTES.financialDocuments, hasSubmenu: false, isActive: (pathname) => pathname === ROUTES.financialDocuments },
-  { id: "year-end-meeting", label: "Year end meeting", iconType: "calendar", path: ROUTES.yearEndMeeting, hasSubmenu: false, isActive: (pathname) => pathname === ROUTES.yearEndMeeting },
-  { id: "ai-advisor", label: "AI Advisor", iconType: "lightbulb_on", path: ROUTES.aiAdvisor, hasSubmenu: false, isActive: (pathname) => pathname === ROUTES.aiAdvisor },
 ];

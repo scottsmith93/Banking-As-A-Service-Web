@@ -2,9 +2,6 @@ import Box from "carbon-react/lib/components/box";
 import Icon from "carbon-react/lib/components/icon";
 import Typography from "carbon-react/lib/components/typography";
 import { useLanguage } from "../context/useLanguage";
-import { getTranslation } from "../locales";
-import { translateNavLabel } from "../components/navigation/navTranslation";
-import { interpolate } from "../utils/interpolate";
 
 type PlaceholderPageProps = {
   title: string;
@@ -13,23 +10,17 @@ type PlaceholderPageProps = {
 
 export default function PlaceholderPage({ title, section }: PlaceholderPageProps) {
   const { language } = useLanguage();
-  const localizedTitle = translateNavLabel(title, language);
-  const localizedSection = section ? translateNavLabel(section, language) : undefined;
-  const placeholderTitle = getTranslation(language, "placeholder.title");
-  const placeholderMessage = interpolate(getTranslation(language, "placeholder.message"), {
-    screen: localizedTitle,
-  });
-
+  const isFrench = language === "French";
   return (
     <Box className="pageContent placeholderPage">
       <Box className="placeholderPage__intro">
-        {localizedSection && (
+        {section && (
           <Typography variant="small" as="p" className="placeholderPage__eyebrow">
-            {localizedSection}
+            {isFrench ? ({ Business: "Entreprise", Sales: "Ventes", Purchases: "Achats", Inventory: "Stock", Manufacturing: "Fabrication", Accounting: "Comptabilité", Compliance: "Conformité" }[section] ?? section) : section}
           </Typography>
         )}
         <Typography variant="h1" as="h1" className="placeholderPage__title">
-          {localizedTitle}
+          {title}
         </Typography>
       </Box>
 
@@ -38,10 +29,10 @@ export default function PlaceholderPage({ title, section }: PlaceholderPageProps
           <Icon type="placeholder" />
         </Box>
         <Typography variant="p" as="p" className="placeholderPage__panelTitle">
-          {placeholderTitle}
+          {isFrench ? "Écran en cours de création" : "Screen not built yet"}
         </Typography>
         <Typography variant="p" as="p" className="placeholderPage__panelMessage">
-          {placeholderMessage}
+          {isFrench ? `Ceci est un espace réservé pour l’écran « ${title} » de la navigation.` : `This is a placeholder for the "${title}" screen in the Operations navigation.`}
         </Typography>
       </Box>
     </Box>

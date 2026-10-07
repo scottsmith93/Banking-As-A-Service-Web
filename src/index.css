@@ -621,313 +621,219 @@ body {
   background: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* ─── Left navigation ────────────────────────────────────── */
+/* ─── Left nav — Figma "Vision for Active" ──────────────────
+   node-id 7009:2752, file U9axAmURqqtBrVs8XAnYYE. Flat single
+   column (no rail/content split): logo, flat item list with
+   caret-triggered flyouts for items that have a submenu, footer
+   with profile/Copilot/Help/Collapse. Built from scratch to match
+   the Figma spec — see LeftNav.tsx. */
 
 .leftNav {
   position: sticky;
   top: 0;
-  z-index: 110;
-  display: flex;
   align-self: flex-start;
-  flex-direction: column;
-  flex-shrink: 0;
-  width: 248px;
   height: 100vh;
+  width: 216px;
+  flex-shrink: 0;
   box-sizing: border-box;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
   overflow: hidden;
-  background: var(--mode-color-generic-bg-inverse-nought);
-  color: var(--mode-color-generic-txt-inverse-severe);
 }
 
 .leftNav--collapsed {
-  width: 80px;
+  width: 64px;
 }
 
-.leftNav__brand {
-  display: flex;
+.leftNav__logo {
   flex-shrink: 0;
+  display: flex;
   align-items: center;
-  height: 72px;
-  padding: 0 var(--spacing300);
+  padding: 8px 16px;
   box-sizing: border-box;
 }
 
-.leftNav__brandLink {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing200);
-  color: var(--mode-color-generic-txt-inverse-severe);
-  font-size: var(--fontSizes400);
-  font-weight: var(--fontWeights700);
-  text-decoration: none;
+.leftNav--collapsed .leftNav__logo {
+  justify-content: center;
+  padding: 8px;
 }
 
-.leftNav__brandLink:focus-visible,
-.leftNav__primaryItem:focus-visible,
-.leftNav__panelItem:focus-visible,
-.leftNav__footerItem:focus-visible,
-.leftNav__flyoutItem:focus-visible {
-  outline: var(--borderWidth400) solid var(--colorsSemanticFocus500);
-  outline-offset: calc(var(--borderWidth400) * -1);
+.leftNav__logoImage {
+  position: relative;
 }
 
-.leftNav__brandLogo {
-  width: 80px;
-  height: auto;
-}
-
-.leftNav__brandDivider {
-  width: var(--borderWidth100);
-  height: var(--spacing400);
-  background: var(--mode-color-generic-bg-inverse-soft);
-}
-
-.leftNav__primaryList,
-.leftNav__panelList,
-.leftNav__panelSublist {
+.leftNav__list {
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
-}
-
-.leftNav__primaryList {
-  display: flex;
   flex: 1;
-  flex-direction: column;
   min-height: 0;
-  overflow-x: hidden;
   overflow-y: auto;
-  padding: var(--spacing100) 0;
-  background: var(--colorsUtilityYin090);
-}
-
-.leftNav__primaryItem {
-  position: relative;
+  overflow-x: hidden;
   display: flex;
-  align-items: center;
-  justify-content: center;
   flex-direction: column;
-  gap: var(--spacing100);
+  gap: 4px;
+}
+
+.leftNav__itemWrap {
+  position: relative;
   width: 100%;
-  min-height: 88px;
-  padding: var(--spacing150) var(--spacing400);
-  border: 0;
-  box-sizing: border-box;
-  background: transparent;
-  color: var(--mode-color-generic-txt-inverse-severe);
-  font-family: inherit;
-  font-size: var(--fontSizes300);
-  line-height: var(--lineHeights400);
-  text-align: center;
-  text-decoration: none;
-  cursor: pointer;
 }
 
-.leftNav__primaryItem:hover {
-  background: var(--mode-color-generic-bg-inverse-delicate);
+.leftNav__sublist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
 }
 
-.leftNav__primaryItem--active::before {
-  position: absolute;
-  top: var(--spacing150);
-  bottom: var(--spacing150);
-  left: var(--spacing100);
-  width: var(--borderWidth400);
-  border-radius: var(--borderRadiusCircle);
-  background: var(--colorsActionMajor350);
-  content: "";
-}
-
-.leftNav__primaryItem--open {
-  border-radius: var(--borderRadius200);
-  box-shadow: inset 0 0 0 var(--borderWidth600) var(--colorsSemanticFocus500);
-}
-
-.leftNav__primaryIcon {
-  width: var(--spacing400) !important;
-  height: var(--spacing400) !important;
-  flex-shrink: 0;
-  color: currentColor !important;
-  font-size: var(--fontSizes700) !important;
-}
-
-.leftNav__primaryCaret {
-  position: absolute;
-  right: var(--spacing300);
-  width: var(--spacing200) !important;
-  height: var(--spacing200) !important;
-  color: var(--mode-color-generic-txt-inverse-moderate) !important;
-  font-size: var(--fontSizes200) !important;
-}
-
-.leftNav__primaryLabel {
-  max-width: 18ch;
-  overflow-wrap: break-word;
-}
-
-.leftNav--collapsed .leftNav__brand {
-  justify-content: center;
-  padding: 0 var(--spacing100);
-}
-
-.leftNav--collapsed .leftNav__brandLogo {
-  width: 48px;
-}
-
-.leftNav--collapsed .leftNav__brandDivider,
-.leftNav--collapsed .leftNav__brandProduct,
-.leftNav--collapsed .leftNav__primaryLabel,
-.leftNav--collapsed .leftNav__primaryCaret {
+.leftNav--collapsed .leftNav__sublist {
   display: none;
 }
 
-.leftNav--collapsed .leftNav__primaryItem {
-  min-height: 64px;
-  padding: var(--spacing200);
-}
-
-.leftNav__sectionPanel {
-  position: fixed;
-  top: 72px;
-  bottom: 0;
-  left: 248px;
-  z-index: 115;
-  width: 360px;
+.leftNav__item {
+  width: 100%;
+  min-height: 33px;
   box-sizing: border-box;
-  overflow-y: auto;
-  padding: var(--spacing200) 0;
-  background: var(--colorsUtilityYin090);
-  box-shadow: var(--spacing100) 0 var(--spacing300) var(--colorsUtilityYin030);
-}
-
-.leftNav--collapsed .leftNav__sectionPanel {
-  left: 80px;
-}
-
-.leftNav__panelItem {
-  position: relative;
   display: flex;
   align-items: center;
-  gap: var(--spacing200);
-  width: 100%;
-  min-height: 64px;
-  padding: var(--spacing150) var(--spacing400);
+  gap: 8px;
+  padding: 6px 16px 6px 24px;
   border: 0;
-  box-sizing: border-box;
   background: transparent;
-  color: var(--mode-color-generic-txt-inverse-severe);
+  color: rgba(255, 255, 255, 0.95);
   font-family: inherit;
-  font-size: var(--fontSizes300);
-  line-height: var(--lineHeights500);
+  font-size: 14px;
+  line-height: 1.5;
   text-align: left;
-  text-decoration: none;
   cursor: pointer;
+  position: relative;
 }
 
-.leftNav__panelItem:hover {
-  background: var(--mode-color-generic-bg-inverse-delicate);
+/* Must come after the .leftNav__item padding shorthand above, otherwise
+   its own padding-left would win the cascade and these would never apply. */
+.leftNav__item--depth1 {
+  padding-left: 44px;
 }
 
-.leftNav__panelItem--active::before {
-  position: absolute;
-  top: var(--spacing150);
-  bottom: var(--spacing150);
-  left: var(--spacing100);
-  width: var(--borderWidth400);
-  border-radius: var(--borderRadiusCircle);
-  background: var(--colorsActionMajor350);
+.leftNav__item--depth2 {
+  padding-left: 60px;
+}
+
+.leftNav--collapsed .leftNav__item {
+  /* Center the icon column in the 64px rail while keeping row height stable. */
+  justify-content: center;
+  padding: 6px 8px;
+}
+
+/* Hover fills the row with a rounded green pill (inset 8px each side),
+   matching the Figma "Vision for Active" hover state — not a translucent
+   overlay. Uses ::after with a negative z-index so it sits behind the
+   icon/label/caret (::before is reserved for the active indicator). */
+.leftNav__item:hover::after {
   content: "";
+  position: absolute;
+  left: 8px;
+  right: 8px;
+  top: 0;
+  bottom: 0;
+  border-radius: 8px;
+  background: #007e45;
+  z-index: -1;
 }
 
-.leftNav__panelItem[aria-expanded="true"] {
-  border-radius: var(--borderRadius200);
-  box-shadow: inset 0 0 0 var(--borderWidth600) var(--colorsSemanticFocus500);
+.leftNav__item--active::before {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  border-radius: 8px;
+  background: #007e45;
 }
 
-.leftNav__panelItem--depth1 {
-  padding-left: calc(var(--spacing500) + var(--spacing300));
-}
-
-.leftNav__panelItem--depth2 {
-  padding-left: calc(var(--spacing500) + var(--spacing500));
-}
-
-.leftNav__panelCaret {
-  width: var(--spacing200) !important;
-  height: var(--spacing200) !important;
+.leftNav__itemIcon {
+  width: 20px !important;
+  height: 20px !important;
+  font-size: 20px !important;
   flex-shrink: 0;
-  color: var(--mode-color-generic-txt-inverse-moderate) !important;
-  font-size: var(--fontSizes200) !important;
+  color: currentColor !important;
 }
 
-.leftNav__panelCaret--expanded {
+.leftNav__itemLabel {
+  flex: 1;
+  min-width: 0;
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.leftNav__upgradePill {
+  flex-shrink: 0;
+  display: inline-flex;
+}
+
+.leftNav__upgradePill > [data-component="pill"] {
+  border-color: var(--colorsLogo, #00d639) !important;
+  background: transparent !important;
+  color: var(--colorsUtilityYang100, #ffffff) !important;
+  letter-spacing: 0.4px !important;
+}
+
+.leftNav--collapsed .leftNav__itemLabel,
+.leftNav--collapsed .leftNav__itemCaret,
+.leftNav--collapsed .leftNav__itemBadge,
+.leftNav--collapsed .leftNav__upgradePill {
+  display: none;
+}
+
+/* "NEW" badge (Figma node 7172:14661) — flags Operations-only modules
+   (Inventory, Manufacturing) that just unlocked via the subscription flow. */
+.leftNav__itemBadge {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 16px;
+  padding: 0 5px;
+  border-radius: 999px;
+  background: var(--colorsLogo, #00d639);
+  color: #000000;
+  font-family: inherit;
+  font-size: 8px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.2px;
+  white-space: nowrap;
+}
+
+.leftNav__itemCaret {
+  width: 12px !important;
+  height: 12px !important;
+  font-size: 12px !important;
+  flex-shrink: 0;
+  color: rgba(255, 255, 255, 0.6) !important;
+  transition: transform 0.15s ease;
+}
+
+/* Expanded sections rotate the caret from pointing right to pointing
+   down, matching the Figma "Vision for Active" accordion behaviour. */
+.leftNav__itemCaret--expanded {
   transform: rotate(90deg);
 }
 
-@media (max-width: 900px) {
-  .leftNav {
-    width: 184px;
-  }
-
-  .leftNav--collapsed {
-    width: 80px;
-  }
-
-  .leftNav__sectionPanel {
-    left: 184px;
-    width: calc(100vw - 184px);
-  }
-
-  .leftNav--collapsed .leftNav__sectionPanel {
-    left: 80px;
-    width: calc(100vw - 80px);
-  }
-
-  .leftNav__primaryItem,
-  .leftNav__panelItem {
-    font-size: var(--fontSizes200);
-  }
-}
-
-/* ─── Navigation footer and flyouts ──────────────────────── */
-
-.leftNav__footer {
-  display: flex;
-  flex-shrink: 0;
-  flex-direction: column;
-  gap: var(--spacing050);
-  padding-bottom: var(--spacing200);
-  background: var(--colorsUtilityYin090);
-}
-
-.leftNav__footerItem {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: var(--spacing150);
-  width: 100%;
-  min-height: 44px;
-  padding: var(--spacing100) var(--spacing300);
-  border: 0;
-  box-sizing: border-box;
-  background: transparent;
-  color: var(--mode-color-generic-txt-inverse-severe);
-  font-family: inherit;
-  font-size: var(--fontSizes100);
-  text-align: left;
-  cursor: pointer;
-}
-
-.leftNav__footerItem:hover {
-  background: var(--mode-color-generic-bg-inverse-delicate);
-}
-
-.leftNav__footerItem > span:not(.leftNav__profileAvatar):not(.leftNav__profileText) {
-  flex: 1;
-}
-
+/* Current-user profile trigger — avatar (with online status dot) + name
+   + role, replacing the old company-name label. */
 .leftNav__profile {
-  min-height: 56px;
+  /* The text stack is taller than the avatar, so keep this trigger's
+     footprint constant when its text is hidden in the collapsed rail. */
+  height: 55px;
+  min-height: 55px;
+  padding-top: 8px;
+  padding-bottom: 8px;
 }
 
 .leftNav__profileAvatar {
@@ -938,14 +844,14 @@ body {
 
 .leftNav__profileStatusDot {
   position: absolute;
-  right: calc(var(--borderWidth200) * -1);
-  bottom: calc(var(--borderWidth200) * -1);
-  width: var(--spacing150);
-  height: var(--spacing150);
-  border: var(--borderWidth200) solid var(--mode-color-generic-bg-inverse-nought);
-  border-radius: var(--borderRadiusCircle);
+  right: -2px;
+  bottom: -2px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--colorsLogo, #00d639);
+  border: 2px solid #000000;
   box-sizing: content-box;
-  background: var(--colorsActionMajor350);
 }
 
 .leftNav__profileText {
@@ -956,54 +862,48 @@ body {
 }
 
 .leftNav__profileName {
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.95);
   overflow: hidden;
-  white-space: nowrap;
-  color: var(--mode-color-generic-txt-inverse-severe);
-  font-size: var(--fontSizes100);
-  font-weight: var(--fontWeights700);
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .leftNav__profileRole {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.65);
   overflow: hidden;
-  white-space: nowrap;
-  color: var(--mode-color-generic-txt-inverse-moderate);
-  font-size: var(--fontSizes025);
   text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.leftNav__divider {
-  height: var(--borderWidth100);
-  margin: var(--spacing100) 0;
-  background: var(--mode-color-generic-txt-inverse-delicate);
-}
-
-.leftNav__footerIcon,
-.leftNav__footerCaret {
-  width: var(--spacing250) !important;
-  height: var(--spacing250) !important;
-  flex-shrink: 0;
-  color: currentColor !important;
-  font-size: var(--fontSizes400) !important;
-}
-
-.leftNav__footerCaret {
-  width: var(--spacing150) !important;
-  height: var(--spacing150) !important;
-  color: var(--mode-color-generic-txt-inverse-moderate) !important;
-  font-size: var(--fontSizes025) !important;
-}
-
-.leftNav--collapsed .leftNav__profileText,
-.leftNav--collapsed .leftNav__footerItem > span:not(.leftNav__profileAvatar),
-.leftNav--collapsed .leftNav__footerCaret {
+.leftNav--collapsed .leftNav__profileText {
   display: none;
 }
 
-.leftNav--collapsed .leftNav__footerItem {
-  justify-content: center;
-  padding: var(--spacing100);
+/* ─── Footer ─────────────────────────────────────────────── */
+
+.leftNav__footer {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding-bottom: 16px;
 }
+
+.leftNav__divider {
+  height: 1px;
+  margin: 8px 0;
+  background: var(--mode-color-generic-txt-inverse-delicate);
+}
+
+/* ─── Flyout (caret-triggered submenu panel) ─────────────────
+   Rendered via a portal to document.body and positioned with an
+   inline `style` (fixed, from the trigger's bounding rect) — the
+   sidebar has overflow-y:auto, which per spec forces overflow-x to
+   clip too, so a panel absolutely positioned inside it would be cut
+   off instead of floating over the page. */
 
 .leftNav__flyoutBackdrop {
   position: fixed;
@@ -1017,21 +917,14 @@ body {
 }
 
 .leftNav__flyoutPanel {
-  position: fixed;
-  bottom: var(--spacing200);
-  left: 248px;
   z-index: 120;
   min-width: 220px;
   max-width: 280px;
-  padding: var(--spacing100) 0;
-  border: var(--borderWidth100) solid var(--mode-color-generic-bg-inverse-soft);
-  border-radius: var(--borderRadius100);
-  background: var(--colorsUtilityYin090);
-  box-shadow: var(--spacing100) var(--spacing100) var(--spacing300) var(--colorsUtilityYin030);
-}
-
-.leftNav__flyoutPanel--collapsed {
-  left: 80px;
+  border: 1px solid var(--mode-color-generic-bg-inverse-soft);
+  border-radius: 8px;
+  background: var(--colorsUtilityYin090, #1a1a1a);
+  padding: 6px 0;
+  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
 }
 
 .leftNav__flyoutItem {
@@ -1039,48 +932,136 @@ body {
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 40px;
+  min-height: 32px;
   box-sizing: border-box;
-  padding: 0 var(--spacing200);
+  padding: 0 16px;
   border: 0;
   background: transparent;
-  color: var(--mode-color-generic-txt-inverse-severe);
-  font-size: var(--fontSizes100);
-  line-height: var(--lineHeights500);
+  color: #ffffff;
+  font-size: 14px;
+  line-height: 20px;
   text-align: left;
   text-decoration: none;
   cursor: pointer;
 }
 
 .leftNav__flyoutItem:hover {
-  background: var(--mode-color-generic-bg-inverse-delicate);
+  background: rgba(255, 255, 255, 0.08);
 }
 
 .leftNav__flyoutSelectedPill {
   margin-left: auto;
-  padding: var(--spacing025) var(--spacing100);
-  border: var(--borderWidth100) solid var(--mode-color-generic-bg-inverse-soft);
-  border-radius: var(--borderRadius400);
-  color: var(--mode-color-generic-txt-inverse-severe);
-  font-size: var(--fontSizes010);
-  font-weight: var(--fontWeights500);
-  line-height: var(--lineHeights500);
+  padding: 2px 7px;
+  border: 1px solid rgba(255, 255, 255, 0.42);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 16px;
 }
 
 .leftNav__flyoutDivider {
-  height: var(--borderWidth100);
-  margin: var(--spacing050) 0;
+  height: 1px;
+  margin: 4px 0;
   background: var(--mode-color-generic-bg-inverse-delicate);
 }
 
-@media (max-width: 900px) {
-  .leftNav__flyoutPanel {
-    left: 184px;
-  }
+/* ─── AI Advisor panel ───────────────────────────────────── */
 
-  .leftNav__flyoutPanel--collapsed {
-    left: 80px;
-  }
+.aiAdvisor__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 599;
+  border: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.24);
+}
+
+.aiAdvisor__panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  z-index: 600;
+  display: flex;
+  flex-direction: column;
+  width: min(420px, 100vw);
+  height: 100vh;
+  box-sizing: border-box;
+  background: #ffffff;
+  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.18);
+}
+
+.aiAdvisor__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  padding: 28px 28px 24px;
+  background: #1f1f1f;
+  color: #ffffff;
+}
+
+.aiAdvisor__eyebrow {
+  margin: 0 0 6px;
+  color: #b8e986;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aiAdvisor__header h2,
+.aiAdvisor__body h3 {
+  margin: 0;
+}
+
+.aiAdvisor__header h2 {
+  font-size: 24px;
+  line-height: 32px;
+}
+
+.aiAdvisor__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  border: 1px solid rgba(255, 255, 255, 0.45);
+  border-radius: 4px;
+  background: transparent;
+  color: #ffffff;
+  cursor: pointer;
+}
+
+.aiAdvisor__body {
+  padding: 48px 28px;
+  color: #333333;
+}
+
+.aiAdvisor__icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 52px;
+  height: 52px;
+  margin-bottom: 24px;
+  border-radius: 50%;
+  background: #e7f5d5;
+  color: #007e45;
+  font-size: 24px;
+}
+
+.aiAdvisor__body h3 {
+  margin-bottom: 8px;
+  font-size: 20px;
+  line-height: 28px;
+}
+
+.aiAdvisor__body p {
+  max-width: 34ch;
+  margin: 0;
+  color: #5e5e5e;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 /* ─── Nav mode toggle (floating) ─────────────────────────── */

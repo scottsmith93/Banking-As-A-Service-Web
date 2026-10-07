@@ -105,12 +105,8 @@ const PLACEHOLDER_ROUTES: { path: string; title: string; section: string }[] = [
   { path: ROUTES.manufacturing.timeTracking, title: "Time tracking", section: "Manufacturing" },
   { path: ROUTES.manufacturing.inquiries, title: "Manufacturing inquiries", section: "Manufacturing" },
 
-  { path: ROUTES.accounting.matching, title: "Account matching", section: "Accounting" },
+  { path: ROUTES.accounting.matching, title: "Accounting matching", section: "Accounting" },
   { path: ROUTES.accounting.closing, title: "Closing", section: "Accounting" },
-  { path: ROUTES.accounting.matchingThirdParty, title: "By third party", section: "Account matching" },
-  { path: ROUTES.accounting.matchingLedgerAccounts, title: "By ledger accounts", section: "Account matching" },
-  { path: ROUTES.accounting.closingYearEnd, title: "Year-end closing", section: "Closing" },
-  { path: ROUTES.accounting.closingMonthEnd, title: "Month-end closing", section: "Closing" },
 
   { path: ROUTES.compliance.eReporting, title: "E-reportings", section: "Compliance" },
 ];

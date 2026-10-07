@@ -114,10 +114,6 @@ export const ROUTES = {
     fixedAssets: "/accounting/fixed-assets",
     fixedAssetCreate: "/accounting/fixed-assets/new",
     fixedAssetTransactions: "/accounting/fixed-asset-transactions",
-    matchingThirdParty: "/accounting/matching/by-third-party",
-    matchingLedgerAccounts: "/accounting/matching/by-ledger-accounts",
-    closingYearEnd: "/accounting/closing/year-end",
-    closingMonthEnd: "/accounting/closing/month-end",
   },
   compliance: {
     taxReturns: "/compliance/tax-returns",

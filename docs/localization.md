@@ -13,8 +13,6 @@ lists localization as a known limitation.
 
 The currently implemented localized scope is the Portal/Client journey:
 
-- Shared application navigation, nested menu links, footer actions, and template
-  destination states
 - Dashboard
 - File management
 - Project calculator
@@ -29,11 +27,6 @@ playground, and other operational/demo routes predate this localization scope.
 Do not treat their current hardcoded copy as a pattern for new work. When one of
 those routes is intentionally changed or promoted into an active prototype,
 declare its scope in its README and migrate the touched user-facing copy.
-
-Navigation labels are shared infrastructure and remain in scope even when the
-linked screen is not localized yet. New navigation requirements must add the
-same labels, hierarchy, accessibility copy, and placeholder destination copy to
-all five catalogues before the link is exposed.
 
 ## Source of truth
 

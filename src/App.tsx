@@ -7,6 +7,7 @@ import { LanguageProvider } from "./context/LanguageContext";
 import { SubscriptionProvider } from "./context/SubscriptionContext";
 import { StockAlertProvider } from "./context/StockAlertContext";
 import PlaceholderPage from "./pages/PlaceholderPage";
+import NavigationPlaceholderPage from "./pages/navigation/NavigationPlaceholderPage";
 import DesignPlaygroundPage from "./pages/DesignPlaygroundPage";
 import CarbonComponentsPage from "./pages/CarbonComponentsPage";
 import DashboardPage from "./pages/portal/DashboardPage";
@@ -110,6 +111,17 @@ const PLACEHOLDER_ROUTES: { path: string; title: string; section: string }[] = [
 
   { path: ROUTES.compliance.eReporting, title: "E-reportings", section: "Compliance" },
 ];
+
+const NAVIGATION_PLACEHOLDER_ROUTES = [
+  { path: ROUTES.accounting.matchingThirdParty, titleKey: "appNavigation.primary.thirdParties" },
+  { path: ROUTES.accounting.matchingLedgerAccounts, titleKey: "appNavigation.primary.ledgerAccounts" },
+  { path: ROUTES.accounting.yearEndClosing, titleKey: "appNavigation.primary.yearEndClosing" },
+  { path: ROUTES.accounting.periodicClosing, titleKey: "appNavigation.primary.periodicClosing" },
+  { path: ROUTES.accounting.fec, titleKey: "appNavigation.primary.fec" },
+  { path: ROUTES.accounting.provisionalFec, titleKey: "appNavigation.primary.provisionalFec" },
+  { path: ROUTES.notifications, titleKey: "appNavigation.footer.notifications" },
+  { path: ROUTES.tasks, titleKey: "appNavigation.footer.tasks" },
+] as const;
 
 export default function App() {
   return (
@@ -290,6 +302,9 @@ export default function App() {
             />
             {PLACEHOLDER_ROUTES.map(({ path, title, section }) => (
               <Route key={path} path={path} element={<PlaceholderPage title={title} section={section} />} />
+            ))}
+            {NAVIGATION_PLACEHOLDER_ROUTES.map(({ path, titleKey }) => (
+              <Route key={path} path={path} element={<NavigationPlaceholderPage titleKey={titleKey} />} />
             ))}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>

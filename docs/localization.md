@@ -13,6 +13,8 @@ lists localization as a known limitation.
 
 The currently implemented localized scope is the Portal/Client journey:
 
+- Shared application navigation, including nested links, collapsed tooltips,
+  footer actions, and blank template destinations
 - Dashboard
 - File management
 - Project calculator

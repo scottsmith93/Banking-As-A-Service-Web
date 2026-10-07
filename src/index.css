@@ -621,447 +621,385 @@ body {
   background: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* ─── Left nav — Figma "Vision for Active" ──────────────────
-   node-id 7009:2752, file U9axAmURqqtBrVs8XAnYYE. Flat single
-   column (no rail/content split): logo, flat item list with
-   caret-triggered flyouts for items that have a submenu, footer
-   with profile/Copilot/Help/Collapse. Built from scratch to match
-   the Figma spec — see LeftNav.tsx. */
+/* ─── Left navigation — reusable Sage Active template ───── */
 
 .leftNav {
+  --left-nav-width: 216px;
   position: sticky;
   top: 0;
-  align-self: flex-start;
-  height: 100vh;
-  width: 216px;
-  flex-shrink: 0;
-  box-sizing: border-box;
-  background: #000000;
+  z-index: 110;
   display: flex;
+  align-self: flex-start;
   flex-direction: column;
+  flex-shrink: 0;
+  width: var(--left-nav-width);
+  height: 100vh;
   overflow: hidden;
+  box-sizing: border-box;
+  border-bottom-right-radius: var(--borderRadius400);
+  background: var(--colorsUtilityYin100);
+  color: var(--colorsUtilityYang100);
 }
 
 .leftNav--collapsed {
+  --left-nav-width: 88px;
+}
+
+.leftNav__header {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  min-height: 72px;
+  padding: 0 var(--spacing150);
+  border-bottom: var(--borderWidth100) solid var(--mode-color-generic-bg-inverse-soft);
+  box-sizing: border-box;
+  gap: var(--spacing150);
+}
+
+.leftNav--collapsed .leftNav__header {
+  justify-content: flex-start;
+  padding: 0 var(--spacing100);
+}
+
+.leftNav__brandLink,
+.leftNav__companyButton,
+.leftNav__navItem,
+.leftNav__footerItem,
+.leftNav__companyMenuItem {
+  font-family: inherit;
+}
+
+.leftNav__brandLink {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  color: var(--colorsUtilityYang100);
+  text-decoration: none;
+}
+
+.leftNav__brandCrop {
+  display: block;
+  width: 64px;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.leftNav__brandImage {
+  display: block;
+  width: 64px;
+  height: auto;
+  max-width: none;
+}
+
+.leftNav--collapsed .leftNav__brandCrop {
+  width: var(--spacing200);
+}
+
+.leftNav--collapsed .leftNav__brandImage {
   width: 64px;
 }
 
-.leftNav__logo {
-  flex-shrink: 0;
+.leftNav__companyButton {
   display: flex;
   align-items: center;
-  padding: 8px 16px;
-  box-sizing: border-box;
+  min-width: 0;
+  flex: 1;
+  gap: var(--spacing100);
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--colorsUtilityYang100);
+  cursor: pointer;
 }
 
-.leftNav--collapsed .leftNav__logo {
+.leftNav__companyName {
+  min-width: 0;
+  overflow: hidden;
+  color: var(--colorsUtilityYang100);
+  font-size: var(--fontSizes200);
+  font-weight: var(--fontWeights700);
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.leftNav__companyCaret {
+  width: var(--spacing150) !important;
+  height: var(--spacing150) !important;
+  flex-shrink: 0;
+  color: currentColor !important;
+  font-size: var(--fontSizes025) !important;
+}
+
+.leftNav__companyAvatar {
+  display: inline-flex;
+  align-items: center;
   justify-content: center;
-  padding: 8px;
+  width: var(--spacing300);
+  height: var(--spacing300);
+  flex-shrink: 0;
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsUtilityYang080);
+  color: var(--colorsUtilityYin100);
+  font-size: var(--fontSizes050);
+  font-weight: var(--fontWeights700);
 }
 
-.leftNav__logoImage {
-  position: relative;
+.leftNav__menuBackdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 118;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
+.leftNav__companyMenu {
+  position: fixed;
+  top: 72px;
+  left: var(--left-nav-width);
+  z-index: 119;
+  width: 240px;
+  padding: var(--spacing100) 0;
+  border: var(--borderWidth100) solid var(--mode-color-generic-bg-inverse-soft);
+  border-radius: 0 var(--borderRadius200) var(--borderRadius200) 0;
+  background: var(--colorsUtilityYin100);
+  box-shadow: var(--spacing100) var(--spacing100) var(--spacing300) var(--colorsUtilityYin030);
+}
+
+.leftNav__companyMenuLabel {
+  display: block;
+  padding: var(--spacing100) var(--spacing200);
+  color: var(--mode-color-generic-txt-inverse-moderate);
+  font-size: var(--fontSizes050);
+  font-weight: var(--fontWeights700);
+}
+
+.leftNav__companyMenuItem {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-height: 40px;
+  padding: 0 var(--spacing200);
+  border: 0;
+  background: transparent;
+  color: var(--colorsUtilityYang100);
+  font-size: var(--fontSizes100);
+  text-align: left;
+  cursor: pointer;
+}
+
+.leftNav__companyMenuItem:hover {
+  background: var(--mode-color-generic-bg-inverse-delicate);
+}
+
+.leftNav__list,
+.leftNav__sublist {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 .leftNav__list {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  flex: 1;
-  min-height: 0;
-  overflow-y: auto;
-  overflow-x: hidden;
   display: flex;
+  flex: 1;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing050);
+  min-height: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  padding: var(--spacing200) 0;
+  scrollbar-color: var(--mode-color-generic-bg-inverse-soft) transparent;
+  scrollbar-width: thin;
 }
 
-.leftNav__itemWrap {
-  position: relative;
+.leftNav__navItemWrap {
   width: 100%;
 }
 
 .leftNav__sublist {
-  list-style: none;
-  margin: 0;
-  padding: 0;
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--spacing025);
+  padding-top: var(--spacing050);
 }
 
-.leftNav--collapsed .leftNav__sublist {
-  display: none;
-}
-
-.leftNav__item {
-  width: 100%;
-  min-height: 33px;
-  box-sizing: border-box;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px 6px 24px;
-  border: 0;
-  background: transparent;
-  color: rgba(255, 255, 255, 0.95);
-  font-family: inherit;
-  font-size: 14px;
-  line-height: 1.5;
-  text-align: left;
-  cursor: pointer;
-  position: relative;
-}
-
-/* Must come after the .leftNav__item padding shorthand above, otherwise
-   its own padding-left would win the cascade and these would never apply. */
-.leftNav__item--depth1 {
-  padding-left: 44px;
-}
-
-.leftNav__item--depth2 {
-  padding-left: 60px;
-}
-
-.leftNav--collapsed .leftNav__item {
-  /* Center the icon column in the 64px rail while keeping row height stable. */
-  justify-content: center;
-  padding: 6px 8px;
-}
-
-/* Hover fills the row with a rounded green pill (inset 8px each side),
-   matching the Figma "Vision for Active" hover state — not a translucent
-   overlay. Uses ::after with a negative z-index so it sits behind the
-   icon/label/caret (::before is reserved for the active indicator). */
-.leftNav__item:hover::after {
-  content: "";
-  position: absolute;
-  left: 8px;
-  right: 8px;
-  top: 0;
-  bottom: 0;
-  border-radius: 8px;
-  background: #007e45;
-  z-index: -1;
-}
-
-.leftNav__item--active::before {
-  content: "";
-  position: absolute;
-  left: 8px;
-  top: 0;
-  bottom: 0;
-  width: 4px;
-  border-radius: 8px;
-  background: #007e45;
-}
-
-.leftNav__itemIcon {
-  width: 20px !important;
-  height: 20px !important;
-  font-size: 20px !important;
-  flex-shrink: 0;
-  color: currentColor !important;
-}
-
-.leftNav__itemLabel {
-  flex: 1;
-  min-width: 0;
-  white-space: normal;
-  overflow-wrap: break-word;
-}
-
-.leftNav__upgradePill {
-  flex-shrink: 0;
-  display: inline-flex;
-}
-
-.leftNav__upgradePill > [data-component="pill"] {
-  border-color: var(--colorsLogo, #00d639) !important;
-  background: transparent !important;
-  color: var(--colorsUtilityYang100, #ffffff) !important;
-  letter-spacing: 0.4px !important;
-}
-
-.leftNav--collapsed .leftNav__itemLabel,
-.leftNav--collapsed .leftNav__itemCaret,
-.leftNav--collapsed .leftNav__itemBadge,
-.leftNav--collapsed .leftNav__upgradePill {
-  display: none;
-}
-
-/* "NEW" badge (Figma node 7172:14661) — flags Operations-only modules
-   (Inventory, Manufacturing) that just unlocked via the subscription flow. */
-.leftNav__itemBadge {
-  flex-shrink: 0;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  height: 16px;
-  padding: 0 5px;
-  border-radius: 999px;
-  background: var(--colorsLogo, #00d639);
-  color: #000000;
-  font-family: inherit;
-  font-size: 8px;
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 0.2px;
-  white-space: nowrap;
-}
-
-.leftNav__itemCaret {
-  width: 12px !important;
-  height: 12px !important;
-  font-size: 12px !important;
-  flex-shrink: 0;
-  color: rgba(255, 255, 255, 0.6) !important;
-  transition: transform 0.15s ease;
-}
-
-/* Expanded sections rotate the caret from pointing right to pointing
-   down, matching the Figma "Vision for Active" accordion behaviour. */
-.leftNav__itemCaret--expanded {
-  transform: rotate(90deg);
-}
-
-/* Current-user profile trigger — avatar (with online status dot) + name
-   + role, replacing the old company-name label. */
-.leftNav__profile {
-  /* The text stack is taller than the avatar, so keep this trigger's
-     footprint constant when its text is hidden in the collapsed rail. */
-  height: 55px;
-  min-height: 55px;
-  padding-top: 8px;
-  padding-bottom: 8px;
-}
-
-.leftNav__profileAvatar {
-  position: relative;
-  flex-shrink: 0;
-  line-height: 0;
-}
-
-.leftNav__profileStatusDot {
-  position: absolute;
-  right: -2px;
-  bottom: -2px;
-  width: 10px;
-  height: 10px;
-  border-radius: 50%;
-  background: var(--colorsLogo, #00d639);
-  border: 2px solid #000000;
-  box-sizing: content-box;
-}
-
-.leftNav__profileText {
-  flex: 1;
-  min-width: 0;
-  display: flex;
-  flex-direction: column;
-}
-
-.leftNav__profileName {
-  font-size: 14px;
-  font-weight: 700;
-  color: rgba(255, 255, 255, 0.95);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.leftNav__profileRole {
-  font-size: 12px;
-  color: rgba(255, 255, 255, 0.65);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-}
-
-.leftNav--collapsed .leftNav__profileText {
-  display: none;
-}
-
-/* ─── Footer ─────────────────────────────────────────────── */
-
-.leftNav__footer {
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  padding-bottom: 16px;
-}
-
-.leftNav__divider {
-  height: 1px;
-  margin: 8px 0;
-  background: var(--mode-color-generic-txt-inverse-delicate);
-}
-
-/* ─── Flyout (caret-triggered submenu panel) ─────────────────
-   Rendered via a portal to document.body and positioned with an
-   inline `style` (fixed, from the trigger's bounding rect) — the
-   sidebar has overflow-y:auto, which per spec forces overflow-x to
-   clip too, so a panel absolutely positioned inside it would be cut
-   off instead of floating over the page. */
-
-.leftNav__flyoutBackdrop {
-  position: fixed;
-  inset: 0;
-  border: 0;
-  margin: 0;
-  padding: 0;
-  background: transparent;
-  cursor: default;
-  z-index: 119;
-}
-
-.leftNav__flyoutPanel {
-  z-index: 120;
-  min-width: 220px;
-  max-width: 280px;
-  border: 1px solid var(--mode-color-generic-bg-inverse-soft);
-  border-radius: 8px;
-  background: var(--colorsUtilityYin090, #1a1a1a);
-  padding: 6px 0;
-  box-shadow: 0 10px 24px rgba(0, 0, 0, 0.35);
-}
-
-.leftNav__flyoutItem {
+.leftNav__navItem,
+.leftNav__footerItem {
   position: relative;
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: 32px;
   box-sizing: border-box;
-  padding: 0 16px;
   border: 0;
   background: transparent;
-  color: #ffffff;
-  font-size: 14px;
-  line-height: 20px;
+  color: var(--colorsUtilityYang100);
+  font-size: var(--fontSizes100);
+  line-height: var(--lineHeights400);
   text-align: left;
   text-decoration: none;
   cursor: pointer;
 }
 
-.leftNav__flyoutItem:hover {
-  background: rgba(255, 255, 255, 0.08);
+.leftNav__navItem {
+  width: calc(100% - (var(--spacing100) * 2));
+  min-height: var(--spacing400);
+  margin: 0 var(--spacing100);
+  padding: 0 var(--spacing100);
+  border-radius: var(--borderRadius100);
+  gap: var(--spacing100);
 }
 
-.leftNav__flyoutSelectedPill {
-  margin-left: auto;
-  padding: 2px 7px;
-  border: 1px solid rgba(255, 255, 255, 0.42);
-  border-radius: 999px;
-  color: #ffffff;
-  font-size: 11px;
-  font-weight: 500;
-  line-height: 16px;
+.leftNav__navItem--primary {
+  min-height: var(--spacing400);
 }
 
-.leftNav__flyoutDivider {
-  height: 1px;
-  margin: 4px 0;
-  background: var(--mode-color-generic-bg-inverse-delicate);
+.leftNav__navItem:hover,
+.leftNav__footerItem:hover {
+  background: var(--colorsActionMajor500);
 }
 
-/* ─── AI Advisor panel ───────────────────────────────────── */
-
-.aiAdvisor__backdrop {
-  position: fixed;
-  inset: 0;
-  z-index: 599;
-  border: 0;
-  padding: 0;
-  background: rgba(0, 0, 0, 0.24);
+.leftNav__navItem[aria-expanded="true"] {
+  box-shadow: inset 0 0 0 var(--borderWidth300) var(--colorsSemanticFocus500);
 }
 
-.aiAdvisor__panel {
-  position: fixed;
-  top: 0;
-  right: 0;
-  z-index: 600;
+.leftNav__navItem--sectionActive::before {
+  position: absolute;
+  top: var(--spacing100);
+  bottom: var(--spacing100);
+  left: 0;
+  width: var(--borderWidth400);
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsActionMajor500);
+  content: "";
+}
+
+.leftNav__navItem--current {
+  background: var(--colorsActionMajor500);
+}
+
+.leftNav__navItem--depth1 {
+  width: calc(100% - var(--spacing300) - var(--spacing025) - var(--spacing100));
+  margin-left: calc(var(--spacing300) + var(--spacing025));
+  padding-left: var(--spacing150);
+}
+
+.leftNav__navItem--depth2 {
+  width: calc(100% - var(--spacing500) - var(--spacing050) - var(--spacing100));
+  margin-left: calc(var(--spacing500) + var(--spacing050));
+  padding-left: var(--spacing150);
+}
+
+.leftNav__navIcon,
+.leftNav__footerIcon {
+  width: var(--spacing200) !important;
+  height: var(--spacing200) !important;
+  flex-shrink: 0;
+  color: currentColor !important;
+  font-size: var(--fontSizes200) !important;
+}
+
+.leftNav__navLabel,
+.leftNav__footerLabel {
+  min-width: 0;
+  flex: 1;
+  overflow-wrap: break-word;
+}
+
+.leftNav__navCaret {
+  width: var(--spacing150) !important;
+  height: var(--spacing150) !important;
+  flex-shrink: 0;
+  color: currentColor !important;
+  font-size: var(--fontSizes025) !important;
+}
+
+.leftNav--collapsed .leftNav__list {
+  align-items: center;
+}
+
+.leftNav--collapsed .leftNav__navItem {
+  justify-content: center;
+  width: 64px;
+  min-height: 48px;
+  margin: 0 auto;
+  padding: var(--spacing100);
+  border-radius: var(--borderRadius200);
+}
+
+.leftNav--collapsed .leftNav__navIcon {
+  width: var(--spacing300) !important;
+  height: var(--spacing300) !important;
+  font-size: var(--fontSizes500) !important;
+}
+
+.leftNav--collapsed .leftNav__navItem--sectionActive::before {
+  left: 0;
+}
+
+.leftNav--collapsed .leftNav__navLabel,
+.leftNav--collapsed .leftNav__navCaret,
+.leftNav--collapsed .leftNav__footerLabel {
+  display: none;
+}
+
+.leftNav__footer {
   display: flex;
+  flex-shrink: 0;
   flex-direction: column;
-  width: min(420px, 100vw);
-  height: 100vh;
-  box-sizing: border-box;
-  background: #ffffff;
-  box-shadow: -12px 0 32px rgba(0, 0, 0, 0.18);
+  padding-bottom: var(--spacing150);
 }
 
-.aiAdvisor__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 28px 28px 24px;
-  background: #1f1f1f;
-  color: #ffffff;
+.leftNav__divider {
+  height: var(--borderWidth100);
+  margin: var(--spacing100) 0 var(--spacing150);
+  background: var(--mode-color-generic-bg-inverse-soft);
 }
 
-.aiAdvisor__eyebrow {
-  margin: 0 0 6px;
-  color: #b8e986;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+.leftNav__footerControl {
+  display: contents;
 }
 
-.aiAdvisor__header h2,
-.aiAdvisor__body h3 {
-  margin: 0;
+.leftNav__footerItem {
+  width: auto;
+  min-height: var(--spacing500);
+  margin: 0 var(--spacing100);
+  padding: var(--spacing050) var(--spacing300);
+  border-radius: var(--borderRadius100);
+  gap: var(--spacing200);
 }
 
-.aiAdvisor__header h2 {
-  font-size: 24px;
-  line-height: 32px;
+.leftNav__footerItem--active::before {
+  position: absolute;
+  top: var(--spacing100);
+  bottom: var(--spacing100);
+  left: var(--spacing100);
+  width: var(--borderWidth400);
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsActionMajor500);
+  content: "";
 }
 
-.aiAdvisor__close {
-  display: inline-flex;
-  align-items: center;
+.leftNav--collapsed .leftNav__footerItem {
   justify-content: center;
-  width: 36px;
-  height: 36px;
-  border: 1px solid rgba(255, 255, 255, 0.45);
-  border-radius: 4px;
-  background: transparent;
-  color: #ffffff;
-  cursor: pointer;
+  width: 64px;
+  min-height: 44px;
+  margin: 0 auto;
+  padding: var(--spacing100);
+  border-radius: var(--borderRadius200);
 }
 
-.aiAdvisor__body {
-  padding: 48px 28px;
-  color: #333333;
-}
-
-.aiAdvisor__icon {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 52px;
-  height: 52px;
-  margin-bottom: 24px;
-  border-radius: 50%;
-  background: #e7f5d5;
-  color: #007e45;
-  font-size: 24px;
-}
-
-.aiAdvisor__body h3 {
-  margin-bottom: 8px;
-  font-size: 20px;
-  line-height: 28px;
-}
-
-.aiAdvisor__body p {
-  max-width: 34ch;
-  margin: 0;
-  color: #5e5e5e;
-  font-size: 16px;
-  line-height: 24px;
+.leftNav__brandLink:focus-visible,
+.leftNav__companyButton:focus-visible,
+.leftNav__navItem:focus-visible,
+.leftNav__footerItem:focus-visible,
+.leftNav__companyMenuItem:focus-visible {
+  outline: var(--borderWidth400) solid var(--colorsSemanticFocus500);
+  outline-offset: calc(var(--borderWidth400) * -1);
 }
 
 /* ─── Nav mode toggle (floating) ─────────────────────────── */

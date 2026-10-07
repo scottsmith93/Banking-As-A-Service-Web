@@ -3,6 +3,7 @@ import { ROUTES, type PrimaryNavId } from "../routes";
 
 export type SubmenuLink = {
   label: string;
+  labelKey?: string;
   path?: string;
   children?: SubmenuLink[];
 };
@@ -10,6 +11,7 @@ export type SubmenuLink = {
 export type PrimaryNavItem = {
   id: PrimaryNavId;
   label: string;
+  labelKey?: string;
   iconType: IconType;
   path?: string;
   hasSubmenu: boolean;
@@ -21,7 +23,8 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   {
     id: "dashboard",
     label: "Dashboard",
-    iconType: "boxed_shapes",
+    labelKey: "appNavigation.primary.dashboard",
+    iconType: "dashboard",
     path: ROUTES.home,
     hasSubmenu: false,
     isActive: (pathname) => pathname === ROUTES.home,
@@ -29,54 +32,59 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   {
     id: "sales",
     label: "Sales",
+    labelKey: "appNavigation.primary.sales",
     iconType: "chart_bar_arrow_up",
     hasSubmenu: true,
     submenu: [
-      { label: "Sales quotes", path: ROUTES.sales.quotes },
-      { label: "Sales orders", path: ROUTES.sales.orders },
-      { label: "Sales delivery notes", path: ROUTES.sales.deliveryNotes },
-      { label: "Sales invoices", path: ROUTES.sales.invoices },
-      { label: "Recurring invoices", path: ROUTES.sales.recurringInvoices },
+      { label: "Sales quotes", labelKey: "appNavigation.primary.salesQuotes", path: ROUTES.sales.quotes },
+      { label: "Sales orders", labelKey: "appNavigation.primary.salesOrders", path: ROUTES.sales.orders },
+      { label: "Sales delivery notes", labelKey: "appNavigation.primary.salesDeliveryNotes", path: ROUTES.sales.deliveryNotes },
+      { label: "Sales invoices", labelKey: "appNavigation.primary.salesInvoices", path: ROUTES.sales.invoices },
+      { label: "Recurring invoices", labelKey: "appNavigation.primary.recurringInvoices", path: ROUTES.sales.recurringInvoices },
     ],
     isActive: (pathname) => pathname.startsWith("/sales"),
   },
   {
     id: "purchases",
     label: "Purchases",
+    labelKey: "appNavigation.primary.purchases",
     iconType: "cart",
-    hasSubmenu: true,
-    submenu: [
-      { label: "Purchase orders", path: ROUTES.purchases.orders },
-      { label: "Purchase invoices", path: ROUTES.purchases.invoices },
-    ],
+    path: ROUTES.purchases.orders,
+    hasSubmenu: false,
     isActive: (pathname) => pathname.startsWith("/purchases"),
   },
   {
     id: "contacts",
     label: "Contacts",
-    iconType: "people",
+    labelKey: "appNavigation.primary.contacts",
+    iconType: "user_groups",
     hasSubmenu: true,
     submenu: [
-      { label: "Customers", path: ROUTES.contacts.customers },
-      { label: "Suppliers", path: ROUTES.contacts.suppliers },
-      { label: "Employees", path: ROUTES.contacts.employees },
+      { label: "Customers", labelKey: "appNavigation.primary.customers", path: ROUTES.contacts.customers },
+      { label: "Suppliers", labelKey: "appNavigation.primary.suppliers", path: ROUTES.contacts.suppliers },
+      { label: "Employees", labelKey: "appNavigation.primary.employees", path: ROUTES.contacts.employees },
     ],
     isActive: (pathname) => pathname.startsWith("/contacts"),
   },
   {
     id: "products-and-services",
-    label: "Products and services",
-    iconType: "business",
+    label: "Items",
+    labelKey: "appNavigation.primary.items",
+    iconType: "job_seeked",
     hasSubmenu: true,
     submenu: [
       {
         label: "Items",
+        labelKey: "appNavigation.primary.items",
         path: ROUTES.productsAndServices.catalog,
       },
-      { label: "Price lists", path: ROUTES.productsAndServices.priceLists },
       {
-        label: "Discount groups",
-        path: ROUTES.productsAndServices.discountGroups,
+        label: "Prices and discounts",
+        labelKey: "appNavigation.primary.pricesAndDiscounts",
+        children: [
+          { label: "Prices", labelKey: "appNavigation.primary.prices", path: ROUTES.productsAndServices.priceLists },
+          { label: "Discount groups", labelKey: "appNavigation.primary.discountGroups", path: ROUTES.productsAndServices.discountGroups },
+        ],
       },
     ],
     isActive: (pathname) => pathname.startsWith("/products-and-services"),
@@ -84,29 +92,40 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   {
     id: "banking",
     label: "Banking",
+    labelKey: "appNavigation.primary.banking",
     iconType: "bank",
     hasSubmenu: true,
     submenu: [
-      { label: "Bank movements", path: ROUTES.banking.bankMovements },
-      { label: "Banking", path: ROUTES.banking.overview },
+      { label: "Bank movements", labelKey: "appNavigation.primary.bankMovements", path: ROUTES.banking.bankMovements },
+      { label: "Banking", labelKey: "appNavigation.primary.banking", path: ROUTES.banking.overview },
     ],
     isActive: (pathname) => pathname.startsWith("/banking"),
   },
   {
     id: "accounting",
     label: "Accounting",
+    labelKey: "appNavigation.primary.accounting",
     iconType: "filter_new",
     hasSubmenu: true,
     submenu: [
-      { label: "Journal entries", path: ROUTES.accounting.journalEntries },
+      { label: "Journal entries", labelKey: "appNavigation.primary.journalEntries", path: ROUTES.accounting.journalEntries },
       {
         label: "Account matching",
-        children: [{ label: "By third party" }, { label: "By ledger accounts" }],
+        labelKey: "appNavigation.primary.accountMatching",
+        children: [
+          { label: "Third parties", labelKey: "appNavigation.primary.thirdParties", path: ROUTES.accounting.matchingThirdParty },
+          { label: "General ledger accounts", labelKey: "appNavigation.primary.ledgerAccounts", path: ROUTES.accounting.matchingLedgerAccounts },
+        ],
       },
-      { label: "Fixed assets", path: ROUTES.accounting.fixedAssets },
       {
-        label: "Fixed asset transactions",
-        path: ROUTES.accounting.fixedAssetTransactions,
+        label: "Processing",
+        labelKey: "appNavigation.primary.processing",
+        children: [
+          { label: "Year-end closing", labelKey: "appNavigation.primary.yearEndClosing", path: ROUTES.accounting.yearEndClosing },
+          { label: "Periodic closing", labelKey: "appNavigation.primary.periodicClosing", path: ROUTES.accounting.periodicClosing },
+          { label: "FEC", labelKey: "appNavigation.primary.fec", path: ROUTES.accounting.fec },
+          { label: "Provisional FEC", labelKey: "appNavigation.primary.provisionalFec", path: ROUTES.accounting.provisionalFec },
+        ],
       },
     ],
     isActive: (pathname) => pathname.startsWith("/accounting"),
@@ -114,14 +133,16 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   {
     id: "compliance",
     label: "Compliance",
+    labelKey: "appNavigation.primary.compliance",
     iconType: "euro",
     hasSubmenu: true,
-    submenu: [{ label: "Tax returns", path: ROUTES.compliance.taxReturns }],
+    submenu: [{ label: "VAT returns", labelKey: "appNavigation.primary.vatReturns", path: ROUTES.compliance.taxReturns }],
     isActive: (pathname) => pathname.startsWith("/compliance"),
   },
   {
     id: "reports",
     label: "Reports",
+    labelKey: "appNavigation.primary.reports",
     iconType: "document_right_align",
     path: ROUTES.reports,
     hasSubmenu: false,
@@ -130,7 +151,8 @@ export const PRIMARY_NAV_ITEMS: PrimaryNavItem[] = [
   {
     id: "settings",
     label: "Settings",
-    iconType: "settings",
+    labelKey: "appNavigation.primary.settings",
+    iconType: "settings_old",
     path: ROUTES.settings,
     hasSubmenu: false,
     isActive: (pathname) => pathname === ROUTES.settings,

@@ -38,10 +38,9 @@ type SectionLinkProps = {
   language: Language;
   expandedKeys: Set<string>;
   onToggle: (key: string) => void;
-  onSelect: () => void;
 };
 
-function SectionLink({ link, depth, keyPrefix, pathname, language, expandedKeys, onToggle, onSelect }: SectionLinkProps) {
+function SectionLink({ link, depth, keyPrefix, pathname, language, expandedKeys, onToggle }: SectionLinkProps) {
   const key = `${keyPrefix}/${link.path ?? link.label}`;
   const hasChildren = Boolean(link.children?.length);
   const expanded = expandedKeys.has(key);
@@ -68,7 +67,7 @@ function SectionLink({ link, depth, keyPrefix, pathname, language, expandedKeys,
           {content}
         </button>
       ) : (
-        <Link to={link.path!} className={className} aria-current={active ? "page" : undefined} onClick={onSelect}>
+        <Link to={link.path!} className={className} aria-current={active ? "page" : undefined}>
           {content}
         </Link>
       )}
@@ -84,7 +83,6 @@ function SectionLink({ link, depth, keyPrefix, pathname, language, expandedKeys,
               language={language}
               expandedKeys={expandedKeys}
               onToggle={onToggle}
-              onSelect={onSelect}
             />
           ))}
         </ul>
@@ -97,10 +95,9 @@ type NavigationSectionPanelProps = {
   section: PrimaryNavItem;
   pathname: string;
   language: Language;
-  onSelect: () => void;
 };
 
-export function NavigationSectionPanel({ section, pathname, language, onSelect }: NavigationSectionPanelProps) {
+export function NavigationSectionPanel({ section, pathname, language }: NavigationSectionPanelProps) {
   const [expandedKeys, setExpandedKeys] = useState(() => getInitialExpandedKeys(pathname, section.submenu ?? []));
   const [trackedPathname, setTrackedPathname] = useState(pathname);
 
@@ -131,7 +128,6 @@ export function NavigationSectionPanel({ section, pathname, language, onSelect }
             language={language}
             expandedKeys={expandedKeys}
             onToggle={toggleExpanded}
-            onSelect={onSelect}
           />
         ))}
       </ul>

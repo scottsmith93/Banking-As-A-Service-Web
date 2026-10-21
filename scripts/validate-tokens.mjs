@@ -5,6 +5,7 @@ const sourceRoot = new URL("../src/", import.meta.url);
 const tokenDefinitionPaths = [
   new URL("../node_modules/@sage/design-tokens/css/base.css", import.meta.url),
   new URL("../node_modules/@sage/design-tokens-fusion/css/light.css", import.meta.url),
+  new URL("../node_modules/@sage/design-tokens-fusion/css/global.css", import.meta.url),
   new URL(
     "../node_modules/@sage/design-tokens-fusion/css/components/dataviz.css",
     import.meta.url,

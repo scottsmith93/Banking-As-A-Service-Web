@@ -197,13 +197,14 @@ function BankAccountCard({ account }: { account: BankAccount }) {
 
 type BankAccountCardsProps = {
   searchText?: string;
+  accounts?: BankAccount[];
 };
 
-export default function BankAccountCards({ searchText = "" }: BankAccountCardsProps) {
+export default function BankAccountCards({ searchText = "", accounts = bankAccounts }: BankAccountCardsProps) {
   const query = searchText.trim().toLowerCase();
   const visibleAccounts = query
-    ? bankAccounts.filter((account) => account.name.toLowerCase().includes(query))
-    : bankAccounts;
+    ? accounts.filter((account) => account.name.toLowerCase().includes(query))
+    : accounts;
 
   return (
     <Box className="bankAccountCards">

@@ -8,6 +8,7 @@ import "./fonts.css";
 import "./index.css";
 import App from "./App";
 import UIForkDevTools from "./components/dev-tools/UIForkDevTools";
+import { BankingBaasProvider } from "./context/bankingBaasStore";
 import "./i18n";
 
 // NOTE: Keep StrictMode disabled here.
@@ -19,7 +20,9 @@ createRoot(document.getElementById('root')!).render(
       <GlobalStyle />
       <TokensWrapper>
         <BrowserRouter>
-          <App />
+          <BankingBaasProvider>
+            <App />
+          </BankingBaasProvider>
         </BrowserRouter>
       </TokensWrapper>
     </CarbonProvider>

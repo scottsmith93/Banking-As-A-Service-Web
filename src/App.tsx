@@ -54,6 +54,9 @@ import DiscountGroupCreatePage from "./pages/products-and-services/DiscountGroup
 import ProductOrServiceCreatePage from "./pages/products-and-services/ProductOrServiceCreatePage";
 import BankMovementsPage from "./pages/banking/BankMovementsPage";
 import BankingPage from "./pages/banking/BankingPage";
+import BankingBaasPage from "./pages/banking-baas/BankingBaasPage";
+import BankingBaasAccountPage from "./pages/banking-baas/BankingBaasAccountPage";
+import BankingBaasCardsPage from "./pages/banking-baas/BankingBaasCardsPage";
 import JournalEntriesPage from "./pages/accounting/JournalEntriesPage";
 import JournalEntryCreatePage from "./pages/accounting/JournalEntryCreatePage";
 import FixedAssetsPage from "./pages/accounting/FixedAssetsPage";
@@ -260,6 +263,9 @@ export default function App() {
             />
             <Route path={ROUTES.banking.bankMovements} element={<BankMovementsPage />} />
             <Route path={ROUTES.banking.overview} element={<BankingPage />} />
+            <Route path={ROUTES.banking.baas} element={<BankingBaasPage />} />
+            <Route path="/banking/baas/accounts/:accountId/cards" element={<BankingBaasCardsPage />} />
+            <Route path="/banking/baas/accounts/:accountId" element={<BankingBaasAccountPage />} />
             <Route
               path="/example-page-7"
               element={<Navigate to={ROUTES.accounting.journalEntries} replace />}

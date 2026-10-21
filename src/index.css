@@ -1,11 +1,10 @@
 /* Sage design tokens */
 @import url("@sage/design-tokens/css/base.css");
 
-/* Dataviz (chart) tokens — only published in the newer "fusion" tokens
-   package, not (yet) in base.css. No variable-name overlap with base.css,
-   so safe to layer in for chart colors only (light theme, matching this
-   app's fixed light color-scheme). */
+/* Fusion tokens provide modern color and global spacing/radius/depth values
+   that are not part of the Carbon-compatible base token package. */
 @import url("@sage/design-tokens-fusion/css/light.css");
+@import url("@sage/design-tokens-fusion/css/global.css");
 @import url("@sage/design-tokens-fusion/css/components/dataviz.css");
 
 :root {
@@ -2113,6 +2112,1341 @@ body {
   }
 }
 
+/* Banking as a Service prototype
+   The composed surfaces below intentionally use a small set of reusable
+   patterns: promotion banner, account card, KPI tile and debit-card tile. */
+.bankingBaasPage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing400);
+  background: var(--colorsUtilityMajor025);
+}
+
+.bankingBaasPage__titleRow,
+.bankingBaasCardsPage__header {
+  gap: var(--spacing300);
+}
+
+.bankingBaasPage__description,
+.bankingBaasPage__sectionDescription {
+  max-width: 760px;
+}
+
+.bankingBaasPage__toolbar {
+  gap: var(--spacing300);
+}
+
+.bankingBaasPage__search {
+  width: min(360px, 100%);
+}
+
+.bankingBaasPage__section {
+  gap: var(--spacing200);
+}
+
+.bankingBaasPage__accountGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing300);
+}
+
+.bankingBaasPage__demoNote {
+  padding: var(--spacing200);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsUtilityYang100);
+}
+
+.bankingBaasPage__itemCount {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasPromotion {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
+  align-items: center;
+  gap: var(--spacing400);
+  padding: var(--spacing300);
+  border: 0;
+  border-radius: var(--global-radius-container-m) !important;
+  background: var(--colorsUtilityYin100);
+  background-image:
+    radial-gradient(ellipse at 78% 48%, color-mix(in srgb, var(--mode-color-ai-stop-3) 24%, transparent), transparent 42%),
+    linear-gradient(115deg, var(--colorsUtilityYin100), color-mix(in srgb, var(--mode-color-ai-stop-2) 12%, var(--colorsUtilityYin100)));
+  color: var(--colorsUtilityYang100);
+}
+
+.baasPromotion__content {
+  min-width: 0;
+  gap: var(--spacing200);
+}
+
+.baasPromotion__heading {
+  gap: var(--spacing200);
+}
+
+.baasPromotion__copilotMark {
+  flex: 0 0 auto;
+  width: var(--spacing500);
+  height: var(--spacing500);
+}
+
+.baasPromotion__title,
+.baasPromotion__body,
+.baasPromotion__benefits,
+.baasPromotion__benefits li,
+.baasPromotion__benefit {
+  color: var(--colorsUtilityYang100) !important;
+}
+
+.baasPromotion__title {
+  font-size: var(--fontSizes500);
+  line-height: var(--lineHeights400);
+}
+
+.baasPromotion__title,
+.baasPromotion__body {
+  margin: 0;
+}
+
+.baasPromotion__body {
+  max-width: 68ch;
+  color: var(--mode-color-generic-txt-inverse-moderate) !important;
+}
+
+.baasPromotion__benefits {
+  gap: var(--spacing200);
+  margin: var(--spacing100) 0 0;
+  padding: 0;
+  list-style: none;
+}
+
+.baasPromotion__benefits li {
+  gap: var(--spacing100);
+  color: var(--colorsUtilityYang100);
+}
+
+.baasPromotion__benefits [data-component="icon"] {
+  flex: 0 0 auto;
+  color: var(--colorsUtilityYang100) !important;
+}
+
+.baasPromotion__art {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  width: 100%;
+  min-width: 0;
+}
+
+.baasPromotion__art img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  object-position: right center;
+}
+
+.baasAccountCard {
+  overflow: hidden;
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border-radius: var(--borderRadius100) !important;
+  background: var(--colorsUtilityYang100);
+  box-shadow: 0 var(--spacing100) var(--spacing200) var(--colorsUtilityMajor100);
+}
+
+.baasAccountCard--sage {
+  border-color: var(--colorsActionMajor500);
+}
+
+.baasAccountCard__body {
+  gap: var(--spacing300);
+  padding: var(--spacing300);
+}
+
+.baasAccountCard__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing600);
+  height: var(--spacing600);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsUtilityMajor050);
+  color: var(--colorsUtilityYin090);
+}
+
+.baasAccountCard__icon--sage {
+  background: var(--colorsActionMajor500);
+  color: var(--colorsUtilityYang100);
+}
+
+.baasAccountCard__name,
+.baasAccountCard__type,
+.baasAccountCard__label,
+.baasAccountCard__balance,
+.baasAccountCard__realtime,
+.baasAccountCard__pendingCopy {
+  margin: 0;
+}
+
+.baasAccountCard__type,
+.baasAccountCard__label,
+.baasAccountCard__pendingCopy {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasAccountCard__realtime {
+  color: var(--colorsActionMajor600);
+  font-weight: var(--fontWeights700);
+}
+
+.baasAccountCard__summary {
+  gap: var(--spacing200);
+  padding-top: var(--spacing200);
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+}
+
+.baasAccountCard__balance {
+  color: var(--colorsUtilityYin100);
+}
+
+.baasAccountCard__footer {
+  min-height: var(--spacing600);
+  padding: var(--spacing150) var(--spacing300);
+  background: var(--colorsUtilityMajor050);
+}
+
+.baasOnboarding {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+  background: var(--colorsUtilityMajor025);
+}
+
+.bankingAccountsPage__baasAccounts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing300);
+}
+
+.baasOnboarding__selection {
+  gap: var(--spacing300);
+  width: min(980px, 100%);
+  align-self: center;
+  padding: var(--spacing500);
+}
+
+.baasOnboarding__title,
+.baasOnboarding__intro {
+  margin: 0;
+}
+
+.baasOnboarding__title {
+  font-size: var(--fontSizes600);
+  line-height: var(--lineHeights400);
+}
+
+.baasOnboarding__selection > .baasOnboarding__intro {
+  max-width: 700px;
+}
+
+.baasOnboarding__option {
+  gap: var(--spacing300);
+  padding: var(--spacing300);
+  border: 0;
+  border-radius: var(--borderRadius200);
+  background: var(--colorsUtilityYang100);
+  box-shadow: var(--boxShadow050);
+}
+
+.baasOnboarding__providerIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing400);
+  height: var(--spacing400);
+  border-radius: var(--borderRadius050);
+  background: var(--colorsActionMajor500);
+  color: var(--colorsUtilityYang100);
+}
+
+.baasOnboarding__benefitList {
+  gap: var(--spacing150);
+  margin: 0;
+  padding: var(--spacing200) 0 0;
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  list-style: none;
+}
+
+.baasOnboarding__benefitList li {
+  gap: var(--spacing100);
+}
+
+.baasOnboarding__benefitList svg {
+  flex: 0 0 auto;
+  color: var(--colorsSemanticPositive500);
+}
+
+.baasOnboarding--loading {
+  min-height: 480px;
+  padding: var(--spacing500);
+  text-align: center;
+}
+
+.baasOnboarding--loading > p,
+.baasOnboarding__stepDescription {
+  margin: 0;
+  color: var(--colorsUtilityYin065);
+}
+
+.baasOnboarding__loader circle[data-role="inner-arc"] {
+  stroke: var(--colorsActionMajor500) !important;
+}
+
+.baasOnboarding--start {
+  justify-content: center;
+  padding: var(--spacing500);
+}
+
+.baasOnboarding__startContent {
+  width: min(720px, 100%);
+  gap: var(--spacing300);
+  padding: var(--spacing400);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border-radius: var(--borderRadius200);
+  background: var(--colorsUtilityYang100);
+}
+
+.baasOnboarding__startContent h1,
+.baasOnboarding__startContent p {
+  margin: 0;
+}
+
+.baasOnboarding__startConsent {
+  padding: var(--spacing200);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsUtilityMajor050);
+}
+
+.baasOnboarding__startConsent p {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasOnboarding__startConsent svg {
+  flex: 0 0 auto;
+  color: var(--colorsActionMajor600);
+}
+
+.baasOnboarding__reviewSummary {
+  padding: var(--spacing300);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsUtilityMajor025);
+}
+
+.baasOnboarding__reviewSummary p {
+  margin: 0;
+}
+
+.baasOnboarding__summaryRow {
+  padding-top: var(--spacing150);
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+}
+
+.baasOnboarding__summaryRow span {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasOnboarding--approved {
+  justify-content: center;
+  gap: var(--spacing600);
+  min-height: 620px;
+  padding: var(--spacing600);
+  background: var(--colorsUtilityMajor050);
+}
+
+.baasOnboarding__approvedIllustration {
+  flex: 0 0 280px;
+}
+
+.baasOnboarding__approvedIllustration img {
+  display: block;
+  width: 100%;
+}
+
+.baasOnboarding--application {
+  background: var(--colorsUtilityYang100);
+}
+
+.baasOnboarding__stepRail {
+  flex: 0 0 280px;
+  padding: var(--spacing400);
+  background: var(--colorsUtilityMajor025);
+}
+
+.baasOnboarding__applicationBody {
+  flex: 1;
+  gap: var(--spacing300);
+  padding: var(--spacing500);
+}
+
+.baasOnboarding__providerHeader {
+  padding-bottom: var(--spacing300);
+  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+}
+
+.baasOnboarding__formCard {
+  gap: var(--spacing300);
+  padding: var(--spacing400);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border-radius: var(--borderRadius200);
+}
+
+.baasOnboarding__formCard h2,
+.baasOnboarding__required {
+  margin: 0;
+}
+
+.baasOnboarding__required {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasOnboarding__actions {
+  margin-top: auto;
+  padding-top: var(--spacing300);
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+}
+
+/* Provider-hosted surface: this intentionally follows the Adyen journey in
+   Figma rather than the surrounding Sage banking page. */
+.baasOnboarding--providerStart,
+.baasOnboarding--application,
+.baasOnboarding--loading,
+.baasOnboarding--approved {
+  background: var(--colorsUtilityMajor025);
+}
+
+.baasOnboarding--providerStart {
+  min-height: 560px;
+  justify-content: center;
+  padding: var(--spacing500) var(--spacing300);
+}
+
+.baasOnboarding__providerStartBody {
+  width: min(980px, 100%);
+  align-self: center;
+  gap: var(--spacing300);
+}
+
+.baasOnboarding__providerHeader {
+  gap: var(--spacing200);
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.baasOnboarding__providerHeader h2,
+.baasOnboarding__providerHeader p,
+.baasOnboarding__providerList h3,
+.baasOnboarding__providerList ul,
+.baasOnboarding__providerTerms {
+  margin: 0;
+}
+
+.baasOnboarding__providerHeader h2 {
+  font-size: var(--fontSizes600);
+  line-height: var(--lineHeights400);
+}
+
+.baasOnboarding__providerLogo {
+  flex: 0 0 auto;
+  width: var(--sizing550);
+  height: var(--sizing550);
+}
+
+.baasOnboarding__providerList {
+  gap: var(--spacing100);
+}
+
+.baasOnboarding__providerList ul {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing050);
+  padding-left: var(--spacing250);
+  list-style: disc;
+}
+
+.baasOnboarding__providerList li {
+  padding-left: var(--spacing025);
+}
+
+.baasOnboarding__providerTerms {
+  color: var(--colorsUtilityYin090);
+}
+
+.baasOnboarding__providerAgreement {
+  min-height: var(--spacing600);
+  padding: var(--spacing300);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor300);
+  border-radius: var(--borderRadius200);
+  background: var(--colorsUtilityYang100);
+}
+
+.baasOnboarding__providerActions {
+  padding-top: var(--spacing100);
+}
+
+.baasOnboarding--application {
+  min-height: 620px;
+  align-items: flex-start;
+  justify-content: center;
+  gap: var(--spacing500);
+  padding: var(--spacing500) var(--spacing300);
+}
+
+.baasOnboarding--application .baasOnboarding__stepRail {
+  flex: 0 0 220px;
+  padding: 0;
+  background: transparent;
+}
+
+.baasOnboarding--application .baasOnboarding__applicationBody {
+  flex: 0 1 720px;
+  min-width: 0;
+  padding: 0;
+}
+
+.baasOnboarding--application .baasOnboarding__formCard {
+  gap: var(--spacing300);
+  padding: var(--spacing300);
+  border-color: var(--colorsUtilityMajor300);
+  border-radius: var(--borderRadius050);
+  background: var(--colorsUtilityYang100);
+}
+
+.baasOnboarding--application .baasOnboarding__formCard h2 {
+  font-size: var(--fontSizes200);
+  line-height: var(--lineHeights400);
+}
+
+.baasOnboarding__fieldGrid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 100%;
+  gap: var(--spacing300);
+}
+
+.baasOnboarding__fieldCell,
+.baasOnboarding__dateField,
+.baasOnboarding__fieldHeading,
+.baasOnboarding__fieldNote,
+.baasOnboarding__fieldFullWidth {
+  min-width: 0;
+}
+
+.baasOnboarding__fieldHeading,
+.baasOnboarding__fieldNote,
+.baasOnboarding__fieldFullWidth,
+.baasOnboarding__fieldGrid > button {
+  grid-column: 1 / -1;
+}
+
+.baasOnboarding__fieldHeading,
+.baasOnboarding__fieldNote,
+.baasOnboarding__reviewTerms {
+  margin: 0;
+}
+
+.baasOnboarding__fieldHeading {
+  padding-top: var(--spacing100);
+}
+
+.baasOnboarding__fieldNote {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasOnboarding__dateField {
+  grid-column: span 2;
+}
+
+.baasOnboarding__dateField > p {
+  margin: 0;
+}
+
+.baasOnboarding__dateField > div {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.baasOnboarding__reviewSections {
+  width: 100%;
+}
+
+.baasOnboarding__reviewCard {
+  overflow: hidden;
+  border: 0;
+  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor300);
+  border-radius: 0;
+  background: transparent;
+}
+
+.baasOnboarding__reviewCardHeader {
+  padding: var(--spacing200) var(--spacing300);
+  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  background: transparent;
+}
+
+.baasOnboarding__reviewCardHeader h3,
+.baasOnboarding__reviewSubheading {
+  margin: 0;
+}
+
+.baasOnboarding__reviewCardHeader button {
+  min-height: var(--spacing500);
+  padding-right: var(--spacing200);
+  padding-left: var(--spacing200);
+}
+
+.baasOnboarding__reviewRow,
+.baasOnboarding__reviewSubheading {
+  padding: var(--spacing150) var(--spacing300);
+  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+}
+
+.baasOnboarding__reviewRow span,
+.baasOnboarding__reviewSubheading {
+  margin: 0;
+}
+
+.baasOnboarding__reviewRow span:first-child {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasOnboarding__reviewRow span:last-child {
+  text-align: right;
+}
+
+.baasOnboarding--application .baasOnboarding__actions {
+  border-top: 0;
+}
+
+.baasOnboarding--loading .baasOnboarding__loadingTitle {
+  margin: 0;
+  color: var(--colorsUtilityYin100);
+}
+
+.baasOnboarding--approved {
+  min-height: 348px;
+  padding: var(--spacing300);
+}
+
+.baasOnboarding--approved .baasOnboarding__approvedIllustration {
+  flex-basis: 300px;
+}
+
+.baasOnboarding--underReview {
+  justify-content: center;
+  gap: var(--spacing600);
+  padding: var(--spacing600);
+  background: var(--colorsUtilityMajor050);
+}
+
+.baasOnboarding__reviewIllustration {
+  flex: 0 0 280px;
+}
+
+.baasOnboarding__reviewIllustration img {
+  display: block;
+  width: 100%;
+}
+
+.baasOnboarding__reviewContent {
+  max-width: 520px;
+}
+
+/* The provider journey lives in one fixed-size Sage Dialog. Each step scrolls
+   inside the same body frame so the hosted experience never resizes it. */
+.baasOnboarding--loading,
+.baasOnboarding--providerStart,
+.baasOnboarding--application,
+.baasOnboarding--approved {
+  box-sizing: border-box;
+  height: 100%;
+  min-height: 0;
+  overflow-y: auto;
+}
+
+.bankingBaasDetailPage {
+  min-height: 100%;
+  background: var(--colorsUtilityMajor025);
+}
+
+.bankingBaasDetailPage__content {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: var(--spacing500);
+}
+
+.bankingBaasDetailPage__content > * > h1,
+.bankingBaasDetailPage__content > * > p {
+  margin: 0;
+}
+
+.baasAccountHero,
+.baasKpi,
+.baasSpendPanel,
+.baasTransactionsPanel {
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border-radius: var(--borderRadius100) !important;
+  background: var(--colorsUtilityYang100);
+  box-shadow: none;
+}
+
+.baasAccountHero {
+  overflow: hidden;
+  padding: var(--spacing400);
+  border-left: var(--spacing100) solid var(--colorsActionMajor500);
+}
+
+.baasAccountHero h2,
+.baasAccountHero p {
+  margin: 0;
+}
+
+.baasAccountHero__balance,
+.baasAccountHero__balance > div {
+  align-items: flex-start;
+}
+
+.baasAccountHero__balance > div:last-child {
+  justify-content: flex-start;
+}
+
+.baasKpiGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing300);
+}
+
+.baasKpi {
+  gap: var(--spacing150);
+  padding: var(--spacing300);
+}
+
+.baasKpi p {
+  margin: 0;
+}
+
+.baasKpi__value,
+.baasSpendPanel__value,
+.baasSpendRow__cardStatus,
+.baasSpendRow__spend {
+  align-items: flex-start;
+  gap: var(--spacing050);
+}
+
+.baasAccountHero .numericValue,
+.baasKpi .numericValue,
+.baasSpendPanel .numericValue {
+  align-self: flex-start;
+  text-align: left;
+}
+
+.baasSpendPanel {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.75fr);
+  padding: var(--spacing400);
+}
+
+.baasSpendPanel__summary {
+  padding-right: var(--spacing400);
+  border-right: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+}
+
+.baasSpendPanel__summary p {
+  margin: 0;
+}
+
+.baasSpendPanel__cardPreview {
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+  min-height: 130px;
+  padding: var(--spacing200);
+  border-radius: var(--borderRadius100) !important;
+  background: var(--colorsActionMajor500);
+  color: var(--colorsUtilityYang100);
+}
+
+.baasSpendPanel__list {
+  min-width: 0;
+  padding-left: var(--spacing400);
+}
+
+.baasSpendPanel__list h2 {
+  margin: 0;
+}
+
+.baasSpendRow {
+  grid-template-columns: minmax(120px, 1fr) minmax(90px, 0.8fr) minmax(110px, 0.8fr) auto;
+  gap: var(--spacing200);
+  padding: var(--spacing200) 0;
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+}
+
+.baasSpendRow p,
+.baasSpendRow span {
+  margin: 0;
+}
+
+.baasTransactionsPanel {
+  overflow: hidden;
+  padding: var(--spacing400);
+}
+
+.baasTransactionsPanel table {
+  overflow: hidden;
+  border-radius: var(--borderRadius100);
+}
+
+.baasStatusPill {
+  width: fit-content;
+}
+
+.baasTransactionCardholder {
+  min-width: 0;
+}
+
+.baasTransactionCardholder__networkFrame {
+  position: relative;
+  flex: 0 0 auto;
+  width: var(--sizing300);
+  height: var(--sizing200);
+}
+
+.baasTransactionCardholder__network {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.baasTransactionCardholder__network--mastercard {
+  width: var(--sizing250);
+}
+
+.baasTransactionCardholder__network--loaded {
+  z-index: 1;
+}
+
+.baasTransactionCardholder__networkFallback {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: var(--sizing300);
+  height: var(--sizing200);
+}
+
+.baasTransactionCardholder__networkFallback--visa {
+  color: var(--colorsSemanticInfo600);
+  font-size: var(--fontSizes100);
+  font-style: italic;
+  font-weight: var(--fontWeights700);
+}
+
+.baasTransactionCardholder__mastercardMark {
+  display: flex;
+  align-items: center;
+}
+
+.baasTransactionCardholder__mastercardMark i {
+  display: block;
+  width: var(--sizing150);
+  height: var(--sizing150);
+  border-radius: 50%;
+  background: var(--colorsSemanticNegative500);
+}
+
+.baasTransactionCardholder__mastercardMark i + i {
+  margin-left: calc(var(--spacing050) * -1);
+  background: var(--colorsSemanticCaution400);
+  opacity: 0.9;
+}
+
+.baasTransactionsPanel h2 {
+  margin: 0;
+}
+
+.baasTransactionAmount--negative {
+  color: var(--colorsSemanticNegative500);
+}
+
+.bankingBaasCardsPage__filters {
+  justify-content: space-between;
+  gap: var(--spacing300);
+}
+
+.bankingBaasCardsPage__filters > p {
+  margin: 0;
+  color: var(--colorsUtilityYin065);
+}
+
+.baasCardGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--spacing300);
+  padding: var(--spacing200) 0;
+}
+
+.baasCardTile {
+  overflow: hidden;
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--global-radius-container-m);
+  background: var(--colorsUtilityYang100);
+}
+
+.baasCardTile__visual {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 175px;
+  padding: var(--global-space-comp-l);
+  background-color: var(--colorsUtilityYin090);
+  background-image: radial-gradient(
+    ellipse at top right,
+    color-mix(in srgb, var(--baas-card-gradient) 42%, var(--colorsUtilityYin090)),
+    color-mix(in srgb, var(--baas-card-gradient) 20%, var(--colorsUtilityYin090)) 38%,
+    var(--colorsUtilityYin090) 78%
+  );
+  color: var(--colorsUtilityYang100);
+}
+
+.baasCardTile__visual--sage {
+  --baas-card-gradient: var(--colorsActionMajor500);
+}
+
+.baasCardTile__visual--night {
+  --baas-card-gradient: var(--mode-color-ai-stop-2);
+}
+
+.baasCardTile__visual--plum {
+  --baas-card-gradient: var(--mode-color-ai-stop-3);
+}
+
+.baasIssueSidebar [data-element="sidebar-content"] {
+  padding: var(--spacing300) var(--spacing200);
+}
+
+.baasIssueForm,
+.baasIssueForm__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing300);
+}
+
+.baasIssueForm__requiredNote,
+.baasIssueForm__disclaimer {
+  margin: 0;
+}
+
+.baasIssueCardPreview {
+  overflow: hidden;
+  border-radius: var(--global-radius-action-xl);
+}
+
+.baasIssueCardPreview .baasCardTile__visual {
+  min-height: 175px;
+}
+
+.baasIssueCardPreview__topline {
+  min-height: var(--spacing500);
+}
+
+.baasIssueCardPreview__chip {
+  display: block;
+  width: var(--spacing400);
+  height: var(--spacing300);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor300);
+  border-radius: var(--global-radius-action-s);
+  background: color-mix(in srgb, var(--colorsUtilityMajor200) 74%, var(--colorsUtilityYin100));
+}
+
+.baasIssueCardPreview__details {
+  margin-top: auto;
+}
+
+.baasIssueForm__colourField {
+  width: 100%;
+}
+
+.baasIssueForm__limits {
+  width: 100%;
+  padding: var(--spacing200) 0;
+}
+
+.baasIssueForm__spendingHeading h2,
+.baasIssueForm__spendingHeading p {
+  margin: 0;
+}
+
+.baasIssueForm__limits > [data-component="decimal"] {
+  width: 100%;
+}
+
+.baasIssueForm__disclaimer {
+  padding-top: var(--spacing200);
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+}
+
+.baasIssueForm__actions {
+  padding-top: var(--spacing200);
+}
+
+.baasIssueForm__actions > button {
+  width: 100%;
+}
+
+.baasTokenPicker__values {
+  align-items: flex-start;
+}
+
+.baasTokenPicker__values > [data-component="pill"] {
+  flex: 0 0 auto;
+}
+
+.baasCardTile__visual .baasCardTile__secondaryText {
+  color: var(--mode-color-generic-txt-inverse-moderate);
+}
+
+.baasCardTile__visual p,
+.baasCardTile__visual span {
+  margin: 0;
+}
+
+.baasCardTile__topline {
+  min-height: var(--spacing400);
+}
+
+.baasCardTile__statusPill {
+  align-self: flex-start;
+  flex: 0 0 auto;
+  width: fit-content;
+}
+
+.baasCardTile__network {
+  position: relative;
+  display: inline-flex;
+  min-width: var(--spacing500);
+  min-height: var(--spacing300);
+  align-items: center;
+  color: var(--colorsUtilityYang100);
+}
+
+.baasCardTile__networkImage {
+  width: var(--spacing500);
+  height: auto;
+  opacity: 0;
+}
+
+.baasCardTile__networkImage--loaded {
+  opacity: 1;
+}
+
+.baasCardTile__networkFallback {
+  position: absolute;
+}
+
+.baasCardTile__networkFallback--visa {
+  letter-spacing: 0.04em;
+}
+
+.baasCardTile__mastercardMark {
+  display: inline-flex;
+  align-items: center;
+}
+
+.baasCardTile__mastercardMark i {
+  display: block;
+  width: var(--spacing300);
+  height: var(--spacing300);
+  border-radius: var(--global-radius-container-circle);
+  background: var(--colorsSemanticNegative500);
+}
+
+.baasCardTile__mastercardMark i + i {
+  margin-left: calc(var(--spacing100) * -1);
+  background: var(--colorsSemanticCaution500);
+  opacity: 0.9;
+}
+
+.baasCardTile__nicknameRow {
+  min-height: var(--spacing600);
+  color: var(--mode-color-generic-txt-inverse-moderate);
+}
+
+.baasCardTile__brand {
+  flex: 0 0 auto;
+}
+
+.baasCardTile__sageLogo {
+  flex-shrink: 0;
+}
+
+.baasCardTile__cardType {
+  color: var(--mode-color-generic-txt-inverse-moderate);
+}
+
+.baasCardTile__contactless {
+  display: block;
+  width: var(--spacing300);
+  height: var(--spacing300);
+  fill: none;
+  stroke: currentColor;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.75;
+}
+
+.baasCardTile__number {
+  margin: 0;
+  letter-spacing: 0.08em;
+  font-variant-numeric: tabular-nums;
+}
+
+.baasCardTile__holderRow {
+  margin-top: auto;
+  color: var(--mode-color-generic-txt-inverse-moderate);
+}
+
+.baasCardTile__holder {
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.baasCardTile__visual .baasCardTile__number,
+.baasCardTile__visual .baasCardTile__holder,
+.baasCardTile__visual .baasCardTile__primaryText {
+  color: var(--mode-color-generic-txt-inverse-severe);
+}
+
+.baasCardTile__footer {
+  min-height: 65px;
+  padding: var(--global-space-comp-s) var(--global-space-comp-xl);
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+}
+
+.baasCardTile__footer p,
+.baasCardTile__footer span {
+  margin: 0;
+}
+
+.baasCardTile__footer .numericValue {
+  text-align: left;
+}
+
+.baasCardTile__actions {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.baasCardColourOptions {
+  flex-wrap: wrap;
+}
+
+.baasCardColourOption {
+  width: var(--spacing800);
+  min-width: var(--spacing800);
+  height: var(--spacing800);
+  min-height: var(--spacing800);
+  padding: 0;
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border-radius: var(--global-radius-container-m);
+}
+
+.baasCardColourOption.baasCardTile__visual--sage {
+  --baas-card-gradient: var(--colorsActionMajor500);
+}
+
+.baasCardColourOption.baasCardTile__visual--night {
+  --baas-card-gradient: var(--mode-color-ai-stop-2);
+}
+
+.baasCardColourOption.baasCardTile__visual--plum {
+  --baas-card-gradient: var(--mode-color-ai-stop-3);
+}
+
+.baasCardColourOption--selected {
+  outline: var(--borderWidth200) solid var(--colorsActionMajor500);
+  outline-offset: var(--spacing100);
+}
+
+.baasIssueCardForm > p,
+.baasCardSuccess {
+  margin: 0;
+}
+
+.baasCardSuccess {
+  color: var(--colorsSemanticPositive500);
+}
+
+@media (max-width: 900px) {
+  .bankingBaasPage__accountGrid,
+  .bankingAccountsPage__baasAccounts,
+  .baasKpiGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .baasOnboarding--application,
+  .baasOnboarding--underReview,
+  .baasOnboarding--approved,
+  .baasOnboarding--providerStart {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .baasOnboarding__stepRail {
+    flex-basis: auto;
+  }
+
+  .baasOnboarding__reviewIllustration {
+    flex-basis: auto;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .baasOnboarding__approvedIllustration {
+    flex-basis: auto;
+    max-width: 240px;
+    margin: 0 auto;
+  }
+
+  .baasPromotion {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 0.68fr);
+  }
+
+  .baasOnboarding--underReview {
+    gap: var(--spacing300);
+  }
+
+  .baasSpendPanel {
+    grid-template-columns: 1fr;
+  }
+
+  .baasSpendPanel__summary {
+    padding-right: 0;
+    padding-bottom: var(--spacing300);
+    border-right: 0;
+    border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  }
+
+  .baasSpendPanel__list {
+    padding-top: var(--spacing300);
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 700px) {
+  .bankingBaasPage__titleRow,
+  .bankingBaasPage__toolbar,
+  .bankingBaasCardsPage__header,
+  .bankingBaasCardsPage__filters,
+  .baasAccountHero,
+  .baasOnboarding__providerActions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .bankingBaasPage__search {
+    width: 100%;
+  }
+
+  .baasPromotion {
+    grid-template-columns: 1fr;
+  }
+
+  .baasPromotion__art {
+    width: 68%;
+    justify-self: end;
+  }
+
+  .baasOnboarding__selection,
+  .baasOnboarding__applicationBody,
+  .baasOnboarding--underReview,
+  .baasOnboarding--start,
+  .baasOnboarding--providerStart,
+  .baasOnboarding--approved,
+  .bankingBaasDetailPage__content {
+    padding: var(--spacing300);
+  }
+
+  .baasAccountHero {
+    gap: var(--spacing300);
+  }
+
+  .baasAccountHero__balance {
+    align-items: flex-start;
+  }
+
+  .baasAccountHero__balance > div {
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+
+  .baasOnboarding__providerActions > button {
+    width: 100%;
+  }
+
+  .baasOnboarding__fieldGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .baasOnboarding__dateField {
+    grid-column: auto;
+  }
+
+  .baasOnboarding__dateField > div {
+    grid-template-columns: 1fr;
+  }
+
+  .baasSpendRow {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .baasSpendRow > button {
+    justify-self: start;
+  }
+
+}
+
+@media (max-width: 1100px) {
+  .baasCardGrid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 700px) {
+  .baasCardGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .baasCardTile__footer {
+    align-items: flex-start;
+    flex-direction: column;
+    padding: var(--global-space-comp-l);
+  }
+
+  .baasCardTile__actions {
+    width: 100%;
+  }
+}
+
 /* Right-aligned figures for mock invoice / table-style content */
 .numericValue {
   display: inline-block;
@@ -4107,7 +5441,7 @@ body {
   padding: var(--spacing100) var(--spacing300) 58px var(--spacing300);
   border: 1px solid var(--colorsUtilityMajor100);
   background-color: var(--colorsUtilityYang100);
-  border-radius: var(--borderRadius100);
+  border-radius: var(--borderRadius100) !important;
   box-shadow:
     0 2px 4px rgba(0, 20, 30, 0.15),
     0 3px 3px rgba(0, 20, 30, 0.2);

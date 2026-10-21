@@ -105,6 +105,9 @@ export const ROUTES = {
   banking: {
     bankMovements: "/banking/bank-movements",
     overview: "/banking",
+    baas: "/banking/baas",
+    baasAccount: (accountId: string) => `/banking/baas/accounts/${accountId}`,
+    baasCards: (accountId: string) => `/banking/baas/accounts/${accountId}/cards`,
   },
   accounting: {
     journalEntries: "/accounting/journal-entries",

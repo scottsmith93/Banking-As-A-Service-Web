@@ -45,12 +45,13 @@ export default function BaasTokenPicker({
   };
 
   return (
-    <Box className="baasTokenPicker" display="flex" flexDirection="column" gap={2}>
+    <Box className="baasTokenPicker" display="flex" flexDirection="column" gap={3}>
       <Textbox
         id={id}
         label={label}
         placeholder={placeholder}
         inputIcon="search"
+        maxWidth="25rem"
         value={query}
         onChange={(event) => setQuery(event.target.value)}
         onKeyDown={handleKeyDown}

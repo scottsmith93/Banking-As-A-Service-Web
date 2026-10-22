@@ -1,0 +1,117 @@
+.mainContent:has(.baasTransactionsPage),
+.mainContent:has(.baasMatchedPurchaseInvoice),
+.baasMatchedPurchaseInvoice,
+.baasTransactionsPage,
+.baasTransactionsPage .bankingBaasDetailPage__content { min-width: 0; }
+.baasTransactionsPage { container-type: inline-size; }
+.baasTransactionTasks {
+  padding: var(--spacing300);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor150);
+  border-left: var(--borderWidth400) solid var(--colorsActionMajor500);
+  border-radius: var(--global-radius-container-m);
+  background: var(--colorsUtilityYang100);
+}
+.baasTransactionsPage h1,
+.baasTransactionsPage h2,
+.baasTransactionsPage h3,
+.baasTransactionsPage p,
+.baasTransactionDrawer h3,
+.baasTransactionDrawer p,
+.baasTransactionFilterForm p { margin: 0; }
+.baasTransactionToolbar {
+  grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr)) auto;
+  align-items: end;
+}
+.baasTransactionTasks > button { flex-shrink: 0; }
+.baasTransactionActiveFilters > [data-component="pill"] { width: fit-content; }
+.sageDataGrid.baasTransactionsGrid { height: auto; min-height: 0; }
+.baasTransactionsGrid .ag-root-wrapper { border-radius: var(--global-radius-container-m); }
+.baasTransactionsGrid .ag-right-aligned-cell { justify-content: flex-end; font-variant-numeric: tabular-nums; }
+.baasTransactionsGrid .ag-cell[col-id="amount"] .ag-cell-wrapper { width: 100%; align-items: center; }
+.baasTransactionsGrid .ag-cell[col-id="amount"] .ag-cell-value { display: flex; width: 100%; align-items: center; justify-content: flex-end; }
+.baasTransactionAmount { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.baasTransactionAmount--in { color: var(--mode-color-status-positive-default); }
+.baasTransactionAmount--out { color: var(--mode-color-status-negative-default); }
+.baasTransactionsGrid .ag-row.baasTransactionRow--selected { background: var(--colorsActionMajor025); }
+.baasTransactionsGrid .ag-cell {
+  padding-top: var(--spacing050);
+  padding-bottom: var(--spacing050);
+  line-height: var(--lineHeights500);
+}
+.baasTransactionMerchant { display: flex; flex-direction: column; gap: var(--spacing025); min-width: 0; line-height: var(--lineHeights500); }
+.baasTransactionMerchant > [data-component="link"] { max-width: 100%; }
+.baasTransactionMerchant > span { color: var(--colorsUtilityYin065); }
+.baasTransactionSource { display: inline-flex; align-items: center; gap: var(--spacing100); vertical-align: middle; border-radius: var(--borderRadius100); }
+/* Match Carbon's own focus treatment for this read-only, keyboard-discoverable tooltip target. */
+.baasTransactionSource:focus-visible { box-shadow: 0 0 0 var(--borderWidth200) var(--mode-color-action-focus-default), 0 0 0 var(--borderWidth400) var(--mode-color-action-focus-with-default); outline: var(--borderWidth300) solid transparent; }
+.baasTransactionSource > span { display: flex; align-items: center; }
+.baasTransactionSource__bank { width: var(--spacing400); height: var(--spacing300); overflow: hidden; }
+.baasTransactionSource__bank img { width: 100%; height: 100%; object-fit: cover; object-position: left center; }
+.baasTransactionSource__bank--sage, .baasTransactionSource__bank--bnp { width: var(--spacing300); }
+.baasTransactionSource__bank--sage img { object-fit: contain; transform: scale(2); }
+.baasTransactionsGrid .ag-pinned-right-header,
+.baasTransactionsGrid .ag-pinned-right-cols-container { box-shadow: none; }
+.baasTransactionsGrid [data-component="pill"],
+.baasTransactionDrawer [data-component="pill"] { width: fit-content; flex: 0 0 auto; }
+.baasTransactionsEmpty { padding: var(--spacing600) var(--spacing300); background: var(--colorsUtilityYang100); border-radius: var(--global-radius-container-m); }
+.baasTransactionsEmpty > button { align-self: flex-start; }
+.baasTransactionDrawer [data-element="sidebar-content"] { padding: var(--spacing300); }
+.baasTransactionDrawer__summary { display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: var(--spacing200); align-items: center; }
+.baasTransactionMiniCard.baasCardTile__visual {
+  width: calc(var(--spacing1000) + var(--spacing300));
+  aspect-ratio: 1.586;
+  min-height: 0;
+  padding: var(--spacing150);
+  border-radius: var(--borderRadius200);
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+.baasTransactionMiniCard .baasCardTile__network { min-height: 0; min-width: 0; }
+.baasTransactionMiniCard .baasCardTile__networkArtwork { height: var(--spacing150); width: auto; }
+.baasTransactionInvoiceActions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing150); }
+.baasTransactionInvoiceActions > button { width: 100%; height: auto; min-width: 0; white-space: normal; padding: var(--spacing150); }
+.baasTransactionInvoiceActions > button > span { flex-direction: column; gap: var(--spacing100); }
+.baasTransactionInvoiceActions > button > span > span { white-space: normal; }
+.baasLinkedInvoice > a { height: auto; width: 100%; white-space: normal; text-align: left; padding: 0; border-color: var(--colorsUtilityMajor300); border-radius: var(--global-radius-container-m); }
+.baasLinkedInvoice > a > span { width: 100%; }
+.baasLinkedInvoice__content { display: flex; flex-direction: column; gap: var(--spacing100); padding: var(--spacing200); color: var(--colorsUtilityYin090); }
+.baasLinkedInvoice__top { display: flex; justify-content: space-between; align-items: center; gap: var(--spacing200); }
+.baasLinkedInvoice__top > strong { text-align: right; font-variant-numeric: tabular-nums; }
+.baasSuggestedReview { display: flex; flex-direction: column; gap: var(--spacing200); }
+.baasSuggestedReview__actions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing100); }
+.baasSuggestedReview__actions > button { height: auto; white-space: normal; }
+.baasTransactionInvoice,
+.baasTransactionLocation { display: flex; flex-direction: column; gap: var(--spacing200); }
+.baasTransactionInvoice { padding-bottom: var(--spacing300); border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor150); }
+.baasInvoiceSuggestion,
+.baasInvoiceCandidate { border: var(--borderWidth100) solid var(--colorsUtilityMajor150); border-radius: var(--global-radius-container-m); padding: var(--spacing200); }
+.baasInvoiceSuggestion { background: var(--colorsUtilityMajor025); margin-top: var(--spacing100); }
+.baasInvoiceFilename { overflow-wrap: anywhere; color: var(--colorsUtilityYin065); }
+.baasTransactionFacts { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing200); margin: var(--spacing200) 0 0; }
+.baasTransactionFacts__full { grid-column: 1 / -1; }
+.baasTransactionFacts > div { display: flex; flex-direction: column; gap: var(--spacing050); }
+.baasTransactionFacts dt { font-weight: var(--fontWeights500); color: var(--colorsUtilityYin065); }
+.baasTransactionFacts dd { margin: 0; overflow-wrap: anywhere; }
+.baasTransactionPaymentMethod { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing100); }
+.baasTransactionPaymentMethod > img { width: auto; height: var(--spacing300); object-fit: contain; }
+.baasMatchedPurchaseInvoice__fields { display: flex; flex-direction: column; gap: var(--spacing300); }
+.pageContent.purchaseInvoiceDetail.baasMatchedPurchaseInvoice { margin: 0; height: 100vh; overflow: auto; padding: var(--spacing400); gap: var(--spacing300); }
+.baasMatchedPurchaseInvoice .purchaseInvoiceDetail__content { min-width: 0; }
+.baasMatchedPurchaseInvoice .purchaseInvoiceDetail__previewPage { display: flex; flex-direction: column; gap: var(--spacing300); }
+.baasTransactionLocation__map { width: 100%; aspect-ratio: 2 / 1; min-height: calc(var(--spacing500) * 5); border: 0; border-radius: var(--global-radius-container-m); }
+.baasTransactionLocation__address { padding: var(--spacing200); background: var(--colorsUtilityMajor025); border-radius: var(--global-radius-container-m); }
+.baasTransactionDrawer__next { padding-top: var(--spacing200); border-top: var(--borderWidth100) solid var(--colorsUtilityMajor150); }
+.baasInvoiceReviewForm,
+.baasTransactionFilterForm { display: flex; flex-direction: column; gap: var(--spacing300); }
+.baasInvoiceExtraction { display: flex; align-items: center; justify-content: center; padding: var(--spacing600) 0; }
+.baasTransactionFilterDates { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.baasTransactionLiveStatus { position: absolute; width: var(--borderWidth100); height: var(--borderWidth100); overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+@media (max-width: 1100px) {
+  .baasTransactionToolbar { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .baasTransactionToolbar > button { justify-self: start; }
+  .baasTransactionsPage .baasTransactionTasks { flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 600px) {
+  .baasTransactionToolbar,
+  .baasTransactionFilterDates { grid-template-columns: minmax(0, 1fr); }
+}

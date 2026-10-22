@@ -1,0 +1,4 @@
+.baasTransactionType { display: inline-flex; align-items: center; gap: var(--spacing100); line-height: var(--lineHeights500); max-width: 100%; white-space: normal; }
+.baasTransactionType > span:last-child { min-width: 0; overflow-wrap: anywhere; }
+.baasTransactionType > [data-component="icon"] { flex: 0 0 auto; width: var(--sizing200); height: var(--sizing200); color: var(--colorsUtilityYin065); }
+.baasTransactionType > [data-component="icon"]::before { font-size: var(--sizing200); line-height: var(--sizing200); }

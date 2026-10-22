@@ -14,6 +14,8 @@ import {
   type PurchaseInvoiceListCategory,
 } from "../../data/purchaseInvoices";
 import { ROUTES } from "../../routes";
+import { useBankingTransactions } from "../../context/useBankingTransactions";
+import MatchedPurchaseInvoiceDetail from "../../components/purchase-invoices/MatchedPurchaseInvoiceDetail";
 
 const STATUS_BY_LIST_CATEGORY: Record<
   PurchaseInvoiceListCategory,
@@ -28,6 +30,8 @@ const STATUS_BY_LIST_CATEGORY: Record<
 export default function PurchaseInvoiceDetailPage() {
   const navigate = useNavigate();
   const { invoiceId } = useParams<{ invoiceId: string }>();
+  const { invoices: bankInvoices } = useBankingTransactions();
+  const matchedInvoice = bankInvoices.find(item => item.id === invoiceId);
 
   const invoice = useMemo(
     () => purchaseInvoices.find((item) => item.id === invoiceId),
@@ -37,6 +41,8 @@ export default function PurchaseInvoiceDetailPage() {
   const detail = useMemo(() => (invoice ? getPurchaseInvoiceDetail(invoice) : null), [invoice]);
 
   const handleBack = () => navigate(ROUTES.purchases.invoices);
+
+  if (matchedInvoice) return <MatchedPurchaseInvoiceDetail key={matchedInvoice.id} invoice={matchedInvoice} />;
 
   if (!invoice || !detail) {
     return (

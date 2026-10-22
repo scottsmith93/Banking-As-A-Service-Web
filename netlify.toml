@@ -1,0 +1,13 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22.13.0"
+  NPM_VERSION = "11.11.1"
+
+# React Router uses browser history, so serve the app entry point on deep links.
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

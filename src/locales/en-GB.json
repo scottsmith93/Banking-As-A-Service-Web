@@ -36,21 +36,229 @@
     "grid": { "ariaLabel": "Customer list" }
   },
   "bankingBaas": {
+    "transactions": {
+      "title": "Transactions",
+      "subtitle": "Review transactions, match invoices and assign categories.",
+      "taskTitle": "Transactions needing attention",
+      "taskDescription": "Transactions to justify: {count} · {amount} to review.",
+      "suggestedAction": "Suggested matches ({count})",
+      "queueAria": "Transaction justification work queues",
+      "tabs": {
+        "all": "All ({count})",
+        "needsAction": "To justify ({count})",
+        "matched": "Justified ({count})"
+      },
+      "resultCount": "Transactions: {count}",
+      "search": "Search transactions",
+      "searchPlaceholder": "Merchant, reference or invoice number",
+      "cardholder": "Cardholder",
+      "allCardholders": "All cardholders",
+      "type": "Transaction type",
+      "allTypes": "All transaction types",
+      "filters": "Filters",
+      "filtersApplied": "Active filters: {count}",
+      "clearFilters": "Clear filters",
+      "suggestedOnly": "Showing suggested matches",
+      "noResults": "No transactions match these filters",
+      "noResultsHint": "Try another search or clear your filters.",
+      "emptyQueue": "All transactions are up to date",
+      "emptyQueueHint": "No transactions need an invoice or category.",
+      "details": "Transaction details",
+      "invoiceTitle": "Purchase invoice",
+      "noInvoiceText": "Add an invoice to finish matching this purchase.",
+      "uploadInvoice": "Upload purchase invoice",
+      "linkExisting": "Link an existing invoice",
+      "matchComplete": "Transaction matched",
+      "matchSuccess": "{reference} is matched to {merchant}.",
+      "nextTransaction": "Next transaction needing attention",
+      "noMoreTasks": "No more transactions in this view need attention.",
+      "transactionId": "Transaction ID",
+      "paymentStatus": "Payment status",
+      "paymentMethod": "Payment method",
+      "merchant": "Merchant / supplier",
+      "bankReference": "Bank reference",
+      "category": "Category",
+      "transactionDate": "Transaction date",
+      "invoiceStatus": "Justified",
+      "amount": "Amount",
+      "location": "Merchant location",
+      "mapTitle": "Merchant location for {merchant}",
+      "mapCaption": "Merchant location supplied by the payment provider.",
+      "onlineLocation": "No purchase location was supplied for this payment.",
+      "viewOnMap": "View on Google Maps",
+      "fileHint": "PDF, JPG or PNG, up to 10 MB.",
+      "fileError": "Choose a PDF, JPG or PNG file smaller than 10 MB.",
+      "extracting": "Reading invoice details…",
+      "reviewInvoice": "Review invoice details",
+      "extractionDemo": "Demo extraction uses this transaction’s details. Check them against your file before matching.",
+      "supplier": "Supplier",
+      "invoiceReference": "Invoice number",
+      "invoiceDate": "Invoice date",
+      "invoiceTotal": "Invoice total (EUR)",
+      "confirmMatch": "Confirm match",
+      "cancel": "Cancel",
+      "back": "Back to transaction",
+      "difference": "Difference: {amount}",
+      "exactMatch": "Supplier and amount match",
+      "cannotLink": "Supplier, amount and currency must match this transaction.",
+      "existingInvoices": "Find an existing invoice",
+      "existingSearch": "Search supplier or invoice number",
+      "noInvoices": "No available invoices match your search.",
+      "matchInvoice": "Match this invoice",
+      "suggestion": "Suggested invoice",
+      "reviewTitle": "Review suggested matches",
+      "reviewProgress": "{remaining} suggestions remaining",
+      "confirmNext": "Confirm and next",
+      "rejectNext": "Reject and next",
+      "chooseAnother": "Choose another invoice",
+      "reviewDone": "Suggestions reviewed",
+      "reviewDoneHint": "Unjustified transactions remain in To justify. You can upload or link an invoice there.",
+      "reviewRejected": "Rejected suggestions: {count}. These purchases still need an invoice.",
+      "reviewClose": "Back to transactions",
+      "viewInvoice": "View purchase invoice {reference}",
+      "invoiceDetails": "Purchase invoice details",
+      "backToTransactions": "Back to transaction",
+      "backToInvoices": "Purchase invoices",
+      "document": "Document preview",
+      "previewNotice": "This prototype shows invoice data, not the original document.",
+      "invoiceReadOnly": "Invoice data is read-only in this prototype.",
+      "cardEnding": "Card ending {lastFour}",
+      "noInvoiceNeeded": "This transaction does not need a purchase invoice.",
+      "waitingInvoice": "Wait until the payment is settled or its dispute is resolved before matching an invoice.",
+      "allOptions": "All",
+      "fromDate": "From date",
+      "toDate": "To date",
+      "minimumAmount": "Minimum amount (EUR)",
+      "maximumAmount": "Maximum amount (EUR)",
+      "amountHint": "Filters use the absolute amount, for money in and money out.",
+      "applyFilters": "Apply filters",
+      "invalidRange": "Check the date and amount ranges. The start must not exceed the end.",
+      "openTransaction": "Open transaction for {merchant}",
+      "errors": {
+        "notEligible": "This payment is not available for invoice matching.",
+        "mismatch": "Check the supplier, total and invoice date before matching.",
+        "alreadyLinked": "This invoice is already matched to another transaction.",
+        "duplicateInvoice": "This invoice already exists. Use “Link an existing invoice” to find it."
+      },
+      "paymentStatuses": {
+        "completed": "Completed",
+        "pending": "Pending",
+        "failed": "Failed",
+        "cancelled": "Cancelled",
+        "disputed": "Disputed"
+      },
+      "matchingStates": {
+        "missing": "Invoice needed",
+        "suggested": "Match suggested",
+        "matched": "Matched",
+        "notRequired": "Not required",
+        "waiting": "On hold",
+        "categoryNeeded": "Category needed",
+        "categorised": "Categorised"
+      },
+      "methods": {
+        "applePay": "Apple Pay",
+        "googlePay": "Google Pay",
+        "card": "Debit card",
+        "bankTransfer": "Bank transfer",
+        "directDebit": "Direct debit"
+      },
+      "types": {
+        "directDebit": "Direct debit",
+        "cardPurchase": "Card purchase",
+        "transfer": "Transfer",
+        "refund": "Refund",
+        "fee": "Bank fee",
+        "atmWithdrawal": "ATM withdrawal"
+      },
+      "categories": {
+        "supplies": "Supplies",
+        "software": "Software",
+        "equipment": "Equipment",
+        "travel": "Travel",
+        "utilities": "Utilities",
+        "fees": "Bank fees",
+        "transfers": "Internal transfers",
+        "refund": "Refunds",
+        "cash": "Cash withdrawals",
+        "uncategorised": "Uncategorised"
+      },
+      "justification": {
+        "title": "Justified",
+        "categorised": "Categorised",
+        "categoryNeeded": "Category needed",
+        "invoiceNeeded": "Invoice needed",
+        "chooseCategory": "Choose a category",
+        "saveCategory": "Save category",
+        "categorySaved": "Category saved. Transaction justified.",
+        "categoryHint": "This transaction needs a category, not a purchase invoice.",
+        "recentHint": "Showing the {count} most recent transactions."
+      },
+      "workbench": {
+        "bankTransaction": "Bank transaction",
+        "suggestion": "Suggestion",
+        "proposal": "Suggested justification",
+        "actions": "Action",
+        "changedSuggestion": "This suggestion has changed. Review the transaction before justifying it.",
+        "justifiedNotice": "{merchant} justified with invoice {reference}.",
+        "invoiceSummary": "{supplier} · Invoice: {date}",
+        "invoiceSummaryEarlierOne": "{supplier} · Invoice: {date} · day before transaction",
+        "invoiceSummaryEarlierMany": "{supplier} · Invoice: {date} · {days} days before transaction",
+        "invoiceSummaryLater": "{supplier} · Invoice: {date} · after transaction",
+        "possibleInvoices": "{count} possible invoices",
+        "chooseInvoice": "Several invoices match. Review and choose the correct one.",
+        "matchReason": "Supplier, amount and currency match",
+        "amountDifference": "Amount differs by {amount} · review required",
+        "currencyDifference": "Different currencies · review required",
+        "noSuggestion": "No matching invoice found. Link an existing invoice or upload one.",
+        "linkOrUpload": "Link or upload",
+        "relatedInvoice": "Related invoice — review required",
+        "moreInvoices": "More invoices are available in the existing-invoice search.",
+        "notMatch": "Not a match",
+        "justifyInvoice": "Justify {merchant} with invoice {reference}",
+        "justify": "Justify",
+        "reviewMatches": "Review matches",
+        "reviewDifference": "Review difference",
+        "review": "Review",
+        "proposedInvoice": "Proposed invoice",
+        "withSuggestions": "With suggestions"
+      },
+      "movements": {
+        "all": "All",
+        "source": "Source",
+        "date": "Date",
+        "bank": "Bank",
+        "sageBank": "Sage",
+        "bankSource": "Bank: {bank}. Account: {account}.",
+        "cardSource": "Bank: {bank}. Account: {account}. Cardholder: {cardholder}.",
+        "description": "Description",
+        "title": "Bank movements",
+        "subtitle": "Review transactions and justify them with an invoice or a category.",
+        "account": "Bank account",
+        "allAccounts": "All bank accounts",
+        "bankBalance": "Bank balance",
+        "ledgerBalance": "Ledger balance",
+        "toJustifyAmount": "Amount to justify"
+      }
+    },
     "cardIssueForm": {
       "title": "Issue a new card",
-      "description": "Create a virtual debit card for a cardholder and choose how it can be used.",
-      "requiredInformation": "* indicates required information",
+      "description": "Choose a physical or virtual debit card and set up how it can be used.",
       "previewDescription": "{network} card for {name}",
       "selectCardholder": "Select cardholder",
       "cardholderRequired": "Cardholder *",
-      "cardholderHint": "The user must be verified for debit card access.",
+      "cardholderError": "Select a cardholder to create a debit card.",
       "nickname": "Card nickname",
       "nicknamePlaceholder": "Team or group name",
-      "networkRequired": "Network *",
-      "digitalWallets": "Digital wallets (Apple or Google)",
+      "networkRequired": "Network",
+      "digitalWallets": "Digital wallets *",
       "digitalWalletsHint": "Allow this card to be added to supported digital wallets.",
+      "walletProviders": {
+        "applePay": "Apple Pay",
+        "googlePay": "Google Pay"
+      },
       "spendingControls": "Spending controls",
-      "spendingControlsDescription": "Admins can update spending limits and payment controls for this card at any time. Leave a limit blank to allow any amount. All limits are in EUR.",
+      "spendingControlsDescription": "Admins can update spending limits and payment controls for this card at any time. Leave a limit blank to allow any amount.",
       "limits": {
         "daily": "Daily limit",
         "monthly": "Monthly limit",
@@ -64,10 +272,80 @@
       "allowedRegions": "Allowed countries and regions",
       "searchRegions": "Search countries or regions",
       "blockedMerchants": "Blocked merchants and categories",
+      "blockedMerchantsDescription": "Admins can prevent this card from being used with specific merchants or merchant categories.",
       "searchBlockedCategories": "Search merchants or categories to block",
       "removeValue": "Remove {value}",
-      "issuerDisclaimer": "Cards are issued by Adyen N.V. Sage is not a bank or card issuer.",
-      "createCard": "Create debit card"
+      "issuerDisclaimer": "Cards are issued by Adyen N.V. Sage is not a bank or card issuer. Banking and financial services are provided by Adyen N.V., trading as Adyen, which is authorised by De Nederlandsche Bank and regulated by the Central Bank of Ireland for consumer protection rules.",
+      "privacyStatement": "Read the Adyen Privacy Statement.",
+      "createCard": "Create debit card",
+      "processing": "Processing...",
+      "success": {
+        "title": "Virtual debit card ready to use",
+        "description": "Your virtual debit card has been created and is ready to use.",
+        "manageCard": "Manage card",
+        "createAnother": "Create another debit card"
+      },
+      "steps": {
+        "label": "Card issuing steps",
+        "type": "Card type",
+        "details": "Card details"
+      },
+      "detailsTitles": {
+        "physical": "Create physical debit card",
+        "virtual": "Create virtual debit card"
+      },
+      "atmWithdrawals": "ATM withdrawals",
+      "atmWithdrawalsHint": "Allow the cardholder to withdraw cash at ATMs.",
+      "inStorePayments": "In-store payments",
+      "inStorePaymentsHint": "Allow purchases at physical payment terminals.",
+      "limitError": "Enter an amount of zero or more.",
+      "physicalSuccess": {
+        "title": "Your physical debit card has been ordered",
+        "description": "Your physical debit card has been approved and ordered. We'll notify you when it's ready to activate."
+      },
+      "typeChoice": {
+        "title": "Choose a card type",
+        "physical": {
+          "title": "Physical debit card",
+          "choose": "Choose physical",
+          "benefits": [
+            "Pay online and in stores",
+            "Make contactless payments",
+            "Withdraw cash from ATMs",
+            "Delivered to the cardholder"
+          ]
+        },
+        "virtual": {
+          "title": "Virtual debit card",
+          "choose": "Choose virtual",
+          "benefits": [
+            "Use after approval and verification",
+            "View card details online",
+            "Pay online without a physical card",
+            "No delivery required"
+          ]
+        },
+        "networks": "Visa or Mastercard"
+      },
+      "pin": {
+        "label": "Card PIN",
+        "hint": "Choose a 4-digit PIN.",
+        "error": "Enter a 4-digit PIN."
+      },
+      "shipping": {
+        "title": "Cardholder’s shipping address",
+        "description": "Enter the address where the physical card should be delivered.",
+        "requiredError": "Enter this shipping address field.",
+        "fields": {
+          "line1": "Address line 1",
+          "line2": "Address line 2",
+          "city": "Town/City",
+          "postcode": "Postcode",
+          "county": "County",
+          "country": "Country"
+        },
+        "selectCountry": "Select a country"
+      }
     },
     "title": "Bank accounts and cash",
     "description": "Keep your existing accounts and manage real-time Sage bank accounts in one place.",
@@ -87,6 +365,23 @@
       "body": "A Sage bank account brings transactions into Sage in near real time, so purchases can be matched to invoices sooner with less manual work. Capture receipts and issue employee cards from the same connected flow.",
       "benefits": ["See transactions as they happen", "Issue cards for business spending", "Match receipts to purchase invoices faster"],
       "cta": "Set up Sage bank account"
+    },
+    "list": {
+      "lastSync": "Last sync: {timestamp}",
+      "realTimeSync": "Real-time sync",
+      "matchTransactions": "Review transactions ({count})",
+      "upToDate": "No transactions to match",
+      "viewTransactions": "View transactions",
+      "accountActions": "Account actions for {account}",
+      "syncAccount": "Sync account",
+      "syncing": "Syncing…",
+      "syncComplete": "Sync complete. Timestamps updated.",
+      "notSynced": "Not started",
+      "accountReference": "Account ending {lastFour}",
+      "otherAccounts": "Other accounts",
+      "noResults": "No accounts match your search.",
+      "clearSearch": "Clear search",
+      "demoConnections": "Demo bank connections — no live feeds."
     },
     "accounts": {
       "sageAccount": "Sage bank account",
@@ -292,7 +587,8 @@
       "ariaLabel": "Sage bank account navigation"
     },
     "dashboard": {
-      "title": "Sage business account",
+      "bankAccountsBreadcrumb": "Bank accounts",
+      "title": "Business Bank Account",
       "subtitle": "View your balance, debit card activity and recent transactions.",
       "primaryBusinessAccount": "Primary business account",
       "accountEnding": "Account ending",
@@ -314,8 +610,43 @@
       "monthlySpend": "Monthly spend",
       "viewAllTransactions": "View all transactions",
       "recentTransactions": "Recent transactions",
-      "statuses": { "completed": "Completed", "failed": "Failed", "cancelled": "Cancelled" },
-      "table": { "date": "Transaction date", "description": "Description/category", "cardholder": "Cardholder name", "type": "Transaction type", "status": "Status", "amount": "Amount" }
+      "statuses": {
+        "completed": "Completed",
+        "failed": "Failed",
+        "cancelled": "Cancelled"
+      },
+      "table": {
+        "date": "Date",
+        "description": "Description",
+        "cardholder": "Cardholder",
+        "type": "Transaction type",
+        "status": "Status",
+        "amount": "Amount",
+        "receipt": "Justified"
+      },
+      "actions": {
+        "statements": "Statements",
+        "newCard": "New card",
+        "transfer": "Transfer",
+        "viewDetails": "View details"
+      },
+      "missingReceipts": "{count} transactions are missing receipts",
+      "receiptAttached": "Invoice or receipt attached: {invoice}",
+      "receiptMissing": "No invoice or receipt attached",
+      "transactionTypes": {
+        "cardPurchase": "Card purchase",
+        "refund": "Refund",
+        "transfer": "Transfer"
+      },
+      "transactionDescriptions": {
+        "transaction-001": "Office supplies",
+        "transaction-002": "Online subscription",
+        "transaction-003": "Customer refund",
+        "transaction-004": "Transfer from Northstar Business Bank",
+        "transaction-005": "Equipment purchase"
+      },
+      "transactionCount": "Transactions",
+      "topMerchant": "Top merchant"
     },
     "cards": {
       "title": "Debit cards for {accountName}",
@@ -347,14 +678,19 @@
       "visa": "Visa",
       "mastercard": "Mastercard",
       "colourLabel": "Card colour",
-      "colours": { "sage": "Sage green", "night": "Night", "plum": "Plum" },
+      "colours": {
+        "sage": "Sage green",
+        "night": "Night",
+        "plum": "Plum"
+      },
       "cancel": "Cancel",
       "confirmIssue": "Issue card",
       "created": "{name}’s card has been issued.",
       "newCardNickname": "Business spending",
       "cardDetailsTitle": "Card details",
       "maskedNumber": "•••• •••• •••• {lastFour}",
-      "empty": "No cards match this view."
+      "empty": "No cards match this view.",
+      "ordered": "Ordered"
     }
   },
   "appNavigation": {

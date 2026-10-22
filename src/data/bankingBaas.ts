@@ -9,6 +9,68 @@ export const baasBusinessProfile = {
   entityType: "organization",
 } as const;
 
+export const baasOnboardingDemoAnswers = {
+  formFields: {
+    "baas-form-1-0": "Northstar Cycle & Coffee Ltd",
+    "baas-form-1-1": "Northstar Cycles",
+    "baas-form-1-2": "09482716",
+    "baas-form-1-3": "United Kingdom",
+    "baas-form-1-4-year": "2019",
+    "baas-form-1-4-month": "06",
+    "baas-form-1-4-day": "14",
+    "baas-form-1-6": "jamie.taylor@northstarcyclecoffee.co.uk",
+    "baas-form-1-7": "+44 20 7946 0182",
+    "baas-form-1-9": "18 Market Street",
+    "baas-form-1-10": "Unit 4",
+    "baas-form-1-11": "Bristol",
+    "baas-form-1-12": "Bristol",
+    "baas-form-1-13": "BS1 4QA",
+    "baas-form-1-14": "United Kingdom",
+    "baas-form-1-15": "true",
+    "baas-form-2-0": "United Kingdom",
+    "baas-form-2-1": "Company Registration Number",
+    "baas-form-2-2": "09482716",
+    "baas-form-2-3": "Yes",
+    "baas-form-2-4": "GB381492573",
+    "baas-form-3-0": "Bicycle retailer and café",
+    "baas-form-3-1": "5940 — Bicycle shops",
+    "baas-form-3-2": "Retail store and online shop",
+    "baas-form-3-3": "https://northstarcyclecoffee.co.uk",
+    "baas-form-4-0": "Revenue from trading",
+    "baas-form-4-1": "€180,000 per year",
+    "baas-form-4-2": "Revenue from bicycle sales, repairs, coffee and online orders.",
+    "baas-form-5-1": "Jamie Taylor",
+    "baas-form-5-2": "Director and majority owner",
+    "baas-form-6-2": "Open Banking account connection",
+    "baas-form-6-3": "IBAN ending 8842; recent statement attached",
+    "baas-form-6-7": "Certificate of incorporation",
+  },
+  reviewSections: [
+    ["Organization"],
+    [
+      "Northstar Cycle & Coffee Ltd",
+      "Northstar Cycles",
+      "09482716",
+      "United Kingdom",
+      "14 Jun 2019",
+      "jamie.taylor@northstarcyclecoffee.co.uk",
+      "+44 20 7946 0182",
+      null,
+      "18 Market Street",
+      "Unit 4",
+      "Bristol",
+      "Bristol",
+      "BS1 4QA",
+      "United Kingdom",
+    ],
+    ["United Kingdom", "Company Registration Number", "09482716", "Yes", "GB381492573"],
+    ["Bicycle retailer and café", "5940 — Bicycle shops", "Retail store and online shop", "https://northstarcyclecoffee.co.uk"],
+    ["Revenue from trading", "€180,000 per year", "Revenue from bicycle sales, repairs, coffee and online orders."],
+    ["Jamie Taylor", "Director and majority owner", "Morgan Hughes", "Director and 30% shareholder"],
+    ["Jamie_Taylor_Passport.pdf", "Northstar_Certificate_of_Incorporation.pdf"],
+  ],
+} as const;
+
 export type BaaSAccount = {
   id: string;
   name: string;
@@ -30,7 +92,7 @@ export type LegacyBankAccount = {
   kind: "bank" | "cash";
 };
 
-export type DebitCardStatus = "issued" | "deactivated";
+export type DebitCardStatus = "issued" | "ordered" | "deactivated";
 
 export type DebitCard = {
   id: string;
@@ -51,7 +113,8 @@ export type BaaSTransaction = {
   description: string;
   cardholder: string;
   cardNetwork?: "visa" | "mastercard";
-  type: string;
+  type: "cardPurchase" | "refund" | "transfer";
+  invoiceId: string | null;
   status: "completed" | "failed" | "cancelled";
   amountEur: number;
 };
@@ -165,6 +228,7 @@ export const debitCards: DebitCard[] = [
 
 // PROTOTYPE: option values represent the API-provided restrictions currently shown in the card-issuing UI.
 export const cardIssueRegionOptions = ["France", "Germany", "Ireland", "Spain", "United Kingdom"];
+export const cardIssueShippingCountries = ["BE", "FR", "DE", "IE", "IT", "NL", "PT", "ES", "GB"] as const;
 export const cardIssueCategoryOptions = [
   "Gambling",
   "Cash advances",
@@ -180,51 +244,63 @@ export const cardIssueCategoryOptions = [
 export const baasTransactions: BaaSTransaction[] = [
   {
     id: "transaction-001",
-    date: "20 Oct 2026",
+    invoiceId: "PI-10482",
+    date: "2026-10-20",
     description: "Office supplies — invoice PI-10482",
     cardholder: "Jamie Taylor •••• 1234",
     cardNetwork: "visa",
-    type: "Card purchase",
+    type: "cardPurchase",
     status: "completed",
     amountEur: -45.3,
   },
   {
     id: "transaction-002",
-    date: "19 Oct 2026",
-    description: "Online subscription — invoice PI-10479",
+    invoiceId: null,
+    date: "2026-10-19",
+    description: "Online subscription",
     cardholder: "Morgan Hughes •••• 7781",
     cardNetwork: "mastercard",
-    type: "Card purchase",
+    type: "cardPurchase",
     status: "failed",
     amountEur: -55.2,
   },
   {
     id: "transaction-003",
-    date: "18 Oct 2026",
+    invoiceId: "CN-10316",
+    date: "2026-10-18",
     description: "Customer refund",
     cardholder: "Alex Morgan •••• 4608",
     cardNetwork: "visa",
-    type: "Refund",
+    type: "refund",
     status: "completed",
     amountEur: 135.5,
   },
   {
     id: "transaction-004",
-    date: "17 Oct 2026",
+    invoiceId: null,
+    date: "2026-10-17",
     description: "Transfer from Northstar Business Bank",
     cardholder: "—",
-    type: "Transfer",
+    type: "transfer",
     status: "cancelled",
     amountEur: 7040.4,
   },
   {
     id: "transaction-005",
-    date: "16 Oct 2026",
-    description: "Equipment purchase — invoice PI-10471",
+    invoiceId: null,
+    date: "2026-10-16",
+    description: "Equipment purchase",
     cardholder: "Jamie Taylor •••• 1234",
     cardNetwork: "mastercard",
-    type: "Card purchase",
+    type: "cardPurchase",
     status: "completed",
     amountEur: -860.6,
   },
 ];
+
+// MOCK DATA — monthly activity summaries, separate from the five recent transactions.
+export const baasCardholderActivity: Record<string, { transactionCount: number; topMerchant: string }> = {
+  "Jamie Taylor": { transactionCount: 8, topMerchant: "Metro Office Supplies" },
+  "Morgan Hughes": { transactionCount: 7, topMerchant: "Adobe" },
+  "Alex Morgan": { transactionCount: 5, topMerchant: "IKEA" },
+};

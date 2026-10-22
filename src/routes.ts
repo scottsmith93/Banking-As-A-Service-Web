@@ -108,6 +108,7 @@ export const ROUTES = {
     baas: "/banking/baas",
     baasAccount: (accountId: string) => `/banking/baas/accounts/${accountId}`,
     baasCards: (accountId: string) => `/banking/baas/accounts/${accountId}/cards`,
+    baasTransactions: (accountId: string) => `/banking/bank-movements?${new URLSearchParams({ account: accountId, view: "all" })}`,
   },
   accounting: {
     journalEntries: "/accounting/journal-entries",

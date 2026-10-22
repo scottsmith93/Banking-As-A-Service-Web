@@ -1,123 +1,55 @@
+import { useNavigate } from "react-router-dom";
 import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
 import Icon from "carbon-react/lib/components/icon";
+import { ActionPopover, ActionPopoverItem } from "carbon-react/lib/components/action-popover";
 import Pill from "carbon-react/lib/components/pill";
 import Typography from "carbon-react/lib/components/typography";
-import type { BaaSAccount, LegacyBankAccount } from "../../data/bankingBaas";
+import { useLanguage } from "../../context/useLanguage";
+import { useBankingTransactions } from "../../context/useBankingTransactions";
+import { getLocale, getLocaleCode } from "../../locales";
+import { interpolate } from "../../utils/interpolate";
+import { needsJustification } from "../../utils/transactionMatching";
+import type { BaaSAccount } from "../../data/bankingBaas";
+import type { ConnectedBankAccount } from "../../data/bankAccountConnections";
 
-type BaasBankAccountCardProps = {
-  account: BaaSAccount | LegacyBankAccount;
-  copy: {
-    sageAccount: string;
-    pending: string;
-    active: string;
-    realTime: string;
-    poweredByAdyen: string;
-    balance: string;
-    accountEnding: string;
-    ledgerAccount: string;
-    lastUpdated: string;
-    openAccount: string;
-    viewAccount: string;
-    manageMovements: string;
-    edit: string;
-    delete: string;
-    cashAccount: string;
-    existingBankAccount: string;
-  };
-  locale: string;
-  onOpen?: () => void;
-  onDelete?: () => void;
-};
+import { bankMovementsHref } from "../../utils/bankMovementNavigation";
 
-function isBaasAccount(account: BaaSAccount | LegacyBankAccount): account is BaaSAccount {
-  return "status" in account;
-}
-
-export default function BaasBankAccountCard({ account, copy, locale, onOpen, onDelete }: BaasBankAccountCardProps) {
-  const isBaas = isBaasAccount(account);
-  const isPending = isBaas && account.status === "pending";
-  const legacyAccount = !isBaas ? account : null;
-  const formattedBalance = new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: "EUR",
-  }).format(isBaas ? account.balanceEur : account.balanceEur);
-
-  return (
-    <Box className={`baasAccountCard${isBaas ? " baasAccountCard--sage" : ""}`} as="article">
-      <Box className="baasAccountCard__body" display="flex" flexDirection="column">
-        <Box display="flex" alignItems="flex-start" justifyContent="space-between" gap={2}>
-          <Box display="flex" alignItems="center" gap={2}>
-            <Box className={`baasAccountCard__icon${isBaas ? " baasAccountCard__icon--sage" : ""}`} aria-hidden="true">
-              <Icon type={isBaas ? "credit_card" : "bank"} />
-            </Box>
-            <Box display="flex" flexDirection="column" gap={1}>
-              <Typography variant="strong" as="p" className="baasAccountCard__name">
-                {account.name}
-              </Typography>
-              <Typography variant="small" as="p" className="baasAccountCard__type">
-                {isBaas ? `${copy.sageAccount} · ${copy.poweredByAdyen}` : account.kind === "cash" ? copy.cashAccount : copy.existingBankAccount}
-              </Typography>
-            </Box>
-          </Box>
-          {isBaas && (
-            <Pill
-              pillRole="status"
-              colorVariant={isPending ? "neutral" : "positive"}
-              size="S"
-            >
-              {isPending ? copy.pending : copy.active}
-            </Pill>
-          )}
-        </Box>
-
-        {isBaas && <Typography variant="small" as="p" className="baasAccountCard__realtime">{copy.realTime}</Typography>}
-
-        <Box className="baasAccountCard__summary" display="flex" justifyContent="space-between" alignItems="flex-end">
-          <Box display="flex" flexDirection="column" gap={1}>
-            <Typography variant="small" as="p" className="baasAccountCard__label">
-              {isBaas ? `${copy.accountEnding} ${account.accountEnding}` : legacyAccount?.accountNumber || "—"}
-            </Typography>
-            <Typography variant="small" as="p" className="baasAccountCard__label">
-              {copy.ledgerAccount}: {isBaas ? "57200000" : legacyAccount?.ledgerAccount}
-            </Typography>
-          </Box>
-          <Box display="flex" flexDirection="column" alignItems="flex-end" gap={1}>
-            <Typography variant="small" as="p" className="baasAccountCard__label">
-              {copy.balance}
-            </Typography>
-            <Typography variant="h3" as="p" className="baasAccountCard__balance numericValue">
-              {formattedBalance}
-            </Typography>
-          </Box>
-        </Box>
+type Props = { account: BaaSAccount | ConnectedBankAccount; lastSyncedAt: string | null; syncing: boolean; onSync: () => void };
+export default function BaasBankAccountCard({ account, lastSyncedAt, syncing, onSync }: Props) {
+  const { language } = useLanguage();
+  const { transactions } = useBankingTransactions();
+  const navigate = useNavigate();
+  const copy = getLocale(language).bankingBaas;
+  const locale = getLocaleCode(language);
+  const sage = "status" in account;
+  const pending = sage && account.status === "pending";
+  const manual = !sage && account.bankId === "other";
+  const count = transactions.filter(row => row.accountId === account.id && needsJustification(row)).length;
+  const href = `/banking/baas/accounts/${account.id}`;
+  const lastSync = lastSyncedAt ? new Intl.DateTimeFormat(locale, { day: "2-digit", month: "short", year: "numeric", hour: "2-digit", minute: "2-digit", timeZone: "Europe/London" }).format(new Date(lastSyncedAt)) : copy.list.notSynced;
+  return <article className={`bankAccountStackCard${sage ? " bankAccountStackCard--sage" : ""}`} aria-label={account.name}>
+    <Box className="bankAccountStackCard__identity" display="flex" flexDirection="column" gap={1}>
+      <Box display="flex" gap={2} alignItems="center" flexWrap="wrap">
+        <Typography variant="strong" as="h3">{account.name}</Typography>
+        {pending && <Pill pillRole="status" size="S" colorVariant="neutral">{copy.accounts.pending}</Pill>}
       </Box>
-
-      <Box className="baasAccountCard__footer" display="flex" alignItems="center" gap={2}>
-        {isBaas ? (
-          isPending ? (
-            <Typography variant="small" as="p" className="baasAccountCard__pendingCopy">
-              {copy.pending}
-            </Typography>
-          ) : (
-            <Button variantType="primary" size="small" onClick={onOpen}>
-              {copy.viewAccount}
-            </Button>
-          )
-        ) : (
-          <>
-            <Button variantType="tertiary" size="small">
-              {copy.manageMovements}
-            </Button>
-            <Button variantType="tertiary" size="small">
-              {copy.edit}
-            </Button>
-            <Button variantType="tertiary" size="small" destructive onClick={onDelete}>
-              {copy.delete}
-            </Button>
-          </>
-        )}
+      <Typography variant="small" as="p" className="bankAccountStackCard__muted">{sage ? interpolate(copy.list.accountReference, { lastFour: account.accountEnding }) : account.accountNumber}</Typography>
+      <Box display="flex" gap={2} flexWrap="wrap" alignItems="center" className="bankAccountStackCard__sync">
+        {sage && !pending && <span className="bankAccountStackCard__realtime"><Icon type="flash" aria-hidden />{copy.list.realTimeSync}</span>}
+        <Typography variant="small" as="p" role={syncing ? "status" : undefined}>{syncing ? copy.list.syncing : interpolate(copy.list.lastSync, { timestamp: lastSync })}</Typography>
       </Box>
     </Box>
-  );
+    <Box className="bankAccountStackCard__task" display="flex" flexDirection="column" alignItems="flex-start" gap={1}>
+      {!pending && !manual && (count > 0 ? <Button variantType="secondary" size="small" onClick={() => navigate(bankMovementsHref(account.id, { view: "needsAction" }))}>{interpolate(copy.list.matchTransactions, { count })}</Button> : <Typography variant="small" as="p" className="bankAccountStackCard__muted">{copy.list.upToDate}</Typography>)}
+      {!pending && !manual && <Button variantType="tertiary" size="small" onClick={() => navigate(sage ? href : bankMovementsHref(account.id))}>{sage ? copy.accounts.viewAccount : copy.list.viewTransactions}</Button>}
+    </Box>
+    <Box className="bankAccountStackCard__balance" display="flex" flexDirection="column" alignItems="flex-end" gap={1}>
+      <Typography variant="small" as="p" className="bankAccountStackCard__muted">{copy.accounts.balance}</Typography>
+      <Typography variant="h3" as="p" className="numericValue">{new Intl.NumberFormat(locale, { style: "currency", currency: "EUR" }).format(account.balanceEur)}</Typography>
+    </Box>
+    <div className="bankAccountStackCard__menu">{!pending && !manual && <ActionPopover aria-label={interpolate(copy.list.accountActions, { account: account.name })}>
+      <ActionPopoverItem icon="refresh" disabled={syncing} onClick={onSync}>{copy.list.syncAccount}</ActionPopoverItem>
+    </ActionPopover>}</div>
+  </article>;
 }

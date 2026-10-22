@@ -46,6 +46,39 @@ npm run lint     # run ESLint
 npm run preview  # preview a production build locally
 ```
 
+## Sharing on Netlify
+
+The repository includes [`netlify.toml`](netlify.toml), which tells Netlify to
+run the production build, publish `dist`, use the supported Node and npm
+versions, and send direct route visits back through the app. This keeps URLs
+such as `/banking/baas` working when a stakeholder opens or refreshes them.
+
+To create the hosted site:
+
+1. In Netlify, choose **Add new project** → **Import an existing project** and
+   connect `Sage/Active.Web.UX.Template` from GitHub.
+2. Choose the `Banking-As-A-Service` branch as the production branch if that is
+   the version you want stakeholders to review. Netlify reads the build settings
+   from `netlify.toml`.
+3. Before sharing the URL, open **Project configuration** → **General** →
+   **Visitor access** → **Project visibility**, choose **Password**, set a
+   shared password, and select **Production and previews** if every version
+   should require it. Share the site URL and password with stakeholders through
+   your usual channel. Do not commit the password to this repository.
+
+On Netlify's current credit-based plans, shared password protection is available
+on Pro, but not Free or Personal. Free and Personal can make a project private,
+but only the account owner can view it. Enterprise and legacy plans have their
+own protection options. Check the **Project visibility** choices in your
+account before sharing; external stakeholders need a plan and access setting
+that supports a shared password.
+
+After setup, keep iterating locally with `npm run dev`. Commit and push your
+changes to GitHub as usual; Netlify will build the production branch after each
+push. Pull requests and other branches can use Netlify Deploy Previews or branch
+deploys when enabled in the project's deploy settings. Keep those previews
+password protected too if they contain work that is not ready for wider review.
+
 UI Fork is available automatically during local development. To create or edit
 component versions from its floating widget, run its watch server in a second
 terminal:

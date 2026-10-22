@@ -2234,7 +2234,7 @@ body {
 .baasPromotion__art {
   display: flex;
   align-items: center;
-  justify-content: flex-end;
+  justify-content: center;
   width: 100%;
   min-width: 0;
 }
@@ -2242,9 +2242,21 @@ body {
 .baasPromotion__art img {
   display: block;
   width: 100%;
+  max-width: 240px;
   height: auto;
   object-fit: contain;
   object-position: right center;
+}
+
+.baasOnboardingDialog [data-element="dialog"] {
+  width: calc(100vw - 2 * var(--spacing500));
+  min-width: 0;
+  max-width: calc(100vw - 2 * var(--spacing500));
+  height: calc(100vh - 2 * var(--spacing500));
+  height: calc(100dvh - 2 * var(--spacing500));
+  max-height: calc(100dvh - 2 * var(--spacing500));
+  overflow: hidden;
+  border-radius: var(--global-radius-container-xl);
 }
 
 .baasAccountCard {
@@ -2630,7 +2642,7 @@ body {
 
 .baasOnboarding__fieldGrid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: minmax(0, 1fr);
   width: 100%;
   gap: var(--spacing300);
 }
@@ -2641,6 +2653,10 @@ body {
 .baasOnboarding__fieldNote,
 .baasOnboarding__fieldFullWidth {
   min-width: 0;
+}
+
+.baasOnboarding__fieldCell > * {
+  width: 100%;
 }
 
 .baasOnboarding__fieldHeading,
@@ -2662,10 +2678,6 @@ body {
 
 .baasOnboarding__fieldNote {
   color: var(--colorsUtilityYin065);
-}
-
-.baasOnboarding__dateField {
-  grid-column: span 2;
 }
 
 .baasOnboarding__dateField > p {
@@ -2795,7 +2807,7 @@ body {
 .baasKpi,
 .baasSpendPanel,
 .baasTransactionsPanel {
-  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border: 0;
   border-radius: var(--borderRadius100) !important;
   background: var(--colorsUtilityYang100);
   box-shadow: none;
@@ -2804,7 +2816,6 @@ body {
 .baasAccountHero {
   overflow: hidden;
   padding: var(--spacing400);
-  border-left: var(--spacing100) solid var(--colorsActionMajor500);
 }
 
 .baasAccountHero h2,
@@ -2854,11 +2865,11 @@ body {
 .baasSpendPanel {
   display: grid;
   grid-template-columns: minmax(220px, 0.75fr) minmax(0, 1.75fr);
-  padding: var(--spacing400);
+  padding: var(--spacing300);
 }
 
 .baasSpendPanel__summary {
-  padding-right: var(--spacing400);
+  padding-right: var(--spacing300);
   border-right: var(--borderWidth100) solid var(--colorsUtilityMajor200);
 }
 
@@ -2868,13 +2879,20 @@ body {
 
 .baasSpendPanel__cardPreview {
   display: flex;
-  align-items: flex-end;
+  align-items: flex-start;
   justify-content: flex-end;
-  min-height: 130px;
+  min-height: var(--spacing1000);
   padding: var(--spacing200);
-  border-radius: var(--borderRadius100) !important;
-  background: var(--colorsActionMajor500);
-  color: var(--colorsUtilityYang100);
+  border-radius: var(--global-radius-container-l);
+}
+
+.baasSpendPanel__cardPreview.baasCardTile__visual {
+  min-height: var(--spacing1000);
+}
+
+.baasSpendPanel__cardPreview .baasCardTile__sageLogo {
+  width: var(--spacing500);
+  height: auto;
 }
 
 .baasSpendPanel__list {
@@ -2888,8 +2906,8 @@ body {
 
 .baasSpendRow {
   grid-template-columns: minmax(120px, 1fr) minmax(90px, 0.8fr) minmax(110px, 0.8fr) auto;
-  gap: var(--spacing200);
-  padding: var(--spacing200) 0;
+  gap: var(--spacing150);
+  padding: 0;
   border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
 }
 
@@ -2905,77 +2923,12 @@ body {
 
 .baasTransactionsPanel table {
   overflow: hidden;
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
   border-radius: var(--borderRadius100);
 }
 
 .baasStatusPill {
   width: fit-content;
-}
-
-.baasTransactionCardholder {
-  min-width: 0;
-}
-
-.baasTransactionCardholder__networkFrame {
-  position: relative;
-  flex: 0 0 auto;
-  width: var(--sizing300);
-  height: var(--sizing200);
-}
-
-.baasTransactionCardholder__network {
-  position: absolute;
-  inset: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
-
-.baasTransactionCardholder__network--mastercard {
-  width: var(--sizing250);
-}
-
-.baasTransactionCardholder__network--loaded {
-  z-index: 1;
-}
-
-.baasTransactionCardholder__networkFallback {
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  display: flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  width: var(--sizing300);
-  height: var(--sizing200);
-}
-
-.baasTransactionCardholder__networkFallback--visa {
-  color: var(--colorsSemanticInfo600);
-  font-size: var(--fontSizes100);
-  font-style: italic;
-  font-weight: var(--fontWeights700);
-}
-
-.baasTransactionCardholder__mastercardMark {
-  display: flex;
-  align-items: center;
-}
-
-.baasTransactionCardholder__mastercardMark i {
-  display: block;
-  width: var(--sizing150);
-  height: var(--sizing150);
-  border-radius: 50%;
-  background: var(--colorsSemanticNegative500);
-}
-
-.baasTransactionCardholder__mastercardMark i + i {
-  margin-left: calc(var(--spacing050) * -1);
-  background: var(--colorsSemanticCaution400);
-  opacity: 0.9;
 }
 
 .baasTransactionsPanel h2 {
@@ -2986,9 +2939,214 @@ body {
   color: var(--colorsSemanticNegative500);
 }
 
-.bankingBaasCardsPage__filters {
+/* Account overview: quiet page canvas, with surfaces reserved for grouped summaries. */
+.baasAccountNavigation {
+  display: flex;
+  align-items: center;
   justify-content: space-between;
+  gap: var(--spacing200);
+  padding: 0 var(--spacing500);
+  background: var(--colorsUtilityYang100);
+  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  overflow-x: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.mainContent:has(.baasOverviewPage),
+.baasOverviewPage,
+.baasOverviewPage .bankingBaasDetailPage__content {
+  min-width: 0;
+}
+
+.baasOverviewPage { container-type: inline-size; }
+
+.baasAccountNavigation > * {
+  flex-shrink: 0;
+}
+
+.baasAccountNavigation [data-component="menu"] {
+  min-height: 0;
+  padding: 0;
+}
+
+.baasOverviewPage {
+  background: var(--colorsUtilityMajor010);
+}
+
+.baasOverviewPage .bankingBaasDetailPage__content {
   gap: var(--spacing300);
+}
+
+.baasOverviewPage p,
+.baasOverviewPage h2,
+.baasOverviewPage h3 {
+  margin: 0;
+}
+
+.baasOverviewHero {
+  flex-wrap: wrap;
+}
+
+.baasOverviewHero__label,
+.baasOverviewPage .baasKpi__value p:last-child {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasOverviewPage .baasOverviewHero__amount {
+  font-size: var(--fontSizes800);
+  line-height: var(--lineHeights500);
+  text-align: left;
+}
+
+.baasOverviewActions {
+  gap: var(--spacing150);
+}
+
+.baasOverviewActions .baasOverviewAction {
+  height: auto;
+  min-width: calc(var(--spacing1000) + var(--spacing300));
+  padding: var(--spacing050) var(--spacing200);
+}
+
+.baasOverviewAction > span {
+  flex-direction: column;
+  gap: var(--spacing050);
+}
+
+.baasOverviewPage .baasKpiGrid {
+  background: var(--colorsUtilityYang100);
+  border-radius: var(--borderRadius100);
+}
+
+.baasOverviewPage .baasKpi {
+  padding: var(--spacing200) var(--spacing300);
+  gap: var(--spacing050);
+  background: transparent;
+}
+
+.baasOverviewPage .baasKpi__value {
+  gap: 0;
+}
+
+.baasOverviewSectionHeading h2,
+.baasOverviewSpend__summary h3 {
+  font-size: var(--fontSizes300);
+  font-weight: var(--fontWeights500);
+}
+
+.baasOverviewTransactions {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing200);
+  min-width: 0;
+  scroll-margin-top: var(--spacing300);
+}
+
+.baasOverviewTransactions table {
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+  overflow: hidden;
+}
+
+.baasOverviewTransactions thead th {
+  background: var(--colorsUtilityMajor025);
+  color: var(--colorsUtilityYin090);
+  white-space: nowrap;
+}
+
+.baasOverviewTransactions tbody td {
+  background: var(--colorsUtilityYang100);
+  border-color: var(--colorsUtilityMajor050);
+  white-space: nowrap;
+}
+
+.baasOverviewPage .baasOverviewTransactions tbody tr:last-child td {
+  border-bottom: 0;
+}
+
+.baasOverviewCardholder .baasCardTile__network--light {
+  min-width: var(--spacing300);
+  min-height: var(--spacing200);
+}
+
+.baasOverviewCardholder .baasCardTile__networkArtwork {
+  height: var(--spacing100);
+}
+
+.baasOverviewReceipt {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.baasOverviewSpend {
+  margin-top: var(--spacing300);
+}
+
+.baasOverviewPage .baasOverviewSpend__body {
+  padding: var(--spacing200);
+  gap: var(--spacing200);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsUtilityYang100);
+}
+
+.baasOverviewSpend .baasSpendRow {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.6fr) minmax(0, 0.7fr) minmax(0, 1.1fr) minmax(0, 0.85fr) auto;
+  padding: var(--spacing200) 0 0;
+}
+
+.baasOverviewSpend__summary + .baasSpendRow {
+  border-top: 0;
+}
+
+.baasOverviewSpend .baasSpendRow__spend {
+  align-items: flex-end;
+  padding-right: var(--spacing100);
+}
+
+.baasSpendRow__activity,
+.baasSpendRow__merchant { gap: var(--spacing050); min-width: 0; }
+
+.baasSpendRow__activity { align-items: flex-end; padding-right: var(--spacing200); }
+.baasSpendRow__merchant > span:last-child { overflow-wrap: anywhere; }
+.baasSpendRow__activity > span:first-child,
+.baasSpendRow__merchant > span:first-child { color: var(--colorsUtilityYin065); }
+
+/* Use the room left by the application rail, rather than the browser width. */
+@container (max-width: 700px) {
+  .baasOverviewPage .bankingBaasDetailPage__content { padding: var(--spacing300); }
+  .baasOverviewPage .baasOverviewHero { flex-direction: column; align-items: stretch; }
+  .baasOverviewPage .baasOverviewActions { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); width: 100%; }
+  .baasOverviewActions .baasOverviewAction { width: 100%; min-width: 0; }
+  .baasOverviewSectionHeading { flex-wrap: wrap; }
+  .baasOverviewPage .baasKpiGrid { grid-template-columns: 1fr; gap: 0; }
+  .baasOverviewSpend .baasSpendRow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .baasOverviewSpend .baasSpendRow__spend { padding-right: 0; align-items: flex-start; }
+  .baasOverviewSpend__summary { flex-wrap: wrap; }
+}
+
+@container (max-width: 360px) {
+  .baasOverviewPage .baasOverviewActions,
+  .baasOverviewSpend .baasSpendRow { grid-template-columns: 1fr; }
+  .baasOverviewPage .baasOverviewHero__amount { font-size: var(--fontSizes600); overflow-wrap: anywhere; }
+  .baasOverviewPage h1 { overflow-wrap: anywhere; }
+  .baasOverviewSectionHeading button { white-space: normal; max-width: 100%; }
+  .baasOverviewActions .baasOverviewAction { white-space: normal; }
+  .baasOverviewPage button { max-width: 100%; white-space: normal; }
+}
+
+@media (max-width: 700px) {
+  .baasAccountNavigation { padding-inline: var(--spacing300); }
+}
+
+.bankingBaasCardsPage__filters {
+  justify-content: flex-start;
+  gap: var(--spacing300);
+}
+
+.bankingBaasCardsPage__filters > [data-component="textbox"] {
+  flex: 0 1 auto;
 }
 
 .bankingBaasCardsPage__filters > p {
@@ -3006,8 +3164,11 @@ body {
 .baasCardTile {
   overflow: hidden;
   border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
-  border-radius: var(--global-radius-container-m);
   background: var(--colorsUtilityYang100);
+}
+
+.baasCardGrid .baasCardTile {
+  border-radius: var(--borderRadius100);
 }
 
 .baasCardTile__visual {
@@ -3039,76 +3200,562 @@ body {
 }
 
 .baasIssueSidebar [data-element="sidebar-content"] {
-  padding: var(--spacing300) var(--spacing200);
+  /* The form owns its single inset; the preview must reach both panel edges. */
+  padding: 0;
 }
 
-.baasIssueForm,
-.baasIssueForm__fields {
+.baasIssueSidebar {
+  max-width: 100vw !important;
+}
+
+/* Reuse Carbon's mount/unmount lifecycle and timing, moving the fixed panel
+   itself so its viewport positioning and focus trap remain intact. */
+@media (prefers-reduced-motion: no-preference) {
+  [data-component="modal"][data-state] :is(.modal-enter, .modal-appear, .modal-exit):has([data-component="sidebar"]) {
+    opacity: 1;
+    transition-property: none;
+  }
+
+  [data-component="modal"] :is(.modal-enter, .modal-appear, .modal-exit):has([data-component="sidebar"]) > div {
+    transition-duration: inherit;
+    transition-timing-function: inherit;
+  }
+
+  [data-component="modal"] :is(.modal-enter, .modal-appear, .modal-exit) [data-component="sidebar"] {
+    transition-property: transform;
+    transition-duration: inherit;
+    transition-timing-function: inherit;
+  }
+
+  [data-component="modal"] :is(.modal-enter, .modal-appear) [data-component="sidebar"] {
+    transform: translateX(100%);
+  }
+
+  [data-component="modal"] :is(.modal-enter-active, .modal-appear-active, .modal-exit) [data-component="sidebar"] {
+    transform: translateX(0);
+  }
+
+  [data-component="modal"] .modal-exit-active [data-component="sidebar"] {
+    transform: translateX(100%);
+  }
+}
+
+.baasIssueSidebar__header h1,
+.baasIssueSidebar__header p {
+  margin: 0;
+}
+
+.baasIssueSidebar__header {
+  gap: var(--spacing050);
+}
+
+.baasIssueForm {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+.baasIssueForm__stepHeader {
+  padding: var(--spacing300) var(--spacing500);
+}
+
+.baasCardTypeChoice {
+  padding: var(--spacing500);
+}
+
+.baasIssueForm__stepHeader h2,
+.baasCardTypeChoice h2,
+.baasCardTypeChoice p {
+  margin: 0;
+}
+
+.baasIssueForm__backLink {
+  align-self: flex-start;
+}
+
+.baasCardTypeChoice > [data-component="card"] {
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+.baasCardTypeChoice [data-element="card-content-container"] {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing200);
+  padding: var(--spacing300);
+  margin: 0;
+}
+
+.baasCardTypeChoice__preview {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 85.60 / 53.98;
+  border-radius: var(--borderRadius200);
+  background: var(--colorsUtilityYin100);
+  color: var(--colorsUtilityYang100);
+  box-shadow: var(--boxShadow090);
+}
+
+.baasCardTypeChoice__preview--virtual {
+  background: linear-gradient(135deg, var(--mode-color-brand-inverse-default), var(--colorsActionMajor700) 65%, var(--colorsUtilityYin100));
+}
+
+.baasCardTypeChoice__branding {
+  position: absolute;
+  top: 50%;
+  right: var(--spacing200);
+  transform: translateY(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing050);
+}
+
+.baasCardTypeChoice__type {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing100);
+}
+
+.baasCardTypeChoice__heading {
+  gap: var(--spacing050);
+}
+
+.baasCardTypeChoice__heading h3 {
+  margin: 0;
+  font-size: var(--fontSizes200);
+}
+
+.baasCardTypeChoice__heading p {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasCardTypeChoice__benefits {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing100);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.baasCardTypeChoice__benefits li {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing100);
+}
+
+.baasCardTypeChoice__benefits [data-component="icon"] {
+  flex-shrink: 0;
+  color: var(--colorsSemanticPositive500);
+}
+
+.baasCardIssueSteps {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing300);
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.baasCardIssueSteps li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing100);
+  color: var(--colorsUtilityYin065);
+}
+
+.baasCardIssueSteps li[aria-current="step"] {
+  color: var(--colorsUtilityYin100);
+  font-weight: var(--fontWeights500);
+}
+
+.baasCardIssueSteps li > span {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: var(--spacing300);
+  height: var(--spacing300);
+  border: var(--borderWidth100) solid currentColor;
+  border-radius: var(--borderRadiusCircle);
+}
+
+.baasCardIssueShipping {
   display: flex;
   flex-direction: column;
   gap: var(--spacing300);
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  border: 0;
 }
 
-.baasIssueForm__requiredNote,
+.baasCardIssueShipping legend {
+  padding: 0;
+  margin-bottom: var(--spacing100);
+}
+
+.baasCardIssueShipping > p {
+  margin: 0;
+}
+
+.baasCardIssueShipping__row {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing300);
+  align-items: start;
+}
+
+.baasIssueForm__previewStage {
+  box-sizing: border-box;
+  width: 100%;
+  min-height: 319px;
+  padding: 0;
+  background: var(--colorsUtilityYang100);
+}
+
+.baasIssueForm__fields {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing500);
+  box-sizing: border-box;
+  width: 100%;
+  padding: var(--spacing500);
+  background: var(--colorsUtilityYang100);
+}
+
+.baasIssueForm__identity {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing300);
+  width: 100%;
+}
+
 .baasIssueForm__disclaimer {
   margin: 0;
 }
 
-.baasIssueCardPreview {
+.baasIssueForm .baasIssueCardPreview {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   overflow: hidden;
-  border-radius: var(--global-radius-action-xl);
+  box-sizing: border-box;
+  width: min(100%, 18rem);
+  aspect-ratio: 85.60 / 53.98;
+  padding: var(--spacing200);
+  border: 0;
+  border-radius: var(--borderRadius200);
+  background-image: radial-gradient(
+    ellipse at top right,
+    color-mix(in srgb, var(--mode-color-action-main-inverse-default) 55%, var(--colorsUtilityYin100)),
+    color-mix(in srgb, var(--mode-color-action-main-inverse-default) 25%, var(--colorsUtilityYin100)) 40%,
+    var(--colorsUtilityYin100) 85%
+  );
+  box-shadow:
+    0 0 var(--spacing400) color-mix(in srgb, var(--mode-color-action-main-inverse-default) 20%, transparent),
+    0 0 var(--spacing900) color-mix(in srgb, var(--mode-color-action-main-inverse-default) 40%, transparent);
 }
 
-.baasIssueCardPreview .baasCardTile__visual {
-  min-height: 175px;
+.baasIssueForm__inputs {
+  display: contents;
 }
 
-.baasIssueCardPreview__topline {
-  min-height: var(--spacing500);
+.baasIssueForm__submitLabel {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing100);
 }
 
-.baasIssueCardPreview__chip {
+.baasCardIssueSuccess {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing300);
+  min-height: 100%;
+  padding: var(--spacing500);
+  text-align: center;
+  background: var(--colorsUtilityYang100);
+}
+
+.baasCardIssueSuccess__artwork {
+  flex-shrink: 0;
+  max-width: 100%;
+  height: auto;
+}
+
+.baasCardCelebration {
+  position: relative;
+  width: 300px;
+  aspect-ratio: 1;
+}
+
+.baasCardCelebration__poster {
   display: block;
-  width: var(--spacing400);
-  height: var(--spacing300);
-  border: var(--borderWidth100) solid var(--colorsUtilityMajor300);
-  border-radius: var(--global-radius-action-s);
-  background: color-mix(in srgb, var(--colorsUtilityMajor200) 74%, var(--colorsUtilityYin100));
+  max-width: 100%;
+  height: auto;
+}
+
+.baasCardCelebration__player {
+  position: absolute;
+  inset: 0;
+  visibility: hidden;
+}
+
+.baasCardCelebration[data-animation-ready="true"] .baasCardCelebration__player {
+  visibility: visible;
+}
+
+.baasCardCelebration[data-animation-ready="true"] .baasCardCelebration__poster {
+  visibility: hidden;
+}
+
+.baasCardIssueSuccess__actions {
+  gap: var(--spacing150);
+}
+
+.baasCardIssueSuccess h2,
+.baasCardIssueSuccess p {
+  margin: 0;
+}
+
+/* Preserve the original Visa artwork's shape; only the preview uses white. */
+.baasIssueCardPreview__network img[src$="/visa.png"] {
+  filter: brightness(0) invert(1);
+}
+
+.baasIssueCardPreview .baasIssueCardPreview__topline {
+  min-height: var(--spacing300);
+}
+
+.baasIssueCardPreview .baasCardTile__sageLogo {
+  width: var(--spacing500);
+  height: auto;
+}
+
+.baasIssueCardPreview .baasCardTile__number {
+  flex: 0 0 auto;
+  margin: 0;
+  white-space: nowrap;
 }
 
 .baasIssueCardPreview__details {
-  margin-top: auto;
+  display: flex;
+  min-width: 0;
+  min-height: var(--spacing900);
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--spacing100);
+  margin-top: var(--spacing250);
 }
 
-.baasIssueForm__colourField {
+.baasIssueCardPreview__cardholder {
+  flex: 0 1 70%;
+  min-width: 0;
+  gap: var(--spacing100);
+}
+
+.baasIssueCardPreview__cardType {
+  flex: 0 0 auto;
+  margin-top: var(--spacing300);
+  color: var(--mode-color-generic-txt-inverse-moderate);
+}
+
+.baasIssueCardPreview__network {
+  position: absolute;
+  right: var(--spacing200);
+  bottom: var(--spacing200);
+}
+
+.baasIssueCardPreview__network .baasCardTile__network--light {
+  min-width: var(--spacing500);
+  min-height: 0;
+}
+
+.baasIssueForm #baas-issue-card-network {
+  align-self: stretch;
+  box-sizing: border-box;
+  width: 100%;
+  min-width: 0;
+  margin: 0;
+}
+
+[data-element="baas-issue-network-options"] [data-role="radio-button-group-content"] {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing300);
+  width: 100%;
+}
+
+[data-element="baas-issue-network-options"] [data-element="baas-issue-network-option"] {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  min-width: 0;
+  min-height: 88px;
+  padding: var(--spacing100) var(--spacing300);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
+  border-radius: var(--global-radius-container-m);
+  background: var(--colorsUtilityYang100);
+}
+
+[data-element="baas-issue-network-options"] [data-element="baas-issue-network-option"][data-role="selected"] {
+  border: var(--borderWidth200) solid var(--colorsUtilityYin100);
+  background: var(--mode-color-generic-surface-trace);
+}
+
+[data-element="baas-issue-network-options"] [data-element="baas-issue-network-option"] > div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
+[data-element="baas-issue-network-options"] [data-element="baas-issue-network-option"] > div > div {
+  order: 2;
+  display: flex;
+  justify-content: center;
+  margin-top: var(--spacing050);
+}
+
+[data-element="baas-issue-network-options"] [data-element="baas-issue-network-option"] > div > [data-role="label-container"] {
+  order: 1;
+  margin-top: 0;
+  margin-bottom: var(--spacing050);
+}
+
+[data-element="baas-issue-network-options"] [data-element="baas-issue-network-option"] label {
+  order: 1;
+  display: flex;
+  flex: 1 1 auto;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  min-width: 0;
+  margin: 0;
+}
+
+[data-element="baas-issue-network-option"] label::after {
+  position: absolute;
+  inset: 0;
+  content: "";
+}
+
+.baasIssueNetworkChoice {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing050);
+  width: 100%;
+  text-align: center;
+}
+
+.baasIssueNetworkChoice__logo {
+  display: flex;
+  min-height: var(--spacing300);
+  align-items: center;
+  justify-content: center;
+}
+
+.baasIssueNetworkChoice__logo .baasCardTile__network--light {
+  min-height: 0;
+}
+
+.baasIssueForm__wallets {
+  gap: var(--spacing150);
+}
+
+.baasIssueForm [data-component="switch"] {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  column-gap: var(--spacing200);
+  width: 100%;
+}
+
+.baasIssueForm [data-role="switch-label-wrapper"] {
+  min-width: 0;
+  width: auto;
+}
+
+.baasIssueForm [data-role="switch-label-wrapper"] + div {
+  justify-self: end;
+}
+
+.baasIssueForm [data-role="switch-label-wrapper"] + div > span {
+  min-width: var(--spacing400);
+}
+
+.baasIssueForm__walletProviders {
+  min-height: var(--spacing300);
+}
+
+.baasIssueForm__walletProviders img {
+  display: block;
+  object-fit: contain;
+}
+
+.baasTokenPicker {
   width: 100%;
 }
 
 .baasIssueForm__limits {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing300);
   width: 100%;
-  padding: var(--spacing200) 0;
+  padding: 0;
 }
 
 .baasIssueForm__spendingHeading h2,
-.baasIssueForm__spendingHeading p {
+.baasIssueForm__spendingHeading p,
+.baasIssueForm__blockedMerchantsHeading h2,
+.baasIssueForm__blockedMerchantsHeading p {
   margin: 0;
 }
 
 .baasIssueForm__limits > [data-component="decimal"] {
+  min-width: 0;
   width: 100%;
 }
 
 .baasIssueForm__disclaimer {
-  padding-top: var(--spacing200);
-  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  line-height: 1.5;
 }
 
-.baasIssueForm__actions {
-  padding-top: var(--spacing200);
+.baasIssueForm__divider {
+  width: 100%;
+  height: 0;
+  margin: 0;
+  border: 0;
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
 }
 
 .baasIssueForm__actions > button {
   width: 100%;
+}
+
+@media (max-width: 540px) {
+  .baasCardIssueShipping__row {
+    grid-template-columns: 1fr;
+  }
+
+  .baasIssueForm__identity {
+    grid-template-columns: 1fr;
+  }
+
+  .baasIssueForm__limits {
+    grid-template-columns: 1fr;
+  }
 }
 
 .baasTokenPicker__values {
@@ -3117,6 +3764,10 @@ body {
 
 .baasTokenPicker__values > [data-component="pill"] {
   flex: 0 0 auto;
+}
+
+.baasIssueForm .baasTokenPicker__values > [data-component="pill"] {
+  border-radius: var(--borderRadius050);
 }
 
 .baasCardTile__visual .baasCardTile__secondaryText {
@@ -3147,41 +3798,22 @@ body {
   color: var(--colorsUtilityYang100);
 }
 
-.baasCardTile__networkImage {
-  width: var(--spacing500);
-  height: auto;
-  opacity: 0;
+.baasCardTile__network--light {
+  justify-content: center;
+  min-width: var(--sizing900);
+  min-height: var(--spacing700);
+  color: var(--colorsActionMajor700);
 }
 
-.baasCardTile__networkImage--loaded {
-  opacity: 1;
-}
-
-.baasCardTile__networkFallback {
-  position: absolute;
-}
-
-.baasCardTile__networkFallback--visa {
-  letter-spacing: 0.04em;
-}
-
-.baasCardTile__mastercardMark {
-  display: inline-flex;
-  align-items: center;
-}
-
-.baasCardTile__mastercardMark i {
+.baasCardTile__networkArtwork {
   display: block;
-  width: var(--spacing300);
-  height: var(--spacing300);
-  border-radius: var(--global-radius-container-circle);
-  background: var(--colorsSemanticNegative500);
+  height: var(--spacing250);
+  width: auto;
+  object-fit: contain;
 }
 
-.baasCardTile__mastercardMark i + i {
-  margin-left: calc(var(--spacing100) * -1);
-  background: var(--colorsSemanticCaution500);
-  opacity: 0.9;
+.baasIssueCardPreview__network .baasCardTile__networkArtwork {
+  height: var(--spacing150);
 }
 
 .baasCardTile__nicknameRow {
@@ -3226,6 +3858,7 @@ body {
 .baasCardTile__holder {
   max-width: 100%;
   overflow: hidden;
+  text-transform: uppercase;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -3254,37 +3887,6 @@ body {
 .baasCardTile__actions {
   flex-wrap: wrap;
   justify-content: flex-end;
-}
-
-.baasCardColourOptions {
-  flex-wrap: wrap;
-}
-
-.baasCardColourOption {
-  width: var(--spacing800);
-  min-width: var(--spacing800);
-  height: var(--spacing800);
-  min-height: var(--spacing800);
-  padding: 0;
-  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
-  border-radius: var(--global-radius-container-m);
-}
-
-.baasCardColourOption.baasCardTile__visual--sage {
-  --baas-card-gradient: var(--colorsActionMajor500);
-}
-
-.baasCardColourOption.baasCardTile__visual--night {
-  --baas-card-gradient: var(--mode-color-ai-stop-2);
-}
-
-.baasCardColourOption.baasCardTile__visual--plum {
-  --baas-card-gradient: var(--mode-color-ai-stop-3);
-}
-
-.baasCardColourOption--selected {
-  outline: var(--borderWidth200) solid var(--colorsActionMajor500);
-  outline-offset: var(--spacing100);
 }
 
 .baasIssueCardForm > p,
@@ -3328,7 +3930,16 @@ body {
   }
 
   .baasPromotion {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 0.68fr);
+    grid-template-columns: 1fr;
+  }
+
+  .baasPromotion__art {
+    grid-row: 1;
+    justify-content: center;
+  }
+
+  .baasPromotion__content {
+    grid-row: 2;
   }
 
   .baasOnboarding--underReview {
@@ -3372,8 +3983,9 @@ body {
   }
 
   .baasPromotion__art {
-    width: 68%;
-    justify-self: end;
+    width: 100%;
+    justify-self: stretch;
+    justify-content: center;
   }
 
   .baasOnboarding__selection,
@@ -3404,11 +4016,7 @@ body {
   }
 
   .baasOnboarding__fieldGrid {
-    grid-template-columns: 1fr;
-  }
-
-  .baasOnboarding__dateField {
-    grid-column: auto;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .baasOnboarding__dateField > div {

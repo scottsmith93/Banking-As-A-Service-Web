@@ -14,6 +14,7 @@ type BaasCardTileProps = {
     viewDetails: string;
     manage: string;
     active: string;
+    ordered: string;
     cardholder: string;
     virtual: string;
     physical: string;
@@ -37,7 +38,7 @@ export default function BaasCardTile({ card, copy, locale, onOpenDetails }: Baas
           <BaasCardNetworkLogo network={card.network} />
           <Box className="baasCardTile__statusPill">
             <Pill pillRole="status" colorVariant={card.status === "issued" ? "positive" : "neutral"} size="S" fill>
-              {card.status === "issued" ? copy.active : copy.deactivated}
+              {card.status === "issued" ? copy.active : card.status === "ordered" ? copy.ordered : copy.deactivated}
             </Pill>
           </Box>
         </Box>

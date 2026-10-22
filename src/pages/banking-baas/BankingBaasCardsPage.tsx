@@ -1,3 +1,4 @@
+import BaasAccountNavigation from "../../components/banking-baas/BaasAccountNavigation";
 import { useMemo, useState, type ComponentProps } from "react";
 import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
@@ -9,7 +10,8 @@ import { Breadcrumbs, Crumb } from "carbon-react/lib/components/breadcrumbs";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import BaasCardTile from "../../components/banking-baas/BaasCardTile";
 import BaasIssueCardSidebar, { type BaasCardIssueFormData } from "../../components/banking-baas/BaasIssueCardSidebar";
-import { debitCards, stagedBaasAccounts, type DebitCard } from "../../data/bankingBaas";
+import { stagedBaasAccounts, type DebitCard } from "../../data/bankingBaas";
+import { useBankingBaas } from "../../context/useBankingBaas";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale, getLocaleCode } from "../../locales";
 import { interpolate } from "../../utils/interpolate";
@@ -24,17 +26,18 @@ export default function BankingBaasCardsPage() {
   const copy = localeCopy.bankingBaas;
   const locale = getLocaleCode(language);
   const account = stagedBaasAccounts.find((candidate) => candidate.id === accountId) ?? stagedBaasAccounts[0];
-  const [cards, setCards] = useState<DebitCard[]>(debitCards);
+  const { cards, addCard } = useBankingBaas();
   const [searchText, setSearchText] = useState("");
   const [activeTab, setActiveTab] = useState<CardTab>("all");
   const [isIssueSidebarOpen, setIsIssueSidebarOpen] = useState(searchParams.get("create") === "true");
-  const [detailCard, setDetailCard] = useState<DebitCard | null>(null);
+  const [detailCard, setDetailCard] = useState<DebitCard | null>(() => cards.find(card => card.id === searchParams.get("card")) ?? null);
+  const [lastIssuedCard, setLastIssuedCard] = useState<DebitCard | null>(null);
   const [successMessage, setSuccessMessage] = useState("");
 
   const query = searchText.trim().toLowerCase();
   const matchingCards = cards.filter((card) => card.cardholder.toLowerCase().includes(query));
   const allCards = matchingCards;
-  const issuedCards = matchingCards.filter((card) => card.status === "issued");
+  const issuedCards = matchingCards.filter((card) => card.status !== "deactivated");
   const deactivatedCards = matchingCards.filter((card) => card.status === "deactivated");
   const cardholders = useMemo(() => [...new Set(cards.map((card) => card.cardholder))], [cards]);
 
@@ -50,27 +53,20 @@ export default function BankingBaasCardsPage() {
     expiry: copy.cards.expiry,
     securityCode: copy.cards.securityCode,
     active: copy.cards.active,
+    ordered: copy.cards.ordered,
   };
 
   const handleIssueCard = (formData: BaasCardIssueFormData) => {
-    // PROTOTYPE: create a local mock card instead of calling an issuing API.
-    const nextLastFour = String(1200 + cards.length * 37).slice(-4);
-    const newCard: DebitCard = {
-      id: `card-demo-${cards.length + 1}`,
+    const newCard = addCard({
       cardholder: formData.cardholder,
-      lastFour: nextLastFour,
-      status: "issued",
-      monthlySpendEur: 0,
-      validThrough: "11/30",
       colour: formData.colour,
       nickname: formData.nickname || copy.cards.newCardNickname,
-      type: "virtual",
+      type: formData.type,
       network: formData.network,
-    };
-    setCards((current) => [...current, newCard]);
+    });
+    setLastIssuedCard(newCard);
     setActiveTab("issued");
-    setIsIssueSidebarOpen(false);
-    setSuccessMessage(interpolate(copy.cards.created, { name: formData.cardholder }));
+    setSuccessMessage(formData.type === "physical" ? copy.cardIssueForm.physicalSuccess.title : interpolate(copy.cards.created, { name: formData.cardholder }));
     setSearchText("");
     setSearchParams({}, { replace: true });
   };
@@ -82,6 +78,7 @@ export default function BankingBaasCardsPage() {
 
   return (
     <Box className="bankingBaasDetailPage">
+      <BaasAccountNavigation accountId={account.id} active="cards" />
       <Box className="bankingBaasDetailPage__content" display="flex" flexDirection="column" gap={3}>
         <Box className="bankingBaasCardsPage__pageHeading" display="flex" flexDirection="column" gap={1}>
           <Breadcrumbs>
@@ -109,7 +106,6 @@ export default function BankingBaasCardsPage() {
               <Typography variant="h1" as="h1">{copy.cards.title.replace("{accountName}", account.name)}</Typography>
               <Typography variant="p" as="p">{copy.cards.subtitle}</Typography>
             </Box>
-            <Button variantType="primary" iconType="add" iconPosition="before" onClick={() => setIsIssueSidebarOpen(true)}>{copy.cards.issueCard}</Button>
           </Box>
         </Box>
 
@@ -122,6 +118,7 @@ export default function BankingBaasCardsPage() {
             value={searchText}
             onChange={(event) => setSearchText(event.target.value)}
           />
+          <Button variantType="primary" iconType="add" iconPosition="before" onClick={() => setIsIssueSidebarOpen(true)}>{copy.cards.issueCard}</Button>
         </Box>
 
         {successMessage && <Typography className="baasCardSuccess" variant="small" as="p" role="status">{successMessage}</Typography>}
@@ -150,6 +147,7 @@ export default function BankingBaasCardsPage() {
         cardholders={cardholders}
         onCancel={handleCloseIssueSidebar}
         onIssue={handleIssueCard}
+        onManage={() => { if (lastIssuedCard) setDetailCard(lastIssuedCard); }}
       />
 
       <Dialog open={detailCard !== null} onCancel={() => setDetailCard(null)} title={copy.cards.cardDetailsTitle} size="small">

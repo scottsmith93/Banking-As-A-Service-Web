@@ -10,7 +10,7 @@ import { StepSequence, StepSequenceItem } from "carbon-react/lib/components/step
 import Textbox from "carbon-react/lib/components/textbox";
 import Typography from "carbon-react/lib/components/typography";
 import successIllustration from "../../assets/subscription-flow/success-illustration.svg";
-import { baasBusinessProfile } from "../../data/bankingBaas";
+import { baasBusinessProfile, baasOnboardingDemoAnswers } from "../../data/bankingBaas";
 
 type BaasOnboardingCopy = {
   title: string;
@@ -113,7 +113,7 @@ export default function BaasOnboardingDialog({
   const [currentStep, setCurrentStep] = useState(0);
   const [selectedAccountType, setSelectedAccountType] = useState(copy.accountType);
   const [entityType, setEntityType] = useState<string>(baasBusinessProfile.entityType);
-  const [fieldValues, setFieldValues] = useState<Record<string, string>>({});
+  const [fieldValues, setFieldValues] = useState<Record<string, string>>(baasOnboardingDemoAnswers.formFields);
   const [hasAgreed, setHasAgreed] = useState(true);
 
   useEffect(() => {
@@ -137,7 +137,7 @@ export default function BaasOnboardingDialog({
     setCurrentStep(0);
     setSelectedAccountType(copy.accountType);
     setEntityType(baasBusinessProfile.entityType);
-    setFieldValues({});
+    setFieldValues(baasOnboardingDemoAnswers.formFields);
     setHasAgreed(true);
     onClose();
   };
@@ -172,7 +172,7 @@ export default function BaasOnboardingDialog({
       open={open}
       onCancel={handleClose}
       size="large"
-      height="760px"
+      className="baasOnboardingDialog"
       title={copy.title}
       showCloseIcon={view !== "loading" && view !== "processing" && view !== "approved"}
       contentPadding={{ p: 0 }}
@@ -276,7 +276,7 @@ export default function BaasOnboardingDialog({
                 </RadioButtonGroup>
               ) : currentStep === FORM_STEP_COUNT - 1 ? (
                 <>
-                  <BaasReviewSummary copy={copy} entityType={entityType} />
+                  <BaasReviewSummary copy={copy} entityType={entityType} fieldValues={fieldValues} />
                   <Box className="baasOnboarding__providerAgreement" display="flex" alignItems="center">
                     <Checkbox
                       id="baas-review-agreement"
@@ -406,7 +406,7 @@ function BaasFormFields({
   onChange: (fieldId: string, value: string) => void;
 }) {
   return (
-    <Box className="baasOnboarding__fieldGrid" display="flex" flexWrap="wrap" gap={3}>
+    <Box className="baasOnboarding__fieldGrid">
       {fields.map((field, index) => {
         const fieldId = `baas-form-${step}-${index}`;
 
@@ -479,7 +479,79 @@ function BaasFormFields({
   );
 }
 
-function BaasReviewSummary({ copy, entityType }: { copy: BaasOnboardingCopy; entityType: string }) {
+const reviewFieldIds: Record<number, Record<number, string | readonly string[]>> = {
+  1: {
+    0: "baas-form-1-0",
+    1: "baas-form-1-1",
+    2: "baas-form-1-2",
+    3: "baas-form-1-3",
+    4: ["baas-form-1-4-year", "baas-form-1-4-month", "baas-form-1-4-day"],
+    5: "baas-form-1-6",
+    6: "baas-form-1-7",
+    8: "baas-form-1-9",
+    9: "baas-form-1-10",
+    10: "baas-form-1-11",
+    11: "baas-form-1-12",
+    12: "baas-form-1-13",
+    13: "baas-form-1-14",
+  },
+  2: {
+    0: "baas-form-2-0",
+    1: "baas-form-2-1",
+    2: "baas-form-2-2",
+    3: "baas-form-2-3",
+    4: "baas-form-2-4",
+  },
+  3: {
+    0: "baas-form-3-0",
+    1: "baas-form-3-1",
+    2: "baas-form-3-2",
+    3: "baas-form-3-3",
+  },
+  4: {
+    0: "baas-form-4-0",
+    1: "baas-form-4-1",
+    2: "baas-form-4-2",
+  },
+  5: {
+    0: "baas-form-5-1",
+    1: "baas-form-5-2",
+  },
+};
+
+function getReviewAnswer(
+  sectionIndex: number,
+  rowIndex: number,
+  fieldValues: Record<string, string>,
+): string | undefined {
+  const fieldId = reviewFieldIds[sectionIndex]?.[rowIndex];
+  if (!fieldId) return undefined;
+
+  if (typeof fieldId !== "string") {
+    const [year, month, day] = fieldId.map((id) => fieldValues[id] ?? "");
+    if (!year || !month || !day) return undefined;
+    const date = new Date(Date.UTC(Number(year), Number(month) - 1, Number(day)));
+    if (Number.isNaN(date.getTime())) return undefined;
+    return new Intl.DateTimeFormat("en-GB", {
+      day: "2-digit",
+      month: "short",
+      year: "numeric",
+      timeZone: "UTC",
+    }).format(date);
+  }
+
+  return fieldValues[fieldId] || "—";
+}
+
+function BaasReviewSummary({
+  copy,
+  entityType,
+  fieldValues,
+}: {
+  copy: BaasOnboardingCopy;
+  entityType: string;
+  fieldValues: Record<string, string>;
+}) {
   const entityTypeLabel = entityType === "organization"
     ? copy.organization
     : entityType === "individual"
@@ -492,7 +564,7 @@ function BaasReviewSummary({ copy, entityType }: { copy: BaasOnboardingCopy; ent
 
   return (
     <Box className="baasOnboarding__reviewSections" display="flex" flexDirection="column" gap={3}>
-      {copy.reviewSections.map((section) => (
+      {copy.reviewSections.map((section, sectionIndex) => (
         <Box key={section.title} className="baasOnboarding__reviewCard" display="flex" flexDirection="column">
           <Box className="baasOnboarding__reviewCardHeader" display="flex" justifyContent="space-between" alignItems="center" gap={2}>
             <Typography variant="strong" as="h3">{section.title}</Typography>
@@ -506,7 +578,13 @@ function BaasReviewSummary({ copy, entityType }: { copy: BaasOnboardingCopy; ent
             ) : (
               <Box key={`${section.title}-${row.label}-${index}`} className="baasOnboarding__reviewRow" display="flex" justifyContent="space-between" gap={2}>
                 <Typography variant="small" as="span">{row.label}</Typography>
-                <Typography variant="small" as="span">{row.label === copy.summary.entityType ? entityTypeLabel : row.value}</Typography>
+                <Typography variant="small" as="span">
+                  {row.label === copy.summary.entityType
+                    ? entityTypeLabel
+                    : getReviewAnswer(sectionIndex, index, fieldValues)
+                      ?? (baasOnboardingDemoAnswers.reviewSections as readonly (readonly (string | null)[])[])[sectionIndex]?.[index]
+                      ?? row.value}
+                </Typography>
               </Box>
             )
           ))}

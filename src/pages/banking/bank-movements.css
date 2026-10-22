@@ -1,0 +1,40 @@
+.bankMovementsWorkspace .bankingBaasDetailPage__content { max-width: none; margin: 0; padding: var(--spacing200) var(--spacing500) var(--spacing500); gap: var(--spacing200); }
+.bankMovementsWorkspace [role="tabpanel"] { padding-left: 0; padding-right: 0; }
+.baasTaskProposal, .baasTaskMerchant { display: flex; flex-direction: column; gap: var(--spacing025); width: 100%; min-width: 0; }
+.baasTaskProposal > *, .baasTaskMerchant > * { margin: 0; }
+.baasTransactionsGrid--tasks .ag-cell-wrapper, .baasTransactionsGrid--tasks .ag-cell-wrapper > .ag-cell-value { width: 100%; min-width: 0; }
+.baasTaskProposal > span, .baasTaskMerchant > span:last-child { color: var(--colorsUtilityYin065); }
+.baasTaskProposal__reference { display: flex; justify-content: space-between; align-items: center; gap: var(--spacing100); }
+.baasTaskProposal__reference > .numericValue { flex-shrink: 0; text-align: right; }
+.baasTaskProposal--invoice { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; column-gap: var(--spacing100); }
+.baasTaskProposal__details { display: flex; flex-direction: column; gap: var(--spacing025); min-width: 0; }
+.baasTaskProposal__details > * { margin: 0; }
+.baasTaskProposal__details > span { color: var(--colorsUtilityYin065); }
+.baasTaskProposal__amount { align-self: center; white-space: nowrap; text-align: right; }
+.baasTaskActions { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing050); }
+.baasTaskActions button { white-space: normal; height: auto; }
+.baasTransactionsGrid--tasks .ag-cell { white-space: normal; }
+.baasTransactionsGrid--tasks .ag-row.baasTransactionRow--justified { background: var(--colorsActionMajor025); }
+.baasTransactionsGrid--tasks .baasTransactionDecisionBoundary { box-shadow: inset var(--borderWidth100) 0 0 var(--colorsUtilityMajor050); }
+.bankMovementControlBar { display: flex; flex-direction: column; gap: var(--spacing200); min-width: 0; }
+.bankMovementSummary { display: flex; flex-wrap: wrap; gap: var(--spacing300); align-items: flex-end; }
+.bankMovementSummary > [data-component="simple-select"] { flex: 0 1 calc(var(--spacing1000) * 4); width: 100%; max-width: calc(var(--spacing1000) * 4); min-width: 0; }
+.bankMovementSummary__metrics { display: flex; flex-wrap: wrap; gap: var(--spacing300); width: fit-content; max-width: 100%; margin: 0; }
+.bankMovementSummary__metrics > div { min-width: 0; display: flex; flex-direction: column; gap: var(--spacing050); }
+.bankMovementSummary__metrics dt { font-size: var(--fontSizes100); line-height: var(--lineHeights500); color: var(--colorsUtilityYin065); }
+.bankMovementSummary__metrics dd { margin: 0; text-align: left; font-weight: var(--fontWeights700); font-size: var(--fontSizes200); line-height: var(--lineHeights500); overflow-wrap: anywhere; }
+.bankMovementSummary__metrics dt { text-align: left; }
+.bankMovementsWorkspace .baasTransactionToolbar { display: flex; flex-wrap: wrap; align-items: flex-end; gap: var(--spacing200); }
+.bankMovementFilterField { flex: 0 1 calc(var(--spacing1000) * 4); width: 100%; max-width: calc(var(--spacing1000) * 4); min-width: 0; }
+.bankMovementFilterField [data-component="pill"] { color: var(--colorsUtilityYin100); }
+.bankMovementMultiSelectOption { display: flex; width: 100%; align-items: center; gap: var(--spacing100); }
+.bankMovementMultiSelectOption__checkbox { display: flex; align-items: center; flex: 0 0 auto; pointer-events: none; }
+@container (min-width: 1200px) {
+  .bankMovementControlBar { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: end; gap: var(--spacing300); }
+  .bankMovementSummary { flex-wrap: nowrap; gap: var(--spacing200); }
+  .bankMovementSummary > [data-component="simple-select"] { flex: 0 0 calc(var(--spacing1000) * 2 + var(--spacing800)); width: calc(var(--spacing1000) * 2 + var(--spacing800)); }
+  .bankMovementSummary__metrics { flex-wrap: nowrap; }
+  .bankMovementSummary__metrics dd { white-space: nowrap; }
+  .bankMovementsWorkspace .baasTransactionToolbar { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto; gap: var(--spacing100); width: 100%; max-width: calc(var(--spacing1000) * 10); justify-self: end; }
+  .bankMovementsWorkspace .baasTransactionToolbar:has(#bank-movements-cardholders) { grid-template-columns: minmax(0, 1.5fr) repeat(2, minmax(0, 1fr)) auto; }
+}

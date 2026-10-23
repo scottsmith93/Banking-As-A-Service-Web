@@ -2162,18 +2162,21 @@ body {
 }
 
 .baasPromotion {
+  position: relative;
+  container-type: inline-size;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
   align-items: center;
   gap: var(--spacing400);
-  padding: var(--spacing300);
-  border: 0;
+  padding: var(--spacing400);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
   border-radius: var(--global-radius-container-m) !important;
-  background: var(--colorsUtilityYin100);
-  background-image:
-    radial-gradient(ellipse at 78% 48%, color-mix(in srgb, var(--mode-color-ai-stop-3) 24%, transparent), transparent 42%),
-    linear-gradient(115deg, var(--colorsUtilityYin100), color-mix(in srgb, var(--mode-color-ai-stop-2) 12%, var(--colorsUtilityYin100)));
-  color: var(--colorsUtilityYang100);
+  background:
+    radial-gradient(ellipse at 85% 45%, color-mix(in srgb, var(--colorsActionMajor500) 14%, transparent), transparent 50%),
+    radial-gradient(ellipse at 100% 0%, var(--colorsActionMajor025), transparent 60%),
+    var(--colorsUtilityYang100);
+  box-shadow: var(--boxShadow050);
+  color: var(--colorsUtilityYin090);
 }
 
 .baasPromotion__content {
@@ -2181,54 +2184,91 @@ body {
   gap: var(--spacing200);
 }
 
-.baasPromotion__heading {
-  gap: var(--spacing200);
+.baasPromotion__eyebrow {
+  gap: var(--spacing100);
+  width: fit-content;
+  padding: var(--spacing050) var(--spacing150) var(--spacing050) var(--spacing050);
+  border-radius: var(--borderRadius400);
+  background: var(--colorsActionMajor025);
 }
 
-.baasPromotion__copilotMark {
-  flex: 0 0 auto;
-  width: var(--spacing500);
-  height: var(--spacing500);
+.baasPromotion__eyebrow img {
+  width: var(--spacing300);
+  height: var(--spacing300);
+}
+
+.baasPromotion__eyebrow span {
+  color: var(--colorsActionMajor600) !important;
+  font-weight: var(--fontWeights500);
 }
 
 .baasPromotion__title,
 .baasPromotion__body,
-.baasPromotion__benefits,
-.baasPromotion__benefits li,
-.baasPromotion__benefit {
-  color: var(--colorsUtilityYang100) !important;
-}
-
-.baasPromotion__title {
-  font-size: var(--fontSizes500);
-  line-height: var(--lineHeights400);
-}
-
-.baasPromotion__title,
-.baasPromotion__body {
+.baasPromotion__features,
+.baasPromotion__featureTitle,
+.baasPromotion__featureBody {
   margin: 0;
 }
 
-.baasPromotion__body {
-  max-width: 68ch;
-  color: var(--mode-color-generic-txt-inverse-moderate) !important;
+.baasPromotion__title {
+  max-width: 22ch;
+  font-size: var(--fontSizes700);
+  line-height: var(--lineHeights400);
+  text-wrap: balance;
 }
 
-.baasPromotion__benefits {
+.baasPromotion__body {
+  max-width: 60ch;
+  color: var(--colorsUtilityYin065) !important;
+}
+
+.baasPromotion__features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--spacing200);
-  margin: var(--spacing100) 0 0;
+  margin-top: var(--spacing100);
   padding: 0;
   list-style: none;
 }
 
-.baasPromotion__benefits li {
-  gap: var(--spacing100);
-  color: var(--colorsUtilityYang100);
+.baasPromotion__feature {
+  gap: var(--spacing150);
+  padding: var(--spacing200);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsUtilityYang100);
 }
 
-.baasPromotion__benefits [data-component="icon"] {
+.baasPromotion__featureIcon {
+  display: inline-flex;
   flex: 0 0 auto;
-  color: var(--colorsUtilityYang100) !important;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing500);
+  height: var(--spacing500);
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsActionMajor025);
+}
+
+.baasPromotion__featureIcon [data-component="icon"] {
+  color: var(--colorsActionMajor600) !important;
+}
+
+.baasPromotion__featureTitle {
+  font-size: var(--fontSizes200);
+}
+
+.baasPromotion__featureBody {
+  color: var(--colorsUtilityYin065) !important;
+}
+
+.baasPromotion__actions {
+  gap: var(--spacing200);
+  margin-top: var(--spacing100);
+}
+
+.baasPromotion__note {
+  color: var(--colorsUtilityYin065) !important;
 }
 
 .baasPromotion__art {
@@ -2239,24 +2279,250 @@ body {
   min-width: 0;
 }
 
-.baasPromotion__art img {
-  display: block;
-  width: 100%;
-  max-width: 240px;
-  height: auto;
-  object-fit: contain;
-  object-position: right center;
+.baasPromotion__close {
+  position: absolute;
+  top: var(--spacing150);
+  right: var(--spacing150);
+  z-index: 1;
 }
 
-.baasOnboardingDialog [data-element="dialog"] {
-  width: calc(100vw - 2 * var(--spacing500));
-  min-width: 0;
-  max-width: calc(100vw - 2 * var(--spacing500));
-  height: calc(100vh - 2 * var(--spacing500));
-  height: calc(100dvh - 2 * var(--spacing500));
-  max-height: calc(100dvh - 2 * var(--spacing500));
+/* Code-drawn light cards (BaasPromotionCards). Entrance and float use
+   `transform`; the hover fan uses the separate `translate`/`rotate`
+   properties so both can run at once. */
+.baasPromoCards {
+  position: relative;
+  width: 100%;
+  max-width: calc(var(--spacing1000) * 4);
+  aspect-ratio: 1.4;
+}
+
+.baasPromoCard {
+  --card-rotate: 0deg;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 82%;
+  min-height: 0;
+  aspect-ratio: 85.6 / 54;
+  white-space: nowrap;
+  padding: var(--spacing150) var(--spacing200);
   overflow: hidden;
-  border-radius: var(--global-radius-container-xl);
+  border: var(--borderWidth100) solid var(--colorsUtilityYang100);
+  border-radius: var(--borderRadius200);
+  transform: rotate(var(--card-rotate));
+  transition: translate 360ms cubic-bezier(0.2, 0.8, 0.2, 1), rotate 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.baasPromoCard--back {
+  --card-rotate: 9deg;
+  top: 0;
+  right: 0;
+  background:
+    radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--colorsUtilityYang100) 70%, transparent), transparent 45%),
+    linear-gradient(140deg, color-mix(in srgb, var(--colorsActionMajor500) 55%, var(--colorsUtilityYang100)), var(--colorsActionMajor025));
+  box-shadow: 0 var(--spacing150) var(--spacing300) color-mix(in srgb, var(--colorsActionMajor600) 18%, transparent);
+}
+
+.baasPromoCard--front {
+  --card-rotate: -5deg;
+  bottom: 0;
+  left: 0;
+  border-color: color-mix(in srgb, var(--colorsUtilityYang100) 80%, transparent);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--colorsActionMajor025) 70%, transparent), transparent 55%),
+    linear-gradient(160deg, color-mix(in srgb, var(--colorsUtilityYang100) 82%, transparent), color-mix(in srgb, var(--colorsActionMajor025) 60%, transparent));
+  backdrop-filter: blur(var(--spacing150)) saturate(180%);
+  box-shadow: 0 var(--spacing200) var(--spacing400) color-mix(in srgb, var(--colorsUtilityYin100) 14%, transparent);
+}
+
+.baasPromoCard__top,
+.baasPromoCard__bottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing100);
+}
+
+.baasPromoCard__logo {
+  height: var(--spacing250);
+}
+
+.baasPromoCard__label,
+.baasPromoCard__holder,
+.baasPromoCard__number {
+  color: var(--colorsUtilityYin065);
+  font-size: var(--fontSizes100);
+  font-weight: var(--fontWeights500);
+}
+
+.baasPromoCard__number {
+  color: var(--colorsUtilityYin090);
+  font-variant-numeric: tabular-nums;
+}
+
+.baasPromoCard__chip {
+  position: relative;
+  width: var(--spacing400);
+  height: var(--spacing300);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+  background: linear-gradient(135deg, var(--colorsUtilityMajor025), var(--colorsUtilityMajor100));
+}
+
+.baasPromoCard__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, color-mix(in srgb, var(--colorsUtilityYang100) 85%, transparent) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.baasPromotion:hover .baasPromoCard--back {
+  translate: var(--spacing150) calc(-1 * var(--spacing100));
+  rotate: 4deg;
+}
+
+.baasPromotion:hover .baasPromoCard--front {
+  translate: calc(-1 * var(--spacing150)) var(--spacing050);
+  rotate: -3deg;
+}
+
+.baasPromotion__feature {
+  transition: border-color 160ms ease, box-shadow 160ms ease, translate 160ms ease;
+}
+
+.baasPromotion__feature:hover {
+  border-color: var(--colorsActionMajor500);
+  box-shadow: var(--boxShadow050);
+  translate: 0 calc(-1 * var(--borderWidth200));
+}
+
+.baasPromotion__actions [data-component="icon"] {
+  transition: translate 160ms ease;
+}
+
+.baasPromotion__actions button:hover [data-component="icon"] {
+  translate: var(--spacing050) 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .baasPromotion {
+    animation: baasPromoFadeIn 400ms ease both;
+  }
+
+  .baasPromotion__content > * {
+    animation: baasPromoRise 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .baasPromotion__content > :nth-child(2) { animation-delay: 60ms; }
+  .baasPromotion__content > :nth-child(3) { animation-delay: 120ms; }
+  .baasPromotion__content > :nth-child(4) { animation-delay: 180ms; }
+  .baasPromotion__content > :nth-child(5) { animation-delay: 240ms; }
+
+  .baasPromoCard--back {
+    animation:
+      baasPromoCardIn 760ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms both,
+      baasPromoCardFloat 8s ease-in-out 900ms infinite;
+  }
+
+  .baasPromoCard--front {
+    animation:
+      baasPromoCardIn 760ms cubic-bezier(0.2, 0.8, 0.2, 1) 220ms both,
+      baasPromoCardFloat 8s ease-in-out 1000ms infinite reverse;
+  }
+
+  .baasPromoCard__shine {
+    animation: baasPromoShine 5s ease-in-out 1.2s infinite;
+  }
+
+  .baasPromotion--closing {
+    animation: baasPromoClose 260ms ease forwards;
+    pointer-events: none;
+  }
+}
+
+@keyframes baasPromoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes baasPromoRise {
+  from { opacity: 0; transform: translateY(var(--spacing150)); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes baasPromoCardIn {
+  from { opacity: 0; transform: translate(var(--spacing400), var(--spacing200)) rotate(0deg); }
+  to { opacity: 1; transform: rotate(var(--card-rotate)); }
+}
+
+@keyframes baasPromoCardFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--card-rotate)); }
+  50% { transform: translateY(calc(-1 * var(--spacing075))) rotate(var(--card-rotate)); }
+}
+
+@keyframes baasPromoShine {
+  0% { transform: translateX(-120%); }
+  35%, 100% { transform: translateX(120%); }
+}
+
+@keyframes baasPromoClose {
+  to { opacity: 0; transform: translateY(var(--spacing150)) scale(0.98); }
+}
+
+@keyframes baasPromoFadeOut {
+  to { opacity: 0; }
+}
+
+/* Instant press feedback on pointer-down, before the click commits. */
+.baasPromotion button {
+  transition: scale 100ms ease-out;
+}
+
+.baasPromotion button:active {
+  scale: 0.97;
+}
+
+/* Reduced motion keeps a gentle cross-fade instead of movement, so closing
+   still reads as an outcome. */
+@media (prefers-reduced-motion: reduce) {
+  .baasPromotion {
+    animation: baasPromoFadeIn 200ms ease both;
+  }
+
+  .baasPromotion--closing {
+    animation: baasPromoFadeOut 200ms ease forwards;
+    pointer-events: none;
+  }
+
+  .baasPromoCard,
+  .baasPromotion__feature,
+  .baasPromotion button {
+    transition: none;
+  }
+
+  .baasPromotion:hover .baasPromoCard,
+  .baasPromotion__feature:hover {
+    translate: none;
+    rotate: none;
+  }
+}
+
+/* Narrow banners stack the feature tiles so their copy keeps a readable measure. */
+@container (max-width: 760px) {
+  .baasPromotion__features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .baasPromoCard--front {
+    background: var(--colorsUtilityYang100);
+    backdrop-filter: none;
+  }
 }
 
 .baasAccountCard {
@@ -2328,463 +2594,10 @@ body {
   background: var(--colorsUtilityMajor050);
 }
 
-.baasOnboarding {
-  box-sizing: border-box;
-  height: 100%;
-  min-height: 0;
-  background: var(--colorsUtilityMajor025);
-}
-
 .bankingAccountsPage__baasAccounts {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--spacing300);
-}
-
-.baasOnboarding__selection {
-  gap: var(--spacing300);
-  width: min(980px, 100%);
-  align-self: center;
-  padding: var(--spacing500);
-}
-
-.baasOnboarding__title,
-.baasOnboarding__intro {
-  margin: 0;
-}
-
-.baasOnboarding__title {
-  font-size: var(--fontSizes600);
-  line-height: var(--lineHeights400);
-}
-
-.baasOnboarding__selection > .baasOnboarding__intro {
-  max-width: 700px;
-}
-
-.baasOnboarding__option {
-  gap: var(--spacing300);
-  padding: var(--spacing300);
-  border: 0;
-  border-radius: var(--borderRadius200);
-  background: var(--colorsUtilityYang100);
-  box-shadow: var(--boxShadow050);
-}
-
-.baasOnboarding__providerIcon {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: var(--spacing400);
-  height: var(--spacing400);
-  border-radius: var(--borderRadius050);
-  background: var(--colorsActionMajor500);
-  color: var(--colorsUtilityYang100);
-}
-
-.baasOnboarding__benefitList {
-  gap: var(--spacing150);
-  margin: 0;
-  padding: var(--spacing200) 0 0;
-  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
-  list-style: none;
-}
-
-.baasOnboarding__benefitList li {
-  gap: var(--spacing100);
-}
-
-.baasOnboarding__benefitList svg {
-  flex: 0 0 auto;
-  color: var(--colorsSemanticPositive500);
-}
-
-.baasOnboarding--loading {
-  min-height: 480px;
-  padding: var(--spacing500);
-  text-align: center;
-}
-
-.baasOnboarding--loading > p,
-.baasOnboarding__stepDescription {
-  margin: 0;
-  color: var(--colorsUtilityYin065);
-}
-
-.baasOnboarding__loader circle[data-role="inner-arc"] {
-  stroke: var(--colorsActionMajor500) !important;
-}
-
-.baasOnboarding--start {
-  justify-content: center;
-  padding: var(--spacing500);
-}
-
-.baasOnboarding__startContent {
-  width: min(720px, 100%);
-  gap: var(--spacing300);
-  padding: var(--spacing400);
-  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
-  border-radius: var(--borderRadius200);
-  background: var(--colorsUtilityYang100);
-}
-
-.baasOnboarding__startContent h1,
-.baasOnboarding__startContent p {
-  margin: 0;
-}
-
-.baasOnboarding__startConsent {
-  padding: var(--spacing200);
-  border-radius: var(--borderRadius100);
-  background: var(--colorsUtilityMajor050);
-}
-
-.baasOnboarding__startConsent p {
-  color: var(--colorsUtilityYin065);
-}
-
-.baasOnboarding__startConsent svg {
-  flex: 0 0 auto;
-  color: var(--colorsActionMajor600);
-}
-
-.baasOnboarding__reviewSummary {
-  padding: var(--spacing300);
-  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
-  border-radius: var(--borderRadius100);
-  background: var(--colorsUtilityMajor025);
-}
-
-.baasOnboarding__reviewSummary p {
-  margin: 0;
-}
-
-.baasOnboarding__summaryRow {
-  padding-top: var(--spacing150);
-  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
-}
-
-.baasOnboarding__summaryRow span {
-  color: var(--colorsUtilityYin065);
-}
-
-.baasOnboarding--approved {
-  justify-content: center;
-  gap: var(--spacing600);
-  min-height: 620px;
-  padding: var(--spacing600);
-  background: var(--colorsUtilityMajor050);
-}
-
-.baasOnboarding__approvedIllustration {
-  flex: 0 0 280px;
-}
-
-.baasOnboarding__approvedIllustration img {
-  display: block;
-  width: 100%;
-}
-
-.baasOnboarding--application {
-  background: var(--colorsUtilityYang100);
-}
-
-.baasOnboarding__stepRail {
-  flex: 0 0 280px;
-  padding: var(--spacing400);
-  background: var(--colorsUtilityMajor025);
-}
-
-.baasOnboarding__applicationBody {
-  flex: 1;
-  gap: var(--spacing300);
-  padding: var(--spacing500);
-}
-
-.baasOnboarding__providerHeader {
-  padding-bottom: var(--spacing300);
-  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor100);
-}
-
-.baasOnboarding__formCard {
-  gap: var(--spacing300);
-  padding: var(--spacing400);
-  border: var(--borderWidth100) solid var(--colorsUtilityMajor200);
-  border-radius: var(--borderRadius200);
-}
-
-.baasOnboarding__formCard h2,
-.baasOnboarding__required {
-  margin: 0;
-}
-
-.baasOnboarding__required {
-  color: var(--colorsUtilityYin065);
-}
-
-.baasOnboarding__actions {
-  margin-top: auto;
-  padding-top: var(--spacing300);
-  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
-}
-
-/* Provider-hosted surface: this intentionally follows the Adyen journey in
-   Figma rather than the surrounding Sage banking page. */
-.baasOnboarding--providerStart,
-.baasOnboarding--application,
-.baasOnboarding--loading,
-.baasOnboarding--approved {
-  background: var(--colorsUtilityMajor025);
-}
-
-.baasOnboarding--providerStart {
-  min-height: 560px;
-  justify-content: center;
-  padding: var(--spacing500) var(--spacing300);
-}
-
-.baasOnboarding__providerStartBody {
-  width: min(980px, 100%);
-  align-self: center;
-  gap: var(--spacing300);
-}
-
-.baasOnboarding__providerHeader {
-  gap: var(--spacing200);
-  padding-bottom: 0;
-  border-bottom: 0;
-}
-
-.baasOnboarding__providerHeader h2,
-.baasOnboarding__providerHeader p,
-.baasOnboarding__providerList h3,
-.baasOnboarding__providerList ul,
-.baasOnboarding__providerTerms {
-  margin: 0;
-}
-
-.baasOnboarding__providerHeader h2 {
-  font-size: var(--fontSizes600);
-  line-height: var(--lineHeights400);
-}
-
-.baasOnboarding__providerLogo {
-  flex: 0 0 auto;
-  width: var(--sizing550);
-  height: var(--sizing550);
-}
-
-.baasOnboarding__providerList {
-  gap: var(--spacing100);
-}
-
-.baasOnboarding__providerList ul {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing050);
-  padding-left: var(--spacing250);
-  list-style: disc;
-}
-
-.baasOnboarding__providerList li {
-  padding-left: var(--spacing025);
-}
-
-.baasOnboarding__providerTerms {
-  color: var(--colorsUtilityYin090);
-}
-
-.baasOnboarding__providerAgreement {
-  min-height: var(--spacing600);
-  padding: var(--spacing300);
-  border: var(--borderWidth100) solid var(--colorsUtilityMajor300);
-  border-radius: var(--borderRadius200);
-  background: var(--colorsUtilityYang100);
-}
-
-.baasOnboarding__providerActions {
-  padding-top: var(--spacing100);
-}
-
-.baasOnboarding--application {
-  min-height: 620px;
-  align-items: flex-start;
-  justify-content: center;
-  gap: var(--spacing500);
-  padding: var(--spacing500) var(--spacing300);
-}
-
-.baasOnboarding--application .baasOnboarding__stepRail {
-  flex: 0 0 220px;
-  padding: 0;
-  background: transparent;
-}
-
-.baasOnboarding--application .baasOnboarding__applicationBody {
-  flex: 0 1 720px;
-  min-width: 0;
-  padding: 0;
-}
-
-.baasOnboarding--application .baasOnboarding__formCard {
-  gap: var(--spacing300);
-  padding: var(--spacing300);
-  border-color: var(--colorsUtilityMajor300);
-  border-radius: var(--borderRadius050);
-  background: var(--colorsUtilityYang100);
-}
-
-.baasOnboarding--application .baasOnboarding__formCard h2 {
-  font-size: var(--fontSizes200);
-  line-height: var(--lineHeights400);
-}
-
-.baasOnboarding__fieldGrid {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  width: 100%;
-  gap: var(--spacing300);
-}
-
-.baasOnboarding__fieldCell,
-.baasOnboarding__dateField,
-.baasOnboarding__fieldHeading,
-.baasOnboarding__fieldNote,
-.baasOnboarding__fieldFullWidth {
-  min-width: 0;
-}
-
-.baasOnboarding__fieldCell > * {
-  width: 100%;
-}
-
-.baasOnboarding__fieldHeading,
-.baasOnboarding__fieldNote,
-.baasOnboarding__fieldFullWidth,
-.baasOnboarding__fieldGrid > button {
-  grid-column: 1 / -1;
-}
-
-.baasOnboarding__fieldHeading,
-.baasOnboarding__fieldNote,
-.baasOnboarding__reviewTerms {
-  margin: 0;
-}
-
-.baasOnboarding__fieldHeading {
-  padding-top: var(--spacing100);
-}
-
-.baasOnboarding__fieldNote {
-  color: var(--colorsUtilityYin065);
-}
-
-.baasOnboarding__dateField > p {
-  margin: 0;
-}
-
-.baasOnboarding__dateField > div {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-}
-
-.baasOnboarding__reviewSections {
-  width: 100%;
-}
-
-.baasOnboarding__reviewCard {
-  overflow: hidden;
-  border: 0;
-  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor300);
-  border-radius: 0;
-  background: transparent;
-}
-
-.baasOnboarding__reviewCardHeader {
-  padding: var(--spacing200) var(--spacing300);
-  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor100);
-  background: transparent;
-}
-
-.baasOnboarding__reviewCardHeader h3,
-.baasOnboarding__reviewSubheading {
-  margin: 0;
-}
-
-.baasOnboarding__reviewCardHeader button {
-  min-height: var(--spacing500);
-  padding-right: var(--spacing200);
-  padding-left: var(--spacing200);
-}
-
-.baasOnboarding__reviewRow,
-.baasOnboarding__reviewSubheading {
-  padding: var(--spacing150) var(--spacing300);
-  border-bottom: var(--borderWidth100) solid var(--colorsUtilityMajor100);
-}
-
-.baasOnboarding__reviewRow span,
-.baasOnboarding__reviewSubheading {
-  margin: 0;
-}
-
-.baasOnboarding__reviewRow span:first-child {
-  color: var(--colorsUtilityYin065);
-}
-
-.baasOnboarding__reviewRow span:last-child {
-  text-align: right;
-}
-
-.baasOnboarding--application .baasOnboarding__actions {
-  border-top: 0;
-}
-
-.baasOnboarding--loading .baasOnboarding__loadingTitle {
-  margin: 0;
-  color: var(--colorsUtilityYin100);
-}
-
-.baasOnboarding--approved {
-  min-height: 348px;
-  padding: var(--spacing300);
-}
-
-.baasOnboarding--approved .baasOnboarding__approvedIllustration {
-  flex-basis: 300px;
-}
-
-.baasOnboarding--underReview {
-  justify-content: center;
-  gap: var(--spacing600);
-  padding: var(--spacing600);
-  background: var(--colorsUtilityMajor050);
-}
-
-.baasOnboarding__reviewIllustration {
-  flex: 0 0 280px;
-}
-
-.baasOnboarding__reviewIllustration img {
-  display: block;
-  width: 100%;
-}
-
-.baasOnboarding__reviewContent {
-  max-width: 520px;
-}
-
-/* The provider journey lives in one fixed-size Sage Dialog. Each step scrolls
-   inside the same body frame so the hosted experience never resizes it. */
-.baasOnboarding--loading,
-.baasOnboarding--providerStart,
-.baasOnboarding--application,
-.baasOnboarding--approved {
-  box-sizing: border-box;
-  height: 100%;
-  min-height: 0;
-  overflow-y: auto;
 }
 
 .bankingBaasDetailPage {
@@ -3140,18 +2953,21 @@ body {
   .baasAccountNavigation { padding-inline: var(--spacing300); }
 }
 
-.bankingBaasCardsPage__filters {
-  justify-content: flex-start;
-  gap: var(--spacing300);
+/* Title and actions share a row when there's room; actions drop below otherwise. */
+.bankingBaasCardsPage__header {
+  flex-wrap: wrap;
 }
 
-.bankingBaasCardsPage__filters > [data-component="textbox"] {
-  flex: 0 1 auto;
+.bankingBaasCardsPage__header > :first-child {
+  flex: 1 1 calc(var(--spacing1000) * 5);
 }
 
-.bankingBaasCardsPage__filters > p {
-  margin: 0;
-  color: var(--colorsUtilityYin065);
+.bankingBaasCardsPage__actions {
+  flex: 0 0 auto;
+}
+
+.bankingBaasCardsPage__actions > [data-component="textbox"] {
+  width: calc(var(--spacing1000) * 3);
 }
 
 .baasCardGrid {
@@ -3199,15 +3015,6 @@ body {
   --baas-card-gradient: var(--mode-color-ai-stop-3);
 }
 
-.baasIssueSidebar [data-element="sidebar-content"] {
-  /* The form owns its single inset; the preview must reach both panel edges. */
-  padding: 0;
-}
-
-.baasIssueSidebar {
-  max-width: 100vw !important;
-}
-
 /* Reuse Carbon's mount/unmount lifecycle and timing, moving the fixed panel
    itself so its viewport positioning and focus trap remain intact. */
 @media (prefers-reduced-motion: no-preference) {
@@ -3240,350 +3047,7 @@ body {
   }
 }
 
-.baasIssueSidebar__header h1,
-.baasIssueSidebar__header p {
-  margin: 0;
-}
-
-.baasIssueSidebar__header {
-  gap: var(--spacing050);
-}
-
-.baasIssueForm {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-}
-
-.baasIssueForm__stepHeader {
-  padding: var(--spacing300) var(--spacing500);
-}
-
-.baasCardTypeChoice {
-  padding: var(--spacing500);
-}
-
-.baasIssueForm__stepHeader h2,
-.baasCardTypeChoice h2,
-.baasCardTypeChoice p {
-  margin: 0;
-}
-
-.baasIssueForm__backLink {
-  align-self: flex-start;
-}
-
-.baasCardTypeChoice > [data-component="card"] {
-  width: 100%;
-  padding: 0;
-  margin: 0;
-}
-
-.baasCardTypeChoice [data-element="card-content-container"] {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing200);
-  padding: var(--spacing300);
-  margin: 0;
-}
-
-.baasCardTypeChoice__preview {
-  position: relative;
-  width: 100%;
-  aspect-ratio: 85.60 / 53.98;
-  border-radius: var(--borderRadius200);
-  background: var(--colorsUtilityYin100);
-  color: var(--colorsUtilityYang100);
-  box-shadow: var(--boxShadow090);
-}
-
-.baasCardTypeChoice__preview--virtual {
-  background: linear-gradient(135deg, var(--mode-color-brand-inverse-default), var(--colorsActionMajor700) 65%, var(--colorsUtilityYin100));
-}
-
-.baasCardTypeChoice__branding {
-  position: absolute;
-  top: 50%;
-  right: var(--spacing200);
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  gap: var(--spacing050);
-}
-
-.baasCardTypeChoice__type {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing100);
-}
-
-.baasCardTypeChoice__heading {
-  gap: var(--spacing050);
-}
-
-.baasCardTypeChoice__heading h3 {
-  margin: 0;
-  font-size: var(--fontSizes200);
-}
-
-.baasCardTypeChoice__heading p {
-  color: var(--colorsUtilityYin065);
-}
-
-.baasCardTypeChoice__benefits {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing100);
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.baasCardTypeChoice__benefits li {
-  display: flex;
-  align-items: flex-start;
-  gap: var(--spacing100);
-}
-
-.baasCardTypeChoice__benefits [data-component="icon"] {
-  flex-shrink: 0;
-  color: var(--colorsSemanticPositive500);
-}
-
-.baasCardIssueSteps {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--spacing300);
-  padding: 0;
-  margin: 0;
-  list-style: none;
-}
-
-.baasCardIssueSteps li {
-  display: flex;
-  align-items: center;
-  gap: var(--spacing100);
-  color: var(--colorsUtilityYin065);
-}
-
-.baasCardIssueSteps li[aria-current="step"] {
-  color: var(--colorsUtilityYin100);
-  font-weight: var(--fontWeights500);
-}
-
-.baasCardIssueSteps li > span {
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  width: var(--spacing300);
-  height: var(--spacing300);
-  border: var(--borderWidth100) solid currentColor;
-  border-radius: var(--borderRadiusCircle);
-}
-
-.baasCardIssueShipping {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing300);
-  min-width: 0;
-  padding: 0;
-  margin: 0;
-  border: 0;
-}
-
-.baasCardIssueShipping legend {
-  padding: 0;
-  margin-bottom: var(--spacing100);
-}
-
-.baasCardIssueShipping > p {
-  margin: 0;
-}
-
-.baasCardIssueShipping__row {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--spacing300);
-  align-items: start;
-}
-
-.baasIssueForm__previewStage {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 319px;
-  padding: 0;
-  background: var(--colorsUtilityYang100);
-}
-
-.baasIssueForm__fields {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing500);
-  box-sizing: border-box;
-  width: 100%;
-  padding: var(--spacing500);
-  background: var(--colorsUtilityYang100);
-}
-
-.baasIssueForm__identity {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--spacing300);
-  width: 100%;
-}
-
-.baasIssueForm__disclaimer {
-  margin: 0;
-}
-
-.baasIssueForm .baasIssueCardPreview {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  overflow: hidden;
-  box-sizing: border-box;
-  width: min(100%, 18rem);
-  aspect-ratio: 85.60 / 53.98;
-  padding: var(--spacing200);
-  border: 0;
-  border-radius: var(--borderRadius200);
-  background-image: radial-gradient(
-    ellipse at top right,
-    color-mix(in srgb, var(--mode-color-action-main-inverse-default) 55%, var(--colorsUtilityYin100)),
-    color-mix(in srgb, var(--mode-color-action-main-inverse-default) 25%, var(--colorsUtilityYin100)) 40%,
-    var(--colorsUtilityYin100) 85%
-  );
-  box-shadow:
-    0 0 var(--spacing400) color-mix(in srgb, var(--mode-color-action-main-inverse-default) 20%, transparent),
-    0 0 var(--spacing900) color-mix(in srgb, var(--mode-color-action-main-inverse-default) 40%, transparent);
-}
-
-.baasIssueForm__inputs {
-  display: contents;
-}
-
-.baasIssueForm__submitLabel {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: var(--spacing100);
-}
-
-.baasCardIssueSuccess {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing300);
-  min-height: 100%;
-  padding: var(--spacing500);
-  text-align: center;
-  background: var(--colorsUtilityYang100);
-}
-
-.baasCardIssueSuccess__artwork {
-  flex-shrink: 0;
-  max-width: 100%;
-  height: auto;
-}
-
-.baasCardCelebration {
-  position: relative;
-  width: 300px;
-  aspect-ratio: 1;
-}
-
-.baasCardCelebration__poster {
-  display: block;
-  max-width: 100%;
-  height: auto;
-}
-
-.baasCardCelebration__player {
-  position: absolute;
-  inset: 0;
-  visibility: hidden;
-}
-
-.baasCardCelebration[data-animation-ready="true"] .baasCardCelebration__player {
-  visibility: visible;
-}
-
-.baasCardCelebration[data-animation-ready="true"] .baasCardCelebration__poster {
-  visibility: hidden;
-}
-
-.baasCardIssueSuccess__actions {
-  gap: var(--spacing150);
-}
-
-.baasCardIssueSuccess h2,
-.baasCardIssueSuccess p {
-  margin: 0;
-}
-
 /* Preserve the original Visa artwork's shape; only the preview uses white. */
-.baasIssueCardPreview__network img[src$="/visa.png"] {
-  filter: brightness(0) invert(1);
-}
-
-.baasIssueCardPreview .baasIssueCardPreview__topline {
-  min-height: var(--spacing300);
-}
-
-.baasIssueCardPreview .baasCardTile__sageLogo {
-  width: var(--spacing500);
-  height: auto;
-}
-
-.baasIssueCardPreview .baasCardTile__number {
-  flex: 0 0 auto;
-  margin: 0;
-  white-space: nowrap;
-}
-
-.baasIssueCardPreview__details {
-  display: flex;
-  min-width: 0;
-  min-height: var(--spacing900);
-  align-items: flex-start;
-  justify-content: space-between;
-  gap: var(--spacing100);
-  margin-top: var(--spacing250);
-}
-
-.baasIssueCardPreview__cardholder {
-  flex: 0 1 70%;
-  min-width: 0;
-  gap: var(--spacing100);
-}
-
-.baasIssueCardPreview__cardType {
-  flex: 0 0 auto;
-  margin-top: var(--spacing300);
-  color: var(--mode-color-generic-txt-inverse-moderate);
-}
-
-.baasIssueCardPreview__network {
-  position: absolute;
-  right: var(--spacing200);
-  bottom: var(--spacing200);
-}
-
-.baasIssueCardPreview__network .baasCardTile__network--light {
-  min-width: var(--spacing500);
-  min-height: 0;
-}
-
-.baasIssueForm #baas-issue-card-network {
-  align-self: stretch;
-  box-sizing: border-box;
-  width: 100%;
-  min-width: 0;
-  margin: 0;
-}
 
 [data-element="baas-issue-network-options"] [data-role="radio-button-group-content"] {
   display: grid;
@@ -3650,126 +3114,6 @@ body {
   content: "";
 }
 
-.baasIssueNetworkChoice {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: var(--spacing050);
-  width: 100%;
-  text-align: center;
-}
-
-.baasIssueNetworkChoice__logo {
-  display: flex;
-  min-height: var(--spacing300);
-  align-items: center;
-  justify-content: center;
-}
-
-.baasIssueNetworkChoice__logo .baasCardTile__network--light {
-  min-height: 0;
-}
-
-.baasIssueForm__wallets {
-  gap: var(--spacing150);
-}
-
-.baasIssueForm [data-component="switch"] {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  align-items: center;
-  column-gap: var(--spacing200);
-  width: 100%;
-}
-
-.baasIssueForm [data-role="switch-label-wrapper"] {
-  min-width: 0;
-  width: auto;
-}
-
-.baasIssueForm [data-role="switch-label-wrapper"] + div {
-  justify-self: end;
-}
-
-.baasIssueForm [data-role="switch-label-wrapper"] + div > span {
-  min-width: var(--spacing400);
-}
-
-.baasIssueForm__walletProviders {
-  min-height: var(--spacing300);
-}
-
-.baasIssueForm__walletProviders img {
-  display: block;
-  object-fit: contain;
-}
-
-.baasTokenPicker {
-  width: 100%;
-}
-
-.baasIssueForm__limits {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: var(--spacing300);
-  width: 100%;
-  padding: 0;
-}
-
-.baasIssueForm__spendingHeading h2,
-.baasIssueForm__spendingHeading p,
-.baasIssueForm__blockedMerchantsHeading h2,
-.baasIssueForm__blockedMerchantsHeading p {
-  margin: 0;
-}
-
-.baasIssueForm__limits > [data-component="decimal"] {
-  min-width: 0;
-  width: 100%;
-}
-
-.baasIssueForm__disclaimer {
-  line-height: 1.5;
-}
-
-.baasIssueForm__divider {
-  width: 100%;
-  height: 0;
-  margin: 0;
-  border: 0;
-  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor100);
-}
-
-.baasIssueForm__actions > button {
-  width: 100%;
-}
-
-@media (max-width: 540px) {
-  .baasCardIssueShipping__row {
-    grid-template-columns: 1fr;
-  }
-
-  .baasIssueForm__identity {
-    grid-template-columns: 1fr;
-  }
-
-  .baasIssueForm__limits {
-    grid-template-columns: 1fr;
-  }
-}
-
-.baasTokenPicker__values {
-  align-items: flex-start;
-}
-
-.baasTokenPicker__values > [data-component="pill"] {
-  flex: 0 0 auto;
-}
-
-.baasIssueForm .baasTokenPicker__values > [data-component="pill"] {
-  border-radius: var(--borderRadius050);
-}
-
 .baasCardTile__visual .baasCardTile__secondaryText {
   color: var(--mode-color-generic-txt-inverse-moderate);
 }
@@ -3810,10 +3154,6 @@ body {
   height: var(--spacing250);
   width: auto;
   object-fit: contain;
-}
-
-.baasIssueCardPreview__network .baasCardTile__networkArtwork {
-  height: var(--spacing150);
 }
 
 .baasCardTile__nicknameRow {
@@ -3889,7 +3229,154 @@ body {
   justify-content: flex-end;
 }
 
-.baasIssueCardForm > p,
+/* Cards page: each card is drawn as a real card (ID-1 proportions) in the light
+   Sage Wallet styles, resting in a tile with its spend and actions below. */
+.baasCardGrid .baasCardTile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing150);
+  padding: var(--spacing150);
+  overflow: visible;
+  border-radius: var(--borderRadius200);
+  transition: box-shadow 200ms ease, translate 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.baasCardGrid .baasCardTile:hover {
+  box-shadow: var(--boxShadow100);
+  translate: 0 calc(-1 * var(--borderWidth200));
+}
+
+.baasCardGrid .baasCardTile__visual {
+  position: relative;
+  box-sizing: border-box;
+  aspect-ratio: 85.6 / 54;
+  min-height: 0;
+  gap: var(--spacing050);
+  padding: var(--spacing200) var(--spacing250);
+  overflow: hidden;
+  border: var(--borderWidth100) solid color-mix(in srgb, var(--colorsUtilityYang100) 60%, transparent);
+  border-radius: var(--borderRadius200);
+  color: var(--colorsUtilityYin090);
+  box-shadow: 0 var(--spacing150) var(--spacing300) color-mix(in srgb, var(--colorsActionMajor500) 22%, transparent);
+}
+
+.baasCardGrid .baasCardTile__visual--sage {
+  background:
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--colorsUtilityYang100) 75%, transparent), transparent 45%),
+    linear-gradient(140deg, color-mix(in srgb, var(--colorsActionMajor500) 55%, var(--colorsUtilityYang100)), var(--colorsActionMajor025));
+}
+
+.baasCardGrid .baasCardTile__visual--night {
+  border-color: color-mix(in srgb, var(--colorsUtilityYang100) 18%, transparent);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--colorsActionMajor500) 45%, transparent), transparent 50%),
+    radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--mode-color-ai-stop-2) 40%, transparent), transparent 55%),
+    var(--colorsUtilityYin090);
+  color: var(--colorsUtilityYang100);
+  box-shadow: 0 var(--spacing150) var(--spacing300) color-mix(in srgb, var(--colorsUtilityYin100) 25%, transparent);
+}
+
+.baasCardGrid .baasCardTile__visual--plum {
+  background:
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--colorsUtilityYang100) 70%, transparent), transparent 45%),
+    linear-gradient(140deg, color-mix(in srgb, var(--mode-color-ai-stop-3) 55%, var(--colorsUtilityYang100)), color-mix(in srgb, var(--mode-color-ai-stop-2) 20%, var(--colorsUtilityYang100)));
+  box-shadow: 0 var(--spacing150) var(--spacing300) color-mix(in srgb, var(--mode-color-ai-stop-3) 28%, transparent);
+}
+
+/* Light cards use dark text; Midnight keeps light text. */
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__secondaryText,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__cardType,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__nicknameRow,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__holderRow {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__number,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__holder,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__primaryText {
+  color: var(--colorsUtilityYin090);
+}
+
+.baasCardGrid .baasCardTile__topline,
+.baasCardGrid .baasCardTile__nicknameRow {
+  position: relative;
+  min-height: 0;
+}
+
+.baasCardGrid .baasCardTile__sageLogo {
+  height: var(--spacing300);
+}
+
+.baasCardGrid .baasCardTile__nickname {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.baasCardGrid .baasCardTile__number,
+.baasCardGrid .baasCardTile__holderRow {
+  position: relative;
+}
+
+.baasCardGrid .baasCardTile__number {
+  margin-top: auto;
+}
+
+.baasCardGrid .baasCardTile__holderRow {
+  margin-top: 0;
+}
+
+.baasCardGrid .baasCardTile__network {
+  flex: 0 0 auto;
+}
+
+/* Deactivated cards fade back so active ones lead. */
+.baasCardGrid .baasCardTile--deactivated .baasCardTile__visual {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+.baasCardGrid .baasCardTile__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, color-mix(in srgb, var(--colorsUtilityYang100) 55%, transparent) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.baasCardGrid .baasCardTile__footer {
+  flex-wrap: wrap;
+  min-height: 0;
+  padding: 0 var(--spacing050);
+  border-top: 0;
+}
+
+.baasCardGrid .baasCardTile__footer span {
+  white-space: nowrap;
+}
+
+.baasCardGrid .baasCardTile__actions {
+  flex-wrap: nowrap;
+  margin-left: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .baasCardGrid .baasCardTile:hover .baasCardTile__shine {
+    transition: transform 900ms ease;
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baasCardGrid .baasCardTile {
+    transition: none;
+  }
+
+  .baasCardGrid .baasCardTile:hover {
+    translate: none;
+  }
+}
+
 .baasCardSuccess {
   margin: 0;
 }
@@ -3905,30 +3392,6 @@ body {
     grid-template-columns: 1fr;
   }
 
-  .baasOnboarding--application,
-  .baasOnboarding--underReview,
-  .baasOnboarding--approved,
-  .baasOnboarding--providerStart {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .baasOnboarding__stepRail {
-    flex-basis: auto;
-  }
-
-  .baasOnboarding__reviewIllustration {
-    flex-basis: auto;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
-  .baasOnboarding__approvedIllustration {
-    flex-basis: auto;
-    max-width: 240px;
-    margin: 0 auto;
-  }
-
   .baasPromotion {
     grid-template-columns: 1fr;
   }
@@ -3940,10 +3403,6 @@ body {
 
   .baasPromotion__content {
     grid-row: 2;
-  }
-
-  .baasOnboarding--underReview {
-    gap: var(--spacing300);
   }
 
   .baasSpendPanel {
@@ -3967,9 +3426,8 @@ body {
   .bankingBaasPage__titleRow,
   .bankingBaasPage__toolbar,
   .bankingBaasCardsPage__header,
-  .bankingBaasCardsPage__filters,
-  .baasAccountHero,
-  .baasOnboarding__providerActions {
+  .bankingBaasCardsPage__actions,
+  .baasAccountHero {
     flex-direction: column;
     align-items: stretch;
   }
@@ -3988,12 +3446,6 @@ body {
     justify-content: center;
   }
 
-  .baasOnboarding__selection,
-  .baasOnboarding__applicationBody,
-  .baasOnboarding--underReview,
-  .baasOnboarding--start,
-  .baasOnboarding--providerStart,
-  .baasOnboarding--approved,
   .bankingBaasDetailPage__content {
     padding: var(--spacing300);
   }
@@ -4009,18 +3461,6 @@ body {
   .baasAccountHero__balance > div {
     align-items: flex-start;
     justify-content: flex-start;
-  }
-
-  .baasOnboarding__providerActions > button {
-    width: 100%;
-  }
-
-  .baasOnboarding__fieldGrid {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .baasOnboarding__dateField > div {
-    grid-template-columns: 1fr;
   }
 
   .baasSpendRow {

@@ -19,7 +19,7 @@ export type BankTransaction = {
   paymentStatus: PaymentStatus;
   cardholder: string | null;
   lastFour: string | null;
-  network: "visa" | "mastercard" | null;
+  network: "mastercard" | null;
   invoiceRequired: boolean;
   invoiceId: string | null;
   location: { address: string; latitude: number; longitude: number } | null;
@@ -86,7 +86,7 @@ export const bankTransactions: BankTransaction[] = [...atmTransactions, ...trans
     type: category === "refund" ? "refund" : category === "fees" ? "fee" : method === "bankTransfer" ? "transfer" : method === "directDebit" ? "directDebit" : "cardPurchase",
     paymentStatus: status, cardholder: person,
     lastFour: person === "Jamie Taylor" ? "1234" : person === "Morgan Hughes" ? "7781" : person ? "4608" : null,
-    network: person === "Morgan Hughes" ? "visa" : person ? "mastercard" : null,
+    network: person ? "mastercard" : null,
     invoiceRequired: amount < 0 && category !== "fees" && category !== "transfers",
     invoiceId: invoiceId ?? null,
     location: method === "directDebit" || method === "bankTransfer" ? null : merchantLocations[merchant] ?? null,

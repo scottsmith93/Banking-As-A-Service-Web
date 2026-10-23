@@ -25,7 +25,7 @@ Open `/banking/baas` in the playground.
 - Existing legacy accounts remain visible alongside Sage bank accounts.
 - The promotional banner pairs the Copilot mark with layered Sage card visuals and opens a viewport-sized, Sage-headed onboarding dialog with a 40px edge gutter.
 - Completing the onboarding flow stages two demonstration accounts: one active and one pending review.
-- The active account dashboard links to a debit-card view with reusable black card tiles, muted Sage-token gradients, and All, Issued, and Deactivated tabs. Card type and a contactless indicator sit beneath the Sage mark; card status pills hug their labels. Card issuing opens a 600px Carbon side panel with a centered 288px ID-1 proportion preview, a fixed Sage-green card style, bordered Visa and Mastercard choices, two-column spend limits, and merchant and region restrictions.
+- The active account dashboard links to a debit-card view whose tiles draw each card at real ID-1 proportions in the light Sage Wallet styles (Mint, Midnight, Plum), with All, Issued, and Deactivated tabs. Search and Create debit card share the title row. Sage Wallet issues Mastercard only, so every card, transaction, and the issuing form use the Mastercard mark and there is no network choice. Card issuing (Create debit card on the cards page, New card on the overview) opens the Sage Wallet wizard at its card step: card type, cardholder (or add a new one), monthly limit, card style, and delivery address for physical cards, with a live preview.
 - The prototype uses Carbon React and Sage design tokens, with the new composed UI kept in the `banking-baas` component group.
 
 ## Localization scope
@@ -43,6 +43,10 @@ The transaction workspace and its Figma/competitor analysis are documented in [t
 - Network and wallet artwork is exported from the supplied Figma design and stored locally in `public/assets/banking-baas`; the panel makes no third-party image requests.
 
 ## Change log
+
+- 2026-10-23 — Create debit card (cards page) and New card (account overview) now open the Sage Wallet wizard at its card step (2 steps: card details, card ready) instead of the side panel. Card tiles keep a single Manage action; View details was removed. The old side panel, the original onboarding dialog, and their styles, copy, data, and celebration artwork were deleted.
+
+- 2026-10-23 — Mastercard only: removed Visa from cards, transactions, and the issuing form. Redrew card tiles as light real-proportion cards, moved search and Create debit card into the title row, and dropped the redundant card count and CVV placeholder.
 
 - 2026-10-22 — Grouped the recent-transactions heading/subtitle with a 4px gap and centred View all against the group. Made descriptions plain text while retaining Carbon's keyboard-accessible rows; added shared transaction-type icons and compact thick-tick justification styling, with muted non-applicable states and consistent row heights.
 - 2026-10-22 — Compacted the account overview: inline title/actions and a single balance/KPI band, plus 10 newest transactions. Replaced receipt indicators with shared Justified states: linked invoices, Categorised with plain category text, or outlined attention pills. Added ATM fixtures and a category-saving flow that updates the overview, full transaction queues, and account-list counts.

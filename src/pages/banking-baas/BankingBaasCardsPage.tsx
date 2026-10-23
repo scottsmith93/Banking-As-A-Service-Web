@@ -9,8 +9,9 @@ import Typography from "carbon-react/lib/components/typography";
 import { Breadcrumbs, Crumb } from "carbon-react/lib/components/breadcrumbs";
 import { useNavigate, useParams, useSearchParams } from "react-router-dom";
 import BaasCardTile from "../../components/banking-baas/BaasCardTile";
-import BaasIssueCardSidebar, { type BaasCardIssueFormData } from "../../components/banking-baas/BaasIssueCardSidebar";
+import SageWalletOnboardingDialog from "../../components/sage-wallet/SageWalletOnboardingDialog";
 import { stagedBaasAccounts, type DebitCard } from "../../data/bankingBaas";
+import { sageWalletCardholders } from "../../data/sageWalletOnboarding";
 import { useBankingBaas } from "../../context/useBankingBaas";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale, getLocaleCode } from "../../locales";
@@ -29,9 +30,8 @@ export default function BankingBaasCardsPage() {
   const { cards, addCard } = useBankingBaas();
   const [searchText, setSearchText] = useState("");
   const [activeTab, setActiveTab] = useState<CardTab>("all");
-  const [isIssueSidebarOpen, setIsIssueSidebarOpen] = useState(searchParams.get("create") === "true");
+  const [isIssueWizardOpen, setIsIssueWizardOpen] = useState(searchParams.get("create") === "true");
   const [detailCard, setDetailCard] = useState<DebitCard | null>(() => cards.find(card => card.id === searchParams.get("card")) ?? null);
-  const [lastIssuedCard, setLastIssuedCard] = useState<DebitCard | null>(null);
   const [successMessage, setSuccessMessage] = useState("");
 
   const query = searchText.trim().toLowerCase();
@@ -39,40 +39,31 @@ export default function BankingBaasCardsPage() {
   const allCards = matchingCards;
   const issuedCards = matchingCards.filter((card) => card.status !== "deactivated");
   const deactivatedCards = matchingCards.filter((card) => card.status === "deactivated");
-  const cardholders = useMemo(() => [...new Set(cards.map((card) => card.cardholder))], [cards]);
+  // The wizard offers the Sage Wallet team plus anyone who already holds a card here.
+  const cardholders = useMemo(() => [...new Set([...sageWalletCardholders, ...cards.map((card) => card.cardholder)])], [cards]);
 
   const cardCopy = {
     deactivated: copy.cards.deactivated,
     monthlySpend: copy.cards.monthlySpend,
     validThrough: copy.cards.validThrough,
-    viewDetails: copy.cards.viewDetails,
     manage: copy.cards.manage,
     cardholder: copy.cards.cardholder,
     virtual: copy.cards.virtual,
     physical: copy.cards.physical,
     expiry: copy.cards.expiry,
-    securityCode: copy.cards.securityCode,
     active: copy.cards.active,
     ordered: copy.cards.ordered,
   };
 
-  const handleIssueCard = (formData: BaasCardIssueFormData) => {
-    const newCard = addCard({
-      cardholder: formData.cardholder,
-      colour: formData.colour,
-      nickname: formData.nickname || copy.cards.newCardNickname,
-      type: formData.type,
-      network: formData.network,
-    });
-    setLastIssuedCard(newCard);
-    setActiveTab("issued");
-    setSuccessMessage(formData.type === "physical" ? copy.cardIssueForm.physicalSuccess.title : interpolate(copy.cards.created, { name: formData.cardholder }));
+  const handleIssueCard = (draft: Parameters<typeof addCard>[0]) => {
+    const newCard = addCard(draft);
+    setSuccessMessage(interpolate(copy.cards.created, { name: draft.cardholder }));
     setSearchText("");
-    setSearchParams({}, { replace: true });
+    return newCard;
   };
 
-  const handleCloseIssueSidebar = () => {
-    setIsIssueSidebarOpen(false);
+  const handleCloseIssueWizard = () => {
+    setIsIssueWizardOpen(false);
     if (searchParams.has("create")) setSearchParams({}, { replace: true });
   };
 
@@ -101,28 +92,27 @@ export default function BankingBaasCardsPage() {
               {account.name}
             </Crumb>
           </Breadcrumbs>
+          {/* Search and the create action share the title row, so the cards start higher. */}
           <Box className="bankingBaasCardsPage__header" display="flex" justifyContent="space-between" alignItems="flex-end" gap={3}>
-            <Box display="flex" flexDirection="column" gap={1}>
+            <Box display="flex" flexDirection="column" gap={1} minWidth={0}>
               <Typography variant="h1" as="h1">{copy.cards.title.replace("{accountName}", account.name)}</Typography>
               <Typography variant="p" as="p">{copy.cards.subtitle}</Typography>
+            </Box>
+            <Box className="bankingBaasCardsPage__actions" display="flex" alignItems="flex-end" gap={2}>
+              <Textbox
+                id="baas-card-search"
+                label={copy.cards.searchLabel}
+                placeholder={copy.cards.searchPlaceholder}
+                inputIcon="search"
+                value={searchText}
+                onChange={(event) => setSearchText(event.target.value)}
+              />
+              <Button variantType="primary" iconType="add" iconPosition="before" onClick={() => setIsIssueWizardOpen(true)}>{copy.cards.issueCard}</Button>
             </Box>
           </Box>
         </Box>
 
-        <Box className="bankingBaasCardsPage__filters" display="flex" alignItems="flex-end" gap={3}>
-          <Textbox
-            id="baas-card-search"
-            label={copy.cards.searchLabel}
-            placeholder={copy.cards.searchPlaceholder}
-            inputIcon="search"
-            value={searchText}
-            onChange={(event) => setSearchText(event.target.value)}
-          />
-          <Button variantType="primary" iconType="add" iconPosition="before" onClick={() => setIsIssueSidebarOpen(true)}>{copy.cards.issueCard}</Button>
-        </Box>
-
         {successMessage && <Typography className="baasCardSuccess" variant="small" as="p" role="status">{successMessage}</Typography>}
-        <Typography variant="small" as="p">{copy.cards.cardCount.replace("{count}", String(allCards.length))}</Typography>
 
         <Tabs selectedTabId={activeTab}>
           <TabList ariaLabel={copy.cards.tabsLabel} onTabChange={(tabId) => setActiveTab(tabId as CardTab)}>
@@ -142,12 +132,15 @@ export default function BankingBaasCardsPage() {
         </Tabs>
       </Box>
 
-      <BaasIssueCardSidebar
-        open={isIssueSidebarOpen}
-        cardholders={cardholders}
-        onCancel={handleCloseIssueSidebar}
-        onIssue={handleIssueCard}
-        onManage={() => { if (lastIssuedCard) setDetailCard(lastIssuedCard); }}
+      {/* Issuing a card uses the same wizard as Sage Wallet onboarding, starting at the card step. */}
+      <SageWalletOnboardingDialog
+        open={isIssueWizardOpen}
+        mode="issueCard"
+        initialCardholders={cardholders}
+        onClose={handleCloseIssueWizard}
+        onCreateCard={handleIssueCard}
+        onViewCards={handleCloseIssueWizard}
+        onViewAccount={() => { handleCloseIssueWizard(); navigate(`/banking/baas/accounts/${account.id}`); }}
       />
 
       <Dialog open={detailCard !== null} onCancel={() => setDetailCard(null)} title={copy.cards.cardDetailsTitle} size="small">

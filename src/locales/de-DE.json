@@ -242,96 +242,6 @@
       }
     },
     "cardIssueForm": {
-      "title": "Neue Karte ausstellen",
-      "description": "Wählen Sie eine physische oder virtuelle Debitkarte und legen Sie ihre Verwendung fest.",
-      "previewDescription": "{network}-Karte für {name}",
-      "selectCardholder": "Karteninhaber auswählen",
-      "cardholderRequired": "Karteninhaber *",
-      "cardholderError": "Wählen Sie eine karteninhabende Person aus, um eine Debitkarte zu erstellen.",
-      "nickname": "Kartenname",
-      "nicknamePlaceholder": "Team oder Gruppe",
-      "networkRequired": "Kartennetzwerk",
-      "digitalWallets": "Digitale Wallets *",
-      "digitalWalletsHint": "Diese Karte kann zu unterstützten digitalen Wallets hinzugefügt werden.",
-      "walletProviders": {
-        "applePay": "Apple Pay",
-        "googlePay": "Google Pay"
-      },
-      "spendingControls": "Ausgabenkontrollen",
-      "spendingControlsDescription": "Administratoren können Ausgabenlimits und Zahlungseinstellungen für diese Karte jederzeit ändern. Lassen Sie ein Limit leer, um jeden Betrag zuzulassen.",
-      "limits": {
-        "daily": "Tageslimit",
-        "monthly": "Monatslimit",
-        "perTransaction": "Limit pro Transaktion",
-        "total": "Gesamtausgabenlimit"
-      },
-      "onlinePayments": "Online-Zahlungen",
-      "onlinePaymentsHint": "Käufe auf Websites und in mobilen Apps zulassen.",
-      "recurringPayments": "Wiederkehrende Zahlungen",
-      "recurringPaymentsHint": "Abonnements und andere wiederkehrende Zahlungen zulassen.",
-      "allowedRegions": "Zulässige Länder und Regionen",
-      "searchRegions": "Länder oder Regionen suchen",
-      "blockedMerchants": "Gesperrte Händler und Kategorien",
-      "blockedMerchantsDescription": "Administratoren können die Nutzung dieser Karte bei bestimmten Händlern oder in bestimmten Händlerkategorien verhindern.",
-      "searchBlockedCategories": "Händler oder Kategorien zum Sperren suchen",
-      "removeValue": "{value} entfernen",
-      "issuerDisclaimer": "Die Karten werden von Adyen N.V. ausgegeben. Sage ist weder eine Bank noch Kartenherausgeber. Adyen N.V., tätig unter dem Namen Adyen, erbringt die Bank- und Finanzdienstleistungen. Das Unternehmen ist von De Nederlandsche Bank zugelassen und wird im Verbraucherschutz von der Central Bank of Ireland reguliert.",
-      "privacyStatement": "Die Datenschutzerklärung von Adyen lesen.",
-      "createCard": "Debitkarte erstellen",
-      "processing": "Wird verarbeitet...",
-      "success": {
-        "title": "Virtuelle Debitkarte einsatzbereit",
-        "description": "Ihre virtuelle Debitkarte wurde erstellt und kann jetzt verwendet werden.",
-        "manageCard": "Karte verwalten",
-        "createAnother": "Weitere Debitkarte erstellen"
-      },
-      "steps": {
-        "label": "Schritte zur Kartenausgabe",
-        "type": "Kartentyp",
-        "details": "Kartendetails"
-      },
-      "detailsTitles": {
-        "physical": "Physische Debitkarte erstellen",
-        "virtual": "Virtuelle Debitkarte erstellen"
-      },
-      "atmWithdrawals": "Bargeldabhebungen",
-      "atmWithdrawalsHint": "Erlauben Sie Bargeldabhebungen an Geldautomaten.",
-      "inStorePayments": "Zahlungen im Geschäft",
-      "inStorePaymentsHint": "Erlauben Sie Einkäufe an physischen Zahlungsterminals.",
-      "limitError": "Geben Sie einen Betrag von null oder mehr ein.",
-      "physicalSuccess": {
-        "title": "Ihre physische Debitkarte wurde bestellt",
-        "description": "Ihre physische Debitkarte wurde genehmigt und bestellt. Wir benachrichtigen Sie, sobald sie aktiviert werden kann."
-      },
-      "typeChoice": {
-        "title": "Kartentyp auswählen",
-        "physical": {
-          "title": "Physische Debitkarte",
-          "choose": "Physische Karte wählen",
-          "benefits": [
-            "Online und im Geschäft bezahlen",
-            "Kontaktlos bezahlen",
-            "Bargeld am Geldautomaten abheben",
-            "Lieferung an die karteninhabende Person"
-          ]
-        },
-        "virtual": {
-          "title": "Virtuelle Debitkarte",
-          "choose": "Virtuelle Karte wählen",
-          "benefits": [
-            "Nach Genehmigung und Verifizierung nutzbar",
-            "Kartendetails online ansehen",
-            "Online ohne physische Karte bezahlen",
-            "Keine Lieferung erforderlich"
-          ]
-        },
-        "networks": "Visa oder Mastercard"
-      },
-      "pin": {
-        "label": "Karten-PIN",
-        "hint": "Wählen Sie eine 4-stellige PIN.",
-        "error": "Geben Sie eine 4-stellige PIN ein."
-      },
       "shipping": {
         "title": "Lieferadresse der karteninhabenden Person",
         "description": "Geben Sie die Adresse ein, an die die physische Karte geliefert werden soll.",
@@ -347,8 +257,141 @@
         "selectCountry": "Land auswählen"
       }
     },
-    "title": "Bankkonten und Kasse", "description": "Behalten Sie Ihre bestehenden Konten und verwalten Sie Sage-Bankkonten mit Echtzeitinformationen an einem Ort.", "syncAll": "Alle synchronisieren", "create": "Erstellen", "searchLabel": "Bankkonten suchen", "searchPlaceholder": "Suchen", "existingAccounts": "Bestehende Konten", "sageAccounts": "Sage-Bankkonten", "sageAccountsDescription": "Echtzeitkonten von Adyen, die die Erfassung von Eingangsrechnungen und den Transaktionsabgleich erleichtern.", "accountCount": "{count} Konten", "demoNoteLabel": "Prototyp-Szenario", "demoNote": "Nach Abschluss des Onboardings werden für die Demo zwei Konten bereitgestellt: ein aktives Konto und ein Konto in Prüfung.", "items": "{count} Konten",
-    "promotion": { "title": "Banktransaktionen schneller mit Eingangsrechnungen abgleichen", "body": "Ein Sage-Bankkonto überträgt Transaktionen nahezu in Echtzeit an Sage. So lassen sich Einkäufe früher und mit weniger manuellem Aufwand den Eingangsrechnungen zuordnen. Belege erfassen und Mitarbeitendenkarten im selben vernetzten Ablauf ausstellen.", "benefits": ["Transaktionen sofort sehen", "Karten für geschäftliche Ausgaben ausstellen", "Belege schneller Eingangsrechnungen zuordnen"], "cta": "Sage-Bankkonto einrichten" },
+    "title": "Bankkonten und Kasse", "description": "Behalten Sie Ihre bestehenden Konten und verwalten Sie Sage Wallet-Konten mit Echtzeitinformationen an einem Ort.", "syncAll": "Alle synchronisieren", "create": "Erstellen", "searchLabel": "Bankkonten suchen", "searchPlaceholder": "Suchen", "existingAccounts": "Bestehende Konten", "sageAccounts": "Sage Wallet-Konten", "sageAccountsDescription": "Echtzeitkonten von Adyen, die die Erfassung von Eingangsrechnungen und den Transaktionsabgleich erleichtern.", "accountCount": "{count} Konten", "demoNoteLabel": "Prototyp-Szenario", "demoNote": "Nach Abschluss des Onboardings werden für die Demo zwei Konten bereitgestellt: ein aktives Konto und ein Konto in Prüfung.", "items": "{count} Konten",
+    "promotion": {
+      "eyebrow": "Sage Wallet-Konto",
+      "title": "Schneller bezahlt werden. Jede Ausgabe im Griff.",
+      "body": "Eröffnen Sie ein in Sage integriertes Geschäftskonto. Kundenzahlungen gehen ein und werden automatisch mit Rechnungen abgeglichen, und Firmenkreditkarten halten die Ausgaben Ihres Teams unter Kontrolle.",
+      "getPaid": { "title": "Schneller bezahlt werden", "body": "Kunden zahlen direkt auf Ihr Sage Wallet-Konto, so kommt das Geld früher an und Rechnungen werden automatisch ausgeglichen." },
+      "cards": { "title": "Kreditkarten für Ihr Team", "body": "Geben Sie physische und virtuelle Karten mit Ausgabelimits aus und erfassen Sie Belege direkt beim Kauf." },
+      "cta": "Sage Wallet-Konto eröffnen",
+      "note": "Keine Einrichtungsgebühren. Dauert etwa 10 Minuten.",
+      "dismiss": "Angebot für das Sage Wallet-Konto ausblenden",
+      "cardArt": { "virtual": "Virtuell", "business": "Business" }
+    },
+    "walletOnboarding": {
+      "dialogLabel": "Sage Wallet-Konto eröffnen",
+      "progress": "Schritt {current} von {total}",
+      "hero": {
+        "brand": "Sage Wallet",
+        "accountTitle": "Schneller bezahlt werden. Klüger ausgeben.",
+        "accountBody": "Ihr Geschäftskonto, direkt in Sage.",
+        "accountPoints": [
+          "Zahlungen erscheinen in Echtzeit",
+          "Automatisch mit Rechnungen abgeglichen",
+          "Gelder durch Adyen abgesichert"
+        ],
+        "paymentToast": "{amount} eingegangen · {invoice} bezahlt",
+        "matchedToast": "Automatisch abgeglichen",
+        "openingTitle": "Ihr Konto wird eingerichtet",
+        "readyTitle": "Es kann losgehen",
+        "readyBody": "Konto heute eröffnet",
+        "doneTitle": "Ihre Karte ist aktiv"
+      },
+      "account": {
+        "title": "Hallo {name}! Eröffnen wir Ihr Sage Wallet-Konto.",
+        "prefilled": "Wir haben ausgefüllt, was Sage bereits weiß. Prüfen Sie es, und fertig.",
+        "businessHeading": "Ihr Unternehmen",
+        "businessName": "Firmenname",
+        "companyNumber": "Handelsregisternummer",
+        "representative": "Gesetzlicher Vertreter",
+        "email": "E-Mail",
+        "accountHeading": "Ihr Konto",
+        "accountName": "Kontoname",
+        "accountNameDefault": "Hauptgeschäftskonto",
+        "accountNameError": "Geben Sie einen Namen für Ihr Konto ein.",
+        "usageLegend": "Wofür werden Sie es hauptsächlich nutzen?",
+        "usage": {
+          "customerPayments": "Zahlungen von Kunden erhalten",
+          "teamExpenses": "Teamausgaben",
+          "supplierPayments": "Lieferanten bezahlen"
+        },
+        "terms": "Ich bestätige diese Angaben und akzeptiere die Bedingungen von Sage Wallet",
+        "termsError": "Akzeptieren Sie die Bedingungen, um Ihr Konto zu eröffnen.",
+        "cancel": "Abbrechen",
+        "submit": "Mein Konto eröffnen"
+      },
+      "opening": {
+        "title": "Ihr Konto wird eröffnet…",
+        "body": "Das dauert nur wenige Sekunden."
+      },
+      "ready": {
+        "title": "Ihr Sage Wallet-Konto ist bereit",
+        "body": "Es ist bereits mit Ihrer Buchhaltung verbunden. Nichts zu synchronisieren, nichts zu importieren.",
+        "iban": "IBAN",
+        "copyIban": "IBAN kopieren",
+        "ibanCopied": "IBAN kopiert",
+        "realTime": "Echtzeit-Synchronisierung",
+        "balance": "Saldo",
+        "nextHeading": "Wie es weitergeht",
+        "next": [
+          "Ihre neue IBAN wird Ihren Rechnungen hinzugefügt, damit Kunden Sie direkt bezahlen.",
+          "Jede Zahlung geht in Sage ein und wird automatisch mit ihrer Rechnung abgeglichen.",
+          "Fügen Sie eine Debitkarte hinzu, und jeder Teameinkauf kommt mit Beleg an."
+        ],
+        "skip": "Später",
+        "getCard": "Meine Debitkarte holen"
+      },
+      "card": {
+        "badge": "Für Sie empfohlen",
+        "title": "Klüger ausgeben mit einer Sage-Debitkarte",
+        "body": "Jede Zahlung erscheint sofort in Sage, mit angehängtem Beleg. Schluss mit der Zettelwirtschaft.",
+        "typeLegend": "Kartentyp",
+        "virtualTitle": "Virtuell",
+        "virtualBody": "Nutzen Sie sie noch heute online und in der Wallet Ihres Smartphones.",
+        "virtualTag": "Sofort bereit",
+        "physicalTitle": "Physisch und virtuell",
+        "physicalBody": "Nutzen Sie die virtuelle Karte schon heute. Die physische Karte kommt in 3–5 Werktagen.",
+        "cardholder": "Karteninhaber",
+        "monthlyLimit": "Monatliches Ausgabenlimit",
+        "styleLegend": "Kartendesign",
+        "styles": {
+          "sage": "Mint",
+          "night": "Mitternacht",
+          "plum": "Pflaume"
+        },
+        "perks": [
+          "Belege mit dem Smartphone fotografieren",
+          "Karte sperren oder Limits jederzeit ändern"
+        ],
+        "nickname": "Alltagsausgaben",
+        "later": "Vielleicht später",
+        "create": "Meine Karte erstellen",
+        "addCardholder": "Neuen Karteninhaber hinzufügen",
+        "deliverTo": "Lieferung an",
+        "changeAddress": "Ändern",
+        "cardholderDialog": {
+          "title": "Neuen Karteninhaber hinzufügen",
+          "body": "Die Person erhält eine eigene Karte und kann sofort loslegen, sobald sie bereit ist.",
+          "firstName": "Vorname",
+          "lastName": "Nachname",
+          "email": "Geschäftliche E-Mail",
+          "nameError": "Geben Sie Vor- und Nachnamen ein.",
+          "emailError": "Geben Sie eine gültige E-Mail-Adresse ein.",
+          "cancel": "Abbrechen",
+          "save": "Karteninhaber hinzufügen"
+        },
+        "addressDialog": {
+          "title": "Wohin sollen wir die Karte senden?",
+          "body": "Wir senden die physische Karte an diese Adresse. Sie kommt in 3–5 Werktagen an.",
+          "cancel": "Abbrechen",
+          "save": "Adresse speichern"
+        }
+      },
+      "done": {
+        "title": "Ihre Karte ist bereit",
+        "virtualBody": "Ihre virtuelle Karte mit der Endung {lastFour} ist einsatzbereit. Fügen Sie sie Ihrer Smartphone-Wallet hinzu und legen Sie los.",
+        "physicalBody": "Ihre virtuelle Karte mit der Endung {lastFour} ist einsatzbereit, und Ihre physische Karte ist unterwegs.",
+        "viewCards": "Meine Karten ansehen",
+        "goToAccount": "Zu meinem Konto",
+        "nextHeading": "Holen Sie das Beste heraus",
+        "next": [
+          "Fügen Sie Ihre Karte der Wallet Ihres Smartphones hinzu und zahlen Sie mit einem Tippen.",
+          "Geben Sie Ihrem Team eigene Karten, jede mit eigenem Limit.",
+          "Fotografieren Sie Belege direkt beim Bezahlen. Sage gleicht sie für Sie ab."
+        ]
+      }
+    },
     "list": {
       "lastSync": "Letzte Synchronisierung: {timestamp}",
       "realTimeSync": "Echtzeit-Synchronisierung",
@@ -366,10 +409,9 @@
       "clearSearch": "Suche löschen",
       "demoConnections": "Demo-Bankverbindungen ohne Live-Daten."
     },
-    "accounts": { "sageAccount": "Sage-Bankkonto", "pending": "In Prüfung", "active": "Aktiv", "realTime": "Transaktionsinformationen in Echtzeit", "poweredByAdyen": "Bereitgestellt von Adyen", "balance": "Verfügbarer Saldo", "accountEnding": "Konto endet auf", "ledgerAccount": "Sachkonto", "lastUpdated": "Zuletzt aktualisiert", "openAccount": "Konto eröffnen", "viewAccount": "Konto anzeigen", "manageMovements": "Bankbewegungen verwalten", "edit": "Bearbeiten", "delete": "Löschen", "cashAccount": "Bargeldkonto", "existingBankAccount": "Bestehendes Bankkonto" },
+    "accounts": { "sageAccount": "Sage Wallet-Konto", "pending": "In Prüfung", "active": "Aktiv", "realTime": "Transaktionsinformationen in Echtzeit", "poweredByAdyen": "Bereitgestellt von Adyen", "balance": "Verfügbarer Saldo", "accountEnding": "Konto endet auf", "ledgerAccount": "Sachkonto", "lastUpdated": "Zuletzt aktualisiert", "openAccount": "Konto eröffnen", "viewAccount": "Konto anzeigen", "manageMovements": "Bankbewegungen verwalten", "edit": "Bearbeiten", "delete": "Löschen", "cashAccount": "Bargeldkonto", "existingBankAccount": "Bestehendes Bankkonto" },
     "createDialog": { "title": "Bankkonto erstellen", "description": "Fügen Sie ein bestehendes Bankkonto für Ihre Sage-Buchhaltungsdaten hinzu.", "accountName": "Kontoname", "accountNumber": "Kontonummer", "ledgerAccount": "Sachkonto", "cancel": "Abbrechen", "create": "Konto erstellen" },
-    "onboarding": {"title":"Sage-Bankkonto einrichten","chooseTitle":"Choose Your Business Bank Account","chooseBody":"Choose the account type that works best for your business","paymentsTitle":"Payments only account  powered by Adyen","businessTitle":"Business bank account  powered by Adyen","physicalDigital":"Physical and Digital Card","providerPoweredBy":"Powered by Adyen","startProviderTitle":"Let’s open your {accountType} powered by Adyen","selectAccount":"Select Account","steps":["Legal Entity","Business Details","Tax & Compliance","Business Activity","Source of Funds","Related Parties","Supporting Documents","Review and Submit"],"benefits":["Instant account opening. Physical card will arrive in 3-5 business days","Personalized card for you to use whenever you want","We will populate 60% of the required information for you. The application will take approximately 10 minutes"],"startTitle":"Before you begin","startBody":"We’ll collect a few details about your business and its owners so Adyen can review your application.","startConsent":"Your application will be reviewed by Adyen. You can save your progress and return to it later.","startContinue":"Start application","startReadyTitle":"Before you start, have these ready:","startReadyItems":["Business details (legal business name, address, and tax information)","Information for business owners and authorised signers","Government-issued ID for account owners and authorised users","Business formation documents (if applicable)","Ownership details for your business"],"startExpectTitle":"What to expect","startExpectItems":["The application takes approximately 20 minutes to complete","We’ll pre-fill available information from your Sage product to make the application faster","You can save your progress and come back anytime","Your information is securely protected","We’ll notify you if anything else is needed to complete your application"],"startTerms":"Please view the terms and conditions of the service and read the Sage’s privacy notice","startAgreement":"I agree to the terms and conditions and have read the privacy policy.","startCancel":"Cancel","applicationTitle":"{accountType} Application","applicationBody":"Complete the steps below. You’ll be able to review your information before submitting.","requiredInformation":"* indicates required information","formTitleOverrides":["Legal Entity","Business Details","Tax and Compliance","Business Activity","Source of Funds","Related Parties","Supporting Documents","Review and Submit"],"formFields":[[],[{"label":"Business Legal Name *","helper":"As it appears on official records"},{"label":"Trade Name (Optional)","helper":"As it appears on official records"},{"label":"Registration Number *","helper":"As it appears on official records"},{"label":"Country *","variant":"select","placeholder":"Select"},{"label":"Date of Incorporation *","variant":"date"},{"label":"Contact Person","variant":"heading"},{"label":"Email *"},{"label":"Phone Number *"},{"label":"Registered Address","variant":"heading"},{"label":"Address Line 1 *"},{"label":"Address Line 2"},{"label":"Town / City *"},{"label":"Province / State *"},{"label":"Postcode *"},{"label":"Country *","variant":"select","placeholder":"Select"},{"label":"Principal place of business is same as registered address","variant":"checkbox"}],[{"label":"Tax Country *","variant":"select","placeholder":"Select"},{"label":"Tax ID Type*","variant":"select","placeholder":"Select"},{"label":"Tax ID / TIN Number"},{"label":"VAT Registered *","variant":"select","placeholder":"Select"},{"label":"VAT Number *"}],[{"label":"Business Service *","variant":"select","placeholder":"Select"},{"label":"Industry Code","helper":"MCC or local classification code."},{"label":"Sales Channels*","variant":"select","placeholder":"Select"},{"label":"Website URL"}],[{"label":"Source of Funds Type *","variant":"select","placeholder":"Select"},{"label":"Expected Amount *","placeholder":"20,000"},{"label":"Description *","helper":"Summarise where the funds for this business line originate"}],[{"label":"Only users with a Sage ID who are part of your organization will appear in this list.","variant":"note"},{"label":"Name *","helper":"As it appears on official records"},{"label":"Relationship *","variant":"select","placeholder":"Select"}],[{"label":"Bank Information *","variant":"heading"},{"label":"Connect your bank account using your credentials.","variant":"note"},{"label":"Online Connection","variant":"select","placeholder":"Select"},{"label":"IBAN & Statement","variant":"select","placeholder":"Select"},{"label":"Connect Bank Account","variant":"action"},{"label":"Supporting Document *","variant":"heading"},{"label":"Upload a supporting document to verify your business. This can include proof of address, business registration, VAT or tax documents, proof of ownership, directors, signatories, industry, or source of funds.","variant":"note"},{"label":"Document Type","variant":"select","placeholder":"Select"},{"label":"Select file","variant":"action"},{"label":"or drag and drop your file","variant":"note"}],[]],"formStepActions":["","","","Add another Website","","Add another person","Add another document",""],"typeOfEntity":"Type of Entity*","entityHints":["Person trading in their own name.","Registered company or corporation.","One owner, unincorporated business.","Assets help by trustees for beneficiaries.","Two or more partners, no incorporation."],"individual":"Individual","organization":"Organization","soleProprietorship":"Sole Proprietorship","trust":"Trust","partnership":"Unincorporated Partnership","discard":"Discard Application","back":"Back","continue":"Continue","loadingTitle":"Connecting to Adyen","loadingBody":"Preparing your Sage bank account application.","processingTitle":"Processing {accountType} Application","processingBody":"This may take several minutes. Do not close this window.","approvedTitle":"{accountType} Approved!","approvedBody":"You can now use this {accountType} to send and receive payments. All transactions will automatically reconcile with your account.","underReviewTitle":"Business bank account under review","underReviewBody":"We are reviewing your application. We will send you an email to {email} as soon as a decision has been made. No further action is needed at this time.","returnToBanking":"Return to Banking","manageBank":"Manage Bank","reviewTerms":"Please view the terms and conditions of the service and read the Ayden’s privacy notice","reviewAgreement":"I have read and agree to the terms and conditions of the service.","edit":"Edit","submit":"Submit","accountType":"Business bank account","email":"Business owner email","stepDescriptions":["Tell us what type of legal entity you are applying for.","Add the core details that identify your business.","Provide the tax and compliance information needed for review.","Tell us what your business does.","Tell us where the money entering the account will come from.","Add the business owner and related-party details.","Add the documents that support your application.","Check the information before submitting your application."],"stepFields":["","Business name","Tax or registration number","Business activity","Source of funds","Business owner","Supporting document",""],"stepPlaceholders":["","Northstar Cycle & Coffee Ltd","For example, GB123456789","For example, bicycle retail and coffee shop","For example, trading income","For example, Jamie Taylor","For example, proof of address",""],"reviewTitle":"Review your application","reviewBody":"Check the details below before submitting.","reviewSections":[{"title":"Legal Entity","rows":[{"label":"Entity Type","value":"Organization"}]},{"title":"Business Details","rows":[{"label":"Business Legal Name","value":"Text input"},{"label":"Trade Name","value":"Text input"},{"label":"Registration Number","value":"Text input"},{"label":"Country","value":"Text input"},{"label":"Date of Incorporation","value":"Text input"},{"label":"Contact Person Email","value":"Text input"},{"label":"Contact Person Phone Number","value":"Text input"},{"label":"Registered Address","variant":"subheading"},{"label":"Address Line 1","value":"Text input"},{"label":"Address Line 2","value":"Text input"},{"label":"Town / City","value":"Text input"},{"label":"Province / State","value":"Text input"},{"label":"Postcode","value":"Text input"},{"label":"Country","value":"Text input"}]},{"title":"Tax and Compliance","rows":[{"label":"Tax Country","value":"Text input"},{"label":"Tax ID Type","value":"Text input"},{"label":"Tax ID / TIN Number","value":"Text input"},{"label":"VAT Registered","value":"Text input"},{"label":"VAT Number","value":"Text input"}]},{"title":"Business Activity","rows":[{"label":"Business Service","value":"Text input"},{"label":"Industry Code","value":"Text input"},{"label":"Sales Channels","value":"Text input"},{"label":"Website URL","value":"Text input"}]},{"title":"Source of Funds","rows":[{"label":"Source of Funds Type","value":"Text input"},{"label":"Expected Amount","value":"Text input"},{"label":"Description","value":"Text input"}]},{"title":"Related Parties","rows":[{"label":"Name","value":"Text input"},{"label":"Relationship","value":"Text input"},{"label":"Name","value":"Text input"},{"label":"Relationship","value":"Text input"}]},{"title":"Supporting Documents","rows":[{"label":"Document Type","value":"govermentid.pdf"},{"label":"Document Type","value":"certificateofincorporation.pdf"}]}],"summary":{"businessName":"Business name","businessOwner":"Business owner","entityType":"Entity type","email":"Owner email"}},
-    "accountNavigation": { "overview": "Übersicht", "debitCards": "Debitkarten", "transactions": "Transaktionen", "transfers": "Überweisungen", "users": "Benutzer", "statements": "Kontoauszüge und Dokumente", "settings": "Einstellungen", "switchAccount": "Konto wechseln", "ariaLabel": "Navigation des Sage-Bankkontos" },
+    "accountNavigation": { "overview": "Übersicht", "debitCards": "Debitkarten", "transactions": "Transaktionen", "transfers": "Überweisungen", "users": "Benutzer", "statements": "Kontoauszüge und Dokumente", "settings": "Einstellungen", "switchAccount": "Konto wechseln", "ariaLabel": "Navigation des Sage Wallet-Kontos" },
     "dashboard": {
       "bankAccountsBreadcrumb": "Bankkonten",
       "title": "Geschäftsbankkonto",
@@ -440,27 +482,22 @@
       "searchLabel": "Karten suchen",
       "searchPlaceholder": "Nach Kartennutzer suchen",
       "accountLabel": "Konto",
-      "cardCount": "{count} Karten",
       "all": "Alle",
       "issued": "Ausgestellt",
       "deactivated": "Deaktiviert",
       "monthlySpend": "Monatliche Ausgaben",
       "validThrough": "Gültig bis",
-      "viewDetails": "Details anzeigen",
       "manage": "Verwalten",
       "active": "Aktiv",
       "cardholder": "Karteninhaber",
       "virtual": "Virtuell",
       "physical": "Physisch",
       "expiry": "Gültig bis",
-      "securityCode": "CVV",
       "tabsLabel": "Kartenstatus",
       "issueDialogTitle": "Neue Karte ausstellen",
       "issueDialogDescription": "Wählen Sie die Karteninhaberin oder den Karteninhaber und passen Sie Kartennetzwerk und Farbe an.",
       "assignCardholder": "Einer Person zuweisen",
       "networkLabel": "Kartennetzwerk",
-      "visa": "Visa",
-      "mastercard": "Mastercard",
       "colourLabel": "Kartenfarbe",
       "colours": {
         "sage": "Sage-Grün",
@@ -470,7 +507,6 @@
       "cancel": "Abbrechen",
       "confirmIssue": "Karte ausstellen",
       "created": "Die Karte für {name} wurde ausgestellt.",
-      "newCardNickname": "Geschäftsausgaben",
       "cardDetailsTitle": "Kartendetails",
       "maskedNumber": "•••• •••• •••• {lastFour}",
       "empty": "Keine Karten entsprechen dieser Ansicht.",

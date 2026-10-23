@@ -1,0 +1,863 @@
+/* Sage Wallet onboarding modal: dark animated brand panel on the left, the
+   step on the right. Motion follows one rule set: things enter along the
+   direction of travel, start from where they are, and settle without bounce
+   unless they were "thrown" (toasts, confetti). Tokens only. */
+
+.sageWalletDialog [data-element="dialog"] {
+  width: min(calc(100vw - 2 * var(--spacing500)), calc(var(--spacing1000) * 14));
+  max-width: calc(100vw - 2 * var(--spacing500));
+  height: min(calc(100dvh - 2 * var(--spacing300)), calc(var(--spacing1000) * 8 + var(--spacing400)));
+  overflow: hidden;
+  border-radius: var(--global-radius-container-l) !important;
+}
+
+.sageWalletDialog [data-element="dialog"] > div {
+  height: 100%;
+}
+
+.sageWallet {
+  display: grid;
+  grid-template-columns: minmax(0, 0.85fr) minmax(0, 1.15fr);
+  height: 100%;
+  min-height: 0;
+}
+
+.sageWallet p,
+.sageWallet h2,
+.sageWallet h3,
+.sageWallet ul,
+.sageWallet fieldset {
+  margin: 0;
+}
+
+/* ---------- Left: brand panel ---------- */
+
+.sageWalletHero {
+  --tilt-x: 0deg;
+  --tilt-y: 0deg;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  padding: var(--spacing400);
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--colorsUtilityYin100);
+  color: var(--colorsUtilityYang100);
+}
+
+.sageWalletHero__aurora {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+}
+
+.sageWalletHero__aurora span {
+  position: absolute;
+  width: 70%;
+  aspect-ratio: 1;
+  border-radius: var(--borderRadiusCircle);
+  filter: blur(var(--spacing600));
+  opacity: 0.5;
+}
+
+.sageWalletHero__aurora span:nth-child(1) { left: -20%; bottom: -15%; background: var(--colorsActionMajor500); }
+.sageWalletHero__aurora span:nth-child(2) { right: -25%; top: 30%; background: var(--mode-color-ai-stop-2); opacity: 0.35; }
+.sageWalletHero__aurora span:nth-child(3) { left: 25%; top: -30%; background: var(--mode-color-ai-stop-3); opacity: 0.25; }
+
+/* The diagonal green stripes from the Sage onboarding modal, kept as the anchor. */
+.sageWalletHero__stripes {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: -1;
+  width: 60%;
+  height: 48%;
+  background: repeating-linear-gradient(135deg,
+    color-mix(in srgb, var(--colorsActionMajor500) 55%, var(--colorsUtilityYin100)) 0 var(--spacing300),
+    var(--colorsActionMajor600) var(--spacing300) var(--spacing600),
+    var(--colorsUtilityYin100) var(--spacing600) var(--spacing800));
+  background-size: 200% 200%;
+  clip-path: polygon(30% 0, 100% 0, 100% 100%);
+  opacity: 0.85;
+}
+
+.sageWalletHero__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing150);
+  font-size: var(--fontSizes500);
+  font-weight: var(--fontWeights500);
+}
+
+.sageWalletHero__brand img {
+  height: var(--spacing300);
+}
+
+.sageWalletHero__scene {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing300);
+  min-height: 0;
+  text-align: center;
+}
+
+.sageWalletHero__title {
+  color: var(--colorsUtilityYang100) !important;
+  font-size: var(--fontSizes600) !important;
+  text-wrap: balance;
+}
+
+.sageWalletHero__body {
+  color: color-mix(in srgb, var(--colorsUtilityYang100) 72%, transparent) !important;
+}
+
+.sageWalletHero__copy {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing100);
+}
+
+.sageWalletHero__points {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing100);
+  margin-top: var(--spacing150) !important;
+  padding: 0;
+  list-style: none;
+  color: color-mix(in srgb, var(--colorsUtilityYang100) 85%, transparent);
+}
+
+.sageWalletHero__points li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing100);
+}
+
+.sageWalletHero [data-component="icon"] {
+  color: var(--colorsActionMajor500) !important;
+}
+
+/* Account scene: a card with payments landing on it. */
+.sageWalletHero__stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: calc(var(--spacing1000) * 2 + var(--spacing800));
+  perspective: calc(var(--spacing1000) * 10);
+}
+
+.sageWalletHero__card {
+  width: min(64%, calc(var(--spacing1000) * 3));
+  transform: rotateX(var(--tilt-x)) rotateY(var(--tilt-y));
+  transition: transform 400ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sageWalletHero__card--large {
+  width: min(82%, calc(var(--spacing1000) * 3 + var(--spacing600)));
+}
+
+.sageWalletHero__toast {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: var(--spacing100);
+  padding: var(--spacing100) var(--spacing150);
+  z-index: 1;
+  border: var(--borderWidth100) solid color-mix(in srgb, var(--colorsUtilityYang100) 22%, transparent);
+  border-radius: var(--borderRadius400);
+  background: color-mix(in srgb, var(--colorsUtilityYin100) 55%, transparent);
+  box-shadow: 0 var(--spacing100) var(--spacing300) color-mix(in srgb, var(--colorsUtilityYin100) 40%, transparent);
+  backdrop-filter: blur(var(--spacing150)) saturate(180%);
+  font-size: var(--fontSizes100);
+  font-weight: var(--fontWeights500);
+  white-space: nowrap;
+}
+
+.sageWalletHero__toast--payment { top: 0; left: 4%; }
+.sageWalletHero__toast--matched { right: 4%; bottom: 0; }
+
+.sageWalletHero__toastIcon {
+  display: inline-grid;
+  place-items: center;
+  width: var(--spacing300);
+  height: var(--spacing300);
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsActionMajor500);
+}
+
+.sageWalletHero__toastIcon [data-component="icon"] {
+  color: var(--colorsUtilityYin100) !important;
+}
+
+/* Opening scene: rings radiate from the Sage mark. */
+.sageWalletHero__orb {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: calc(var(--spacing1000) * 2);
+  aspect-ratio: 1;
+}
+
+.sageWalletHero__orb span {
+  position: absolute;
+  inset: 0;
+  border: var(--borderWidth200) solid var(--colorsActionMajor500);
+  border-radius: var(--borderRadiusCircle);
+  opacity: 0;
+}
+
+.sageWalletHero__orb img {
+  width: var(--spacing700);
+  height: var(--spacing700);
+}
+
+/* Ready scene: the tick draws itself and confetti bursts. */
+.sageWalletHero__success,
+.sageWalletHero__cardStage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 100%;
+  perspective: calc(var(--spacing1000) * 10);
+}
+
+/* A soft green halo lifts the card off the dark panel, whatever its style. */
+.sageWalletHero__cardStage::before {
+  content: "";
+  position: absolute;
+  width: 90%;
+  aspect-ratio: 1.6;
+  border-radius: var(--borderRadiusCircle);
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--colorsActionMajor500) 45%, transparent), transparent);
+  filter: blur(var(--spacing300));
+}
+
+.sageWalletHero__tick {
+  width: calc(var(--spacing1000) + var(--spacing400));
+  overflow: visible;
+}
+
+.sageWalletHero__tick circle {
+  fill: var(--colorsActionMajor500);
+  stroke: var(--colorsActionMajor500);
+  stroke-width: 2;
+}
+
+.sageWalletHero__tick path {
+  fill: none;
+  stroke: var(--colorsUtilityYin100);
+  stroke-width: 5;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 40;
+}
+
+.sageWalletHero__confetti {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  pointer-events: none;
+}
+
+.sageWalletHero__confetti span {
+  --angle: 0deg;
+  --distance: calc(var(--spacing1000) * 1.4);
+  position: absolute;
+  width: var(--spacing100);
+  height: var(--spacing200);
+  border-radius: var(--borderRadius025);
+  background: var(--colorsActionMajor500);
+  opacity: 0;
+}
+
+.sageWalletHero__confetti span:nth-child(1) { --angle: 0deg; }
+.sageWalletHero__confetti span:nth-child(2) { --angle: 30deg; --distance: calc(var(--spacing1000) * 1.9); background: var(--mode-color-ai-stop-2); }
+.sageWalletHero__confetti span:nth-child(3) { --angle: 60deg; background: var(--colorsUtilityYang100); }
+.sageWalletHero__confetti span:nth-child(4) { --angle: 90deg; --distance: calc(var(--spacing1000) * 1.9); background: var(--mode-color-ai-stop-3); }
+.sageWalletHero__confetti span:nth-child(5) { --angle: 120deg; }
+.sageWalletHero__confetti span:nth-child(6) { --angle: 150deg; --distance: calc(var(--spacing1000) * 1.9); background: var(--colorsUtilityYang100); }
+.sageWalletHero__confetti span:nth-child(7) { --angle: 180deg; background: var(--mode-color-ai-stop-2); }
+.sageWalletHero__confetti span:nth-child(8) { --angle: 210deg; --distance: calc(var(--spacing1000) * 1.9); }
+.sageWalletHero__confetti span:nth-child(9) { --angle: 240deg; background: var(--mode-color-ai-stop-3); }
+.sageWalletHero__confetti span:nth-child(10) { --angle: 270deg; --distance: calc(var(--spacing1000) * 1.9); background: var(--colorsUtilityYang100); }
+.sageWalletHero__confetti span:nth-child(11) { --angle: 300deg; }
+.sageWalletHero__confetti span:nth-child(12) { --angle: 330deg; --distance: calc(var(--spacing1000) * 1.9); background: var(--mode-color-ai-stop-2); }
+
+.sageWalletHero__title--live {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing150);
+}
+
+.sageWalletHero__liveDot {
+  width: var(--spacing150);
+  height: var(--spacing150);
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsActionMajor500);
+  box-shadow: 0 0 0 0 color-mix(in srgb, var(--colorsActionMajor500) 60%, transparent);
+}
+
+/* ---------- The card ---------- */
+
+.sageWalletCard {
+  position: relative;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  aspect-ratio: 85.6 / 54;
+  min-height: 0;
+  padding: var(--spacing200) var(--spacing250);
+  overflow: hidden;
+  border: var(--borderWidth100) solid color-mix(in srgb, var(--colorsUtilityYang100) 60%, transparent);
+  border-radius: var(--borderRadius200);
+  color: var(--colorsUtilityYin090);
+  text-align: left;
+  white-space: nowrap;
+  box-shadow: 0 var(--spacing300) var(--spacing600) color-mix(in srgb, var(--colorsActionMajor500) 28%, transparent);
+}
+
+.sageWalletCard--sage {
+  background:
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--colorsUtilityYang100) 75%, transparent), transparent 45%),
+    linear-gradient(140deg, color-mix(in srgb, var(--colorsActionMajor500) 55%, var(--colorsUtilityYang100)), var(--colorsActionMajor025));
+}
+
+.sageWalletCard--night {
+  border-color: color-mix(in srgb, var(--colorsUtilityYang100) 18%, transparent);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--colorsActionMajor500) 45%, transparent), transparent 50%),
+    radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--mode-color-ai-stop-2) 40%, transparent), transparent 55%),
+    var(--colorsUtilityYin090);
+  color: var(--colorsUtilityYang100);
+}
+
+.sageWalletCard--plum {
+  background:
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--colorsUtilityYang100) 70%, transparent), transparent 45%),
+    linear-gradient(140deg, color-mix(in srgb, var(--mode-color-ai-stop-3) 55%, var(--colorsUtilityYang100)), color-mix(in srgb, var(--mode-color-ai-stop-2) 20%, var(--colorsUtilityYang100)));
+  box-shadow: 0 var(--spacing300) var(--spacing600) color-mix(in srgb, var(--mode-color-ai-stop-3) 30%, transparent);
+}
+
+.sageWalletCard__row {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing100);
+}
+
+.sageWalletCard__logo {
+  height: var(--spacing300);
+}
+
+.sageWalletCard__label,
+.sageWalletCard__holder,
+.sageWalletCard__number {
+  font-size: var(--fontSizes100);
+  font-weight: var(--fontWeights500);
+}
+
+.sageWalletCard__label,
+.sageWalletCard__holder {
+  opacity: 0.75;
+}
+
+.sageWalletCard__number {
+  font-variant-numeric: tabular-nums;
+}
+
+.sageWalletCard__chip {
+  position: relative;
+  width: var(--spacing500);
+  height: var(--spacing400);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+  background: linear-gradient(135deg, var(--colorsUtilityMajor025), var(--colorsUtilityMajor100));
+}
+
+.sageWalletCard__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, color-mix(in srgb, var(--colorsUtilityYang100) 60%, transparent) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+/* ---------- Right: the step ---------- */
+
+.sageWallet__panel {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  min-height: 0;
+  background: var(--colorsUtilityYang100);
+}
+
+.sageWallet__header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing100);
+  padding: var(--spacing300) var(--spacing600) var(--spacing150) var(--spacing400);
+}
+
+.sageWallet__stepRow {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing150);
+}
+
+.sageWallet__heading h2 {
+  font-size: var(--fontSizes500) !important;
+  text-wrap: balance;
+}
+
+.sageWallet__progress {
+  display: grid;
+  grid-auto-columns: minmax(0, 1fr);
+  grid-auto-flow: column;
+  gap: var(--spacing100);
+  width: 100%;
+}
+
+.sageWallet__progress span {
+  position: relative;
+  height: var(--spacing050);
+  overflow: hidden;
+  border-radius: var(--borderRadius400);
+  background: var(--colorsUtilityMajor050);
+}
+
+.sageWallet__progress span::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--colorsUtilityYin090);
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 600ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.sageWallet__progress span.is-filled::after {
+  transform: scaleX(1);
+}
+
+.sageWallet__stepLabel,
+.sageWallet__subtitle,
+.sageWalletStep__muted {
+  color: var(--colorsUtilityYin065) !important;
+}
+
+.sageWallet__heading {
+  border-radius: var(--borderRadius050);
+}
+
+.sageWallet__body {
+  flex: 1;
+  min-height: 0;
+  padding: var(--spacing150) var(--spacing400) var(--spacing200);
+  overflow-y: auto;
+}
+
+.sageWallet__loading {
+  display: grid;
+  place-items: center;
+  height: 100%;
+}
+
+.sageWallet__footer {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing200);
+  padding: var(--spacing200) var(--spacing400);
+  border-top: var(--borderWidth100) solid var(--colorsUtilityMajor050);
+}
+
+.sageWallet__footer button {
+  transition: scale 100ms ease-out;
+}
+
+.sageWallet__footer button:active {
+  scale: 0.97;
+}
+
+.sageWalletStep {
+  gap: var(--spacing200);
+}
+
+.sageWalletAccountSummary__realtime [data-component="icon"],
+.sageWalletStep__nextIcon [data-component="icon"],
+.sageWalletStep__perks [data-component="icon"] {
+  color: var(--colorsActionMajor600) !important;
+}
+
+.sageWalletStep__group,
+.sageWalletStep__usage {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing200);
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+.sageWalletStep__group legend,
+.sageWalletStep__usage legend {
+  margin-bottom: var(--spacing150);
+  padding: 0;
+}
+
+.sageWalletStep__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing200);
+}
+
+/* Both columns start at the top so side-by-side fields line up exactly. */
+.sageWalletStep__grid--top {
+  align-items: start;
+}
+
+.sageWalletStep--compact {
+  gap: var(--spacing200);
+}
+
+.sageWalletStep__typeNote {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing100);
+  margin-top: calc(-1 * var(--spacing100)) !important;
+  color: var(--colorsUtilityYin065) !important;
+}
+
+.sageWalletDelivery {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing150);
+  padding: var(--spacing100) var(--spacing150);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsActionMajor025);
+}
+
+.sageWalletDelivery .sageWalletStep__nextIcon {
+  background: var(--colorsUtilityYang100);
+}
+
+.sageWalletDelivery [data-component="icon"] {
+  color: var(--colorsActionMajor600) !important;
+}
+
+/* What Sage already knows, shown as a quiet read-only summary. */
+.sageWalletPrefilled {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing150);
+  padding: var(--spacing150) var(--spacing200);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsActionMajor025);
+}
+
+.sageWalletPrefilled__note {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing100);
+}
+
+.sageWalletPrefilled__note [data-component="icon"] {
+  color: var(--colorsActionMajor600) !important;
+}
+
+.sageWalletPrefilled__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--spacing100) var(--spacing200);
+  margin: 0;
+}
+
+.sageWalletPrefilled__list div {
+  min-width: 0;
+}
+
+.sageWalletPrefilled__list dt {
+  color: var(--colorsUtilityYin065);
+  font-size: var(--fontSizes100);
+}
+
+.sageWalletPrefilled__list dd {
+  margin: 0;
+  overflow: hidden;
+  font-weight: var(--fontWeights500);
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.sageWalletStep__chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing100) var(--spacing300);
+}
+
+.sageWalletAccountSummary {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--spacing200);
+  padding: var(--spacing200) var(--spacing250);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius200);
+  background:
+    radial-gradient(circle at 100% 0%, var(--colorsActionMajor025), transparent 60%),
+    var(--colorsUtilityYang100);
+}
+
+.sageWalletAccountSummary__realtime {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing050);
+  color: var(--colorsActionMajor600);
+  font-weight: var(--fontWeights500);
+}
+
+.sageWalletStep__next,
+.sageWalletStep__perks {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sageWalletStep__next li {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing150);
+  padding: var(--spacing075) var(--spacing150);
+  border: var(--borderWidth100) solid transparent;
+  border-radius: var(--borderRadius100);
+}
+
+.sageWalletStep__next .sageWalletStep__next--highlight {
+  border-color: var(--colorsActionMajor500);
+  background: var(--colorsActionMajor025);
+}
+
+.sageWalletStep__nextIcon {
+  display: inline-grid;
+  flex: 0 0 auto;
+  place-items: center;
+  width: var(--spacing500);
+  height: var(--spacing500);
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsActionMajor025);
+}
+
+.sageWalletStep__perks {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: var(--spacing100) var(--spacing300);
+  color: var(--colorsUtilityYin065);
+}
+
+.sageWalletStep__perks li {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing075);
+}
+
+.sageWalletStep__swatch {
+  display: inline-block;
+  width: var(--spacing200);
+  height: var(--spacing200);
+  margin-right: var(--spacing075);
+  vertical-align: middle;
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadiusCircle);
+}
+
+.sageWalletStep__swatch--sage { background: color-mix(in srgb, var(--colorsActionMajor500) 55%, var(--colorsUtilityYang100)); }
+.sageWalletStep__swatch--night { background: var(--colorsUtilityYin090); }
+.sageWalletStep__swatch--plum { background: color-mix(in srgb, var(--mode-color-ai-stop-3) 55%, var(--colorsUtilityYang100)); }
+
+.sageWalletStep__srOnly {
+  position: absolute;
+  width: var(--borderWidth100);
+  height: var(--borderWidth100);
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* ---------- Motion ---------- */
+
+@media (prefers-reduced-motion: no-preference) {
+  .sageWalletHero__aurora span { animation: sageWalletDrift 18s ease-in-out infinite alternate; }
+  .sageWalletHero__aurora span:nth-child(2) { animation-duration: 22s; animation-direction: alternate-reverse; }
+  .sageWalletHero__aurora span:nth-child(3) { animation-duration: 26s; }
+  .sageWalletHero__stripes { animation: sageWalletStripesIn 900ms cubic-bezier(0.2, 0.8, 0.2, 1) both, sageWalletStripesFlow 14s linear 900ms infinite; }
+
+  /* Each scene materializes: fades in, sharpens and settles from a slight scale. */
+  .sageWalletHero__scene { animation: sageWalletMaterialize 560ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+
+  .sageWalletHero__card { animation: sageWalletFloat 7s ease-in-out 600ms infinite; }
+  .sageWalletHero__cardStage .sageWalletCard { animation: sageWalletFlipIn 650ms cubic-bezier(0.2, 0.8, 0.2, 1) both, sageWalletFloat 7s ease-in-out 700ms infinite; }
+  .sageWalletCard__shine { animation: sageWalletShine 4.5s ease-in-out 1s infinite; }
+
+  .sageWalletHero__toast--payment { animation: sageWalletToastIn 600ms cubic-bezier(0.34, 1.4, 0.64, 1) 700ms both, sageWalletBob 5s ease-in-out 1.4s infinite; }
+  .sageWalletHero__toast--matched { animation: sageWalletToastIn 600ms cubic-bezier(0.34, 1.4, 0.64, 1) 1500ms both, sageWalletBob 5s ease-in-out 2.2s infinite reverse; }
+  .sageWalletHero__points li { animation: sageWalletRise 500ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+  .sageWalletHero__points li:nth-child(1) { animation-delay: 250ms; }
+  .sageWalletHero__points li:nth-child(2) { animation-delay: 350ms; }
+  .sageWalletHero__points li:nth-child(3) { animation-delay: 450ms; }
+
+  .sageWalletHero__orb span { animation: sageWalletRing 2.1s cubic-bezier(0.2, 0.8, 0.2, 1) infinite; }
+  .sageWalletHero__orb span:nth-child(2) { animation-delay: 700ms; }
+  .sageWalletHero__orb span:nth-child(3) { animation-delay: 1400ms; }
+  .sageWalletHero__orb img { animation: sageWalletBreathe 2.1s ease-in-out infinite; }
+
+  .sageWalletHero__tick { animation: sageWalletPop 520ms cubic-bezier(0.34, 1.4, 0.64, 1) both; }
+  .sageWalletHero__tick path { animation: sageWalletDraw 420ms ease-out 300ms both; }
+  .sageWalletHero__confetti span { animation: sageWalletBurst 1100ms cubic-bezier(0.2, 0.8, 0.2, 1) 250ms both; }
+  .sageWalletHero__liveDot { animation: sageWalletLive 1.8s ease-out infinite; }
+
+  /* The step slides in from the right: forward is always to the right here. */
+  .sageWallet__body { animation: sageWalletStepIn 420ms cubic-bezier(0.2, 0.8, 0.2, 1) both; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sageWalletHero__scene,
+  .sageWallet__body {
+    animation: sageWalletFade 200ms ease both;
+  }
+
+  .sageWalletHero__confetti,
+  .sageWalletHero__orb span {
+    display: none;
+  }
+
+  .sageWalletHero__card,
+  .sageWallet__progress span::after,
+  .sageWallet__footer button {
+    transition: none;
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .sageWalletHero__toast {
+    background: var(--colorsUtilityYin090);
+    backdrop-filter: none;
+  }
+}
+
+@keyframes sageWalletDrift {
+  from { translate: 0 0; scale: 1; }
+  to { translate: var(--spacing600) calc(-1 * var(--spacing500)); scale: 1.15; }
+}
+
+@keyframes sageWalletStripesIn {
+  from { opacity: 0; translate: var(--spacing1000) calc(-1 * var(--spacing1000)); }
+  to { opacity: 0.85; translate: 0 0; }
+}
+
+@keyframes sageWalletStripesFlow {
+  to { background-position: 100% 100%; }
+}
+
+@keyframes sageWalletMaterialize {
+  from { opacity: 0; scale: 0.96; filter: blur(var(--spacing100)); }
+  to { opacity: 1; scale: 1; filter: blur(0); }
+}
+
+@keyframes sageWalletFloat {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 calc(-1 * var(--spacing100)); }
+}
+
+@keyframes sageWalletFlipIn {
+  from { opacity: 0; rotate: y 80deg; }
+  to { opacity: 1; rotate: y 0deg; }
+}
+
+@keyframes sageWalletShine {
+  0% { transform: translateX(-120%); }
+  35%, 100% { transform: translateX(120%); }
+}
+
+@keyframes sageWalletToastIn {
+  from { opacity: 0; scale: 0.6; translate: 0 var(--spacing200); }
+  to { opacity: 1; scale: 1; translate: 0 0; }
+}
+
+@keyframes sageWalletBob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(calc(-1 * var(--spacing075))); }
+}
+
+@keyframes sageWalletRise {
+  from { opacity: 0; translate: 0 var(--spacing150); }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes sageWalletRing {
+  from { opacity: 0.9; scale: 0.5; }
+  to { opacity: 0; scale: 1.5; }
+}
+
+@keyframes sageWalletBreathe {
+  0%, 100% { scale: 1; }
+  50% { scale: 1.08; }
+}
+
+@keyframes sageWalletPop {
+  from { opacity: 0; scale: 0.4; }
+  to { opacity: 1; scale: 1; }
+}
+
+@keyframes sageWalletDraw {
+  from { stroke-dashoffset: 40; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes sageWalletBurst {
+  0% { opacity: 1; transform: rotate(var(--angle)) translateY(0) rotate(0deg); }
+  100% { opacity: 0; transform: rotate(var(--angle)) translateY(calc(-1 * var(--distance))) rotate(220deg); }
+}
+
+@keyframes sageWalletLive {
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--colorsActionMajor500) 60%, transparent); }
+  100% { box-shadow: 0 0 0 var(--spacing150) transparent; }
+}
+
+@keyframes sageWalletStepIn {
+  from { opacity: 0; translate: var(--spacing400) 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes sageWalletFade {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* ---------- Smaller screens: the step gets the whole modal ---------- */
+
+@media (max-width: 900px) {
+  .sageWallet {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .sageWalletHero {
+    display: none;
+  }
+
+  .sageWalletStep__grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

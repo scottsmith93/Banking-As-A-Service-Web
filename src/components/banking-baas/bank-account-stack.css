@@ -5,7 +5,6 @@
 .bankAccountStackPage h2,
 .bankAccountStackPage h3 { margin: 0; }
 .bankAccountStack { display: flex; flex-direction: column; gap: var(--spacing400); width: 100%; max-width: calc(var(--spacing1000) * 14); margin-inline: auto; }
-.bankAccountStack__toolbar > :last-child { width: min(100%, calc(var(--spacing1000) * 4)); }
 .bankAccountGroup { display: flex; flex-direction: column; gap: var(--spacing200); min-width: 0; }
 .bankAccountGroup__sageLogo { width: var(--spacing600); height: var(--spacing600); margin-left: calc(-1 * var(--spacing150)); object-fit: contain; }
 .bankAccountGroup__brand { display: flex; align-items: center; min-height: var(--spacing500); }
@@ -21,9 +20,7 @@
 .bankAccountStackCard__balance { min-width: calc(var(--spacing1000) + var(--spacing400)); text-align: right; font-variant-numeric: tabular-nums; }
 .bankAccountStackCard__menu { width: var(--spacing300); }
 .bankAccountStackCard [data-component="pill"] { width: fit-content; }
-.bankAccountStack .baasPromotion { grid-template-columns: minmax(0, 1fr) minmax(0, 0.35fr); gap: var(--spacing300); padding: var(--spacing300); }
-.bankAccountStack .baasPromotion__art img { max-width: calc(var(--spacing1000) * 2 + var(--spacing500)); }
-.bankAccountStack .baasPromotion__benefits { gap: var(--spacing150); }
+.bankAccountStack .baasPromotion { grid-template-columns: minmax(0, 1fr) minmax(0, 0.6fr); gap: var(--spacing400); padding: var(--spacing400); }
 .bankAccountStack__live { position: absolute; width: var(--borderWidth100); height: var(--borderWidth100); overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
 @media (max-width: 1200px) {
   .bankAccountStackCard { grid-template-columns: minmax(0, 1fr) auto auto; gap: var(--spacing200); }
@@ -34,9 +31,8 @@
   .bankAccountStackCard__task { flex-direction: row; align-items: center; flex-wrap: wrap; }
 }
 @media (max-width: 700px) {
-  .bankAccountStack__toolbar { flex-wrap: wrap; }
-  .bankAccountStack__toolbar > :last-child { width: 100%; }
-  .bankAccountStack .baasPromotion { grid-template-columns: minmax(0, 1fr); }
+  .bankAccountStack .baasPromotion { grid-template-columns: minmax(0, 1fr); padding: var(--spacing300); }
+  .bankAccountStack .baasPromotion__features { grid-template-columns: minmax(0, 1fr); }
   .bankAccountStack .baasPromotion__art { display: none; }
   .bankAccountStackCard { padding: var(--spacing200); }
   .bankAccountStackCard__balance { min-width: 0; }

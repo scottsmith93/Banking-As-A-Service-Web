@@ -15,7 +15,7 @@ import {
   FlatTableCell,
 } from "carbon-react/lib/components/flat-table";
 import Pager from "carbon-react/lib/components/pager";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../components/status-pill/StatusPill";
 import { clients, type ClientStatus } from "../data/clients";
 
 const PAGE_SIZE = 10;

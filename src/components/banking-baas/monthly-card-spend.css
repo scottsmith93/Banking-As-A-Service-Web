@@ -1,0 +1,23 @@
+.baasMonthlyCardSpend { display: flex; flex-direction: column; gap: var(--spacing200); min-width: 0; margin-top: var(--spacing300); }
+.baasMonthlyCardSpend p { margin: 0; }
+.baasMonthlyCardSpend__heading > button { margin-left: auto; }
+.baasMonthlyCardSpend__summary { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: var(--spacing200); padding-inline: var(--spacing200); }
+.baasMonthlyCardSpend__summary > div { display: flex; align-items: center; justify-content: flex-end; gap: var(--spacing300); margin-left: auto; }
+.baasMonthlyCardSpend__summary > div > .moneyValue { font-size: var(--fontSizes400); }
+.baasMonthlyCardSpend__holder, .baasMonthlyCardSpend__card { display: flex; align-items: center; gap: var(--spacing100); }
+.baasMonthlyCardSpend__card > span { display: flex; flex-direction: column; gap: var(--spacing025); }
+.baasMonthlyCardSpend__comparison { display: flex; flex-direction: column; gap: var(--spacing025); text-align: right; }
+.baasMonthlyCardSpend__muted { color: var(--colorsUtilityYin065); }
+.baasMonthlyCardSpend table { min-width: calc(var(--spacing1000) * 12); }
+.baasMonthlyCardSpend th { white-space: normal; }
+.baasMonthlyCardSpend td { height: var(--spacing700); box-sizing: border-box; padding-top: var(--spacing050); padding-bottom: var(--spacing050); vertical-align: middle; }
+.baasMonthlyCardSpend__empty { padding: var(--spacing300) var(--spacing200); background: var(--colorsUtilityYang100); }
+.baasCardThumbnail { display: block; flex: 0 0 auto; width: var(--spacing700); height: auto; aspect-ratio: 85.6 / 54; }
+.baasCardThumbnail--sage { --card-thumbnail-start: color-mix(in srgb, var(--colorsActionMajor500) 55%, var(--colorsUtilityYang100)); --card-thumbnail-end: var(--colorsActionMajor025); --card-thumbnail-glow: color-mix(in srgb, var(--colorsUtilityYang100) 75%, transparent); }
+.baasCardThumbnail--night { --card-thumbnail-start: var(--colorsUtilityYin090); --card-thumbnail-end: color-mix(in srgb, var(--mode-color-ai-stop-2) 40%, var(--colorsUtilityYin090)); --card-thumbnail-glow: color-mix(in srgb, var(--colorsActionMajor500) 45%, transparent); }
+.baasCardThumbnail--plum { --card-thumbnail-start: color-mix(in srgb, var(--mode-color-ai-stop-3) 55%, var(--colorsUtilityYang100)); --card-thumbnail-end: color-mix(in srgb, var(--mode-color-ai-stop-2) 20%, var(--colorsUtilityYang100)); --card-thumbnail-glow: color-mix(in srgb, var(--colorsUtilityYang100) 70%, transparent); }
+.baasCardThumbnail__start { stop-color: var(--card-thumbnail-start); }
+.baasCardThumbnail__end { stop-color: var(--card-thumbnail-end); }
+.baasCardThumbnail__glow { stop-color: var(--card-thumbnail-glow); }
+.baasCardThumbnail__clear { stop-color: transparent; }
+.baasCardThumbnail__chip { fill: var(--colorsUtilityMajor150); }

@@ -9,6 +9,7 @@ import BaasPromotionBanner from "../../components/banking-baas/BaasPromotionBann
 import CreateLegacyBankAccountDialog from "../../components/banking-baas/CreateLegacyBankAccountDialog";
 import SageWalletOnboardingDialog from "../../components/sage-wallet/SageWalletOnboardingDialog";
 import BankBrandHeading from "../../components/banking-baas/BankBrandHeading";
+import BankLogo from "../../components/banking/BankLogo";
 import { connectedBanks, connectedBankAccounts, type ConnectedBankAccount } from "../../data/bankAccountConnections";
 import type { LegacyBankAccount } from "../../data/bankingBaas";
 import { sageWalletOpenedAccount } from "../../data/sageWalletOnboarding";
@@ -61,7 +62,7 @@ export default function BankingPage() {
       />}
       {accounts.length > 0 && <section className="bankAccountGroup" aria-labelledby="sage-bank-accounts-title">
         <Box display="flex" gap={1} alignItems="center">
-          <img className="bankAccountGroup__sageLogo" src="/banking/sage-demo-bank-icon.svg" alt="" />
+          <BankLogo src="/banking/sage-demo-bank-icon.svg" />
           <Typography variant="h2" as="h2" id="sage-bank-accounts-title">{copy.sageAccounts}</Typography>
         </Box>
         {accounts.map(account => <BaasBankAccountCard key={account.id} account={account} lastSyncedAt={syncTimes[account.id] ?? (account.status === "active" ? "2026-10-21T22:54:00Z" : null)} syncing={syncingIds.includes(account.id)} onSync={() => void sync([account.id])} />)}

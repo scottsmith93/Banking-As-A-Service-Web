@@ -1,6 +1,6 @@
 import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import Typography from "carbon-react/lib/components/typography";
 import HeaderBackLink from "../HeaderBackLink";
 import type { PurchaseOrderStatus } from "../../data/purchaseOrders";

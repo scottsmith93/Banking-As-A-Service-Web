@@ -3,7 +3,7 @@ import Box from "carbon-react/lib/components/box";
 import Icon from "carbon-react/lib/components/icon";
 import Typography from "carbon-react/lib/components/typography";
 import Button from "carbon-react/lib/components/button/__next__";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../../components/status-pill/StatusPill";
 import Switch from "carbon-react/lib/components/switch";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";

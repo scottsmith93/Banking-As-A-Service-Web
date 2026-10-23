@@ -1,9 +1,10 @@
-import { useState, type ReactNode } from "react";
+import type { ReactNode } from "react";
 import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
-import { Option, Select } from "carbon-react/lib/components/select";
 import Typography from "carbon-react/lib/components/typography";
 import { useTransactionPresentation } from "../../../hooks/useTransactionPresentation";
+import MoneyValue from "../../money-value/MoneyValue";
+import BankAccountSelect from "./BankAccountSelect";
 
 type Props = {
   accountId: string; accounts: { id: string; name: string }[]; bankBalance: number; ledgerBalance: number;
@@ -11,9 +12,8 @@ type Props = {
 };
 
 export default function BankMovementHeader({ accountId, accounts, bankBalance, ledgerBalance, amountToJustify, suggestedCount, onAccountChange, onReview, children }: Props) {
-  const { copy, money } = useTransactionPresentation();
+  const { copy, locale } = useTransactionPresentation();
   const heading = copy.movements;
-  const [draftAccount, setDraftAccount] = useState<{ source: string; value: string } | null>(null);
   return <>
     <Box display="flex" justifyContent="space-between" alignItems="center" gap={2} flexWrap="wrap">
       <Box display="flex" flexDirection="column" gap={0.5}>
@@ -24,21 +24,10 @@ export default function BankMovementHeader({ accountId, accounts, bankBalance, l
     </Box>
     <div className="bankMovementControlBar">
     <div className="bankMovementSummary">
-      <Select id="bank-movements-account" label={heading.account} size="small"
-        value={draftAccount?.source === accountId ? draftAccount.value : accountId || "all-accounts"}
-        onBlur={() => setDraftAccount(null)}
-        onChange={event => {
-          // Carbon emits provisional arrow-key choices. Commit history/filter changes only on click or Enter.
-          if (!("selectionConfirmed" in event) || event.selectionConfirmed) {
-            setDraftAccount(null); onAccountChange(event.target.value === "all-accounts" ? "" : event.target.value);
-          } else setDraftAccount({ source: accountId, value: event.target.value });
-        }}>
-        <Option value="all-accounts" text={heading.allAccounts} />
-        {accounts.map(account => <Option key={account.id} value={account.id} text={account.name} />)}
-      </Select>
+      <BankAccountSelect accountId={accountId} accounts={accounts} onChange={onAccountChange} />
       <dl className="bankMovementSummary__metrics">
         {[[heading.bankBalance, bankBalance], [heading.ledgerBalance, ledgerBalance], [heading.toJustifyAmount, amountToJustify]].map(([label, value]) => <div key={label}>
-          <dt>{label}</dt><dd className="numericValue">{money(Number(value))}</dd>
+          <dt>{label}</dt><dd className="numericValue"><MoneyValue amount={Number(value)} locale={locale} /></dd>
         </div>)}
       </dl>
     </div>

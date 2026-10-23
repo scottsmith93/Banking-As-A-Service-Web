@@ -8,7 +8,7 @@ import {
   FlatTableHeader,
   FlatTableRow,
 } from "carbon-react/lib/components/flat-table";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../../status-pill/StatusPill";
 import { Tab, TabList, TabPanel, Tabs } from "carbon-react/lib/components/tabs/__next__";
 import { Card, CardContent, CardHeader, CardTitle } from "./Card";
 import Field from "./Field";

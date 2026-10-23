@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from "react";
 import Button from "carbon-react/lib/components/button/__next__";
 import Dialog from "carbon-react/lib/components/dialog";
 import Loader from "carbon-react/lib/components/loader";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import Typography from "carbon-react/lib/components/typography";
 import type { DebitCard } from "../../data/bankingBaas";
 import { sageWalletCardholders, sageWalletDefaultLimitEur, sageWalletHeroPayment, sageWalletOpenedAccount, sageWalletPrefill } from "../../data/sageWalletOnboarding";

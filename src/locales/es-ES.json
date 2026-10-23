@@ -65,9 +65,26 @@
       "emptyQueueHint": "Ninguna transacción necesita una factura o categoría.",
       "details": "Detalles de la transacción",
       "invoiceTitle": "Factura de compra",
+      "salesLabel": "Venta",
+      "purchaseLabel": "Compra",
+      "salesInvoiceTitle": "Factura de venta",
+      "viewSalesInvoice": "Ver factura de venta {reference}",
+      "customer": "Cliente",
+      "paid": "Pagada",
+      "dueDate": "Fecha de vencimiento",
+      "backToSalesInvoices": "Facturas de venta",
+      "invoicePaymentDescription": "Pago de la factura {reference}",
       "noInvoiceText": "Añade una factura para conciliar esta compra.",
       "uploadInvoice": "Subir factura de compra",
       "linkExisting": "Vincular una factura existente",
+      "reminder": {
+        "send": "Enviar recordatorio al titular",
+        "sending": "Enviando recordatorio…",
+        "simulated": "Recordatorio simulado",
+        "recipient": "Pide a {cardholder} que añada la factura de compra que falta.",
+        "demoHint": "Solo prototipo: no se enviará ninguna notificación.",
+        "confirmation": "Se ha simulado el recordatorio para {cardholder}. No se ha enviado ninguna notificación."
+      },
       "matchComplete": "Transacción conciliada",
       "matchSuccess": "{reference} se ha conciliado con {merchant}.",
       "nextTransaction": "Siguiente transacción pendiente",
@@ -169,7 +186,8 @@
         "transfer": "Transferencia",
         "refund": "Reembolso",
         "fee": "Comisión bancaria",
-        "atmWithdrawal": "Retirada en cajero"
+        "atmWithdrawal": "Retirada en cajero",
+        "invoicePayment": "Pago de factura"
       },
       "categories": {
         "supplies": "Suministros",
@@ -181,6 +199,7 @@
         "transfers": "Transferencias internas",
         "refund": "Reembolsos",
         "cash": "Retiradas de efectivo",
+        "sales": "Ventas",
         "uncategorised": "Sin categoría"
       },
       "justification": {
@@ -228,7 +247,7 @@
         "source": "Origen",
         "date": "Fecha",
         "bank": "Banco",
-        "sageBank": "Sage",
+        "sageBank": "Sage Wallet",
         "bankSource": "Banco: {bank}. Cuenta: {account}.",
         "cardSource": "Banco: {bank}. Cuenta: {account}. Titular: {cardholder}.",
         "description": "Descripción",
@@ -236,6 +255,8 @@
         "subtitle": "Revisa las transacciones y justifícalas con una factura o una categoría.",
         "account": "Cuenta bancaria",
         "allAccounts": "Todas las cuentas bancarias",
+        "accountOption": "{bank} · {account} · {reference}",
+        "accountOptionSameBank": "{bank} · {reference}",
         "bankBalance": "Saldo bancario",
         "ledgerBalance": "Saldo contable",
         "toJustifyAmount": "Importe por justificar"
@@ -425,8 +446,24 @@
     "createDialog": { "title": "Crear cuenta bancaria", "description": "Añade una cuenta bancaria existente para utilizarla con tus registros contables de Sage.", "accountName": "Nombre de la cuenta", "accountNumber": "Número de cuenta", "ledgerAccount": "Cuenta contable", "cancel": "Cancelar", "create": "Crear cuenta" },
     "accountNavigation": { "overview": "Resumen", "debitCards": "Tarjetas de débito", "transactions": "Transacciones", "transfers": "Transferencias", "users": "Usuarios", "statements": "Extractos y documentos", "settings": "Configuración", "switchAccount": "Cambiar cuenta", "ariaLabel": "Navegación de la cuenta Sage Wallet" },
     "dashboard": {
+      "moreActions": "Más acciones",
+      "cashFlow": {
+        "title": "Movimientos de dinero",
+        "period": "Diario · {month} · EUR",
+        "moneyIn": "Entradas",
+        "moneyOut": "Salidas",
+        "pointSummary": "{period}: {moneyIn} de entradas y {moneyOut} de salidas.",
+        "empty": "No hay movimientos de dinero completados este mes.",
+        "balance": "Saldo de cierre",
+        "axes": "Entradas y salidas diarias en EUR. Las fechas van de izquierda a derecha.",
+        "balanceTitle": "Historial del saldo",
+        "balancePointSummary": "{period}: saldo de cierre de {balance}.",
+        "balanceAxes": "Saldo de cierre diario en EUR. Las fechas van de izquierda a derecha. La escala del eje vertical permite ver los cambios de saldo.",
+        "balanceEmpty": "No hay historial de saldo disponible.",
+        "exploreHelp": "Use las flechas izquierda y derecha para consultar los valores diarios, Inicio o Fin para ir al primer o último día y Escape para cerrar la ventana emergente."
+      },
       "bankAccountsBreadcrumb": "Cuentas bancarias",
-      "title": "Cuenta bancaria de empresa",
+      "title": "Sage Wallet",
       "subtitle": "Consulta el saldo, la actividad de las tarjetas y las transacciones recientes.",
       "primaryBusinessAccount": "Cuenta principal de la empresa",
       "accountEnding": "Cuenta terminada en",
@@ -441,6 +478,21 @@
       "transactions": "{count} transacciones",
       "waitingToClear": "{count} pendientes de liquidar",
       "monthlyCardSpend": "Gasto mensual con tarjetas",
+      "cardSpend": {
+        "period": "{currentPeriod}, en comparación con {previousPeriod}",
+        "rowsHint": "Se muestran {shown} de {count} tarjetas activas · {transactions} transacciones",
+        "card": "Tarjeta",
+        "comparison": "Comparación con el mes pasado",
+        "previousSpend": "Anteriormente: {amount}",
+        "empty": "No hay tarjetas de débito activas para esta cuenta.",
+        "change": {
+          "increase": "Un {percentage} más que el mes pasado",
+          "decrease": "Un {percentage} menos que el mes pasado",
+          "unchanged": "Sin cambios respecto al mes pasado",
+          "noPreviousSpend": "Sin gastos el mes pasado",
+          "unavailable": "Comparación no disponible"
+        }
+      },
       "topCardholders": "Titulares con más gasto",
       "viewAllDebitCards": "Ver todas las tarjetas",
       "debitCards": "Tarjetas de débito",

@@ -6,9 +6,7 @@
 .bankAccountStackPage h3 { margin: 0; }
 .bankAccountStack { display: flex; flex-direction: column; gap: var(--spacing400); width: 100%; max-width: calc(var(--spacing1000) * 14); margin-inline: auto; }
 .bankAccountGroup { display: flex; flex-direction: column; gap: var(--spacing200); min-width: 0; }
-.bankAccountGroup__sageLogo { width: var(--spacing600); height: var(--spacing600); margin-left: calc(-1 * var(--spacing150)); object-fit: contain; }
-.bankAccountGroup__brand { display: flex; align-items: center; min-height: var(--spacing500); }
-.bankAccountGroup__brand > img { display: block; width: auto; max-width: calc(var(--spacing1000) * 2); height: var(--spacing300); object-fit: contain; object-position: left center; }
+.bankAccountGroup__brand { display: flex; align-items: center; gap: var(--spacing100); min-height: var(--spacing500); }
 .bankAccountStackCard { display: grid; grid-template-columns: minmax(0, 1fr) auto auto auto; align-items: center; gap: var(--spacing300); padding: var(--spacing300); border: var(--borderWidth100) solid var(--colorsUtilityMajor100); border-radius: var(--borderRadius100); background: var(--colorsUtilityYang100); }
 .bankAccountStackCard--sage { border-left: var(--borderWidth400) solid var(--colorsActionMajor500); background: linear-gradient(105deg, var(--colorsActionMajor025), var(--colorsUtilityYang100) 70%); }
 .bankAccountStackCard__identity { min-width: 0; }

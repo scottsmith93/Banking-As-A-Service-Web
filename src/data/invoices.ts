@@ -1,6 +1,6 @@
 // MOCK DATA — replace with real API responses
 
-export type SalesInvoiceStatus = "draft" | "unposted" | "overdue";
+export type SalesInvoiceStatus = "draft" | "unposted" | "overdue" | "paid";
 
 export type EInvoiceStatus = "rejected" | null;
 
@@ -106,6 +106,13 @@ function buildInvoice(index: number): Invoice {
   };
 }
 
-export const invoices: Invoice[] = Array.from({ length: 36 }, (_, index) =>
-  buildInvoice(index),
-);
+// Same paid document is used by the Sales list and the incoming Sage Wallet transaction.
+// Legacy *Gbp field names are retained by the existing Sales model; this prototype displays EUR.
+export const bankPaidSalesInvoice: Invoice = {
+  id: "inv-wallet-10491", status: "paid", eInvoiceStatus: null,
+  invoiceDate: "2026-10-16", invoiceNumber: "SI-10491", reference: "CYCLE-10491",
+  customerCode: "C04", customerName: "Harbour Lane Property Management",
+  totalGbp: 2340, taxableAmountGbp: 1950, outstandingAmountGbp: 0,
+  type: "invoice", issueDate: "2026-10-16", dueDate: "2026-10-30", amountGbp: 2340,
+};
+export const invoices: Invoice[] = [bankPaidSalesInvoice, ...Array.from({ length: 36 }, (_, index) => buildInvoice(index))];

@@ -1,7 +1,8 @@
 .baasJustification { display: inline-flex; align-items: center; gap: var(--spacing050); line-height: var(--lineHeights500); }
 .baasJustification--category { flex-direction: row; align-items: center; }
 .baasJustification__categoryLabels { display: flex; flex-direction: column; gap: var(--spacing025); }
-.baasJustification__label { display: inline-flex; align-items: center; gap: var(--spacing050); white-space: nowrap; }
+.baasJustification__invoiceLabels { display: flex; flex-direction: column; gap: var(--spacing025); line-height: var(--lineHeights400); }
+.baasJustification__invoiceLabels > [data-component="typography"] { color: var(--colorsUtilityYin065); margin: 0; }
 .baasJustification [data-component="icon"] { flex: 0 0 auto; width: var(--sizing150); height: var(--sizing150); }
 .baasJustification [data-component="icon"]::before { font-size: var(--sizing150); line-height: var(--sizing150); }
 .baasJustification__categoryLabels > span:last-child { color: var(--colorsUtilityYin065); margin: 0; white-space: nowrap; }

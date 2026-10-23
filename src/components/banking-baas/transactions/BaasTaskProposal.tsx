@@ -1,5 +1,5 @@
 import Typography from "carbon-react/lib/components/typography";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../../status-pill/StatusPill";
 import type { BankTransaction } from "../../../data/bankingTransactions";
 import { useBankingTransactions } from "../../../context/useBankingTransactions";
 import { useTransactionPresentation } from "../../../hooks/useTransactionPresentation";

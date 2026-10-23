@@ -26,7 +26,7 @@ The full transaction workspace is now `/banking/bank-movements`; account-card ta
 
 - Account-level task counts now use the same justification rules as the transaction overview: both missing invoices and missing categories are actionable. The CTA says Review transactions, since not every task is invoice matching.
 - One bounded, single-column stack. A white, marketing-style Sage Wallet account promotion leads the stack, selling getting paid faster and team credit cards; the Sage accounts section appears below it only once a Sage account exists. Its cards are drawn in code (light green and white, no dark artwork), animate in, float gently and fan apart on hover; all motion is off under reduced-motion settings. A close button dismisses the banner for the rest of the visit and returns focus to Create.
-- Connected-bank sections use original BNP Paribas and CaixaBank wordmarks as their accessible headings, avoiding duplicated wordmark-plus-bank-name text. Card headings are account names.
+- Connected-bank sections use bank icons beside readable bank-name headings. Santander replaces BNP, with Crédit Mutuel, Barclays and BBVA added alongside CaixaBank. Card headings remain account names, and the same bank/account records populate Bank movements and its account picker.
 - Sage active accounts use a restrained token-based green surface/accent, a Carbon flash icon, and Real-time sync. Under-review accounts do not claim to be syncing and show Last sync: Not started.
 - Each active account exposes its matching count from the shared transaction records. Matching a transaction reduces the count on return to the list. Zero-task accounts show No transactions to match. Matching actions open the correct account's workspace; third-party bank workspaces omit Sage-only debit-card navigation.
 - Balance and currency are right-aligned; lower-priority ledger details are omitted from the overview. Sync sits in the account action menu, keeping the main card focused on the matching task.
@@ -42,10 +42,13 @@ All new copy is localized in English, Spanish, French, German, and Portuguese. E
 
 ## Logo provenance
 
-The brand marks are not redrawn or recoloured. They are loaded from Wikimedia-hosted originals attributed to the banks, with a text-heading fallback if unavailable:
+The brand marks are not redrawn or recoloured. Compact icons are loaded from assets published on the banks' own sites, with Carbon's bank-icon fallback if unavailable. Shared circular masks contain the full artwork and add a faint token-based halo:
 
-- [BNP Paribas logo and attribution](https://commons.wikimedia.org/wiki/File:BNP_Paribas_logo.svg); [bank website](https://group.bnpparibas/en/).
-- [CaixaBank logo and attribution](https://commons.wikimedia.org/wiki/File:Logo_CaixaBank.svg); [official media/brand resources](https://www.caixabank.com/en/headlines/media-resources.html).
+- [Santander](https://www.santander.com/en/home): website-published 192px brand/favicon asset.
+- [Crédit Mutuel](https://www.creditmutuel.fr/home/index.html): website-published compact SVG mark on its e-i.com CDN.
+- [Barclays](https://home.barclays/): website-published eagle SVG.
+- [BBVA](https://www.bbva.com/en/): website-published favicon.
+- [CaixaBank](https://www.caixabank.com/en/home.html): compact favicon declared by the official website, replacing the previously framed horizontal wordmark.
 
 These are trademarked assets used for identification in an internal prototype, not an assertion of affiliation. Logo requests are external and use no-referrer. They should be approved and self-hosted through the product's asset pipeline before production.
 
@@ -54,10 +57,13 @@ These are trademarked assets used for identification in an internal prototype, n
 - Bank accounts, balances, dates, and feed rows are fixtures in `src/data/bankAccountConnections.ts`. No credentials, live feeds, or provider API calls are involved. The previous placeholder connected-bank cards are replaced on this overview only; legacy example data is retained elsewhere.
 - Sage onboarding and matches persist across routes in shared session state; refreshing resets them. Search, sync timestamps, and newly created manual accounts are page-local demonstration state and reset when this screen is remounted.
 - Sync advances the demonstration timestamp only; actual realtime delivery/failures/reconnection need provider integration. Account balances are independent bank snapshots, not totals of the small activity sample.
-- The sample has three connected accounts across two banks, plus two Sage accounts after onboarding. It is bounded; a much larger portfolio would need section pagination or progressive loading.
+- The sample has six connected accounts across five banks, plus two Sage accounts after onboarding. It is bounded; a much larger portfolio would need section pagination or progressive loading.
 - Existing invoice extraction and Purchases limitations are documented in `../banking-baas/transactions/README.md`.
 
 ## Change log
+
+- 2026-10-23 — Adopted the shared circular bank-logo pattern for section headings and Sage identity, with contained artwork and a subtle halo. CaixaBank uses its own website's compact favicon rather than a cropped wordmark.
+- 2026-10-23 — Replaced BNP with Santander, added Crédit Mutuel, Barclays and BBVA account/transaction fixtures, and updated shared ledger snapshots and sync dates. Bank-name section headings now pair readable names with compact sourced icons. The same fixtures drive the Bank movements picker and mixed-bank Source badges.
 
 - 2026-10-23 — Renamed Sage bank account to Sage Wallet account; replaced the multi-screen onboarding dialog with the three-step Sage Wallet modal (account, success, debit card).
 

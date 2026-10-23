@@ -14,6 +14,7 @@ import { stagedBaasAccounts, type DebitCard } from "../../data/bankingBaas";
 import { sageWalletCardholders } from "../../data/sageWalletOnboarding";
 import { useBankingBaas } from "../../context/useBankingBaas";
 import { useLanguage } from "../../context/useLanguage";
+import MoneyValue from "../../components/money-value/MoneyValue";
 import { getLocale, getLocaleCode } from "../../locales";
 import { interpolate } from "../../utils/interpolate";
 
@@ -149,7 +150,7 @@ export default function BankingBaasCardsPage() {
             <Typography variant="strong" as="p">{detailCard.cardholder}</Typography>
             <Typography variant="p" as="p">{detailCard.nickname} · {detailCard.type === "virtual" ? copy.cards.virtual : copy.cards.physical}</Typography>
             <Typography variant="p" as="p">{copy.cards.maskedNumber.replace("{lastFour}", detailCard.lastFour)}</Typography>
-            <Typography variant="p" as="p">{copy.cards.monthlySpend}: {new Intl.NumberFormat(locale, { style: "currency", currency: "EUR" }).format(detailCard.monthlySpendEur)}</Typography>
+            <Typography variant="p" as="p">{copy.cards.monthlySpend}: <MoneyValue amount={detailCard.monthlySpendEur} locale={locale} direction="out" /></Typography>
           </Box>
         )}
       </Dialog>

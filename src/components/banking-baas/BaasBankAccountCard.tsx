@@ -3,7 +3,7 @@ import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
 import Icon from "carbon-react/lib/components/icon";
 import { ActionPopover, ActionPopoverItem } from "carbon-react/lib/components/action-popover";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import Typography from "carbon-react/lib/components/typography";
 import { useLanguage } from "../../context/useLanguage";
 import { useBankingTransactions } from "../../context/useBankingTransactions";
@@ -14,6 +14,7 @@ import type { BaaSAccount } from "../../data/bankingBaas";
 import type { ConnectedBankAccount } from "../../data/bankAccountConnections";
 
 import { bankMovementsHref } from "../../utils/bankMovementNavigation";
+import MoneyValue from "../money-value/MoneyValue";
 
 type Props = { account: BaaSAccount | ConnectedBankAccount; lastSyncedAt: string | null; syncing: boolean; onSync: () => void };
 export default function BaasBankAccountCard({ account, lastSyncedAt, syncing, onSync }: Props) {
@@ -46,7 +47,7 @@ export default function BaasBankAccountCard({ account, lastSyncedAt, syncing, on
     </Box>
     <Box className="bankAccountStackCard__balance" display="flex" flexDirection="column" alignItems="flex-end" gap={1}>
       <Typography variant="small" as="p" className="bankAccountStackCard__muted">{copy.accounts.balance}</Typography>
-      <Typography variant="h3" as="p" className="numericValue">{new Intl.NumberFormat(locale, { style: "currency", currency: "EUR" }).format(account.balanceEur)}</Typography>
+      <Typography variant="h3" as="p"><MoneyValue amount={account.balanceEur} locale={locale} /></Typography>
     </Box>
     <div className="bankAccountStackCard__menu">{!pending && !manual && <ActionPopover aria-label={interpolate(copy.list.accountActions, { account: account.name })}>
       <ActionPopoverItem icon="refresh" disabled={syncing} onClick={onSync}>{copy.list.syncAccount}</ActionPopoverItem>

@@ -1,0 +1,39 @@
+/* Prototype-wide flat table variant. Preserve body row rules, selection and Carbon focus. */
+html body [data-component="flat-table-wrapper"],
+html body [data-component="flat-table"] {
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+html body [data-component="flat-table-wrapper"][data-role="flat-table-wrapper"] thead,
+html body [data-component="flat-table-wrapper"][data-role="flat-table-wrapper"] thead tr,
+html body [data-component="flat-table-wrapper"][data-role="flat-table-wrapper"] thead th,
+html body [data-component="flat-table-wrapper"][data-role="flat-table-wrapper"] thead td,
+html body .fileUploadPage__table thead,
+html body .fileUploadPage__table th,
+html body .dashboardSalesPurchases__table thead,
+html body .dashboardSalesPurchases__table th {
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  color: var(--colorsUtilityYin090);
+}
+html body .fileUploadPage__table,
+html body .fileUploadPage__tableWrap,
+html body .dashboardSalesPurchases__table,
+html body .dashboardSalesPurchases__tableWrap { border: 0; border-radius: 0; box-shadow: none; }
+html body [data-component="flat-table-wrapper"] tbody tr:last-child > td,
+html body [data-component="flat-table-wrapper"] tbody tr:last-child > th {
+  border-bottom: 0;
+  border-radius: 0;
+}
+.sageDataGrid .ag-root-wrapper { border: 0; border-radius: 0; }
+.sageDataGrid .ag-header,
+.sageDataGrid .ag-header-row,
+.sageDataGrid .ag-header-cell,
+.sageDataGrid .ag-header-group-cell {
+  background: transparent;
+  border-top: 0;
+  border-bottom: 0;
+  box-shadow: none;
+}

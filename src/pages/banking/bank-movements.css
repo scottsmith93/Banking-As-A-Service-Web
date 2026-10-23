@@ -18,7 +18,17 @@
 .baasTransactionsGrid--tasks .baasTransactionDecisionBoundary { box-shadow: inset var(--borderWidth100) 0 0 var(--colorsUtilityMajor050); }
 .bankMovementControlBar { display: flex; flex-direction: column; gap: var(--spacing200); min-width: 0; }
 .bankMovementSummary { display: flex; flex-wrap: wrap; gap: var(--spacing300); align-items: flex-end; }
-.bankMovementSummary > [data-component="simple-select"] { flex: 0 1 calc(var(--spacing1000) * 4); width: 100%; max-width: calc(var(--spacing1000) * 4); min-width: 0; }
+.bankMovementSummary > .bankMovementAccountPicker { flex: 0 1 calc(var(--spacing1000) * 4 + var(--spacing400)); width: 100%; max-width: calc(var(--spacing1000) * 4 + var(--spacing400)); min-width: 0; }
+.bankMovementAccountPicker { position: relative; }
+/* Carbon's selected-text overlay uses generated high-specificity padding rules.
+   Only reserve room for the decoration; do not alter Carbon's focus or hit targets. */
+.bankMovementAccountPicker input,
+.bankMovementAccountPicker [data-role="select-text"] { padding-left: calc(var(--spacing300) + var(--spacing200)) !important; }
+.bankMovementAccountPicker [data-role="select-text"] { box-sizing: border-box; max-width: calc(100% - var(--spacing400)); }
+.bankMovementAccountPicker__mark { position: absolute; display: flex; left: var(--spacing100); top: 50%; transform: translateY(-50%); z-index: 2; pointer-events: none; }
+.bankMovementAccountOption { display: flex; align-items: center; gap: var(--spacing150); min-width: 0; }
+.bankMovementAccountOption > span:last-child { display: flex; flex-direction: column; gap: var(--spacing025); min-width: 0; white-space: normal; }
+.bankMovementAccountOption strong { font-weight: var(--fontWeights500); }
 .bankMovementSummary__metrics { display: flex; flex-wrap: wrap; gap: var(--spacing300); width: fit-content; max-width: 100%; margin: 0; }
 .bankMovementSummary__metrics > div { min-width: 0; display: flex; flex-direction: column; gap: var(--spacing050); }
 .bankMovementSummary__metrics dt { font-size: var(--fontSizes100); line-height: var(--lineHeights500); color: var(--colorsUtilityYin065); }
@@ -32,7 +42,7 @@
 @container (min-width: 1200px) {
   .bankMovementControlBar { display: grid; grid-template-columns: max-content minmax(0, 1fr); align-items: end; gap: var(--spacing300); }
   .bankMovementSummary { flex-wrap: nowrap; gap: var(--spacing200); }
-  .bankMovementSummary > [data-component="simple-select"] { flex: 0 0 calc(var(--spacing1000) * 2 + var(--spacing800)); width: calc(var(--spacing1000) * 2 + var(--spacing800)); }
+  .bankMovementSummary > .bankMovementAccountPicker { flex: 0 0 calc(var(--spacing1000) * 4 + var(--spacing400)); width: calc(var(--spacing1000) * 4 + var(--spacing400)); }
   .bankMovementSummary__metrics { flex-wrap: nowrap; }
   .bankMovementSummary__metrics dd { white-space: nowrap; }
   .bankMovementsWorkspace .baasTransactionToolbar { display: grid; grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr) auto; gap: var(--spacing100); width: 100%; max-width: calc(var(--spacing1000) * 10); justify-self: end; }

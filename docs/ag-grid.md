@@ -41,6 +41,11 @@ AG Grid reads locale text at startup.
 
 ## Extension points
 
+The shared table presentation is flat: transparent header backgrounds, no header
+row borders and no outside frame. The global table stylesheet applies the same
+contract to Carbon FlatTable and existing native tables, retaining body row
+rules, sorting/resizing interactions, selection and focus indicators.
+
 - Pass feature-specific AG Grid options directly to `SageDataGrid`; its props
   retain AG Grid's generic row typing.
 - Use `defaultColDef` only to override shared defaults. The wrapper merges it.

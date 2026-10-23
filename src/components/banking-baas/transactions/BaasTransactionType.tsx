@@ -11,6 +11,7 @@ const typeIcons: Record<BankTransaction["type"], IconType> = {
   refund: "u_turn_left",
   fee: "coins",
   directDebit: "calendar_pay_date",
+  invoicePayment: "bill_paid",
 };
 
 export default function BaasTransactionType({ type }: { type: BankTransaction["type"] }) {

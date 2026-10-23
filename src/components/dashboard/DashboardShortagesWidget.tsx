@@ -4,7 +4,7 @@ import { ActionPopover, ActionPopoverItem } from "carbon-react/lib/components/ac
 import Box from "carbon-react/lib/components/box";
 import { ButtonToggle, ButtonToggleGroup } from "carbon-react/lib/components/button-toggle";
 import { Checkbox } from "carbon-react/lib/components/checkbox";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import Portrait from "carbon-react/lib/components/portrait";
 import Typography from "carbon-react/lib/components/typography";
 import { getProductImage } from "../../data/productImages";

@@ -1,0 +1,16 @@
+.bankLogo {
+  display: inline-flex;
+  width: var(--spacing400);
+  height: var(--spacing400);
+  flex: 0 0 auto;
+  border-radius: var(--global-radius-container-circle);
+  box-shadow: 0 0 var(--spacing100) var(--mode-color-generic-depth-faint);
+  vertical-align: middle;
+}
+.bankLogo--small { width: var(--spacing300); height: var(--spacing300); }
+.bankLogo__mask { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; overflow: hidden; border-radius: inherit; background: var(--colorsUtilityYang100); }
+/* A square image fits wholly inside a circle at 70%, including its corners.
+   Contain preserves full wordmarks as well as compact bank symbols. */
+.bankLogo__mask > img { display: block; width: 70%; height: 70%; object-fit: contain; object-position: center; }
+.bankLogo--sage .bankLogo__mask { background: var(--colorsUtilityYin100); color: var(--colorsUtilityYang100); }
+.bankLogo--sage .bankLogo__mask > img { width: 100%; height: 100%; }

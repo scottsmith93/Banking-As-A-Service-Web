@@ -28,6 +28,14 @@ Scott Smith, with Codex — 21 October 2026.
 
 ## Analysis and decisions
 
+### Invoice panel and cardholder reminders — 23 October iteration
+
+The transaction detail panel no longer renders the automatic grey Related invoice — review required block for related-but-mismatched invoices. It retains the equal-weight Upload purchase invoice and Link an existing invoice actions, eligible exact-match suggestions and explicit choices for multiple eligible invoices. The underlying proposal engine, manual invoice search, amount/currency/date/duplicate checks and dedicated matching workbench are unchanged; hiding a mismatch tile must never imply a justified transaction or make an ineligible invoice linkable.
+
+A secondary Send reminder to cardholder action appears only on a completed, invoice-required purchase without a linked invoice and with a known cardholder. Recipient helper text names the person. Carbon Button, Loader and Message provide the action, short sending state and live confirmation. This is an explicitly labelled local simulation: it makes no email, notification or API request, has no monetary or matching side effects, and disables repeat clicks while sending/confirmed. Its state is local to the invoice-detail view and resets when that view/panel is left. Matched, category-only, pending, failed and cardholder-less payments do not expose an unusable reminder action. All copy is available in the five supported languages.
+
+Production reminders require an authorized notification endpoint, real recipient resolution, delivery/retry handling, rate limits and durable reminder history. The prototype intentionally does not pretend those services are connected.
+
 ### Transaction justification — 22 October iteration
 
 Visual refinement: recent title/subtitle form a 4px-gap group, with View all vertically centred. Descriptions are plain text; Carbon owns row click/focus/Enter/Space activation. A shared Sage icon/label pattern identifies card purchases, ATM withdrawals, transfers, refunds, fees, and direct debits in the recent list, full workspace, and detail facts. Justification uses a 12px thick green tick with a 4px label gap; category text aligns underneath the label. Non-applicable states are a muted dash with an accessible Not required label, and On hold remains muted text. Recent rows share a consistent height. Invoice-link keyboard events do not activate the containing row.
@@ -126,6 +134,8 @@ All new visible labels, filters, errors, empty states, success messages, and acc
 
 ## Change log
 
+- 2026-10-23 — Removed the automatic related-but-mismatched invoice tile from transaction details, while preserving eligible invoice suggestions, explicit search and matching safeguards. Added a cardholder reminder action with recipient context, Carbon sending feedback, duplicate-click prevention and an explicitly simulated confirmation. Reminder eligibility follows the existing completed/missing-invoice rules and never justifies a payment or changes financial/task totals.
+- Verification: all five languages passed at 1705/1024/768px with the related mismatch tile absent, upload/link controls retained, recipient-specific reminder action, accessible sending state, disabled repeat action and simulated confirmation. Reminder clicks leave tab counts unchanged. Matched, category-only, pending and cardholder-less cases omit the reminder. Explicit search still blocks the supplied mismatched invoice; eligible suggestions remain actionable and completion removes the reminder. Independent data checks confirm unchanged totals/task counts; scoped lint, locale/token validation, TypeScript, build and diff checks pass with existing font/bundle warnings unchanged.
 - 2026-10-22 — Moved the full workspace to Bank movements with URL-selected accounts, a compact account/KPI band, and All / To justify / Justified tabs. Shared the complete table presentation with the overview; retained matching workflows and legacy link redirects.
 - 2026-10-22 — Added shared invoice/category justification, an interactive categorisation task, two ATM fixtures, and generic transaction terminology. The overview now shows 10 newest transactions, compact header actions, and inline balance/KPIs; linked invoice references open Purchases directly.
 - 2026-10-22 — Replaced suggested-match filtering with a confirm/reject/manual-choice review queue; tightened grid content spacing; paired transaction facts and invoice action tiles; added wallet marks, compact card art, and a bordered invoice link to the Purchases detail route.

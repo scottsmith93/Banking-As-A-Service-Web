@@ -82,7 +82,7 @@ export const legacyBankAccounts: LegacyBankAccount[] = [
 export const stagedBaasAccounts: BaaSAccount[] = [
   {
     id: "sage-operating-account",
-    name: "Sage business account",
+    name: "Sage Wallet",
     status: "active",
     accountEnding: "8842",
     balanceEur: 100000,
@@ -92,7 +92,7 @@ export const stagedBaasAccounts: BaaSAccount[] = [
   },
   {
     id: "sage-card-account",
-    name: "Sage card account",
+    name: "Sage Wallet cards",
     status: "pending",
     accountEnding: "2197",
     balanceEur: 0,
@@ -224,10 +224,3 @@ export const baasTransactions: BaaSTransaction[] = [
     amountEur: -860.6,
   },
 ];
-
-// MOCK DATA — monthly activity summaries, separate from the five recent transactions.
-export const baasCardholderActivity: Record<string, { transactionCount: number; topMerchant: string }> = {
-  "Jamie Taylor": { transactionCount: 8, topMerchant: "Metro Office Supplies" },
-  "Morgan Hughes": { transactionCount: 7, topMerchant: "Adobe" },
-  "Alex Morgan": { transactionCount: 5, topMerchant: "IKEA" },
-};

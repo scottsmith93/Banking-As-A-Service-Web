@@ -3,7 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import Box from "carbon-react/lib/components/box";
 import Typography from "carbon-react/lib/components/typography";
 import Button from "carbon-react/lib/components/button/__next__";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../components/status-pill/StatusPill";
 import {
   Dl,
   Dt,
@@ -11,6 +11,7 @@ import {
 } from "carbon-react/lib/components/definition-list";
 import { invoices, type SalesInvoiceStatus } from "../data/invoices";
 import { ROUTES } from "../routes";
+import MatchedSalesInvoiceDetail from "../components/sales-invoices/MatchedSalesInvoiceDetail";
 
 const gbpFormatter = new Intl.NumberFormat("fr-FR", {
   style: "currency",
@@ -44,6 +45,7 @@ export default function InvoiceDetailPage() {
     [invoiceId],
   );
 
+  if (invoice?.status === "paid") return <MatchedSalesInvoiceDetail invoice={invoice} />;
   if (!invoice) {
     return (
       <Box className="pageContent">

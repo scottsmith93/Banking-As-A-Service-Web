@@ -1,0 +1,4 @@
+.moneyValue { white-space: nowrap; font-variant-numeric: tabular-nums; }
+.moneyValue--out { color: var(--colorsSemanticNegative600); font-weight: var(--fontWeights700); }
+.moneyValue--in { color: var(--colorsSemanticPositive600); font-weight: var(--fontWeights700); }
+.moneyValue .moneyValue__sign { font-weight: var(--fontWeights400); }

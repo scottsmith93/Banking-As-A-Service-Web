@@ -1,20 +1,26 @@
 .baasOverviewPage .bankingBaasDetailPage__content { gap: var(--spacing200); padding-top: var(--spacing200); }
 .baasOverviewPage h1 { margin: 0; }
-.baasOverviewPage .baasOverviewActions { width: auto; display: flex; flex-wrap: wrap; gap: var(--spacing100); }
+.baasOverviewPage .baasOverviewActions { width: auto; display: flex; align-items: center; flex-wrap: wrap; gap: var(--spacing100); }
 .baasOverviewPage .baasOverviewActions .baasOverviewAction { min-width: 0; width: auto; padding: var(--spacing050) var(--spacing150); }
 .baasOverviewPage .baasOverviewAction > span { flex-direction: row; gap: var(--spacing100); }
-.baasOverviewSummary { display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); align-items: center; gap: var(--spacing200); padding: var(--spacing200) var(--spacing300); border: var(--borderWidth100) solid var(--colorsUtilityMajor100); border-radius: var(--borderRadius100); background: var(--colorsUtilityYang100); }
-.baasOverviewPage .baasOverviewSummary .baasKpi { padding: 0 0 0 var(--spacing200); border-left: var(--borderWidth100) solid var(--colorsUtilityMajor100); min-width: 0; gap: var(--spacing050); }
+.baasOverviewSummary { display: grid; grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr)); align-items: center; gap: var(--spacing100) var(--spacing200); padding: var(--spacing150) var(--spacing300); border: var(--borderWidth100) solid var(--colorsUtilityMajor100); border-radius: var(--borderRadius100); background: var(--colorsUtilityYang100); }
+.baasOverviewSummary p { margin: 0; }
+.baasOverviewPage .baasOverviewSummary .baasKpi { padding: 0 0 0 var(--spacing200); border-left: 0; min-width: 0; gap: var(--spacing050); }
 .baasOverviewPage .baasOverviewHero__amount { font-size: var(--fontSizes600); line-height: var(--lineHeights400); }
 .baasOverviewSummary .baasKpi__value .numericValue { text-align: left; }
 .baasOverviewPage .baasOverviewTransactions td:last-child { min-width: calc(var(--spacing1000) * 2); white-space: normal; }
 .baasOverviewTransactions__headingGroup { gap: var(--spacing050); }
-.baasOverviewTransactions > .baasOverviewSectionHeading { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; }
+.baasOverviewTransactions > .baasOverviewSectionHeading { display: flex; flex-wrap: wrap; align-items: center; gap: var(--spacing200); }
+.baasOverviewTransactions__actions { margin-left: auto; justify-content: flex-end; min-width: 0; }
+.baasOverviewTransactions__actions > button { flex-shrink: 0; }
+.baasOverviewIdentity { display: flex; align-items: center; gap: var(--spacing150); }
+.baasOverviewTransactions__notice { min-width: 0; max-width: 100%; }
+.baasOverviewTransactions__notice [data-component="message"] { margin: 0; }
 .baasOverviewTransactions__headingGroup { min-width: 0; }
+.baasOverviewTransactions [data-role="baasTransactionColumn--source"] { min-width: calc(var(--spacing1000) * 3); }
 .baasOverviewPage .baasOverviewTransactions tbody td { height: var(--spacing700); box-sizing: border-box; padding-top: var(--spacing050); padding-bottom: var(--spacing050); vertical-align: middle; }
 @container (max-width: 1000px) {
-  .baasOverviewTransactions [data-role="baasTransactionColumn--type"],
-  .baasOverviewTransactions [data-role="baasTransactionColumn--paymentStatus"] { display: none; }
+  .baasOverviewTransactions [data-role="baasTransactionColumn--type"] { display: none; }
   .baasOverviewSpend .baasSpendRow { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--spacing200); }
 }
 @container (max-width: 850px) {

@@ -8,7 +8,7 @@ import {
 } from "../data-grid";
 import Icon from "carbon-react/lib/components/icon";
 import IconButton from "carbon-react/lib/components/icon-button";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import { quotes, type Quote, type QuoteStatus } from "../../data/quotes";
 
 const gbpFormatter = new Intl.NumberFormat("fr-FR", {

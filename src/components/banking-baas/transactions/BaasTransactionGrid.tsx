@@ -1,5 +1,5 @@
 import { useEffect, useRef } from "react";
-import { SageDataGrid, type ColDef, type GridApi } from "../../data-grid";
+import { SageDataGrid, sageDataGridTheme, type ColDef, type GridApi } from "../../data-grid";
 import type { ColGroupDef } from "ag-grid-community";
 import type { BankPurchaseInvoice, BankTransaction } from "../../../data/bankingTransactions";
 import { useTransactionPresentation } from "../../../hooks/useTransactionPresentation";
@@ -10,21 +10,25 @@ import BaasTaskActions from "./BaasTaskActions";
 import BaasTaskMerchant from "./BaasTaskMerchant";
 import { isJustified } from "../../../utils/transactionMatching";
 
-type Props = { rows: BankTransaction[]; page: number; pageSize: number; oldestFirst: boolean; taskMode?: boolean; onJustify?: (row: BankTransaction, invoice: BankPurchaseInvoice) => void; selectedId?: string; onOpen: (transaction: BankTransaction) => void };
-export default function BaasTransactionGrid({ rows, page, pageSize, oldestFirst, selectedId, onOpen, taskMode = false, onJustify }: Props) {
+const overviewTableTheme = sageDataGridTheme.withParams({ oddRowBackgroundColor: "var(--colorsUtilityYang100)", headerColumnResizeHandleColor: "transparent", rowBorder: { width: "var(--borderWidth100)", color: "var(--colorsUtilityMajor050)" } });
+type Props = { rows: BankTransaction[]; page: number; pageSize: number; oldestFirst: boolean; taskMode?: boolean; summaryMode?: boolean; onJustify?: (row: BankTransaction, invoice: BankPurchaseInvoice) => void; selectedId?: string; onOpen: (transaction: BankTransaction) => void };
+export default function BaasTransactionGrid({ rows, page, pageSize, oldestFirst, selectedId, onOpen, taskMode = false, summaryMode = false, onJustify }: Props) {
   const { copy } = useTransactionPresentation();
-  const definitions = useTransactionTableColumns({ cashFlowColours: !taskMode });
+  const definitions = useTransactionTableColumns({ summary: summaryMode });
   const apiRef = useRef<GridApi<BankTransaction> | null>(null);
   const focusAfterRemoval = useRef<{ id: string; index: number } | null>(null);
   useEffect(() => { apiRef.current?.paginationGoToPage(page - 1); }, [page]);
   const visibleDefinitions = taskMode ? definitions.filter(column => ["source", "date", "merchant", "amount"].includes(column.id)) : definitions;
   const columns: ColDef<BankTransaction>[] = visibleDefinitions.map(column => ({
     colId: column.id, headerName: column.label, width: column.width,
-    ...(column.id === "merchant" ? { minWidth: column.width, flex: 1 } : {}),
+    // Browsing columns share spare room in proportion to their content needs,
+    // rather than leaving one very wide Description column. Tasks keep their
+    // existing proposal/action priorities and all columns remain resizable.
+    ...(!taskMode ? { minWidth: column.width, flex: column.width } : column.id === "merchant" ? { minWidth: column.width, flex: 1 } : {}),
     ...(column.id === "date" ? { initialSort: oldestFirst ? "asc" as const : "desc" as const } : {}),
     ...(column.align ? { type: "rightAligned" } : {}),
     valueGetter: ({ data }) => data ? column.value(data) : "",
-    ...(taskMode && column.id === "merchant" ? { autoHeight: true, wrapText: true } : {}),
+    ...(column.id === "source" || taskMode && column.id === "merchant" ? { autoHeight: true, wrapText: true } : {}),
     cellRenderer: ({ data }: { data?: BankTransaction }) => data ? taskMode && column.id === "merchant" ? <BaasTaskMerchant transaction={data}>{column.render(data)}</BaasTaskMerchant> : column.render(data) : null,
   }));
   if (taskMode && onJustify) columns.push(
@@ -40,7 +44,8 @@ export default function BaasTransactionGrid({ rows, page, pageSize, oldestFirst,
   ] : columns;
   return <div role="region" aria-label={copy.title}>
     <SageDataGrid<BankTransaction>
-      containerClassName={`baasTransactionsGrid sageDataGrid--clickableRows${taskMode ? " baasTransactionsGrid--tasks" : ""}`}
+      containerClassName={`baasTransactionsGrid sageDataGrid--clickableRows${taskMode ? " baasTransactionsGrid--tasks" : ""}${summaryMode ? " baasTransactionsGrid--summary" : ""}`}
+      theme={summaryMode ? overviewTableTheme : sageDataGridTheme}
       rowData={rows} columnDefs={columnDefs} getRowId={({ data }) => data.id}
       defaultColDef={{ filter: false, wrapHeaderText: true, autoHeaderHeight: true }} domLayout="autoHeight" rowHeight={taskMode ? 72 : 56}
       pagination paginationPageSize={pageSize} paginationPageSizeSelector={false} suppressPaginationPanel
@@ -48,7 +53,7 @@ export default function BaasTransactionGrid({ rows, page, pageSize, oldestFirst,
       onGridSizeChanged={({ api, clientWidth }) => {
         // Keep the matching decision visible on tablets. Supporting facts remain in the detail drawer.
         const showSupportingColumns = clientWidth >= 1000;
-        if (!taskMode && api.getColumn("type")?.isVisible() !== showSupportingColumns) api.setColumnsVisible(["type", "paymentStatus"], showSupportingColumns);
+        if (!taskMode && api.getColumn("type")?.isVisible() !== showSupportingColumns) api.setColumnsVisible(summaryMode ? ["type"] : ["type", "paymentStatus"], showSupportingColumns);
       }}
       onRowDataUpdated={({ api }) => {
         api.paginationGoToPage(page - 1);

@@ -2,20 +2,17 @@ import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
 import Icon from "carbon-react/lib/components/icon";
 import IconButton from "carbon-react/lib/components/icon-button";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import Typography from "carbon-react/lib/components/typography";
-import { bankAccounts, formatBankBalanceEur, type BankAccount } from "../../data/bankAccounts";
+import { bankAccounts, type BankAccount } from "../../data/bankAccounts";
+import MoneyValue from "../money-value/MoneyValue";
+import { useLanguage } from "../../context/useLanguage";
+import { getLocaleCode } from "../../locales";
+import BankLogo from "./BankLogo";
 
 function BankAccountIcon({ account }: { account: BankAccount }) {
   if (account.type === "connected" && account.providerIconSrc) {
-    return (
-      <img
-        className="bankAccountCard__providerImage"
-        src={account.providerIconSrc}
-        alt=""
-        aria-hidden="true"
-      />
-    );
+    return <BankLogo src={account.providerIconSrc} />;
   }
 
   if (account.type === "cash") {
@@ -128,6 +125,7 @@ function formatLastUpdated(account: BankAccount): string | null {
 }
 
 function BankAccountCard({ account }: { account: BankAccount }) {
+  const { language } = useLanguage();
   const isConnected = account.type === "connected";
   const isCash = account.type === "cash";
   const lastUpdated = formatLastUpdated(account);
@@ -174,7 +172,7 @@ function BankAccountCard({ account }: { account: BankAccount }) {
             account.balanceEur < 0 ? " bankAccountCard__balance--negative" : ""
           }`}
         >
-          {formatBankBalanceEur(account.balanceEur)}
+          <MoneyValue amount={account.balanceEur} locale={getLocaleCode(language)} />
         </Typography>
 
         <Typography variant="small" as="p" className="bankAccountCard__meta bankAccountCard__ledger">

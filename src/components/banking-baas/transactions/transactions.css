@@ -29,9 +29,6 @@
 .baasTransactionsGrid .ag-right-aligned-cell { justify-content: flex-end; font-variant-numeric: tabular-nums; }
 .baasTransactionsGrid .ag-cell[col-id="amount"] .ag-cell-wrapper { width: 100%; align-items: center; }
 .baasTransactionsGrid .ag-cell[col-id="amount"] .ag-cell-value { display: flex; width: 100%; align-items: center; justify-content: flex-end; }
-.baasTransactionAmount { white-space: nowrap; font-variant-numeric: tabular-nums; }
-.baasTransactionAmount--in { color: var(--mode-color-status-positive-default); }
-.baasTransactionAmount--out { color: var(--mode-color-status-negative-default); }
 .baasTransactionsGrid .ag-row.baasTransactionRow--selected { background: var(--colorsActionMajor025); }
 .baasTransactionsGrid .ag-cell {
   padding-top: var(--spacing050);
@@ -45,10 +42,24 @@
 /* Match Carbon's own focus treatment for this read-only, keyboard-discoverable tooltip target. */
 .baasTransactionSource:focus-visible { box-shadow: 0 0 0 var(--borderWidth200) var(--mode-color-action-focus-default), 0 0 0 var(--borderWidth400) var(--mode-color-action-focus-with-default); outline: var(--borderWidth300) solid transparent; }
 .baasTransactionSource > span { display: flex; align-items: center; }
-.baasTransactionSource__bank { width: var(--spacing400); height: var(--spacing300); overflow: hidden; }
-.baasTransactionSource__bank img { width: 100%; height: 100%; object-fit: cover; object-position: left center; }
-.baasTransactionSource__bank--sage, .baasTransactionSource__bank--bnp { width: var(--spacing300); }
-.baasTransactionSource__bank--sage img { object-fit: contain; transform: scale(2); }
+.baasTransactionSource .baasTransactionSource__details { flex-direction: column; align-items: flex-start; gap: var(--spacing025); line-height: var(--lineHeights400); min-width: 0; white-space: normal; }
+.baasTransactionSource__cardholder { color: var(--colorsUtilityYin065); }
+.baasTransactionSource__portrait { width: var(--spacing400); height: var(--spacing400); flex-shrink: 0; overflow: hidden; border-radius: var(--global-radius-container-circle); justify-content: center; }
+.baasTransactionSource__avatar { width: var(--spacing400); height: var(--spacing400); flex-shrink: 0; justify-content: center; }
+.baasTransactionSource__portrait img { width: 100%; height: 100%; object-fit: cover; }
+.baasTransactionSource--badged .baasTransactionSource__cluster { position: relative; display: inline-flex; align-items: center; justify-content: center; width: var(--spacing500); height: var(--spacing500); flex: 0 0 var(--spacing500); }
+.baasTransactionSource__badge { position: absolute; right: 0; bottom: 0; display: flex; align-items: center; justify-content: center; width: var(--spacing250); height: var(--spacing250); box-sizing: border-box; overflow: hidden; border: var(--borderWidth200) solid var(--colorsUtilityYang100); border-radius: var(--global-radius-container-circle); background: var(--colorsUtilityYang100); }
+.baasTransactionSource__badge .baasTransactionSource__portrait,
+.baasTransactionSource__badge [data-component="portrait"] { width: 100%; height: 100%; }
+.baasTransactionSource__badge > [data-component="icon"] { width: var(--sizing150); height: var(--sizing150); }
+.baasTransactionSource__badge > [data-component="icon"]::before { font-size: var(--sizing150); line-height: var(--sizing150); }
+.baasTransactionsGrid--summary .ag-cell,
+.baasTransactionsGrid--summary .ag-header-cell { padding-left: var(--spacing200); padding-right: var(--spacing200); }
+/* Header transparency must continue through the grid's backing layers, not
+   just its header cells. Body row colours, focus and selection stay intact. */
+.baasTransactionsGrid .ag-root-wrapper,
+.baasTransactionsGrid .ag-root { background: transparent; }
+.baasTransactionsGrid .ag-row-even { background: var(--colorsUtilityYang100); }
 .baasTransactionsGrid .ag-pinned-right-header,
 .baasTransactionsGrid .ag-pinned-right-cols-container { box-shadow: none; }
 .baasTransactionsGrid [data-component="pill"],

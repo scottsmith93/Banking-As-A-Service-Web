@@ -11,7 +11,7 @@ export default function BaasTransactionFacts({ transaction }: { transaction: Ban
     <dl className="baasTransactionFacts">
       <div><dt>{copy.paymentMethod}</dt><dd className="baasTransactionPaymentMethod">{wallet && <img src={`/assets/banking-baas/${wallet}.png`} alt="" />}{copy.methods[transaction.paymentMethod]}</dd></div>
       <div><dt>{copy.type}</dt><dd><BaasTransactionType type={transaction.type} /></dd></div>
-      <div><dt>{copy.merchant}</dt><dd>{transaction.merchant}</dd></div>
+      <div><dt>{transaction.type === "invoicePayment" ? copy.customer : copy.merchant}</dt><dd>{transaction.merchant}</dd></div>
       <div><dt>{copy.category}</dt><dd>{copy.categories[transaction.category]}</dd></div>
       <div><dt>{copy.cardholder}</dt><dd>{transaction.cardholder ? `${transaction.cardholder} •••• ${transaction.lastFour}` : "—"}</dd></div>
       <div><dt>{copy.bankReference}</dt><dd>{transaction.reference}</dd></div>

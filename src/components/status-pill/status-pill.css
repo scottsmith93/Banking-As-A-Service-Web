@@ -1,0 +1,24 @@
+[data-component="pill"][data-prototype-status="true"] { --status-pill-stroke: var(--colorsSemanticNeutral500); }
+[data-component="pill"][data-prototype-status="true"][data-status-tone="tag"] { --status-pill-stroke: var(--colorsActionMajor500); }
+[data-component="pill"][data-prototype-status="true"][data-status-tone="positive"] { --status-pill-stroke: var(--colorsSemanticPositive500); }
+[data-component="pill"][data-prototype-status="true"][data-status-tone="negative"] { --status-pill-stroke: var(--colorsSemanticNegative500); }
+[data-component="pill"][data-prototype-status="true"][data-status-tone="warning"] { --status-pill-stroke: var(--colorsSemanticCaution650); }
+[data-component="pill"][data-prototype-status="true"][data-status-tone="information"] { --status-pill-stroke: var(--colorsSemanticInfo500); }
+[data-component="pill"][data-prototype-status="true"][data-status-tone="neutralWhite"] { --status-pill-stroke: var(--colorsUtilityYang100); }
+[data-component="pill"][data-prototype-status="true"][data-status-inverse="true"][data-status-tone="neutral"] { --status-pill-stroke: var(--colorsSemanticNeutral400); }
+[data-component="pill"][data-prototype-status="true"][data-status-inverse="true"][data-status-tone="positive"] { --status-pill-stroke: var(--colorsSemanticPositive400); }
+[data-component="pill"][data-prototype-status="true"][data-status-inverse="true"][data-status-tone="negative"] { --status-pill-stroke: var(--colorsSemanticNegative450); }
+[data-component="pill"][data-prototype-status="true"][data-status-inverse="true"][data-status-tone="information"] { --status-pill-stroke: var(--colorsSemanticInfo400); }
+[data-component="pill"][data-prototype-status="true"][data-status-tone] {
+  border-radius: var(--global-radius-container-circle);
+  border: 0;
+  background: color-mix(in srgb, var(--status-pill-stroke) 5%, transparent);
+  color: var(--status-pill-stroke);
+}
+/* Explicit product variant for transaction-type selections; Carbon still owns removal/focus. */
+.bankMovementFilterField[data-filter-pill-style="subtle"] [data-component="pill"] {
+  border: 0;
+  border-radius: var(--global-radius-container-circle);
+  background: color-mix(in srgb, var(--colorsActionMajor500) 5%, transparent);
+  color: var(--colorsActionMajor500);
+}

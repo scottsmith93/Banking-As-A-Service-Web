@@ -17,6 +17,8 @@ import BaasTransactionFacts from "./BaasTransactionFacts";
 import BaasLinkedInvoice from "./BaasLinkedInvoice";
 import BaasCategoryJustification from "./BaasCategoryJustification";
 import BaasInvoiceProposals from "./BaasInvoiceProposals";
+import BaasCardholderReminder from "./BaasCardholderReminder";
+import { bankPaidSalesInvoice } from "../../../data/invoices";
 
 export default function BaasTransactionDrawer({ transaction, next, onNext, onClose }: { transaction: BankTransaction; next?: BankTransaction; onNext: (transaction: BankTransaction) => void; onClose: () => void }) {
   const { copy } = useTransactionPresentation();
@@ -27,6 +29,7 @@ export default function BaasTransactionDrawer({ transaction, next, onNext, onClo
   const inputRef = useRef<HTMLInputElement>(null);
   const state = matchingState(transaction, invoices, transactions, rejectedSuggestions);
   const linkedInvoice = invoices.find(invoice => invoice.id === transaction.invoiceId);
+  const linkedSalesInvoice = transaction.salesInvoiceId === bankPaidSalesInvoice.id ? bankPaidSalesInvoice : undefined;
   const complete = (invoice: BankPurchaseInvoice) => {
     const result = matchInvoice(transaction.id, invoice);
     if (result) { setError(copy.errors[result]); return; }
@@ -47,9 +50,12 @@ export default function BaasTransactionDrawer({ transaction, next, onNext, onClo
       {view === "existing" && <BaasInvoiceSearch transaction={transaction} onMatch={complete} />}
       {view === "upload" && file && <BaasInvoiceUpload file={file} transaction={transaction} onMatch={complete} />}
       {view === "details" && <>
-        <section className="baasTransactionInvoice" aria-label={requiresCategory(transaction) ? copy.justification.title : copy.invoiceTitle}>
-          <Typography variant="h3" as="h3">{requiresCategory(transaction) ? copy.justification.title : copy.invoiceTitle}</Typography>
-          {linkedInvoice ? <>
+        <section className="baasTransactionInvoice" aria-label={linkedSalesInvoice ? copy.salesInvoiceTitle : requiresCategory(transaction) ? copy.justification.title : copy.invoiceTitle}>
+          <Typography variant="h3" as="h3">{linkedSalesInvoice ? copy.salesInvoiceTitle : requiresCategory(transaction) ? copy.justification.title : copy.invoiceTitle}</Typography>
+          {linkedSalesInvoice ? <>
+            <Message variant="success-subtle">{copy.matchComplete}</Message>
+            <BaasLinkedInvoice salesInvoice={linkedSalesInvoice} />
+          </> : linkedInvoice ? <>
             <Message variant="success-subtle">{copy.matchComplete}</Message>
             <BaasLinkedInvoice invoice={linkedInvoice} />
           </> : needsInvoice(transaction) ? <>
@@ -61,6 +67,7 @@ export default function BaasTransactionDrawer({ transaction, next, onNext, onClo
             {/* The Carbon CTA opens the native file chooser. No file is sent to a server in this prototype. */}
             <input ref={inputRef} type="file" hidden accept="application/pdf,image/jpeg,image/png" onChange={upload} aria-label={copy.uploadInvoice} />
             <Typography variant="small" as="p">{copy.fileHint}</Typography>
+            <BaasCardholderReminder transaction={transaction} />
             <BaasInvoiceProposals transaction={transaction} onMatch={complete} />
           </> : requiresCategory(transaction) ? <BaasCategoryJustification transaction={transaction} /> : <Typography variant="p" as="p">{state === "waiting" ? copy.waitingInvoice : copy.noInvoiceNeeded}</Typography>}
         </section>

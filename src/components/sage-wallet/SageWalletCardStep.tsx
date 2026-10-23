@@ -3,7 +3,7 @@ import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
 import { ButtonToggle, ButtonToggleGroup } from "carbon-react/lib/components/button-toggle";
 import Icon from "carbon-react/lib/components/icon";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import { Option, Select } from "carbon-react/lib/components/select";
 import Typography from "carbon-react/lib/components/typography";
 import { sageWalletMonthlyLimitsEur } from "../../data/sageWalletOnboarding";

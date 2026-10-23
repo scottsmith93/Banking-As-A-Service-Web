@@ -6,7 +6,8 @@ import {
   type GridReadyEvent,
   type ICellRendererParams,
 } from "../data-grid";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
+import { useTransactionPresentation } from "../../hooks/useTransactionPresentation";
 import {
   invoices,
   type EInvoiceStatus,
@@ -28,6 +29,7 @@ function getInvoiceStatusLabel(status: SalesInvoiceStatus) {
 }
 
 function getInvoiceStatusVariant(status: SalesInvoiceStatus) {
+  if (status === "paid") return "positive" as const;
   if (status === "overdue") return "negative" as const;
   if (status === "unposted") return "warning" as const;
   return undefined;
@@ -36,6 +38,7 @@ function getInvoiceStatusVariant(status: SalesInvoiceStatus) {
 function InvoiceStatusCellRenderer(
   params: ICellRendererParams<Invoice, SalesInvoiceStatus>,
 ) {
+  const { copy } = useTransactionPresentation();
   const status = params.value;
   if (!status) return null;
 
@@ -48,7 +51,7 @@ function InvoiceStatusCellRenderer(
       }
     >
       <Pill pillRole="status" colorVariant={getInvoiceStatusVariant(status)}>
-        {getInvoiceStatusLabel(status)}
+        {status === "paid" ? copy.paid : getInvoiceStatusLabel(status)}
       </Pill>
     </span>
   );

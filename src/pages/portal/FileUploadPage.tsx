@@ -1,6 +1,6 @@
 import { useMemo, useRef, useState, type ChangeEvent, type DragEvent } from "react";
 import Icon from "carbon-react/lib/components/icon";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../../components/status-pill/StatusPill";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";
 

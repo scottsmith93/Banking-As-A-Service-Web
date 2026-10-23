@@ -2,7 +2,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
 import Message from "carbon-react/lib/components/message";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import Textbox from "carbon-react/lib/components/textbox";
 import Typography from "carbon-react/lib/components/typography";
 import { useBankingTransactions } from "../../context/useBankingTransactions";

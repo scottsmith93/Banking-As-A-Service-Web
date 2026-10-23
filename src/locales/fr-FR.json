@@ -65,9 +65,26 @@
       "emptyQueueHint": "Aucune transaction ne nécessite de facture ou de catégorie.",
       "details": "Détails de la transaction",
       "invoiceTitle": "Facture d’achat",
+      "salesLabel": "Vente",
+      "purchaseLabel": "Achat",
+      "salesInvoiceTitle": "Facture de vente",
+      "viewSalesInvoice": "Afficher la facture de vente {reference}",
+      "customer": "Client",
+      "paid": "Payée",
+      "dueDate": "Date d’échéance",
+      "backToSalesInvoices": "Factures de vente",
+      "invoicePaymentDescription": "Paiement de la facture {reference}",
       "noInvoiceText": "Ajoutez une facture pour terminer le rapprochement de cet achat.",
       "uploadInvoice": "Importer une facture d’achat",
       "linkExisting": "Associer une facture existante",
+      "reminder": {
+        "send": "Envoyer un rappel au titulaire",
+        "sending": "Envoi du rappel…",
+        "simulated": "Rappel simulé",
+        "recipient": "Demandez à {cardholder} d’ajouter la facture d’achat manquante.",
+        "demoHint": "Prototype uniquement : aucune notification ne sera envoyée.",
+        "confirmation": "Le rappel à {cardholder} a été simulé. Aucune notification n’a été envoyée."
+      },
       "matchComplete": "Transaction rapprochée",
       "matchSuccess": "{reference} est rapprochée de {merchant}.",
       "nextTransaction": "Prochaine transaction à traiter",
@@ -169,7 +186,8 @@
         "transfer": "Virement",
         "refund": "Remboursement",
         "fee": "Frais bancaires",
-        "atmWithdrawal": "Retrait au distributeur"
+        "atmWithdrawal": "Retrait au distributeur",
+        "invoicePayment": "Paiement de facture"
       },
       "categories": {
         "supplies": "Fournitures",
@@ -181,6 +199,7 @@
         "transfers": "Virements internes",
         "refund": "Remboursements",
         "cash": "Retraits d’espèces",
+        "sales": "Ventes",
         "uncategorised": "Sans catégorie"
       },
       "justification": {
@@ -228,7 +247,7 @@
         "source": "Origine",
         "date": "Date",
         "bank": "Banque",
-        "sageBank": "Sage",
+        "sageBank": "Sage Wallet",
         "bankSource": "Banque : {bank}. Compte : {account}.",
         "cardSource": "Banque : {bank}. Compte : {account}. Titulaire : {cardholder}.",
         "description": "Description",
@@ -236,6 +255,8 @@
         "subtitle": "Consultez les transactions et justifiez-les avec une facture ou une catégorie.",
         "account": "Compte bancaire",
         "allAccounts": "Tous les comptes bancaires",
+        "accountOption": "{bank} · {account} · {reference}",
+        "accountOptionSameBank": "{bank} · {reference}",
         "bankBalance": "Solde bancaire",
         "ledgerBalance": "Solde comptable",
         "toJustifyAmount": "Montant à justifier"
@@ -413,8 +434,24 @@
     "createDialog": { "title": "Créer un compte bancaire", "description": "Ajoutez un compte bancaire existant à utiliser avec vos données comptables Sage.", "accountName": "Nom du compte", "accountNumber": "Numéro de compte", "ledgerAccount": "Compte du grand livre", "cancel": "Annuler", "create": "Créer le compte" },
     "accountNavigation": { "overview": "Vue d'ensemble", "debitCards": "Cartes de débit", "transactions": "Transactions", "transfers": "Virements", "users": "Utilisateurs", "statements": "Relevés et documents", "settings": "Paramètres", "switchAccount": "Changer de compte", "ariaLabel": "Navigation du compte Sage Wallet" },
     "dashboard": {
+      "moreActions": "Autres actions",
+      "cashFlow": {
+        "title": "Flux de trésorerie",
+        "period": "Par jour · {month} · EUR",
+        "moneyIn": "Entrées",
+        "moneyOut": "Sorties",
+        "pointSummary": "{period} : {moneyIn} d’entrées et {moneyOut} de sorties.",
+        "empty": "Aucun mouvement de trésorerie finalisé ce mois-ci.",
+        "balance": "Solde de clôture",
+        "axes": "Entrées et sorties quotidiennes en EUR. Les dates se lisent de gauche à droite.",
+        "balanceTitle": "Historique du solde",
+        "balancePointSummary": "{period} : solde de clôture de {balance}.",
+        "balanceAxes": "Solde de clôture quotidien en EUR. Les dates se lisent de gauche à droite. L’échelle de l’axe vertical permet de voir les variations du solde.",
+        "balanceEmpty": "Aucun historique du solde disponible.",
+        "exploreHelp": "Utilisez les flèches gauche et droite pour consulter les valeurs quotidiennes, Début ou Fin pour accéder au premier ou au dernier jour, et Échap pour fermer l’infobulle."
+      },
       "bankAccountsBreadcrumb": "Comptes bancaires",
-      "title": "Compte bancaire professionnel",
+      "title": "Sage Wallet",
       "subtitle": "Consultez votre solde, l'activité des cartes et les transactions récentes.",
       "primaryBusinessAccount": "Compte professionnel principal",
       "accountEnding": "Compte se terminant par",
@@ -429,6 +466,21 @@
       "transactions": "{count} transactions",
       "waitingToClear": "{count} en attente de règlement",
       "monthlyCardSpend": "Dépenses mensuelles par carte",
+      "cardSpend": {
+        "period": "{currentPeriod}, par rapport à {previousPeriod}",
+        "rowsHint": "{shown} cartes affichées sur {count} actives · {transactions} transactions",
+        "card": "Carte",
+        "comparison": "Comparaison avec le mois dernier",
+        "previousSpend": "Précédemment : {amount}",
+        "empty": "Aucune carte de débit active pour ce compte.",
+        "change": {
+          "increase": "{percentage} de plus que le mois dernier",
+          "decrease": "{percentage} de moins que le mois dernier",
+          "unchanged": "Aucun changement depuis le mois dernier",
+          "noPreviousSpend": "Aucune dépense le mois dernier",
+          "unavailable": "Comparaison indisponible"
+        }
+      },
       "topCardholders": "Principaux titulaires par dépenses",
       "viewAllDebitCards": "Voir toutes les cartes",
       "debitCards": "Cartes de débit",

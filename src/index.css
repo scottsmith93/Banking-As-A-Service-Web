@@ -6,6 +6,7 @@
 @import url("@sage/design-tokens-fusion/css/light.css");
 @import url("@sage/design-tokens-fusion/css/global.css");
 @import url("@sage/design-tokens-fusion/css/components/dataviz.css");
+@import url("./components/data-grid/flat-tables.css");
 
 :root {
   color-scheme: light;

@@ -72,7 +72,7 @@ import Link from "carbon-react/lib/components/link";
 
 // Feedback & status
 import Badge from "carbon-react/lib/components/badge";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../components/status-pill/StatusPill";
 import Loader from "carbon-react/lib/components/loader/__next__";
 import Message from "carbon-react/lib/components/message";
 

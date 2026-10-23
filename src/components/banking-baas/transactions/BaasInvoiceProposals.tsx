@@ -13,9 +13,11 @@ export default function BaasInvoiceProposals({ transaction, onMatch }: { transac
   const { invoices, transactions, rejectedSuggestions, rejectSuggestion } = useBankingTransactions();
   const { copy, money, invoiceSummary } = useTransactionPresentation();
   const proposal = transactionProposal(transaction, invoices, transactions, rejectedSuggestions);
-  if (!proposal.invoices.length) return null;
+  // The detail panel offers actionable matches only. Related-but-mismatched
+  // invoices remain searchable manually, never an automatic grey review tile.
+  if (!proposal.invoices.length || proposal.kind === "difference") return null;
   return <Box display="flex" flexDirection="column" gap={2}>
-    <Typography variant="strong" as="p">{proposal.kind === "multiple" ? interpolate(copy.workbench.possibleInvoices, { count: proposal.invoices.length }) : proposal.kind === "difference" ? copy.workbench.relatedInvoice : copy.suggestion}</Typography>
+    <Typography variant="strong" as="p">{proposal.kind === "multiple" ? interpolate(copy.workbench.possibleInvoices, { count: proposal.invoices.length }) : copy.suggestion}</Typography>
     {proposal.kind === "multiple" && <Typography variant="small" as="p">{copy.workbench.chooseInvoice}</Typography>}
     {proposal.invoices.slice(0, 3).map(invoice => {
       const eligible = canLinkInvoice(transaction, invoice, transactions);

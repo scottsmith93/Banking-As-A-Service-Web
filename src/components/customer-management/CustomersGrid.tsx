@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef } from "react";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import type { Customer } from "../../data/customers";
 import { useLanguage } from "../../context/useLanguage";
 import { formatEur } from "../../utils/formatCurrency";

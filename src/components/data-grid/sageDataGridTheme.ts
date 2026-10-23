@@ -9,7 +9,8 @@ export const sageDataGridTheme = themeQuartz.withParams({
   borderColor: "var(--colorsUtilityMajor050)",
   columnBorder: false,
   fontFamily: "inherit",
-  headerBackgroundColor: "var(--colorsUtilityMajor025)",
+  headerBackgroundColor: "transparent",
+  headerRowBorder: false,
   headerColumnBorder: false,
   headerHeight: "var(--spacing500)",
   headerTextColor: "var(--colorsUtilityYin090)",
@@ -19,5 +20,5 @@ export const sageDataGridTheme = themeQuartz.withParams({
   rowHeight: "calc(var(--spacing500) + var(--spacing050))",
   selectedRowBackgroundColor: "var(--colorsActionMajor025)",
   spacing: "var(--spacing100)",
-  wrapperBorder: true,
+  wrapperBorder: false,
 });

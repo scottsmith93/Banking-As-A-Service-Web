@@ -5,6 +5,7 @@ import Icon from "carbon-react/lib/components/icon";
 import IconButton from "carbon-react/lib/components/icon-button";
 import Typography from "carbon-react/lib/components/typography";
 import BaasPromotionCards from "./BaasPromotionCards";
+import BankLogo from "../banking/BankLogo";
 
 type BaasPromotionFeature = {
   title: string;
@@ -49,7 +50,7 @@ export default function BaasPromotionBanner({ copy, onOpen, onDismiss }: BaasPro
       </span>
       <Box className="baasPromotion__content" display="flex" flexDirection="column">
         <Box className="baasPromotion__eyebrow" display="flex" alignItems="center">
-          <img src="/banking/sage-demo-bank-icon.svg" alt="" aria-hidden="true" />
+          <BankLogo src="/banking/sage-demo-bank-icon.svg" size="small" />
           <Typography variant="small" as="span">{copy.eyebrow}</Typography>
         </Box>
         <Typography id="baas-promotion-title" variant="h2" as="h2" className="baasPromotion__title">

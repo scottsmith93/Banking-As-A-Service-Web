@@ -65,9 +65,26 @@
       "emptyQueueHint": "Keine Transaktion benötigt eine Rechnung oder Kategorie.",
       "details": "Transaktionsdetails",
       "invoiceTitle": "Eingangsrechnung",
+      "salesLabel": "Verkauf",
+      "purchaseLabel": "Einkauf",
+      "salesInvoiceTitle": "Ausgangsrechnung",
+      "viewSalesInvoice": "Ausgangsrechnung {reference} anzeigen",
+      "customer": "Kunde",
+      "paid": "Bezahlt",
+      "dueDate": "Fälligkeitsdatum",
+      "backToSalesInvoices": "Ausgangsrechnungen",
+      "invoicePaymentDescription": "Zahlung für Rechnung {reference}",
       "noInvoiceText": "Fügen Sie eine Rechnung hinzu, um diesen Einkauf abzugleichen.",
       "uploadInvoice": "Eingangsrechnung hochladen",
       "linkExisting": "Vorhandene Rechnung zuordnen",
+      "reminder": {
+        "send": "Erinnerung an Karteninhaber senden",
+        "sending": "Erinnerung wird gesendet…",
+        "simulated": "Erinnerung simuliert",
+        "recipient": "Bitten Sie {cardholder}, die fehlende Eingangsrechnung hinzuzufügen.",
+        "demoHint": "Nur ein Prototyp – es wird keine Benachrichtigung gesendet.",
+        "confirmation": "Die Erinnerung an {cardholder} wurde simuliert. Es wurde keine Benachrichtigung gesendet."
+      },
       "matchComplete": "Transaktion zugeordnet",
       "matchSuccess": "{reference} wurde {merchant} zugeordnet.",
       "nextTransaction": "Nächste Transaktion mit Handlungsbedarf",
@@ -169,7 +186,8 @@
         "transfer": "Überweisung",
         "refund": "Erstattung",
         "fee": "Bankgebühr",
-        "atmWithdrawal": "Geldautomatenabhebung"
+        "atmWithdrawal": "Geldautomatenabhebung",
+        "invoicePayment": "Rechnungszahlung"
       },
       "categories": {
         "supplies": "Bedarfsmaterial",
@@ -181,6 +199,7 @@
         "transfers": "Interne Überweisungen",
         "refund": "Erstattungen",
         "cash": "Bargeldabhebungen",
+        "sales": "Umsätze",
         "uncategorised": "Nicht kategorisiert"
       },
       "justification": {
@@ -228,7 +247,7 @@
         "source": "Quelle",
         "date": "Datum",
         "bank": "Bank",
-        "sageBank": "Sage",
+        "sageBank": "Sage Wallet",
         "bankSource": "Bank: {bank}. Konto: {account}.",
         "cardSource": "Bank: {bank}. Konto: {account}. Karteninhaber: {cardholder}.",
         "description": "Beschreibung",
@@ -236,6 +255,8 @@
         "subtitle": "Prüfen Sie Transaktionen und belegen Sie diese mit einer Rechnung oder einer Kategorie.",
         "account": "Bankkonto",
         "allAccounts": "Alle Bankkonten",
+        "accountOption": "{bank} · {account} · {reference}",
+        "accountOptionSameBank": "{bank} · {reference}",
         "bankBalance": "Banksaldo",
         "ledgerBalance": "Buchsaldo",
         "toJustifyAmount": "Zu belegender Betrag"
@@ -413,8 +434,24 @@
     "createDialog": { "title": "Bankkonto erstellen", "description": "Fügen Sie ein bestehendes Bankkonto für Ihre Sage-Buchhaltungsdaten hinzu.", "accountName": "Kontoname", "accountNumber": "Kontonummer", "ledgerAccount": "Sachkonto", "cancel": "Abbrechen", "create": "Konto erstellen" },
     "accountNavigation": { "overview": "Übersicht", "debitCards": "Debitkarten", "transactions": "Transaktionen", "transfers": "Überweisungen", "users": "Benutzer", "statements": "Kontoauszüge und Dokumente", "settings": "Einstellungen", "switchAccount": "Konto wechseln", "ariaLabel": "Navigation des Sage Wallet-Kontos" },
     "dashboard": {
+      "moreActions": "Weitere Aktionen",
+      "cashFlow": {
+        "title": "Geldbewegungen",
+        "period": "Täglich · {month} · EUR",
+        "moneyIn": "Eingänge",
+        "moneyOut": "Ausgänge",
+        "pointSummary": "{period}: {moneyIn} Eingänge, {moneyOut} Ausgänge.",
+        "empty": "Diesen Monat gibt es keine abgeschlossenen Geldbewegungen.",
+        "balance": "Tagesendsaldo",
+        "axes": "Tägliche Eingänge und Ausgänge in EUR. Die Daten verlaufen von links nach rechts.",
+        "balanceTitle": "Saldoverlauf",
+        "balancePointSummary": "{period}: Tagesendsaldo {balance}.",
+        "balanceAxes": "Täglicher Endsaldo in EUR. Die Daten verlaufen von links nach rechts. Die vertikale Achse ist so skaliert, dass Saldoänderungen sichtbar sind.",
+        "balanceEmpty": "Kein Saldoverlauf verfügbar.",
+        "exploreHelp": "Mit den Pfeiltasten nach links und rechts erkunden Sie die Tageswerte, mit Pos1 oder Ende springen Sie zum ersten oder letzten Tag. Mit Escape schließen Sie das Popup."
+      },
       "bankAccountsBreadcrumb": "Bankkonten",
-      "title": "Geschäftsbankkonto",
+      "title": "Sage Wallet",
       "subtitle": "Saldo, Debitkartenaktivität und aktuelle Transaktionen anzeigen.",
       "primaryBusinessAccount": "Primäres Geschäftskonto",
       "accountEnding": "Konto endet auf",
@@ -429,6 +466,21 @@
       "transactions": "{count} Transaktionen",
       "waitingToClear": "{count} warten auf Freigabe",
       "monthlyCardSpend": "Monatliche Kartenausgaben",
+      "cardSpend": {
+        "period": "{currentPeriod}, verglichen mit {previousPeriod}",
+        "rowsHint": "{shown} von {count} aktiven Karten · {transactions} Transaktionen",
+        "card": "Karte",
+        "comparison": "Vergleich zum Vormonat",
+        "previousSpend": "Zuvor: {amount}",
+        "empty": "Keine aktiven Debitkarten für dieses Konto.",
+        "change": {
+          "increase": "{percentage} mehr als im Vormonat",
+          "decrease": "{percentage} weniger als im Vormonat",
+          "unchanged": "Unverändert zum Vormonat",
+          "noPreviousSpend": "Keine Ausgaben im Vormonat",
+          "unavailable": "Vergleich nicht verfügbar"
+        }
+      },
       "topCardholders": "Kartennutzer nach Ausgaben",
       "viewAllDebitCards": "Alle Debitkarten anzeigen",
       "debitCards": "Debitkarten",

@@ -1,7 +1,7 @@
 import type { ICellRendererParams } from "../data-grid";
 import Icon from "carbon-react/lib/components/icon";
 import IconButton from "carbon-react/lib/components/icon-button";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import Portrait from "carbon-react/lib/components/portrait";
 import { getProductImage } from "../../data/productImages";
 

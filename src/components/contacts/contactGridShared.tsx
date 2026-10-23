@@ -1,5 +1,5 @@
 import type { ICellRendererParams } from "../data-grid";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 
 type ActiveInactiveStatus = "active" | "inactive";
 

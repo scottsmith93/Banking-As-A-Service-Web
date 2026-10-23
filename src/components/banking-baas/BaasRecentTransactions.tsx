@@ -17,7 +17,7 @@ import "./transactions/transactions.css";
 // Carbon FlatTable owns the small overview table; invoice association is explicit mock data.
 export default function BaasRecentTransactions() {
   const { language } = useLanguage();
-  const columns = useTransactionTableColumns();
+  const columns = useTransactionTableColumns({ overview: true });
   const navigate = useNavigate();
   const { accountId = "sage-operating-account" } = useParams();
   const { transactions } = useBankingTransactions();
@@ -39,9 +39,11 @@ export default function BaasRecentTransactions() {
           <Typography variant="h2" as="h2" id="recent-transactions-title">{copy.recentTransactions}</Typography>
           <Typography variant="small" as="p">{interpolate(transactionCopy.justification.recentHint, { count: recentTransactions.length })}</Typography>
         </Box>
-        <Button variantType="secondary" size="small" onClick={() => navigate(bankMovementsHref(accountId))}>{copy.viewAllTransactions}</Button>
+        <Box className="baasOverviewTransactions__actions" display="flex" alignItems="center" flexWrap="wrap" gap={2}>
+          {missing.length > 0 && <div className="baasOverviewTransactions__notice"><Message variant="info-subtle" size="medium" width="fit-content">{interpolate(transactionCopy.taskDescription, { count: missing.length, amount: money.format(missing.reduce((sum, row) => sum + Math.round(Math.abs(row.amount) * 100), 0) / 100) })}</Message></div>}
+          <Button variantType="secondary" size="small" onClick={() => navigate(bankMovementsHref(accountId))}>{copy.viewAllTransactions}</Button>
+        </Box>
       </Box>
-      {missing.length > 0 && <Message variant="info-subtle" width="fit-content">{interpolate(transactionCopy.taskDescription, { count: missing.length, amount: money.format(missing.reduce((sum, row) => sum + Math.round(Math.abs(row.amount) * 100), 0) / 100) })}</Message>}
       <FlatTable width="100%" overflowX="auto" colorTheme="transparent-base" title={copy.recentTransactions} bottomBorderRadius="borderRadius100">
         <FlatTableHead><FlatTableRow>{columns.map(column => <FlatTableHeader key={column.id} data-role={`baasTransactionColumn--${column.id}`} align={column.align}>{column.label}</FlatTableHeader>)}</FlatTableRow></FlatTableHead>
         <FlatTableBody>{recentTransactions.map(transaction => <FlatTableRow key={transaction.id}

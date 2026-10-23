@@ -1,7 +1,7 @@
 import Box from "carbon-react/lib/components/box";
 import Icon from "carbon-react/lib/components/icon";
 import Link from "carbon-react/lib/components/link";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../../status-pill/StatusPill";
 import Typography from "carbon-react/lib/components/typography";
 import { Card, CardContent } from "./Card";
 import KeyRow from "./KeyRow";

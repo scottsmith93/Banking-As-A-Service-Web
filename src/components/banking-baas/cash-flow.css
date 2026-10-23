@@ -1,0 +1,34 @@
+.baasOverviewCharts { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, calc(var(--spacing1000) * 4 + var(--spacing400))), 1fr)); gap: var(--spacing200) var(--spacing300); min-width: 0; padding-top: var(--spacing200); }
+.baasCashFlow { display: flex; flex-direction: column; min-width: 0; }
+.baasCashFlow__heading { flex: 1; align-content: flex-start; margin-bottom: var(--spacing100); }
+.baasCashFlow__heading h2 { margin: 0; font-weight: var(--fontWeights500); }
+.baasCashFlow__period { display: inline-block; margin-left: var(--spacing100); color: var(--colorsUtilityYin065); font-weight: var(--fontWeights400); }
+.baasCashFlow__legend, .baasCashFlow__legend > span { display: flex; align-items: center; gap: var(--spacing100); }
+.baasCashFlow__legend { flex-wrap: wrap; column-gap: var(--spacing200); font-size: var(--fontSizes100); color: var(--colorsUtilityYin065); }
+.baasCashFlow__legend i { display: block; width: var(--sizing100); height: var(--sizing100); border-radius: var(--global-radius-container-circle); }
+.baasCashFlow__in { fill: var(--mode-color-brand-inverse-default); background: var(--mode-color-brand-inverse-default); }
+.baasCashFlow__out { fill: var(--mode-color-colorcode-red-soft); background: var(--mode-color-colorcode-red-soft); }
+.baasCashFlow__balanceLine { fill: none; stroke: var(--dataviz-chart-line-blue); stroke-width: var(--borderWidth200); stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.baasCashFlow__legend .baasCashFlow__balanceKey,
+.baasCashFlowTooltip .baasCashFlow__balanceKey { width: var(--sizing200); height: var(--borderWidth200); border-radius: 0; background: var(--dataviz-chart-line-blue); }
+.baasCashFlow__balancePoint { fill: transparent; }
+.baasCashFlow__plot { display: block; width: 100%; height: calc(var(--spacing1000) + var(--spacing700)); overflow: visible; }
+.baasCashFlow__axis { fill: var(--colorsUtilityYin065); font-family: inherit; font-size: var(--fontSizes100); }
+.baasCashFlow__rule { stroke: color-mix(in srgb, var(--colorsUtilityMajor050) 45%, var(--colorsUtilityYang100)); stroke-width: var(--borderWidth100); vector-effect: non-scaling-stroke; }
+.baasCashFlow__empty { min-height: var(--spacing1000); display: flex; align-items: center; color: var(--colorsUtilityYin065); }
+.baasCashFlow__frame { position: relative; border-radius: var(--borderRadius100); }
+.baasCashFlow__popupAnchor { pointer-events: none; }
+.baasCashFlow__popupAnchor > span { display: block; width: 100%; height: 100%; }
+/* A custom chart has no Carbon focusable counterpart: match Carbon's tokens. */
+.baasCashFlow__frame:focus-visible { box-shadow: 0 0 0 var(--borderWidth200) var(--mode-color-action-focus-default), 0 0 0 var(--borderWidth400) var(--mode-color-action-focus-with-default); outline: var(--borderWidth300) solid transparent; }
+.baasCashFlow__cursor { stroke: var(--colorsUtilityMajor150); stroke-width: var(--borderWidth100); vector-effect: non-scaling-stroke; pointer-events: none; }
+[role="tooltip"]:has(.baasCashFlowTooltip) { box-shadow: var(--boxShadow090); border: var(--borderWidth100) solid var(--colorsUtilityMajor050); border-radius: var(--global-radius-container-m); max-width: min(calc(var(--spacing1000) * 4), calc(100vw - var(--spacing400))); white-space: normal; }
+.baasCashFlowTooltip { min-width: calc(var(--spacing1000) * 2); }
+.baasCashFlowTooltip p { margin: 0 0 var(--spacing100); }
+.baasCashFlowTooltip dl { display: flex; flex-direction: column; gap: var(--spacing100); margin: 0; }
+.baasCashFlowTooltip dl > div { display: flex; align-items: center; justify-content: space-between; gap: var(--spacing300); }
+.baasCashFlowTooltip dt { display: flex; align-items: center; gap: var(--spacing100); }
+.baasCashFlowTooltip dt i { display: block; flex-shrink: 0; }
+.baasCashFlowTooltip dt i:not(.baasCashFlow__balanceKey) { width: var(--sizing100); height: var(--sizing100); border-radius: var(--global-radius-container-circle); }
+.baasCashFlowTooltip dd { margin: 0; text-align: right; font-weight: var(--fontWeights700); font-variant-numeric: tabular-nums; }
+.baasCashFlow__srOnly { position: absolute; width: var(--borderWidth100); height: var(--borderWidth100); overflow: hidden; clip-path: inset(50%); white-space: nowrap; }

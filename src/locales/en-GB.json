@@ -65,9 +65,26 @@
       "emptyQueueHint": "No transactions need an invoice or category.",
       "details": "Transaction details",
       "invoiceTitle": "Purchase invoice",
+      "salesLabel": "Sales",
+      "purchaseLabel": "Purchase",
+      "salesInvoiceTitle": "Sales invoice",
+      "viewSalesInvoice": "View sales invoice {reference}",
+      "customer": "Customer",
+      "paid": "Paid",
+      "dueDate": "Due date",
+      "backToSalesInvoices": "Sales invoices",
+      "invoicePaymentDescription": "Payment of invoice {reference}",
       "noInvoiceText": "Add an invoice to finish matching this purchase.",
       "uploadInvoice": "Upload purchase invoice",
       "linkExisting": "Link an existing invoice",
+      "reminder": {
+        "send": "Send reminder to cardholder",
+        "sending": "Sending reminder…",
+        "simulated": "Reminder simulated",
+        "recipient": "Ask {cardholder} to add the missing purchase invoice.",
+        "demoHint": "Prototype only — no notification will be sent.",
+        "confirmation": "Reminder to {cardholder} simulated. No notification was sent."
+      },
       "matchComplete": "Transaction matched",
       "matchSuccess": "{reference} is matched to {merchant}.",
       "nextTransaction": "Next transaction needing attention",
@@ -169,7 +186,8 @@
         "transfer": "Transfer",
         "refund": "Refund",
         "fee": "Bank fee",
-        "atmWithdrawal": "ATM withdrawal"
+        "atmWithdrawal": "ATM withdrawal",
+        "invoicePayment": "Invoice payment"
       },
       "categories": {
         "supplies": "Supplies",
@@ -181,6 +199,7 @@
         "transfers": "Internal transfers",
         "refund": "Refunds",
         "cash": "Cash withdrawals",
+        "sales": "Sales",
         "uncategorised": "Uncategorised"
       },
       "justification": {
@@ -228,7 +247,7 @@
         "source": "Source",
         "date": "Date",
         "bank": "Bank",
-        "sageBank": "Sage",
+        "sageBank": "Sage Wallet",
         "bankSource": "Bank: {bank}. Account: {account}.",
         "cardSource": "Bank: {bank}. Account: {account}. Cardholder: {cardholder}.",
         "description": "Description",
@@ -236,6 +255,8 @@
         "subtitle": "Review transactions and justify them with an invoice or a category.",
         "account": "Bank account",
         "allAccounts": "All bank accounts",
+        "accountOption": "{bank} · {account} · {reference}",
+        "accountOptionSameBank": "{bank} · {reference}",
         "bankBalance": "Bank balance",
         "ledgerBalance": "Ledger balance",
         "toJustifyAmount": "Amount to justify"
@@ -460,8 +481,24 @@
       "ariaLabel": "Sage Wallet account navigation"
     },
     "dashboard": {
+      "moreActions": "More actions",
+      "cashFlow": {
+        "title": "Money movements",
+        "period": "Daily · {month} · EUR",
+        "moneyIn": "Money in",
+        "moneyOut": "Money out",
+        "pointSummary": "{period}: {moneyIn} in, {moneyOut} out.",
+        "empty": "No completed money movements this month.",
+        "balance": "Closing balance",
+        "axes": "Daily money in and money out in EUR. Dates run from left to right.",
+        "balanceTitle": "Balance history",
+        "balancePointSummary": "{period}: closing balance {balance}.",
+        "balanceAxes": "Daily closing balance in EUR. Dates run from left to right. The vertical axis is scaled to show changes in balance.",
+        "balanceEmpty": "No balance history available.",
+        "exploreHelp": "Use the Left and Right arrow keys to explore daily values, Home or End to jump to the first or last day, and Escape to dismiss the popup."
+      },
       "bankAccountsBreadcrumb": "Bank accounts",
-      "title": "Business Bank Account",
+      "title": "Sage Wallet",
       "subtitle": "View your balance, debit card activity and recent transactions.",
       "primaryBusinessAccount": "Primary business account",
       "accountEnding": "Account ending",
@@ -476,6 +513,21 @@
       "transactions": "{count} transactions",
       "waitingToClear": "{count} waiting to clear",
       "monthlyCardSpend": "Monthly debit card spend",
+      "cardSpend": {
+        "period": "{currentPeriod}, compared with {previousPeriod}",
+        "rowsHint": "Showing {shown} of {count} active cards · {transactions} transactions",
+        "card": "Card",
+        "comparison": "Compared with last month",
+        "previousSpend": "Previously {amount}",
+        "empty": "No active debit cards for this account.",
+        "change": {
+          "increase": "{percentage} more than last month",
+          "decrease": "{percentage} less than last month",
+          "unchanged": "No change from last month",
+          "noPreviousSpend": "No spend last month",
+          "unavailable": "Comparison unavailable"
+        }
+      },
       "topCardholders": "Top cardholders by spend",
       "viewAllDebitCards": "View all debit cards",
       "debitCards": "Debit cards",

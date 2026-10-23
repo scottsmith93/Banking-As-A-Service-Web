@@ -55,12 +55,26 @@ such as `/banking/baas` working when a stakeholder opens or refreshes them.
 
 To create the hosted site:
 
-1. In Netlify, choose **Add new project** → **Import an existing project** and
-   connect `Sage/Active.Web.UX.Template` from GitHub.
-2. Choose the `Banking-As-A-Service` branch as the production branch if that is
-   the version you want stakeholders to review. Netlify reads the build settings
-   from `netlify.toml`.
-3. Before sharing the URL, open **Project configuration** → **General** →
+1. Create a **private**, empty repository in your personal GitHub account, for
+   example `banking-prototype`. Leave GitHub's README, licence and `.gitignore`
+   initialization options unchecked because this local project already has its
+   own files and history. Creating another copy of the template's default branch
+   will not include your local Banking prototype work.
+2. Connect this local project to the new repository and push the
+   `Banking-As-A-Service` branch. A remote is simply a saved GitHub destination.
+   For this prototype, `origin` points to
+   `scottsmith93/Banking-As-A-Service-Web`, and `sage-template` retains the
+   original Sage repository. In GitHub Desktop, choose this local repository,
+   select the `Banking-As-A-Service` branch, and choose **Publish branch** or
+   **Push origin**. Check that its destination is your personal repository.
+3. In Netlify, choose **Add new project** → **Import an existing project**,
+   connect your personal GitHub account, and select your new repository.
+   Grant Netlify access to that repository when GitHub asks.
+4. Choose `Banking-As-A-Service` as the production branch. Netlify reads the
+   build settings from `netlify.toml`: build command `npm run build`, publish
+   directory `dist`, and no base directory. The normal build excludes UI Fork's
+   development widget. Netlify creates `dist` itself; do not commit that folder.
+5. Before sharing the URL, open **Project configuration** → **General** →
    **Visitor access** → **Project visibility**, choose **Password**, set a
    shared password, and select **Production and previews** if every version
    should require it. Share the site URL and password with stakeholders through
@@ -78,6 +92,19 @@ changes to GitHub as usual; Netlify will build the production branch after each
 push. Pull requests and other branches can use Netlify Deploy Previews or branch
 deploys when enabled in the project's deploy settings. Keep those previews
 password protected too if they contain work that is not ready for wider review.
+
+The everyday workflow is **edit locally → commit → push to your personal
+repository → Netlify builds and publishes automatically**. Local edits alone do
+not update the shared site. Stakeholders need the Netlify URL and password, not
+access to your private GitHub repository.
+
+Manual drag-and-drop deployment is also possible: `npm run build` produces the
+`dist` folder to upload. This does not establish automatic updates; use the
+Git-connected setup above for ongoing iterations. Both build methods include
+the app's deep-link routing rule from `public/_redirects`.
+
+Setup references: [Netlify repository deployment](https://docs.netlify.com/manage/projects/add-new-project/)
+and [password protection](https://docs.netlify.com/manage/security/secure-access-to-sites/password-protection/).
 
 UI Fork is available automatically during local development. To create or edit
 component versions from its floating widget, run its watch server in a second

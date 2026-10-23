@@ -1,9 +1,10 @@
 import Box from "carbon-react/lib/components/box";
 import Button from "carbon-react/lib/components/button/__next__";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import Typography from "carbon-react/lib/components/typography";
 import BaasCardNetworkLogo from "./BaasCardNetworkLogo";
 import type { DebitCard } from "../../data/bankingBaas";
+import MoneyValue from "../money-value/MoneyValue";
 
 type BaasCardTileProps = {
   card: DebitCard;
@@ -26,11 +27,6 @@ type BaasCardTileProps = {
 // A debit card drawn as the real thing (ID-1 proportions, Sage Wallet styles),
 // sitting in a tile with its monthly spend and actions underneath.
 export default function BaasCardTile({ card, copy, locale, onOpenDetails }: BaasCardTileProps) {
-  const formattedSpend = new Intl.NumberFormat(locale, {
-    style: "currency",
-    currency: "EUR",
-  }).format(card.monthlySpendEur);
-
   return (
     <Box className={`baasCardTile baasCardTile--${card.colour}${card.status === "deactivated" ? " baasCardTile--deactivated" : ""}`} as="article">
       <Box className={`baasCardTile__visual baasCardTile__visual--${card.colour}`}>
@@ -38,7 +34,7 @@ export default function BaasCardTile({ card, copy, locale, onOpenDetails }: Baas
         <Box className="baasCardTile__topline" display="flex" justifyContent="space-between" alignItems="center">
           <img className="baasCardTile__sageLogo" src="/sage-logo.svg" alt="Sage" />
           <Box className="baasCardTile__statusPill">
-            <Pill pillRole="status" colorVariant={card.status === "issued" ? "positive" : "neutral"} size="S" fill>
+            <Pill pillRole="status" colorVariant={card.status === "issued" ? "positive" : "neutral"} size="S" fill isDarkBackground={card.colour === "night"}>
               {card.status === "issued" ? copy.active : card.status === "ordered" ? copy.ordered : copy.deactivated}
             </Pill>
           </Box>
@@ -70,7 +66,7 @@ export default function BaasCardTile({ card, copy, locale, onOpenDetails }: Baas
       <Box className="baasCardTile__footer" display="flex" justifyContent="space-between" alignItems="center" gap={2}>
         <Box display="flex" flexDirection="column">
           <Typography variant="small" as="span">{copy.monthlySpend}</Typography>
-          <Typography variant="strong" as="span" className="numericValue">{formattedSpend}</Typography>
+          <Typography variant="strong" as="span"><MoneyValue amount={card.monthlySpendEur} locale={locale} direction="out" /></Typography>
         </Box>
         <Box className="baasCardTile__actions" display="flex" gap={1}>
           <Button variantType="secondary" size="small" onClick={() => onOpenDetails(card)}>{copy.manage}</Button>

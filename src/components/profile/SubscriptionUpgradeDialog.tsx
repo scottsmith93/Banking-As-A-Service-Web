@@ -4,7 +4,7 @@ import Box from "carbon-react/lib/components/box";
 import Typography from "carbon-react/lib/components/typography";
 import Button from "carbon-react/lib/components/button/__next__";
 import Icon from "carbon-react/lib/components/icon";
-import Pill from "carbon-react/lib/components/pill";
+import Pill from "../status-pill/StatusPill";
 import LoaderBar from "carbon-react/lib/components/loader-bar";
 import shoppingCartIllustration from "../../assets/subscription-flow/shopping-cart-illustration.png";
 import overloadIllustration from "../../assets/subscription-flow/overload-illustration.svg";

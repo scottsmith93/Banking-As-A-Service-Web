@@ -1,8 +1,10 @@
 // MOCK DATA — replace with real API responses. EUR invoice records represent the purchase-invoice search API.
 import { connectedBankTransactions } from "./bankAccountConnections";
+import { bankPaidSalesInvoice } from "./invoices";
+import { bankDailyActivity } from "./bankDailyActivity";
 export type PaymentStatus = "completed" | "pending" | "failed" | "cancelled" | "disputed";
 export type PaymentMethod = "applePay" | "googlePay" | "card" | "bankTransfer" | "directDebit";
-export type TransactionCategory = "supplies" | "software" | "equipment" | "travel" | "utilities" | "fees" | "transfers" | "refund" | "cash" | "uncategorised";
+export type TransactionCategory = "supplies" | "software" | "equipment" | "travel" | "utilities" | "fees" | "transfers" | "refund" | "cash" | "uncategorised" | "sales";
 export type MatchingState = "missing" | "suggested" | "matched" | "notRequired" | "waiting" | "categoryNeeded" | "categorised";
 export type BankTransaction = {
   id: string;
@@ -14,7 +16,7 @@ export type BankTransaction = {
   amount: number;
   currency: "EUR";
   category: TransactionCategory;
-  type: "cardPurchase" | "transfer" | "refund" | "fee" | "directDebit" | "atmWithdrawal";
+  type: "cardPurchase" | "transfer" | "refund" | "fee" | "directDebit" | "atmWithdrawal" | "invoicePayment";
   paymentMethod: PaymentMethod;
   paymentStatus: PaymentStatus;
   cardholder: string | null;
@@ -22,6 +24,8 @@ export type BankTransaction = {
   network: "mastercard" | null;
   invoiceRequired: boolean;
   invoiceId: string | null;
+  // Sales and purchase evidence stay separate; purchase matching must never consume a sales invoice.
+  salesInvoiceId?: string;
   location: { address: string; latitude: number; longitude: number } | null;
 };
 export type BankPurchaseInvoice = {
@@ -50,7 +54,7 @@ const transactionSeeds: TransactionSeed[] = [
   ["Metro Office Supplies", -92.4, "supplies", "googlePay", "Alex Morgan"],
   ["CycleTech Wholesale", -1240, "equipment", "bankTransfer", null],
   ["Amazon Web Services", -84.32, "software", "card", "Jamie Taylor", "completed", "PI-10465"],
-  ["Sage Banking", -8, "fees", "bankTransfer", null],
+  ["Sage Wallet", -8, "fees", "bankTransfer", null],
   ["Bristol Cycle Works", -215.75, "equipment", "card", "Jamie Taylor"],
   ["Origin Coffee", -164.4, "supplies", "applePay", "Alex Morgan"],
   ["British Telecom", -48, "utilities", "directDebit", null],
@@ -77,7 +81,17 @@ const atmTransactions: BankTransaction[] = [
   { id: "transaction-atm-001", accountId: "sage-operating-account", transactionId: "EVJN26ATM0014608EUR", reference: "ATM-2026-001", date: "2026-10-22", merchant: "Broadmead ATM", amount: -200, currency: "EUR", category: "cash", type: "atmWithdrawal", paymentMethod: "card", paymentStatus: "completed", cardholder: "Alex Morgan", lastFour: "4608", network: "mastercard", invoiceRequired: false, invoiceId: null, location: merchantLocations["Metro Office Supplies"] },
   { id: "transaction-atm-002", accountId: "sage-operating-account", transactionId: "EVJN26ATM0024608EUR", reference: "ATM-2026-002", date: "2026-10-21", merchant: "Temple Meads ATM", amount: -120, currency: "EUR", category: "uncategorised", type: "atmWithdrawal", paymentMethod: "card", paymentStatus: "completed", cardholder: "Alex Morgan", lastFour: "4608", network: "mastercard", invoiceRequired: false, invoiceId: null, location: merchantLocations["Great Western Railway"] },
 ];
-export const bankTransactions: BankTransaction[] = [...atmTransactions, ...transactionSeeds.map(([merchant, amount, category, method, person, status = "completed", invoiceId], index): BankTransaction => {
+export const bankSnapshotDate = "2026-10-23";
+export const salesInvoicePayment: BankTransaction = {
+  id: "transaction-sales-001", accountId: "sage-operating-account",
+  transactionId: "EVJN26SALE104918842EUR", reference: bankPaidSalesInvoice.invoiceNumber,
+  date: bankSnapshotDate, merchant: bankPaidSalesInvoice.customerName,
+  amount: bankPaidSalesInvoice.totalGbp, currency: "EUR", category: "sales",
+  type: "invoicePayment", paymentMethod: "bankTransfer", paymentStatus: "completed",
+  cardholder: null, lastFour: null, network: null, invoiceRequired: false,
+  invoiceId: null, salesInvoiceId: bankPaidSalesInvoice.id, location: null,
+};
+export const bankTransactions: BankTransaction[] = [salesInvoicePayment, ...atmTransactions, ...transactionSeeds.map(([merchant, amount, category, method, person, status = "completed", invoiceId], index): BankTransaction => {
   const number = String(index + 1).padStart(3, "0");
   const date = new Date(Date.UTC(2026, 9, 20 - index)).toISOString().slice(0, 10);
   return {
@@ -91,7 +105,7 @@ export const bankTransactions: BankTransaction[] = [...atmTransactions, ...trans
     invoiceId: invoiceId ?? null,
     location: method === "directDebit" || method === "bankTransfer" ? null : merchantLocations[merchant] ?? null,
   };
-}), ...connectedBankTransactions];
+}), ...bankDailyActivity, ...connectedBankTransactions];
 
 // Issue dates intentionally precede bank payment dates; same-day, earlier-date and ambiguous cases exercise matching.
 const invoiceSeeds: [string, string, string, number][] = [

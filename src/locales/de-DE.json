@@ -250,7 +250,6 @@
       "cardholderError": "Wählen Sie eine karteninhabende Person aus, um eine Debitkarte zu erstellen.",
       "nickname": "Kartenname",
       "nicknamePlaceholder": "Team oder Gruppe",
-      "networkRequired": "Kartennetzwerk",
       "digitalWallets": "Digitale Wallets *",
       "digitalWalletsHint": "Diese Karte kann zu unterstützten digitalen Wallets hinzugefügt werden.",
       "walletProviders": {
@@ -325,7 +324,7 @@
             "Keine Lieferung erforderlich"
           ]
         },
-        "networks": "Visa oder Mastercard"
+        "networks": "Mastercard"
       },
       "pin": {
         "label": "Karten-PIN",
@@ -573,7 +572,6 @@
       "searchLabel": "Karten suchen",
       "searchPlaceholder": "Nach Kartennutzer suchen",
       "accountLabel": "Konto",
-      "cardCount": "{count} Karten",
       "all": "Alle",
       "issued": "Ausgestellt",
       "deactivated": "Deaktiviert",
@@ -586,13 +584,11 @@
       "virtual": "Virtuell",
       "physical": "Physisch",
       "expiry": "Gültig bis",
-      "securityCode": "CVV",
       "tabsLabel": "Kartenstatus",
       "issueDialogTitle": "Neue Karte ausstellen",
       "issueDialogDescription": "Wählen Sie die Karteninhaberin oder den Karteninhaber und passen Sie Kartennetzwerk und Farbe an.",
       "assignCardholder": "Einer Person zuweisen",
       "networkLabel": "Kartennetzwerk",
-      "visa": "Visa",
       "mastercard": "Mastercard",
       "colourLabel": "Kartenfarbe",
       "colours": {

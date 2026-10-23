@@ -3417,18 +3417,21 @@ body {
   .baasAccountNavigation { padding-inline: var(--spacing300); }
 }
 
-.bankingBaasCardsPage__filters {
-  justify-content: flex-start;
-  gap: var(--spacing300);
+/* Title and actions share a row when there's room; actions drop below otherwise. */
+.bankingBaasCardsPage__header {
+  flex-wrap: wrap;
 }
 
-.bankingBaasCardsPage__filters > [data-component="textbox"] {
-  flex: 0 1 auto;
+.bankingBaasCardsPage__header > :first-child {
+  flex: 1 1 calc(var(--spacing1000) * 5);
 }
 
-.bankingBaasCardsPage__filters > p {
-  margin: 0;
-  color: var(--colorsUtilityYin065);
+.bankingBaasCardsPage__actions {
+  flex: 0 0 auto;
+}
+
+.bankingBaasCardsPage__actions > [data-component="textbox"] {
+  width: calc(var(--spacing1000) * 3);
 }
 
 .baasCardGrid {
@@ -4166,6 +4169,154 @@ body {
   justify-content: flex-end;
 }
 
+/* Cards page: each card is drawn as a real card (ID-1 proportions) in the light
+   Sage Wallet styles, resting in a tile with its spend and actions below. */
+.baasCardGrid .baasCardTile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing150);
+  padding: var(--spacing150);
+  overflow: visible;
+  border-radius: var(--borderRadius200);
+  transition: box-shadow 200ms ease, translate 200ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.baasCardGrid .baasCardTile:hover {
+  box-shadow: var(--boxShadow100);
+  translate: 0 calc(-1 * var(--borderWidth200));
+}
+
+.baasCardGrid .baasCardTile__visual {
+  position: relative;
+  box-sizing: border-box;
+  aspect-ratio: 85.6 / 54;
+  min-height: 0;
+  gap: var(--spacing050);
+  padding: var(--spacing200) var(--spacing250);
+  overflow: hidden;
+  border: var(--borderWidth100) solid color-mix(in srgb, var(--colorsUtilityYang100) 60%, transparent);
+  border-radius: var(--borderRadius200);
+  color: var(--colorsUtilityYin090);
+  box-shadow: 0 var(--spacing150) var(--spacing300) color-mix(in srgb, var(--colorsActionMajor500) 22%, transparent);
+}
+
+.baasCardGrid .baasCardTile__visual--sage {
+  background:
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--colorsUtilityYang100) 75%, transparent), transparent 45%),
+    linear-gradient(140deg, color-mix(in srgb, var(--colorsActionMajor500) 55%, var(--colorsUtilityYang100)), var(--colorsActionMajor025));
+}
+
+.baasCardGrid .baasCardTile__visual--night {
+  border-color: color-mix(in srgb, var(--colorsUtilityYang100) 18%, transparent);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--colorsActionMajor500) 45%, transparent), transparent 50%),
+    radial-gradient(circle at 0% 100%, color-mix(in srgb, var(--mode-color-ai-stop-2) 40%, transparent), transparent 55%),
+    var(--colorsUtilityYin090);
+  color: var(--colorsUtilityYang100);
+  box-shadow: 0 var(--spacing150) var(--spacing300) color-mix(in srgb, var(--colorsUtilityYin100) 25%, transparent);
+}
+
+.baasCardGrid .baasCardTile__visual--plum {
+  background:
+    radial-gradient(circle at 90% 10%, color-mix(in srgb, var(--colorsUtilityYang100) 70%, transparent), transparent 45%),
+    linear-gradient(140deg, color-mix(in srgb, var(--mode-color-ai-stop-3) 55%, var(--colorsUtilityYang100)), color-mix(in srgb, var(--mode-color-ai-stop-2) 20%, var(--colorsUtilityYang100)));
+  box-shadow: 0 var(--spacing150) var(--spacing300) color-mix(in srgb, var(--mode-color-ai-stop-3) 28%, transparent);
+}
+
+/* Light cards use dark text; Midnight keeps light text. */
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__secondaryText,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__cardType,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__nicknameRow,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__holderRow {
+  color: var(--colorsUtilityYin065);
+}
+
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__number,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__holder,
+.baasCardGrid .baasCardTile__visual:not(.baasCardTile__visual--night) .baasCardTile__primaryText {
+  color: var(--colorsUtilityYin090);
+}
+
+.baasCardGrid .baasCardTile__topline,
+.baasCardGrid .baasCardTile__nicknameRow {
+  position: relative;
+  min-height: 0;
+}
+
+.baasCardGrid .baasCardTile__sageLogo {
+  height: var(--spacing300);
+}
+
+.baasCardGrid .baasCardTile__nickname {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.baasCardGrid .baasCardTile__number,
+.baasCardGrid .baasCardTile__holderRow {
+  position: relative;
+}
+
+.baasCardGrid .baasCardTile__number {
+  margin-top: auto;
+}
+
+.baasCardGrid .baasCardTile__holderRow {
+  margin-top: 0;
+}
+
+.baasCardGrid .baasCardTile__network {
+  flex: 0 0 auto;
+}
+
+/* Deactivated cards fade back so active ones lead. */
+.baasCardGrid .baasCardTile--deactivated .baasCardTile__visual {
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+.baasCardGrid .baasCardTile__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, color-mix(in srgb, var(--colorsUtilityYang100) 55%, transparent) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.baasCardGrid .baasCardTile__footer {
+  flex-wrap: wrap;
+  min-height: 0;
+  padding: 0 var(--spacing050);
+  border-top: 0;
+}
+
+.baasCardGrid .baasCardTile__footer span {
+  white-space: nowrap;
+}
+
+.baasCardGrid .baasCardTile__actions {
+  flex-wrap: nowrap;
+  margin-left: auto;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .baasCardGrid .baasCardTile:hover .baasCardTile__shine {
+    transition: transform 900ms ease;
+    transform: translateX(120%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .baasCardGrid .baasCardTile {
+    transition: none;
+  }
+
+  .baasCardGrid .baasCardTile:hover {
+    translate: none;
+  }
+}
+
 .baasIssueCardForm > p,
 .baasCardSuccess {
   margin: 0;
@@ -4244,7 +4395,7 @@ body {
   .bankingBaasPage__titleRow,
   .bankingBaasPage__toolbar,
   .bankingBaasCardsPage__header,
-  .bankingBaasCardsPage__filters,
+  .bankingBaasCardsPage__actions,
   .baasAccountHero,
   .baasOnboarding__providerActions {
     flex-direction: column;

@@ -250,7 +250,6 @@
       "cardholderError": "Select a cardholder to create a debit card.",
       "nickname": "Card nickname",
       "nicknamePlaceholder": "Team or group name",
-      "networkRequired": "Network",
       "digitalWallets": "Digital wallets *",
       "digitalWalletsHint": "Allow this card to be added to supported digital wallets.",
       "walletProviders": {
@@ -325,7 +324,7 @@
             "No delivery required"
           ]
         },
-        "networks": "Visa or Mastercard"
+        "networks": "Mastercard"
       },
       "pin": {
         "label": "Card PIN",
@@ -784,7 +783,6 @@
       "searchLabel": "Search cards",
       "searchPlaceholder": "Search by cardholder",
       "accountLabel": "Account",
-      "cardCount": "{count} cards",
       "all": "All",
       "issued": "Issued",
       "deactivated": "Deactivated",
@@ -797,13 +795,11 @@
       "virtual": "Virtual",
       "physical": "Physical",
       "expiry": "EXP",
-      "securityCode": "CVV",
       "tabsLabel": "Card status",
       "issueDialogTitle": "Issue a new card",
       "issueDialogDescription": "Choose who the card is for and personalise its network and colour.",
       "assignCardholder": "Assign to a cardholder",
       "networkLabel": "Card network",
-      "visa": "Visa",
       "mastercard": "Mastercard",
       "colourLabel": "Card colour",
       "colours": {

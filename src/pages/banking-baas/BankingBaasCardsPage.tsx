@@ -51,7 +51,6 @@ export default function BankingBaasCardsPage() {
     virtual: copy.cards.virtual,
     physical: copy.cards.physical,
     expiry: copy.cards.expiry,
-    securityCode: copy.cards.securityCode,
     active: copy.cards.active,
     ordered: copy.cards.ordered,
   };
@@ -101,28 +100,27 @@ export default function BankingBaasCardsPage() {
               {account.name}
             </Crumb>
           </Breadcrumbs>
+          {/* Search and the create action share the title row, so the cards start higher. */}
           <Box className="bankingBaasCardsPage__header" display="flex" justifyContent="space-between" alignItems="flex-end" gap={3}>
-            <Box display="flex" flexDirection="column" gap={1}>
+            <Box display="flex" flexDirection="column" gap={1} minWidth={0}>
               <Typography variant="h1" as="h1">{copy.cards.title.replace("{accountName}", account.name)}</Typography>
               <Typography variant="p" as="p">{copy.cards.subtitle}</Typography>
+            </Box>
+            <Box className="bankingBaasCardsPage__actions" display="flex" alignItems="flex-end" gap={2}>
+              <Textbox
+                id="baas-card-search"
+                label={copy.cards.searchLabel}
+                placeholder={copy.cards.searchPlaceholder}
+                inputIcon="search"
+                value={searchText}
+                onChange={(event) => setSearchText(event.target.value)}
+              />
+              <Button variantType="primary" iconType="add" iconPosition="before" onClick={() => setIsIssueSidebarOpen(true)}>{copy.cards.issueCard}</Button>
             </Box>
           </Box>
         </Box>
 
-        <Box className="bankingBaasCardsPage__filters" display="flex" alignItems="flex-end" gap={3}>
-          <Textbox
-            id="baas-card-search"
-            label={copy.cards.searchLabel}
-            placeholder={copy.cards.searchPlaceholder}
-            inputIcon="search"
-            value={searchText}
-            onChange={(event) => setSearchText(event.target.value)}
-          />
-          <Button variantType="primary" iconType="add" iconPosition="before" onClick={() => setIsIssueSidebarOpen(true)}>{copy.cards.issueCard}</Button>
-        </Box>
-
         {successMessage && <Typography className="baasCardSuccess" variant="small" as="p" role="status">{successMessage}</Typography>}
-        <Typography variant="small" as="p">{copy.cards.cardCount.replace("{count}", String(allCards.length))}</Typography>
 
         <Tabs selectedTabId={activeTab}>
           <TabList ariaLabel={copy.cards.tabsLabel} onTabChange={(tabId) => setActiveTab(tabId as CardTab)}>

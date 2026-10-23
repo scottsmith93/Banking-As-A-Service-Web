@@ -4,13 +4,12 @@ Exported on 21 October 2026 from the supplied [Banking Figma design](https://www
 
 | File | Source node | Display size in the form |
 | --- | --- | --- |
-| visa.png | 54:14284 | 63 × 20 |
 | mastercard.svg | 54:14283 | approximately 34 × 20 |
 | apple-pay.png | 54:14611 | 61 × 25 |
 | google-pay.png | 54:14614 | 54 × 25 |
 | card-created.svg | 59:18464 | 300 × 300 |
 
-These are original brand assets from the design, stored locally for the prototype. SVG paths and PNG pixels have not been redrawn or recoloured. The preview uses a smaller instance of the selected network mark.
+These are original brand assets from the design, stored locally for the prototype. SVG paths and PNG pixels have not been redrawn or recoloured. Sage Wallet issues Mastercard only, so the Visa mark was removed on 23 October 2026. The preview uses a smaller instance of the Mastercard mark.
 
 The celebration illustration comes from the [card completion frame](https://www.figma.com/design/DkjnmlbRnlhEDc677x7heU/Banking?node-id=59-17905).
 

@@ -59,7 +59,7 @@ export default function BaasIssueCardSidebar({ open, cardholders, onCancel, onIs
           <Box className="baasIssueForm__previewStage" display="flex" alignItems="center" justifyContent="center">
             <BaasIssueCardPreview cardholder={form.cardholder} network={form.network} copy={{
               cardholder: copy.cardholder, cardType: copy[form.cardType], previewDescription: formCopy.previewDescription,
-              network: { visa: copy.visa, mastercard: copy.mastercard },
+              network: { mastercard: copy.mastercard },
             }} />
           </Box>
           <Box className="baasIssueForm__fields" display="flex" flexDirection="column">

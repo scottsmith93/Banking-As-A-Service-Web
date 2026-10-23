@@ -104,7 +104,8 @@ export type DebitCard = {
   colour: "sage" | "night" | "plum";
   nickname: string;
   type: "virtual" | "physical";
-  network: "visa" | "mastercard";
+  // Sage Wallet issues Mastercard only.
+  network: "mastercard";
 };
 
 export type BaaSTransaction = {
@@ -112,7 +113,7 @@ export type BaaSTransaction = {
   date: string;
   description: string;
   cardholder: string;
-  cardNetwork?: "visa" | "mastercard";
+  cardNetwork?: "mastercard";
   type: "cardPurchase" | "refund" | "transfer";
   invoiceId: string | null;
   status: "completed" | "failed" | "cancelled";
@@ -186,7 +187,7 @@ export const debitCards: DebitCard[] = [
     colour: "night",
     nickname: "Travel expenses",
     type: "physical",
-    network: "visa",
+    network: "mastercard",
   },
   {
     id: "card-morgan",
@@ -198,7 +199,7 @@ export const debitCards: DebitCard[] = [
     colour: "night",
     nickname: "Team expenses",
     type: "virtual",
-    network: "visa",
+    network: "mastercard",
   },
   {
     id: "card-alex",
@@ -222,7 +223,7 @@ export const debitCards: DebitCard[] = [
     colour: "night",
     nickname: "Former team card",
     type: "physical",
-    network: "visa",
+    network: "mastercard",
   },
 ];
 
@@ -248,7 +249,7 @@ export const baasTransactions: BaaSTransaction[] = [
     date: "2026-10-20",
     description: "Office supplies — invoice PI-10482",
     cardholder: "Jamie Taylor •••• 1234",
-    cardNetwork: "visa",
+    cardNetwork: "mastercard",
     type: "cardPurchase",
     status: "completed",
     amountEur: -45.3,
@@ -270,7 +271,7 @@ export const baasTransactions: BaaSTransaction[] = [
     date: "2026-10-18",
     description: "Customer refund",
     cardholder: "Alex Morgan •••• 4608",
-    cardNetwork: "visa",
+    cardNetwork: "mastercard",
     type: "refund",
     status: "completed",
     amountEur: 135.5,

@@ -10,7 +10,8 @@ export function useBaasCardIssueForm(onIssue: (data: BaasCardIssueFormData) => v
   const [cardType, setCardType] = useState<CardType | null>(null);
   const [cardholder, setCardholder] = useState("");
   const [nickname, setNickname] = useState("");
-  const [network, setNetwork] = useState<"visa" | "mastercard">("visa");
+  // Sage Wallet issues Mastercard only, so the network is fixed rather than chosen.
+  const network = "mastercard" as const;
   const [pin, setPin] = useState("");
   const [shippingAddress, setShippingAddress] = useState<ShippingAddress>(emptyAddress);
   const [payments, setPayments] = useState(defaultPayments);
@@ -26,7 +27,7 @@ export function useBaasCardIssueForm(onIssue: (data: BaasCardIssueFormData) => v
   const reset = () => {
     if (timer.current !== null) clearTimeout(timer.current);
     timer.current = null;
-    setStage("editing"); setCardType(null); setCardholder(""); setNickname(""); setNetwork("visa");
+    setStage("editing"); setCardType(null); setCardholder(""); setNickname("");
     setPin(""); setShippingAddress(emptyAddress); setPayments(defaultPayments); setLimits(emptyLimits);
     setAllowedRegions(["France"]); setBlockedCategories(["Gambling"]); setErrors({}); setValidationAttempt(0);
   };
@@ -74,7 +75,7 @@ export function useBaasCardIssueForm(onIssue: (data: BaasCardIssueFormData) => v
   };
 
   return { stage, cardType, cardholder, nickname, network, pin, shippingAddress, payments, limits, allowedRegions, blockedCategories, errors, validationAttempt,
-    reset, selectType, backToType: () => setCardType(null), selectCardholder, setNickname, setNetwork, updatePin, updateAddress, updatePayment, updateLimit,
+    reset, selectType, backToType: () => setCardType(null), selectCardholder, setNickname, updatePin, updateAddress, updatePayment, updateLimit,
     setAllowedRegions, setBlockedCategories, submit };
 }
 

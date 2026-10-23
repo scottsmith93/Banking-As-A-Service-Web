@@ -250,7 +250,6 @@
       "cardholderError": "Selecciona un titular para crear una tarjeta de débito.",
       "nickname": "Nombre de la tarjeta",
       "nicknamePlaceholder": "Equipo o grupo",
-      "networkRequired": "Red",
       "digitalWallets": "Carteras digitales *",
       "digitalWalletsHint": "Permite añadir esta tarjeta a carteras digitales compatibles.",
       "walletProviders": {
@@ -325,7 +324,7 @@
             "No requiere envío"
           ]
         },
-        "networks": "Visa o Mastercard"
+        "networks": "Mastercard"
       },
       "pin": {
         "label": "PIN de la tarjeta",
@@ -585,7 +584,6 @@
       "searchLabel": "Buscar tarjetas",
       "searchPlaceholder": "Buscar por titular",
       "accountLabel": "Cuenta",
-      "cardCount": "{count} tarjetas",
       "all": "Todas",
       "issued": "Emitidas",
       "deactivated": "Desactivadas",
@@ -598,13 +596,11 @@
       "virtual": "Virtual",
       "physical": "Física",
       "expiry": "Vence",
-      "securityCode": "CVV",
       "tabsLabel": "Estado de la tarjeta",
       "issueDialogTitle": "Emitir una nueva tarjeta",
       "issueDialogDescription": "Elige a quién se asigna la tarjeta y personaliza su red y color.",
       "assignCardholder": "Asignar a un titular",
       "networkLabel": "Red de la tarjeta",
-      "visa": "Visa",
       "mastercard": "Mastercard",
       "colourLabel": "Color de la tarjeta",
       "colours": {

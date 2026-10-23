@@ -19,12 +19,13 @@ type BaasCardTileProps = {
     virtual: string;
     physical: string;
     expiry: string;
-    securityCode: string;
   };
   locale: string;
   onOpenDetails: (card: DebitCard) => void;
 };
 
+// A debit card drawn as the real thing (ID-1 proportions, Sage Wallet styles),
+// sitting in a tile with its monthly spend and actions underneath.
 export default function BaasCardTile({ card, copy, locale, onOpenDetails }: BaasCardTileProps) {
   const formattedSpend = new Intl.NumberFormat(locale, {
     style: "currency",
@@ -32,10 +33,11 @@ export default function BaasCardTile({ card, copy, locale, onOpenDetails }: Baas
   }).format(card.monthlySpendEur);
 
   return (
-    <Box className={`baasCardTile baasCardTile--${card.colour}`} as="article">
+    <Box className={`baasCardTile baasCardTile--${card.colour}${card.status === "deactivated" ? " baasCardTile--deactivated" : ""}`} as="article">
       <Box className={`baasCardTile__visual baasCardTile__visual--${card.colour}`}>
+        <span className="baasCardTile__shine" aria-hidden="true" />
         <Box className="baasCardTile__topline" display="flex" justifyContent="space-between" alignItems="center">
-          <BaasCardNetworkLogo network={card.network} />
+          <img className="baasCardTile__sageLogo" src="/sage-logo.svg" alt="Sage" />
           <Box className="baasCardTile__statusPill">
             <Pill pillRole="status" colorVariant={card.status === "issued" ? "positive" : "neutral"} size="S" fill>
               {card.status === "issued" ? copy.active : card.status === "ordered" ? copy.ordered : copy.deactivated}
@@ -43,33 +45,27 @@ export default function BaasCardTile({ card, copy, locale, onOpenDetails }: Baas
           </Box>
         </Box>
         <Box className="baasCardTile__nicknameRow" display="flex" justifyContent="space-between" alignItems="center" gap={2}>
-          <Typography variant="small" as="span" className="baasCardTile__secondaryText">{card.nickname}</Typography>
-          <Box className="baasCardTile__brand" display="flex" flexDirection="column" alignItems="flex-end" gap={1}>
-            <img className="baasCardTile__sageLogo" src="/sage-logo.svg" alt="Sage" />
-            <Box className="baasCardTile__cardType" display="flex" alignItems="center" gap={1}>
-              <Typography variant="small" as="span" className="baasCardTile__secondaryText">
-                {card.type === "virtual" ? copy.virtual : copy.physical}
-              </Typography>
-              <ContactlessMark />
-            </Box>
+          <Typography variant="small" as="span" className="baasCardTile__secondaryText baasCardTile__nickname">{card.nickname}</Typography>
+          <Box className="baasCardTile__cardType" display="flex" alignItems="center" gap={1}>
+            <Typography variant="small" as="span" className="baasCardTile__secondaryText">
+              {card.type === "virtual" ? copy.virtual : copy.physical}
+            </Typography>
+            <ContactlessMark />
           </Box>
         </Box>
         <Typography variant="strong" as="p" className="baasCardTile__number">•••• •••• •••• {card.lastFour}</Typography>
         <Box className="baasCardTile__holderRow" display="flex" justifyContent="space-between" alignItems="flex-end" gap={2}>
-          <Box display="flex" flexDirection="column">
-            <Typography variant="small" as="span" className="baasCardTile__secondaryText">{copy.cardholder}</Typography>
-            <Typography variant="strong" as="span" className="baasCardTile__holder">{card.cardholder}</Typography>
-          </Box>
-          <Box display="flex" gap={2}>
-            <Box display="flex" flexDirection="column" alignItems="flex-end">
+          <Box display="flex" gap={3} minWidth={0}>
+            <Box display="flex" flexDirection="column" minWidth={0}>
+              <Typography variant="small" as="span" className="baasCardTile__secondaryText">{copy.cardholder}</Typography>
+              <Typography variant="strong" as="span" className="baasCardTile__holder">{card.cardholder}</Typography>
+            </Box>
+            <Box display="flex" flexDirection="column">
               <Typography variant="small" as="span" className="baasCardTile__secondaryText">{copy.expiry}</Typography>
               <Typography variant="strong" as="span" className="baasCardTile__primaryText">{card.validThrough}</Typography>
             </Box>
-            <Box display="flex" flexDirection="column" alignItems="flex-end">
-              <Typography variant="small" as="span" className="baasCardTile__secondaryText">{copy.securityCode}</Typography>
-              <Typography variant="strong" as="span" className="baasCardTile__primaryText">•••</Typography>
-            </Box>
           </Box>
+          <BaasCardNetworkLogo network={card.network} />
         </Box>
       </Box>
       <Box className="baasCardTile__footer" display="flex" justifyContent="space-between" alignItems="center" gap={2}>
@@ -78,8 +74,8 @@ export default function BaasCardTile({ card, copy, locale, onOpenDetails }: Baas
           <Typography variant="strong" as="span" className="numericValue">{formattedSpend}</Typography>
         </Box>
         <Box className="baasCardTile__actions" display="flex" gap={1}>
-          <Button variantType="secondary" size="small" onClick={() => onOpenDetails(card)}>{copy.viewDetails}</Button>
-          <Button variantType="primary" size="small" onClick={() => onOpenDetails(card)}>{copy.manage}</Button>
+          <Button variantType="tertiary" size="small" onClick={() => onOpenDetails(card)}>{copy.viewDetails}</Button>
+          <Button variantType="secondary" size="small" onClick={() => onOpenDetails(card)}>{copy.manage}</Button>
         </Box>
       </Box>
     </Box>
@@ -94,4 +90,3 @@ export function ContactlessMark() {
     </svg>
   );
 }
-

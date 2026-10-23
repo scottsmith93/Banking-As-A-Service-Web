@@ -5,21 +5,15 @@ type BaasCardNetworkLogoProps = {
   tone?: "inverse" | "light";
 };
 
-export default function BaasCardNetworkLogo({ network, tone = "inverse" }: BaasCardNetworkLogoProps) {
-  const name = network === "visa" ? "Visa" : "Mastercard";
-
+// Sage Wallet cards run on Mastercard only; the mark is the original brand asset.
+export default function BaasCardNetworkLogo({ tone = "inverse" }: BaasCardNetworkLogoProps) {
   return (
     <span
       className={`baasCardTile__network${tone === "light" ? " baasCardTile__network--light" : ""}`}
       role="img"
-      aria-label={name}
+      aria-label="Mastercard"
     >
-      <img
-        className="baasCardTile__networkArtwork"
-        src={`/assets/banking-baas/${network}.${network === "visa" ? "png" : "svg"}`}
-        alt=""
-        aria-hidden="true"
-      />
+      <img className="baasCardTile__networkArtwork" src="/assets/banking-baas/mastercard.svg" alt="" aria-hidden="true" />
     </span>
   );
 }

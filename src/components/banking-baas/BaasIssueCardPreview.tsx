@@ -6,12 +6,12 @@ import { ContactlessMark } from "./BaasCardTile";
 
 type BaasIssueCardPreviewProps = {
   cardholder: string;
-  network: "visa" | "mastercard";
+  network: "mastercard";
   copy: {
     cardholder: string;
     cardType: string;
     previewDescription: string;
-    network: { visa: string; mastercard: string };
+    network: { mastercard: string };
   };
 };
 

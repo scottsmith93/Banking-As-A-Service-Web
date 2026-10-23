@@ -1,13 +1,10 @@
 import Box from "carbon-react/lib/components/box";
-import { RadioButton, RadioButtonGroup } from "carbon-react/lib/components/radio-button";
 import { Select, Option } from "carbon-react/lib/components/select";
 import Switch from "carbon-react/lib/components/switch";
 import Textbox from "carbon-react/lib/components/textbox";
-import Typography from "carbon-react/lib/components/typography";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";
 import type { BaasCardIssueFormState } from "../../hooks/useBaasCardIssueForm";
-import BaasCardNetworkLogo from "./BaasCardNetworkLogo";
 import BaasCardIssueShipping, { BaasCardIssuePin } from "./BaasCardIssuePhysicalFields";
 
 export default function BaasCardIssueDetails({ form, cardholders }: { form: BaasCardIssueFormState; cardholders: string[] }) {
@@ -15,19 +12,6 @@ export default function BaasCardIssueDetails({ form, cardholders }: { form: Baas
   const { cards: copy, cardIssueForm: formCopy } = getLocale(language).bankingBaas;
   return (
     <>
-      <RadioButtonGroup id="baas-issue-card-network" data-element="baas-issue-network-options" legend={formCopy.networkRequired}
-        name="baas-issue-card-network" value={form.network} inline
-        onChange={event => form.setNetwork(event.target.value as "visa" | "mastercard")}>
-        {(["visa", "mastercard"] as const).map(network => (
-          <RadioButton key={network} id={`baas-issue-card-network-${network}`} data-element="baas-issue-network-option"
-            data-role={form.network === network ? "selected" : undefined} value={network} label={(
-              <span className="baasIssueNetworkChoice">
-                <span className="baasIssueNetworkChoice__logo" aria-hidden="true"><BaasCardNetworkLogo network={network} tone="light" /></span>
-                <Typography as="span" screenReaderOnly>{copy[network]}</Typography>
-              </span>
-            )} />
-        ))}
-      </RadioButtonGroup>
       <Box className="baasIssueForm__identity">
         {/* Import Select and Option together: Carbon matches option component identity. */}
         <Select id="baas-issue-cardholder" label={copy.cardholder} placeholder={formCopy.selectCardholder}

@@ -13,7 +13,7 @@ export type BaasCardIssueFormData = {
   cardholder: string;
   nickname: string;
   colour: "sage" | "night" | "plum";
-  network: "visa" | "mastercard";
+  network: "mastercard";
   digitalWalletsEnabled: boolean;
   onlinePaymentsEnabled: boolean;
   recurringPaymentsEnabled: boolean;

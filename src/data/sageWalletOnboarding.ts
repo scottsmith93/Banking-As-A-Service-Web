@@ -1,6 +1,6 @@
 // MOCK DATA — replace with real API responses
 import { baasBusinessProfile, debitCards, stagedBaasAccounts } from "./bankingBaas";
-import type { ShippingAddress } from "../components/banking-baas/baasCardIssueTypes";
+import type { ShippingAddress } from "../components/sage-wallet/sageWalletTypes";
 
 export type SageWalletUsage = "customerPayments" | "teamExpenses" | "supplierPayments";
 export type SageWalletCardStyle = "sage" | "night" | "plum";

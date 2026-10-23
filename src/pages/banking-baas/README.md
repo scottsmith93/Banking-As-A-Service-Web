@@ -25,7 +25,7 @@ Open `/banking/baas` in the playground.
 - Existing legacy accounts remain visible alongside Sage bank accounts.
 - The promotional banner pairs the Copilot mark with layered Sage card visuals and opens a viewport-sized, Sage-headed onboarding dialog with a 40px edge gutter.
 - Completing the onboarding flow stages two demonstration accounts: one active and one pending review.
-- The active account dashboard links to a debit-card view whose tiles draw each card at real ID-1 proportions in the light Sage Wallet styles (Mint, Midnight, Plum), with All, Issued, and Deactivated tabs. Search and Create debit card share the title row. Sage Wallet issues Mastercard only, so every card, transaction, and the issuing form use the Mastercard mark and there is no network choice. Card issuing opens a 600px Carbon side panel with a centered 288px ID-1 proportion preview, a fixed Sage-green card style, two-column spend limits, and merchant and region restrictions.
+- The active account dashboard links to a debit-card view whose tiles draw each card at real ID-1 proportions in the light Sage Wallet styles (Mint, Midnight, Plum), with All, Issued, and Deactivated tabs. Search and Create debit card share the title row. Sage Wallet issues Mastercard only, so every card, transaction, and the issuing form use the Mastercard mark and there is no network choice. Card issuing (Create debit card on the cards page, New card on the overview) opens the Sage Wallet wizard at its card step: card type, cardholder (or add a new one), monthly limit, card style, and delivery address for physical cards, with a live preview.
 - The prototype uses Carbon React and Sage design tokens, with the new composed UI kept in the `banking-baas` component group.
 
 ## Localization scope
@@ -44,7 +44,7 @@ The transaction workspace and its Figma/competitor analysis are documented in [t
 
 ## Change log
 
-- 2026-10-23 — Create debit card (cards page) and New card (account overview) now open the Sage Wallet wizard at its card step (2 steps: card details, card ready) instead of the side panel. Card tiles keep a single Manage action; View details was removed. The old side-panel components are no longer used.
+- 2026-10-23 — Create debit card (cards page) and New card (account overview) now open the Sage Wallet wizard at its card step (2 steps: card details, card ready) instead of the side panel. Card tiles keep a single Manage action; View details was removed. The old side panel, the original onboarding dialog, and their styles, copy, data, and celebration artwork were deleted.
 
 - 2026-10-23 — Mastercard only: removed Visa from cards, transactions, and the issuing form. Redrew card tiles as light real-proportion cards, moved search and Create debit card into the title row, and dropped the redundant card count and CVV placeholder.
 

@@ -8,8 +8,7 @@ import Typography from "carbon-react/lib/components/typography";
 import { cardIssueShippingCountries } from "../../data/bankingBaas";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale, getLocaleCode } from "../../locales";
-import type { ShippingAddress } from "../banking-baas/baasCardIssueTypes";
-import type { SageWalletCopy } from "./sageWalletTypes";
+import type { SageWalletCopy, ShippingAddress } from "./sageWalletTypes";
 
 type SageWalletAddressDialogProps = {
   open: boolean;

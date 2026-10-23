@@ -361,10 +361,15 @@
     "demoNote": "Completing the onboarding flow stages two accounts for the demonstration: one active account and one application under review.",
     "items": "{count} accounts",
     "promotion": {
-      "title": "Match bank transactions to purchase invoices, faster",
-      "body": "A Sage bank account brings transactions into Sage in near real time, so purchases can be matched to invoices sooner with less manual work. Capture receipts and issue employee cards from the same connected flow.",
-      "benefits": ["See transactions as they happen", "Issue cards for business spending", "Match receipts to purchase invoices faster"],
-      "cta": "Set up Sage bank account"
+      "eyebrow": "Sage bank account",
+      "title": "Get paid faster. Keep every expense in check.",
+      "body": "Open a business account built into Sage. Customer payments land and match to invoices automatically, and company credit cards keep team spending under control.",
+      "getPaid": { "title": "Get paid faster", "body": "Customers pay straight into your Sage account, so money arrives sooner and invoices close themselves." },
+      "cards": { "title": "Credit cards for your team", "body": "Issue physical and virtual cards with spending limits, and capture receipts the moment they spend." },
+      "cta": "Open a Sage bank account",
+      "note": "No setup fees. Takes about 10 minutes.",
+      "dismiss": "Dismiss Sage bank account offer",
+      "cardArt": { "virtual": "Virtual", "business": "Business" }
     },
     "list": {
       "lastSync": "Last sync: {timestamp}",

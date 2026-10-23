@@ -348,7 +348,17 @@
       }
     },
     "title": "Bankkonten und Kasse", "description": "Behalten Sie Ihre bestehenden Konten und verwalten Sie Sage-Bankkonten mit Echtzeitinformationen an einem Ort.", "syncAll": "Alle synchronisieren", "create": "Erstellen", "searchLabel": "Bankkonten suchen", "searchPlaceholder": "Suchen", "existingAccounts": "Bestehende Konten", "sageAccounts": "Sage-Bankkonten", "sageAccountsDescription": "Echtzeitkonten von Adyen, die die Erfassung von Eingangsrechnungen und den Transaktionsabgleich erleichtern.", "accountCount": "{count} Konten", "demoNoteLabel": "Prototyp-Szenario", "demoNote": "Nach Abschluss des Onboardings werden für die Demo zwei Konten bereitgestellt: ein aktives Konto und ein Konto in Prüfung.", "items": "{count} Konten",
-    "promotion": { "title": "Banktransaktionen schneller mit Eingangsrechnungen abgleichen", "body": "Ein Sage-Bankkonto überträgt Transaktionen nahezu in Echtzeit an Sage. So lassen sich Einkäufe früher und mit weniger manuellem Aufwand den Eingangsrechnungen zuordnen. Belege erfassen und Mitarbeitendenkarten im selben vernetzten Ablauf ausstellen.", "benefits": ["Transaktionen sofort sehen", "Karten für geschäftliche Ausgaben ausstellen", "Belege schneller Eingangsrechnungen zuordnen"], "cta": "Sage-Bankkonto einrichten" },
+    "promotion": {
+      "eyebrow": "Sage-Bankkonto",
+      "title": "Schneller bezahlt werden. Jede Ausgabe im Griff.",
+      "body": "Eröffnen Sie ein in Sage integriertes Geschäftskonto. Kundenzahlungen gehen ein und werden automatisch mit Rechnungen abgeglichen, und Firmenkreditkarten halten die Ausgaben Ihres Teams unter Kontrolle.",
+      "getPaid": { "title": "Schneller bezahlt werden", "body": "Kunden zahlen direkt auf Ihr Sage-Konto, so kommt das Geld früher an und Rechnungen werden automatisch ausgeglichen." },
+      "cards": { "title": "Kreditkarten für Ihr Team", "body": "Geben Sie physische und virtuelle Karten mit Ausgabelimits aus und erfassen Sie Belege direkt beim Kauf." },
+      "cta": "Sage-Bankkonto eröffnen",
+      "note": "Keine Einrichtungsgebühren. Dauert etwa 10 Minuten.",
+      "dismiss": "Angebot für das Sage-Bankkonto ausblenden",
+      "cardArt": { "virtual": "Virtuell", "business": "Business" }
+    },
     "list": {
       "lastSync": "Letzte Synchronisierung: {timestamp}",
       "realTimeSync": "Echtzeit-Synchronisierung",

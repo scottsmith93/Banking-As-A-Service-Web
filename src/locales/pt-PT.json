@@ -348,7 +348,17 @@
       }
     },
     "title": "Contas bancárias e caixa", "description": "Mantenha as contas existentes e gira contas bancárias Sage com informação em tempo real num só lugar.", "syncAll": "Sincronizar tudo", "create": "Criar", "searchLabel": "Pesquisar contas bancárias", "searchPlaceholder": "Pesquisar", "existingAccounts": "Contas existentes", "sageAccounts": "Contas bancárias Sage", "sageAccountsDescription": "Contas em tempo real fornecidas pela Adyen para facilitar a captura de faturas e a reconciliação de transações.", "accountCount": "{count} contas", "demoNoteLabel": "Cenário do protótipo", "demoNote": "Ao concluir o processo, são preparadas duas contas para a demonstração: uma ativa e outra em análise.", "items": "{count} contas",
-    "promotion": { "title": "Associe transações bancárias a faturas de compra mais rapidamente", "body": "Uma conta bancária Sage disponibiliza as transações no Sage quase em tempo real, para que as compras possam ser associadas às faturas mais cedo e com menos trabalho manual. Capture recibos e emita cartões para colaboradores no mesmo fluxo integrado.", "benefits": ["Veja as transações assim que acontecem", "Emita cartões para despesas da empresa", "Associe recibos a faturas de compra mais rapidamente"], "cta": "Configurar conta bancária Sage" },
+    "promotion": {
+      "eyebrow": "Conta bancária Sage",
+      "title": "Receba mais depressa. Controle cada despesa.",
+      "body": "Abra uma conta empresarial integrada no Sage. Os pagamentos dos clientes chegam e são conciliados com as faturas automaticamente, e os cartões de crédito da empresa mantêm os gastos da equipa sob controlo.",
+      "getPaid": { "title": "Receba mais depressa", "body": "Os clientes pagam diretamente na sua conta Sage, por isso o dinheiro chega mais cedo e as faturas ficam liquidadas sozinhas." },
+      "cards": { "title": "Cartões de crédito para a sua equipa", "body": "Emita cartões físicos e virtuais com limites de gastos e registe os recibos no momento da compra." },
+      "cta": "Abrir uma conta bancária Sage",
+      "note": "Sem custos de adesão. Demora cerca de 10 minutos.",
+      "dismiss": "Fechar a oferta de conta bancária Sage",
+      "cardArt": { "virtual": "Virtual", "business": "Empresa" }
+    },
     "list": {
       "lastSync": "Última sincronização: {timestamp}",
       "realTimeSync": "Sincronização em tempo real",

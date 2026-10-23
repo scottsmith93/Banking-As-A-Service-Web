@@ -361,10 +361,15 @@
     "demoNote": "Al completar el proceso se preparan dos cuentas para la demostración: una activa y otra en revisión.",
     "items": "{count} cuentas",
     "promotion": {
-      "title": "Concilia antes las transacciones bancarias con las facturas de compra",
-      "body": "Una cuenta bancaria Sage incorpora las transacciones a Sage casi en tiempo real, para que las compras puedan conciliarse antes con las facturas y con menos trabajo manual. Captura recibos y emite tarjetas para empleados desde el mismo flujo conectado.",
-      "benefits": ["Consulta las transacciones al instante", "Emite tarjetas para los gastos de empresa", "Relaciona recibos con facturas más rápido"],
-      "cta": "Configurar una cuenta bancaria Sage"
+      "eyebrow": "Cuenta bancaria Sage",
+      "title": "Cobra antes. Controla cada gasto.",
+      "body": "Abre una cuenta de empresa integrada en Sage. Los cobros de clientes llegan y se concilian con las facturas automáticamente, y las tarjetas de crédito de empresa mantienen bajo control el gasto del equipo.",
+      "getPaid": { "title": "Cobra antes", "body": "Tus clientes pagan directamente en tu cuenta Sage, así el dinero llega antes y las facturas se cierran solas." },
+      "cards": { "title": "Tarjetas de crédito para tu equipo", "body": "Emite tarjetas físicas y virtuales con límites de gasto y captura los recibos en el momento de cada compra." },
+      "cta": "Abrir una cuenta bancaria Sage",
+      "note": "Sin comisiones de alta. Unos 10 minutos.",
+      "dismiss": "Descartar la oferta de cuenta bancaria Sage",
+      "cardArt": { "virtual": "Virtual", "business": "Empresa" }
     },
     "list": {
       "lastSync": "Última sincronización: {timestamp}",

@@ -2162,18 +2162,21 @@ body {
 }
 
 .baasPromotion {
+  position: relative;
+  container-type: inline-size;
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 0.72fr);
   align-items: center;
   gap: var(--spacing400);
-  padding: var(--spacing300);
-  border: 0;
+  padding: var(--spacing400);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
   border-radius: var(--global-radius-container-m) !important;
-  background: var(--colorsUtilityYin100);
-  background-image:
-    radial-gradient(ellipse at 78% 48%, color-mix(in srgb, var(--mode-color-ai-stop-3) 24%, transparent), transparent 42%),
-    linear-gradient(115deg, var(--colorsUtilityYin100), color-mix(in srgb, var(--mode-color-ai-stop-2) 12%, var(--colorsUtilityYin100)));
-  color: var(--colorsUtilityYang100);
+  background:
+    radial-gradient(ellipse at 85% 45%, color-mix(in srgb, var(--colorsActionMajor500) 14%, transparent), transparent 50%),
+    radial-gradient(ellipse at 100% 0%, var(--colorsActionMajor025), transparent 60%),
+    var(--colorsUtilityYang100);
+  box-shadow: var(--boxShadow050);
+  color: var(--colorsUtilityYin090);
 }
 
 .baasPromotion__content {
@@ -2181,54 +2184,91 @@ body {
   gap: var(--spacing200);
 }
 
-.baasPromotion__heading {
-  gap: var(--spacing200);
+.baasPromotion__eyebrow {
+  gap: var(--spacing100);
+  width: fit-content;
+  padding: var(--spacing050) var(--spacing150) var(--spacing050) var(--spacing050);
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsActionMajor025);
 }
 
-.baasPromotion__copilotMark {
-  flex: 0 0 auto;
-  width: var(--spacing500);
-  height: var(--spacing500);
+.baasPromotion__eyebrow img {
+  width: var(--spacing300);
+  height: var(--spacing300);
+}
+
+.baasPromotion__eyebrow span {
+  color: var(--colorsActionMajor600) !important;
+  font-weight: var(--fontWeights500);
 }
 
 .baasPromotion__title,
 .baasPromotion__body,
-.baasPromotion__benefits,
-.baasPromotion__benefits li,
-.baasPromotion__benefit {
-  color: var(--colorsUtilityYang100) !important;
-}
-
-.baasPromotion__title {
-  font-size: var(--fontSizes500);
-  line-height: var(--lineHeights400);
-}
-
-.baasPromotion__title,
-.baasPromotion__body {
+.baasPromotion__features,
+.baasPromotion__featureTitle,
+.baasPromotion__featureBody {
   margin: 0;
 }
 
-.baasPromotion__body {
-  max-width: 68ch;
-  color: var(--mode-color-generic-txt-inverse-moderate) !important;
+.baasPromotion__title {
+  max-width: 22ch;
+  font-size: var(--fontSizes700);
+  line-height: var(--lineHeights400);
+  text-wrap: balance;
 }
 
-.baasPromotion__benefits {
+.baasPromotion__body {
+  max-width: 60ch;
+  color: var(--colorsUtilityYin065) !important;
+}
+
+.baasPromotion__features {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: var(--spacing200);
-  margin: var(--spacing100) 0 0;
+  margin-top: var(--spacing100);
   padding: 0;
   list-style: none;
 }
 
-.baasPromotion__benefits li {
-  gap: var(--spacing100);
-  color: var(--colorsUtilityYang100);
+.baasPromotion__feature {
+  gap: var(--spacing150);
+  padding: var(--spacing200);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+  background: var(--colorsUtilityYang100);
 }
 
-.baasPromotion__benefits [data-component="icon"] {
+.baasPromotion__featureIcon {
+  display: inline-flex;
   flex: 0 0 auto;
-  color: var(--colorsUtilityYang100) !important;
+  align-items: center;
+  justify-content: center;
+  width: var(--spacing500);
+  height: var(--spacing500);
+  border-radius: var(--borderRadiusCircle);
+  background: var(--colorsActionMajor025);
+}
+
+.baasPromotion__featureIcon [data-component="icon"] {
+  color: var(--colorsActionMajor600) !important;
+}
+
+.baasPromotion__featureTitle {
+  font-size: var(--fontSizes200);
+}
+
+.baasPromotion__featureBody {
+  color: var(--colorsUtilityYin065) !important;
+}
+
+.baasPromotion__actions {
+  gap: var(--spacing200);
+  margin-top: var(--spacing100);
+}
+
+.baasPromotion__note {
+  color: var(--colorsUtilityYin065) !important;
 }
 
 .baasPromotion__art {
@@ -2239,13 +2279,250 @@ body {
   min-width: 0;
 }
 
-.baasPromotion__art img {
-  display: block;
+.baasPromotion__close {
+  position: absolute;
+  top: var(--spacing150);
+  right: var(--spacing150);
+  z-index: 1;
+}
+
+/* Code-drawn light cards (BaasPromotionCards). Entrance and float use
+   `transform`; the hover fan uses the separate `translate`/`rotate`
+   properties so both can run at once. */
+.baasPromoCards {
+  position: relative;
   width: 100%;
-  max-width: 240px;
-  height: auto;
-  object-fit: contain;
-  object-position: right center;
+  max-width: calc(var(--spacing1000) * 4);
+  aspect-ratio: 1.4;
+}
+
+.baasPromoCard {
+  --card-rotate: 0deg;
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-sizing: border-box;
+  width: 82%;
+  min-height: 0;
+  aspect-ratio: 85.6 / 54;
+  white-space: nowrap;
+  padding: var(--spacing150) var(--spacing200);
+  overflow: hidden;
+  border: var(--borderWidth100) solid var(--colorsUtilityYang100);
+  border-radius: var(--borderRadius200);
+  transform: rotate(var(--card-rotate));
+  transition: translate 360ms cubic-bezier(0.2, 0.8, 0.2, 1), rotate 360ms cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.baasPromoCard--back {
+  --card-rotate: 9deg;
+  top: 0;
+  right: 0;
+  background:
+    radial-gradient(circle at 85% 15%, color-mix(in srgb, var(--colorsUtilityYang100) 70%, transparent), transparent 45%),
+    linear-gradient(140deg, color-mix(in srgb, var(--colorsActionMajor500) 55%, var(--colorsUtilityYang100)), var(--colorsActionMajor025));
+  box-shadow: 0 var(--spacing150) var(--spacing300) color-mix(in srgb, var(--colorsActionMajor600) 18%, transparent);
+}
+
+.baasPromoCard--front {
+  --card-rotate: -5deg;
+  bottom: 0;
+  left: 0;
+  border-color: color-mix(in srgb, var(--colorsUtilityYang100) 80%, transparent);
+  background:
+    radial-gradient(circle at 100% 0%, color-mix(in srgb, var(--colorsActionMajor025) 70%, transparent), transparent 55%),
+    linear-gradient(160deg, color-mix(in srgb, var(--colorsUtilityYang100) 82%, transparent), color-mix(in srgb, var(--colorsActionMajor025) 60%, transparent));
+  backdrop-filter: blur(var(--spacing150)) saturate(180%);
+  box-shadow: 0 var(--spacing200) var(--spacing400) color-mix(in srgb, var(--colorsUtilityYin100) 14%, transparent);
+}
+
+.baasPromoCard__top,
+.baasPromoCard__bottom {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing100);
+}
+
+.baasPromoCard__logo {
+  height: var(--spacing250);
+}
+
+.baasPromoCard__label,
+.baasPromoCard__holder,
+.baasPromoCard__number {
+  color: var(--colorsUtilityYin065);
+  font-size: var(--fontSizes100);
+  font-weight: var(--fontWeights500);
+}
+
+.baasPromoCard__number {
+  color: var(--colorsUtilityYin090);
+  font-variant-numeric: tabular-nums;
+}
+
+.baasPromoCard__chip {
+  position: relative;
+  width: var(--spacing400);
+  height: var(--spacing300);
+  border: var(--borderWidth100) solid var(--colorsUtilityMajor100);
+  border-radius: var(--borderRadius100);
+  background: linear-gradient(135deg, var(--colorsUtilityMajor025), var(--colorsUtilityMajor100));
+}
+
+.baasPromoCard__shine {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(115deg, transparent 35%, color-mix(in srgb, var(--colorsUtilityYang100) 85%, transparent) 50%, transparent 65%);
+  transform: translateX(-120%);
+  pointer-events: none;
+}
+
+.baasPromotion:hover .baasPromoCard--back {
+  translate: var(--spacing150) calc(-1 * var(--spacing100));
+  rotate: 4deg;
+}
+
+.baasPromotion:hover .baasPromoCard--front {
+  translate: calc(-1 * var(--spacing150)) var(--spacing050);
+  rotate: -3deg;
+}
+
+.baasPromotion__feature {
+  transition: border-color 160ms ease, box-shadow 160ms ease, translate 160ms ease;
+}
+
+.baasPromotion__feature:hover {
+  border-color: var(--colorsActionMajor500);
+  box-shadow: var(--boxShadow050);
+  translate: 0 calc(-1 * var(--borderWidth200));
+}
+
+.baasPromotion__actions [data-component="icon"] {
+  transition: translate 160ms ease;
+}
+
+.baasPromotion__actions button:hover [data-component="icon"] {
+  translate: var(--spacing050) 0;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .baasPromotion {
+    animation: baasPromoFadeIn 400ms ease both;
+  }
+
+  .baasPromotion__content > * {
+    animation: baasPromoRise 520ms cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  }
+
+  .baasPromotion__content > :nth-child(2) { animation-delay: 60ms; }
+  .baasPromotion__content > :nth-child(3) { animation-delay: 120ms; }
+  .baasPromotion__content > :nth-child(4) { animation-delay: 180ms; }
+  .baasPromotion__content > :nth-child(5) { animation-delay: 240ms; }
+
+  .baasPromoCard--back {
+    animation:
+      baasPromoCardIn 760ms cubic-bezier(0.2, 0.8, 0.2, 1) 120ms both,
+      baasPromoCardFloat 8s ease-in-out 900ms infinite;
+  }
+
+  .baasPromoCard--front {
+    animation:
+      baasPromoCardIn 760ms cubic-bezier(0.2, 0.8, 0.2, 1) 220ms both,
+      baasPromoCardFloat 8s ease-in-out 1000ms infinite reverse;
+  }
+
+  .baasPromoCard__shine {
+    animation: baasPromoShine 5s ease-in-out 1.2s infinite;
+  }
+
+  .baasPromotion--closing {
+    animation: baasPromoClose 260ms ease forwards;
+    pointer-events: none;
+  }
+}
+
+@keyframes baasPromoFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes baasPromoRise {
+  from { opacity: 0; transform: translateY(var(--spacing150)); }
+  to { opacity: 1; transform: none; }
+}
+
+@keyframes baasPromoCardIn {
+  from { opacity: 0; transform: translate(var(--spacing400), var(--spacing200)) rotate(0deg); }
+  to { opacity: 1; transform: rotate(var(--card-rotate)); }
+}
+
+@keyframes baasPromoCardFloat {
+  0%, 100% { transform: translateY(0) rotate(var(--card-rotate)); }
+  50% { transform: translateY(calc(-1 * var(--spacing075))) rotate(var(--card-rotate)); }
+}
+
+@keyframes baasPromoShine {
+  0% { transform: translateX(-120%); }
+  35%, 100% { transform: translateX(120%); }
+}
+
+@keyframes baasPromoClose {
+  to { opacity: 0; transform: translateY(var(--spacing150)) scale(0.98); }
+}
+
+@keyframes baasPromoFadeOut {
+  to { opacity: 0; }
+}
+
+/* Instant press feedback on pointer-down, before the click commits. */
+.baasPromotion button {
+  transition: scale 100ms ease-out;
+}
+
+.baasPromotion button:active {
+  scale: 0.97;
+}
+
+/* Reduced motion keeps a gentle cross-fade instead of movement, so closing
+   still reads as an outcome. */
+@media (prefers-reduced-motion: reduce) {
+  .baasPromotion {
+    animation: baasPromoFadeIn 200ms ease both;
+  }
+
+  .baasPromotion--closing {
+    animation: baasPromoFadeOut 200ms ease forwards;
+    pointer-events: none;
+  }
+
+  .baasPromoCard,
+  .baasPromotion__feature,
+  .baasPromotion button {
+    transition: none;
+  }
+
+  .baasPromotion:hover .baasPromoCard,
+  .baasPromotion__feature:hover {
+    translate: none;
+    rotate: none;
+  }
+}
+
+/* Narrow banners stack the feature tiles so their copy keeps a readable measure. */
+@container (max-width: 760px) {
+  .baasPromotion__features {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+@media (prefers-reduced-transparency: reduce) {
+  .baasPromoCard--front {
+    background: var(--colorsUtilityYang100);
+    backdrop-filter: none;
+  }
 }
 
 .baasOnboardingDialog [data-element="dialog"] {

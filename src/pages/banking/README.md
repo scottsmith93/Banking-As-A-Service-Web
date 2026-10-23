@@ -25,12 +25,12 @@ The full transaction workspace is now `/banking/bank-movements`; account-card ta
 ## Key decisions
 
 - Account-level task counts now use the same justification rules as the transaction overview: both missing invoices and missing categories are actionable. The CTA says Review transactions, since not every task is invoice matching.
-- One bounded, single-column stack. Sage bank accounts always come first, with the existing S mark and the supplied card-asset promotion inside the same section and width.
+- One bounded, single-column stack. A white, marketing-style Sage bank account promotion leads the stack, selling getting paid faster and team credit cards; the Sage accounts section appears below it only once a Sage account exists. Its cards are drawn in code (light green and white, no dark artwork), animate in, float gently and fan apart on hover; all motion is off under reduced-motion settings. A close button dismisses the banner for the rest of the visit and returns focus to Create.
 - Connected-bank sections use original BNP Paribas and CaixaBank wordmarks as their accessible headings, avoiding duplicated wordmark-plus-bank-name text. Card headings are account names.
 - Sage active accounts use a restrained token-based green surface/accent, a Carbon flash icon, and Real-time sync. Under-review accounts do not claim to be syncing and show Last sync: Not started.
 - Each active account exposes its matching count from the shared transaction records. Matching a transaction reduces the count on return to the list. Zero-task accounts show No transactions to match. Matching actions open the correct account's workspace; third-party bank workspaces omit Sage-only debit-card navigation.
 - Balance and currency are right-aligned; lower-priority ledger details are omitted from the overview. Sync sits in the account action menu, keeping the main card focused on the matching task.
-- Search includes account and bank names. Sync all and individual sync demonstrate loading and updated timestamps without pretending to fetch a bank feed. Newly created manual accounts remain under Other accounts until their bank identity/connection is configured; they cannot claim a sync or open another account's transactions.
+- No page-level search or Sync all: Create is the header action, and the promotion sits directly under the title. Individual sync (account menu) demonstrates loading and updated timestamps without pretending to fetch a bank feed. Newly created manual accounts remain under Other accounts until their bank identity/connection is configured; they cannot claim a sync or open another account's transactions.
 - Carbon components provide controls, loaders, menus, and typography. Custom layout and Sage differentiation use approved tokens.
 
 ## Localization scope
@@ -55,6 +55,8 @@ These are trademarked assets used for identification in an internal prototype, n
 - Existing invoice extraction and Purchases limitations are documented in `../banking-baas/transactions/README.md`.
 
 ## Change log
+
+- 2026-10-23 — Moved Create into the header and removed Sync all and search; replaced the dark promotion with a white, animated, dismissible offer about getting paid faster and team credit cards.
 
 - 2026-10-22 — Account transaction actions now open Bank movements with account selection rather than an isolated per-bank transaction page.
 - Verification: Chrome journeys covered grouping, authentic logo loading, promo containment, connected-account upload/matching and updated list counts, search/empty search, sync timestamps, and Sage onboarding with active/pending states. Single-column alignment and no horizontal overflow were checked at 1440px, 1024px, and 768px in all five languages. Existing transaction upload/filter/pagination/keyboard journeys passed. Token/localization/reference validators, scoped ESLint, TypeScript, and the production build passed; build used `npm run build --ignore-scripts` to skip the Node-version precheck on this machine's unsupported Node 25. Existing font-resolution/Lottie/bundle warnings remain.

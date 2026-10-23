@@ -348,7 +348,17 @@
       }
     },
     "title": "Comptes bancaires et espèces", "description": "Conservez vos comptes existants et gérez vos comptes bancaires Sage en temps réel depuis un même endroit.", "syncAll": "Tout synchroniser", "create": "Créer", "searchLabel": "Rechercher des comptes bancaires", "searchPlaceholder": "Rechercher", "existingAccounts": "Comptes existants", "sageAccounts": "Comptes bancaires Sage", "sageAccountsDescription": "Des comptes en temps réel fournis par Adyen pour faciliter la capture des factures et le rapprochement des transactions.", "accountCount": "{count} comptes", "demoNoteLabel": "Scénario du prototype", "demoNote": "La fin du parcours prépare deux comptes pour la démonstration : un compte actif et une demande en cours d'examen.", "items": "{count} comptes",
-    "promotion": { "title": "Rapprochez plus vite les transactions bancaires des factures d'achat", "body": "Un compte bancaire Sage transmet les transactions à Sage presque en temps réel, afin de rapprocher plus rapidement les achats des factures avec moins de travail manuel. Capturez les justificatifs et émettez des cartes pour les salariés depuis le même parcours connecté.", "benefits": ["Consultez les transactions dès qu'elles ont lieu", "Émettez des cartes pour les dépenses de l'entreprise", "Rapprochez plus vite les justificatifs et les factures d'achat"], "cta": "Configurer un compte bancaire Sage" },
+    "promotion": {
+      "eyebrow": "Compte bancaire Sage",
+      "title": "Soyez payé plus vite. Maîtrisez chaque dépense.",
+      "body": "Ouvrez un compte professionnel intégré à Sage. Les paiements clients arrivent et sont rapprochés des factures automatiquement, et les cartes de crédit d'entreprise gardent les dépenses de l'équipe sous contrôle.",
+      "getPaid": { "title": "Soyez payé plus vite", "body": "Vos clients paient directement sur votre compte Sage : l'argent arrive plus tôt et les factures se soldent d'elles-mêmes." },
+      "cards": { "title": "Des cartes de crédit pour votre équipe", "body": "Émettez des cartes physiques et virtuelles avec plafonds de dépenses, et capturez les justificatifs dès l'achat." },
+      "cta": "Ouvrir un compte bancaire Sage",
+      "note": "Sans frais d'ouverture. Environ 10 minutes.",
+      "dismiss": "Masquer l'offre de compte bancaire Sage",
+      "cardArt": { "virtual": "Virtuelle", "business": "Entreprise" }
+    },
     "list": {
       "lastSync": "Dernière synchronisation : {timestamp}",
       "realTimeSync": "Synchronisation en temps réel",

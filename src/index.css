@@ -2188,7 +2188,7 @@ body {
   gap: var(--spacing100);
   width: fit-content;
   padding: var(--spacing050) var(--spacing150) var(--spacing050) var(--spacing050);
-  border-radius: var(--borderRadiusCircle);
+  border-radius: var(--borderRadius400);
   background: var(--colorsActionMajor025);
 }
 

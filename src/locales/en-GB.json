@@ -348,28 +348,151 @@
       }
     },
     "title": "Bank accounts and cash",
-    "description": "Keep your existing accounts and manage real-time Sage bank accounts in one place.",
+    "description": "Keep your existing accounts and manage real-time Sage Wallet accounts in one place.",
     "syncAll": "Sync all",
     "create": "Create",
     "searchLabel": "Search bank accounts",
     "searchPlaceholder": "Search",
     "existingAccounts": "Existing accounts",
-    "sageAccounts": "Sage bank accounts",
+    "sageAccounts": "Sage Wallet accounts",
     "sageAccountsDescription": "Real-time accounts powered by Adyen, designed to make invoice capture and transaction matching easier.",
     "accountCount": "{count} accounts",
     "demoNoteLabel": "Prototype scenario",
     "demoNote": "Completing the onboarding flow stages two accounts for the demonstration: one active account and one application under review.",
     "items": "{count} accounts",
     "promotion": {
-      "eyebrow": "Sage bank account",
+      "eyebrow": "Sage Wallet account",
       "title": "Get paid faster. Keep every expense in check.",
       "body": "Open a business account built into Sage. Customer payments land and match to invoices automatically, and company credit cards keep team spending under control.",
       "getPaid": { "title": "Get paid faster", "body": "Customers pay straight into your Sage account, so money arrives sooner and invoices close themselves." },
       "cards": { "title": "Credit cards for your team", "body": "Issue physical and virtual cards with spending limits, and capture receipts the moment they spend." },
-      "cta": "Open a Sage bank account",
+      "cta": "Open a Sage Wallet account",
       "note": "No setup fees. Takes about 10 minutes.",
-      "dismiss": "Dismiss Sage bank account offer",
+      "dismiss": "Dismiss Sage Wallet account offer",
       "cardArt": { "virtual": "Virtual", "business": "Business" }
+    },
+    "walletOnboarding": {
+      "dialogLabel": "Open a Sage Wallet account",
+      "progress": "Step {current} of {total}",
+      "hero": {
+        "brand": "Sage Wallet",
+        "accountTitle": "Get paid faster. Spend smarter.",
+        "accountBody": "Your business account, built into Sage.",
+        "accountPoints": [
+          "Payments appear in real time",
+          "Matched to invoices automatically",
+          "Funds safeguarded by Adyen"
+        ],
+        "paymentToast": "{amount} received · {invoice} paid",
+        "matchedToast": "Matched automatically",
+        "openingTitle": "Setting up your account",
+        "readyTitle": "You're in business",
+        "readyBody": "Account opened today",
+        "doneTitle": "Your card is live"
+      },
+      "account": {
+        "title": "Hello, {name}! Let's open your Sage Wallet account.",
+        "prefilled": "We've filled in what Sage already knows. Check it and you're done.",
+        "businessHeading": "Your business",
+        "businessName": "Business name",
+        "companyNumber": "Company registration number",
+        "representative": "Legal representative",
+        "email": "Email",
+        "accountHeading": "Your account",
+        "accountName": "Account name",
+        "accountNameDefault": "Main business account",
+        "accountNameError": "Enter a name for your account.",
+        "usageLegend": "What will you mainly use it for?",
+        "usage": {
+          "customerPayments": "Getting paid by customers",
+          "teamExpenses": "Team expenses",
+          "supplierPayments": "Paying suppliers"
+        },
+        "terms": "I confirm these details and accept the Sage Wallet terms",
+        "termsError": "Accept the terms to open your account.",
+        "cancel": "Cancel",
+        "submit": "Open my account"
+      },
+      "opening": {
+        "title": "Opening your account…",
+        "body": "This only takes a few seconds."
+      },
+      "ready": {
+        "title": "Your Sage Wallet account is ready",
+        "body": "It's already connected to your books. Nothing to sync, nothing to import.",
+        "iban": "IBAN",
+        "copyIban": "Copy IBAN",
+        "ibanCopied": "IBAN copied",
+        "realTime": "Real-time sync",
+        "balance": "Balance",
+        "nextHeading": "What happens now",
+        "next": [
+          "Your new IBAN is added to your invoices, so customers pay you directly.",
+          "Every payment lands in Sage and matches its invoice automatically.",
+          "Add a debit card and every team purchase arrives with its receipt."
+        ],
+        "skip": "Skip for now",
+        "getCard": "Get my debit card"
+      },
+      "card": {
+        "badge": "Recommended for you",
+        "title": "Spend smarter with a Sage debit card",
+        "body": "Every payment shows up in Sage the moment it happens, with the receipt attached. No more chasing paper.",
+        "typeLegend": "Card type",
+        "virtualTitle": "Virtual",
+        "virtualBody": "Use it online and in your phone wallet today.",
+        "virtualTag": "Ready instantly",
+        "physicalTitle": "Physical and virtual",
+        "physicalBody": "Use the virtual card today. The physical card arrives in 3–5 working days.",
+        "cardholder": "Cardholder",
+        "monthlyLimit": "Monthly spending limit",
+        "styleLegend": "Card style",
+        "styles": {
+          "sage": "Mint",
+          "night": "Midnight",
+          "plum": "Plum"
+        },
+        "perks": [
+          "Snap receipts with your phone",
+          "Freeze or change limits at any time"
+        ],
+        "nickname": "Everyday spending",
+        "later": "Maybe later",
+        "create": "Create my card",
+        "addCardholder": "Add a new cardholder",
+        "deliverTo": "Deliver to",
+        "changeAddress": "Change",
+        "cardholderDialog": {
+          "title": "Add a new cardholder",
+          "body": "They'll get their own card and can start spending as soon as it's ready.",
+          "firstName": "First name",
+          "lastName": "Last name",
+          "email": "Work email",
+          "nameError": "Enter a first and last name.",
+          "emailError": "Enter a valid email address.",
+          "cancel": "Cancel",
+          "save": "Add cardholder"
+        },
+        "addressDialog": {
+          "title": "Where should we send the card?",
+          "body": "We'll post the physical card to this address. It arrives in 3–5 working days.",
+          "cancel": "Cancel",
+          "save": "Save address"
+        }
+      },
+      "done": {
+        "title": "Your card is ready",
+        "virtualBody": "Your virtual card ending {lastFour} is ready to use. Add it to your phone wallet and start spending.",
+        "physicalBody": "Your virtual card ending {lastFour} is ready to use, and your physical card is on its way.",
+        "viewCards": "View my cards",
+        "goToAccount": "Go to my account",
+        "nextHeading": "Make the most of it",
+        "next": [
+          "Add your card to your phone wallet and pay with a tap.",
+          "Give your team their own cards, each with its own limit.",
+          "Snap receipts as you spend. Sage matches them for you."
+        ]
+      }
     },
     "list": {
       "lastSync": "Last sync: {timestamp}",
@@ -389,7 +512,7 @@
       "demoConnections": "Demo bank connections — no live feeds."
     },
     "accounts": {
-      "sageAccount": "Sage bank account",
+      "sageAccount": "Sage Wallet account",
       "pending": "Under review",
       "active": "Active",
       "realTime": "Real-time transaction information",
@@ -416,7 +539,7 @@
       "create": "Create account"
     },
     "onboarding": {
-      "title": "Setup a Sage bank account",
+      "title": "Set up a Sage Wallet account",
       "chooseTitle": "Choose Your Business Bank Account",
       "chooseBody": "Choose the account type that works best for your business",
       "paymentsTitle": "Payments only account  powered by Adyen",
@@ -511,7 +634,7 @@
       "back": "Back",
       "continue": "Continue",
       "loadingTitle": "Connecting to Adyen",
-      "loadingBody": "Preparing your Sage bank account application.",
+      "loadingBody": "Preparing your Sage Wallet account application.",
       "processingTitle": "Processing {accountType} Application",
       "processingBody": "This may take several minutes. Do not close this window.",
       "approvedTitle": "{accountType} Approved!",
@@ -589,7 +712,7 @@
       "statements": "Statements and documents",
       "settings": "Settings",
       "switchAccount": "Switch account",
-      "ariaLabel": "Sage bank account navigation"
+      "ariaLabel": "Sage Wallet account navigation"
     },
     "dashboard": {
       "bankAccountsBreadcrumb": "Bank accounts",

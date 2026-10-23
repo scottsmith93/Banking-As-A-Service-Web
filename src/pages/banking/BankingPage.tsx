@@ -5,13 +5,15 @@ import Button, { type ButtonHandle } from "carbon-react/lib/components/button/__
 import Loader from "carbon-react/lib/components/loader";
 import Typography from "carbon-react/lib/components/typography";
 import BaasBankAccountCard from "../../components/banking-baas/BaasBankAccountCard";
-import BaasOnboardingDialog from "../../components/banking-baas/BaasOnboardingDialog";
 import BaasPromotionBanner from "../../components/banking-baas/BaasPromotionBanner";
 import CreateLegacyBankAccountDialog from "../../components/banking-baas/CreateLegacyBankAccountDialog";
+import SageWalletOnboardingDialog from "../../components/sage-wallet/SageWalletOnboardingDialog";
 import BankBrandHeading from "../../components/banking-baas/BankBrandHeading";
 import { connectedBanks, connectedBankAccounts, type ConnectedBankAccount } from "../../data/bankAccountConnections";
 import type { LegacyBankAccount } from "../../data/bankingBaas";
+import { sageWalletOpenedAccount } from "../../data/sageWalletOnboarding";
 import { useBankingBaas } from "../../context/useBankingBaas";
+import { ROUTES } from "../../routes";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale } from "../../locales";
 import { interpolate } from "../../utils/interpolate";
@@ -20,7 +22,7 @@ import "../../components/banking-baas/bank-account-stack.css";
 export default function BankingPage() {
   const navigate = useNavigate();
   const { language } = useLanguage();
-  const { accounts, completeOnboarding } = useBankingBaas();
+  const { accounts, completeOnboarding, addCard } = useBankingBaas();
   const copy = getLocale(language).bankingBaas;
   const [isBaasDialogOpen, setIsBaasDialogOpen] = useState(false);
   const [isCreateOpen, setCreateOpen] = useState(false);
@@ -50,7 +52,8 @@ export default function BankingPage() {
       <Button ref={createButtonRef} variantType="primary" iconType="add" iconPosition="before" onClick={() => setCreateOpen(true)}>{copy.create}</Button>
     </Box>
     <div className="bankAccountStack">
-      {!isPromotionDismissed && <BaasPromotionBanner
+      {/* The offer stays until a Sage Wallet account exists; dismissing hides it for this visit. */}
+      {!isPromotionDismissed && accounts.length === 0 && <BaasPromotionBanner
         copy={copy.promotion}
         onOpen={() => setIsBaasDialogOpen(true)}
         // Keep keyboard focus on the page once the banner (and its close button) disappears.
@@ -81,7 +84,14 @@ export default function BankingPage() {
       {syncingIds.length > 0 && <div role="status" aria-label={copy.list.syncing}><Loader size="small" /></div>}
       <span role="status" className="bankAccountStack__live">{syncMessage}</span>
     </div>
-    <BaasOnboardingDialog open={isBaasDialogOpen} copy={copy.onboarding} onClose={() => setIsBaasDialogOpen(false)} onComplete={completeOnboarding} onManageBank={() => { setIsBaasDialogOpen(false); navigate("/banking/baas/accounts/sage-operating-account"); }} />
+    <SageWalletOnboardingDialog
+      open={isBaasDialogOpen}
+      onClose={() => setIsBaasDialogOpen(false)}
+      onAccountOpened={completeOnboarding}
+      onCreateCard={addCard}
+      onViewAccount={() => { setIsBaasDialogOpen(false); navigate(ROUTES.banking.baasAccount(sageWalletOpenedAccount.id)); }}
+      onViewCards={() => { setIsBaasDialogOpen(false); navigate(ROUTES.banking.baasCards(sageWalletOpenedAccount.id)); }}
+    />
     <CreateLegacyBankAccountDialog open={isCreateOpen} copy={copy.createDialog} onClose={() => setCreateOpen(false)} onCreate={createAccount} />
   </Box>;
 }

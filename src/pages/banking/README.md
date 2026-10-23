@@ -25,13 +25,16 @@ The full transaction workspace is now `/banking/bank-movements`; account-card ta
 ## Key decisions
 
 - Account-level task counts now use the same justification rules as the transaction overview: both missing invoices and missing categories are actionable. The CTA says Review transactions, since not every task is invoice matching.
-- One bounded, single-column stack. A white, marketing-style Sage bank account promotion leads the stack, selling getting paid faster and team credit cards; the Sage accounts section appears below it only once a Sage account exists. Its cards are drawn in code (light green and white, no dark artwork), animate in, float gently and fan apart on hover; all motion is off under reduced-motion settings. A close button dismisses the banner for the rest of the visit and returns focus to Create.
+- One bounded, single-column stack. A white, marketing-style Sage Wallet account promotion leads the stack, selling getting paid faster and team credit cards; the Sage accounts section appears below it only once a Sage account exists. Its cards are drawn in code (light green and white, no dark artwork), animate in, float gently and fan apart on hover; all motion is off under reduced-motion settings. A close button dismisses the banner for the rest of the visit and returns focus to Create.
 - Connected-bank sections use original BNP Paribas and CaixaBank wordmarks as their accessible headings, avoiding duplicated wordmark-plus-bank-name text. Card headings are account names.
 - Sage active accounts use a restrained token-based green surface/accent, a Carbon flash icon, and Real-time sync. Under-review accounts do not claim to be syncing and show Last sync: Not started.
 - Each active account exposes its matching count from the shared transaction records. Matching a transaction reduces the count on return to the list. Zero-task accounts show No transactions to match. Matching actions open the correct account's workspace; third-party bank workspaces omit Sage-only debit-card navigation.
 - Balance and currency are right-aligned; lower-priority ledger details are omitted from the overview. Sync sits in the account action menu, keeping the main card focused on the matching task.
 - No page-level search or Sync all: Create is the header action, and the promotion sits directly under the title. Individual sync (account menu) demonstrates loading and updated timestamps without pretending to fetch a bank feed. Newly created manual accounts remain under Other accounts until their bank identity/connection is configured; they cannot claim a sync or open another account's transactions.
 - Carbon components provide controls, loaders, menus, and typography. Custom layout and Sage differentiation use approved tokens.
+
+- Opening an account uses the Sage Wallet modal (`src/components/sage-wallet/`): a dark, animated brand panel on the left (the Sage onboarding stripes, a drifting aurora, scene-specific motion) and three steps on the right: a single pre-filled form, a success screen, and a debit card offer that previews the card live. The flow deliberately pushes toward both outcomes: the success screen's primary action is the card, skipping is always a quiet tertiary action, and the banner disappears once an account exists.
+- PROTOTYPE: opening the account is a timed delay; the chosen monthly limit is not stored because the shared card store has no limit field yet. Delivery times and the Adyen safeguarding line are placeholder copy to confirm.
 
 ## Localization scope
 
@@ -55,6 +58,8 @@ These are trademarked assets used for identification in an internal prototype, n
 - Existing invoice extraction and Purchases limitations are documented in `../banking-baas/transactions/README.md`.
 
 ## Change log
+
+- 2026-10-23 — Renamed Sage bank account to Sage Wallet account; replaced the multi-screen onboarding dialog with the three-step Sage Wallet modal (account, success, debit card).
 
 - 2026-10-23 — Moved Create into the header and removed Sync all and search; replaced the dark promotion with a white, animated, dismissible offer about getting paid faster and team credit cards.
 

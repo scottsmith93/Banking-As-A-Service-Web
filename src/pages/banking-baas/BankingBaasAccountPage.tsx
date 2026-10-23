@@ -8,7 +8,8 @@ import { Breadcrumbs, Crumb } from "carbon-react/lib/components/breadcrumbs";
 import { useNavigate, useParams } from "react-router-dom";
 import BaasAccountNavigation from "../../components/banking-baas/BaasAccountNavigation";
 import BaasRecentTransactions from "../../components/banking-baas/BaasRecentTransactions";
-import BaasIssueCardSidebar, { type BaasCardIssueFormData } from "../../components/banking-baas/BaasIssueCardSidebar";
+import SageWalletOnboardingDialog from "../../components/sage-wallet/SageWalletOnboardingDialog";
+import { sageWalletCardholders } from "../../data/sageWalletOnboarding";
 import { baasCardholderActivity, stagedBaasAccounts } from "../../data/bankingBaas";
 import { useLanguage } from "../../context/useLanguage";
 import { getLocale, getLocaleCode } from "../../locales";
@@ -23,9 +24,8 @@ export default function BankingBaasAccountPage() {
   const copy = getLocale(language).bankingBaas;
   const locale = getLocaleCode(language);
   const { cards, addCard } = useBankingBaas();
-  const [isIssueSidebarOpen, setIsIssueSidebarOpen] = useState(false);
+  const [isIssueWizardOpen, setIsIssueWizardOpen] = useState(false);
   const [cardIssueMessage, setCardIssueMessage] = useState("");
-  const [lastIssuedCardId, setLastIssuedCardId] = useState<string | null>(null);
   const account = stagedBaasAccounts.find((candidate) => candidate.id === accountId) ?? stagedBaasAccounts[0];
   const formatCurrency = (amount: number) => new Intl.NumberFormat(locale, { style: "currency", currency: "EUR" }).format(amount);
   const issuedDebitCards = cards.filter((card) => card.status === "issued");
@@ -42,13 +42,13 @@ export default function BankingBaasAccountPage() {
     }, {}),
   ).sort((first, second) => second.monthlySpendEur - first.monthlySpendEur).slice(0, 3);
   const monthlyTransactionCount = Object.values(baasCardholderActivity).reduce((total, activity) => total + activity.transactionCount, 0);
-  const cardholders = [...new Set(cards.map((card) => card.cardholder))];
+  // The wizard offers the Sage Wallet team plus anyone who already holds a card here.
+  const cardholders = [...new Set([...sageWalletCardholders, ...cards.map((card) => card.cardholder)])];
 
-  const handleIssueCard = (formData: BaasCardIssueFormData) => {
-    const createdCard = addCard({ cardholder: formData.cardholder, nickname: formData.nickname || copy.cards.newCardNickname,
-      colour: formData.colour, network: formData.network, type: formData.type });
-    setLastIssuedCardId(createdCard.id);
-    setCardIssueMessage(formData.type === "physical" ? copy.cardIssueForm.physicalSuccess.title : interpolate(copy.cards.created, { name: formData.cardholder }));
+  const handleIssueCard = (draft: Parameters<typeof addCard>[0]) => {
+    const createdCard = addCard(draft);
+    setCardIssueMessage(interpolate(copy.cards.created, { name: draft.cardholder }));
+    return createdCard;
   };
 
   return (
@@ -62,7 +62,7 @@ export default function BankingBaasAccountPage() {
             <Box className="baasOverviewActions" display="flex" flexWrap="wrap">
               {/* PROTOTYPE: statements and money movement are not simulated yet; card issuing is interactive. */}
               <Button className="baasOverviewAction" variantType="secondary" size="small" iconType="pdf" iconPosition="before">{copy.dashboard.actions.statements}</Button>
-              <Button className="baasOverviewAction" variantType="secondary" size="small" iconType="credit_card" iconPosition="before" onClick={() => setIsIssueSidebarOpen(true)}>{copy.dashboard.actions.newCard}</Button>
+              <Button className="baasOverviewAction" variantType="secondary" size="small" iconType="credit_card" iconPosition="before" onClick={() => setIsIssueWizardOpen(true)}>{copy.dashboard.actions.newCard}</Button>
               <Button className="baasOverviewAction" variantType="secondary" size="small" iconType="plus_large" iconPosition="before">{copy.dashboard.addMoney}</Button>
               <Button className="baasOverviewAction" variantType="secondary" size="small" iconType="send" iconPosition="before">{copy.dashboard.actions.transfer}</Button>
             </Box>
@@ -122,12 +122,15 @@ export default function BankingBaasAccountPage() {
         </Box>
       </Box>
       {cardIssueMessage && <Typography className="baasCardSuccess" variant="small" as="p" role="status">{cardIssueMessage}</Typography>}
-      <BaasIssueCardSidebar
-        open={isIssueSidebarOpen}
-        cardholders={cardholders}
-        onCancel={() => setIsIssueSidebarOpen(false)}
-        onIssue={handleIssueCard}
-        onManage={() => navigate(`/banking/baas/accounts/${account.id}/cards${lastIssuedCardId ? `?card=${lastIssuedCardId}` : ""}`)}
+      {/* Same Sage Wallet wizard as the cards page, starting at the card step. */}
+      <SageWalletOnboardingDialog
+        open={isIssueWizardOpen}
+        mode="issueCard"
+        initialCardholders={cardholders}
+        onClose={() => setIsIssueWizardOpen(false)}
+        onCreateCard={handleIssueCard}
+        onViewAccount={() => setIsIssueWizardOpen(false)}
+        onViewCards={() => { setIsIssueWizardOpen(false); navigate(`/banking/baas/accounts/${account.id}/cards`); }}
       />
     </Box>
   );

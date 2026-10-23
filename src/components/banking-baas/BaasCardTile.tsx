@@ -11,7 +11,6 @@ type BaasCardTileProps = {
     deactivated: string;
     monthlySpend: string;
     validThrough: string;
-    viewDetails: string;
     manage: string;
     active: string;
     ordered: string;
@@ -74,7 +73,6 @@ export default function BaasCardTile({ card, copy, locale, onOpenDetails }: Baas
           <Typography variant="strong" as="span" className="numericValue">{formattedSpend}</Typography>
         </Box>
         <Box className="baasCardTile__actions" display="flex" gap={1}>
-          <Button variantType="tertiary" size="small" onClick={() => onOpenDetails(card)}>{copy.viewDetails}</Button>
           <Button variantType="secondary" size="small" onClick={() => onOpenDetails(card)}>{copy.manage}</Button>
         </Box>
       </Box>

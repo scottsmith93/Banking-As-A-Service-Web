@@ -18,19 +18,25 @@ import "./sage-wallet.css";
 
 type SageWalletOnboardingDialogProps = {
   open: boolean;
+  // "onboarding" opens the account and then offers a card; "issueCard" is the
+  // same wizard starting at the card step, for accounts that already exist.
+  mode?: "onboarding" | "issueCard";
+  initialCardholders?: string[];
   onClose: () => void;
-  onAccountOpened: () => void;
+  onAccountOpened?: () => void;
   onCreateCard: (card: Pick<DebitCard, "cardholder" | "nickname" | "colour" | "type" | "network">) => DebitCard;
   onViewAccount: () => void;
   onViewCards: () => void;
 };
 
-const TOTAL_STEPS = 3;
-const STEP_NUMBER: Record<SageWalletView, number> = { account: 1, opening: 1, ready: 2, card: 3, done: 3 };
+const STEPS = {
+  onboarding: { total: 3, number: { account: 1, opening: 1, ready: 2, card: 3, done: 3 } },
+  issueCard: { total: 2, number: { account: 1, opening: 1, ready: 1, card: 1, done: 2 } },
+} satisfies Record<string, { total: number; number: Record<SageWalletView, number> }>;
 // PROTOTYPE: simulates provider latency while the account is opened; no account is really created.
 const OPENING_DELAY_MS = 1800;
 
-export default function SageWalletOnboardingDialog({ open, onClose, onAccountOpened, onCreateCard, onViewAccount, onViewCards }: SageWalletOnboardingDialogProps) {
+export default function SageWalletOnboardingDialog({ open, mode = "onboarding", initialCardholders = sageWalletCardholders, onClose, onAccountOpened, onCreateCard, onViewAccount, onViewCards }: SageWalletOnboardingDialogProps) {
   const { language } = useLanguage();
   const { walletOnboarding: copy, cards: cardLabels } = getLocale(language).bankingBaas;
   const money = new Intl.NumberFormat(getLocaleCode(language), { style: "currency", currency: "EUR", maximumFractionDigits: 0 });
@@ -39,10 +45,11 @@ export default function SageWalletOnboardingDialog({ open, onClose, onAccountOpe
   const initialAccountForm = (): SageWalletAccountForm => ({ accountName: copy.account.accountNameDefault, usage: sageWalletPrefill.usage, acceptedTerms: false, showErrors: false });
   const initialCardDraft = (): SageWalletCardDraft => ({ type: "virtual", cardholder: sageWalletPrefill.representative, monthlyLimitEur: sageWalletDefaultLimitEur, colour: "sage", deliveryAddress: sageWalletPrefill.businessAddress });
 
-  const [view, setView] = useState<SageWalletView>("account");
+  const firstView: SageWalletView = mode === "issueCard" ? "card" : "account";
+  const [view, setView] = useState<SageWalletView>(firstView);
   const [accountForm, setAccountForm] = useState(initialAccountForm);
   const [cardDraft, setCardDraft] = useState(initialCardDraft);
-  const [cardholders, setCardholders] = useState(sageWalletCardholders);
+  const [cardholders, setCardholders] = useState(initialCardholders);
   const [createdLastFour, setCreatedLastFour] = useState<string | null>(null);
   const headingRef = useRef<HTMLDivElement>(null);
   const openingTimer = useRef<number>();
@@ -50,10 +57,10 @@ export default function SageWalletOnboardingDialog({ open, onClose, onAccountOpe
   // Every time the modal opens it starts again from the first step.
   useEffect(() => {
     if (!open) return;
-    setView("account");
+    setView(firstView);
     setAccountForm(initialAccountForm());
     setCardDraft(initialCardDraft());
-    setCardholders(sageWalletCardholders);
+    setCardholders(initialCardholders);
     setCreatedLastFour(null);
     // eslint-disable-next-line react-hooks/exhaustive-deps -- reset only when the modal opens, not on language changes
   }, [open]);
@@ -75,7 +82,7 @@ export default function SageWalletOnboardingDialog({ open, onClose, onAccountOpe
     }
     setView("opening");
     openingTimer.current = window.setTimeout(() => {
-      onAccountOpened();
+      onAccountOpened?.();
       setView("ready");
     }, OPENING_DELAY_MS);
   };
@@ -101,10 +108,11 @@ export default function SageWalletOnboardingDialog({ open, onClose, onAccountOpe
   };
   // The card pitch lives in the left panel so the card form fits without scrolling.
   const subtitles: Partial<Record<SageWalletView, string>> = { opening: copy.opening.body, ready: copy.ready.body };
-  const step = STEP_NUMBER[view];
+  const { total: totalSteps, number: stepNumbers } = STEPS[mode];
+  const step = stepNumbers[view];
 
   return (
-    <Dialog open={open} onCancel={close} size="extra-large" className="sageWalletDialog" aria-label={copy.dialogLabel}
+    <Dialog open={open} onCancel={close} size="extra-large" className="sageWalletDialog" aria-label={mode === "issueCard" ? copy.card.title : copy.dialogLabel}
       showCloseIcon={view !== "opening"} contentPadding={{ p: 0 }}>
       <div className="sageWallet">
         <SageWalletHero view={view} copy={copy.hero} cardPitch={{ body: copy.card.body, perks: copy.card.perks }} cardDraft={cardDraft} cardLabels={cardLabels} createdLastFour={createdLastFour}
@@ -113,11 +121,11 @@ export default function SageWalletOnboardingDialog({ open, onClose, onAccountOpe
         <section className="sageWallet__panel" aria-labelledby="sage-wallet-step-title">
           <header className="sageWallet__header">
             <div className="sageWallet__progress" aria-hidden="true">
-              {Array.from({ length: TOTAL_STEPS }, (_, index) => <span key={index} className={index < step ? "is-filled" : undefined} />)}
+              {Array.from({ length: totalSteps }, (_, index) => <span key={index} className={index < step ? "is-filled" : undefined} />)}
             </div>
             <div className="sageWallet__stepRow">
-              <Typography variant="small" as="p" className="sageWallet__stepLabel">{interpolate(copy.progress, { current: step, total: TOTAL_STEPS })}</Typography>
-              {view === "card" && <Pill size="S" pillRole="status" colorVariant="positive">{copy.card.badge}</Pill>}
+              <Typography variant="small" as="p" className="sageWallet__stepLabel">{interpolate(copy.progress, { current: step, total: totalSteps })}</Typography>
+              {view === "card" && mode === "onboarding" && <Pill size="S" pillRole="status" colorVariant="positive">{copy.card.badge}</Pill>}
             </div>
             <div ref={headingRef} tabIndex={-1} className="sageWallet__heading">
               <Typography variant="h2" as="h2" id="sage-wallet-step-title">{titles[view]}</Typography>
@@ -147,7 +155,7 @@ export default function SageWalletOnboardingDialog({ open, onClose, onAccountOpe
               <Button variantType="primary" iconType="arrow_right" iconPosition="after" onClick={() => setView("card")}>{copy.ready.getCard}</Button>
             </>}
             {view === "card" && <>
-              <Button variantType="tertiary" onClick={close}>{copy.card.later}</Button>
+              <Button variantType="tertiary" onClick={close}>{mode === "issueCard" ? copy.account.cancel : copy.card.later}</Button>
               <Button variantType="primary" iconType="credit_card" iconPosition="before" onClick={createCard}>{copy.card.create}</Button>
             </>}
             {view === "done" && <>

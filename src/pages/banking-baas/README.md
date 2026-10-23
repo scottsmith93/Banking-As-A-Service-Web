@@ -44,6 +44,8 @@ The transaction workspace and its Figma/competitor analysis are documented in [t
 
 ## Change log
 
+- 2026-10-23 — Create debit card (cards page) and New card (account overview) now open the Sage Wallet wizard at its card step (2 steps: card details, card ready) instead of the side panel. Card tiles keep a single Manage action; View details was removed. The old side-panel components are no longer used.
+
 - 2026-10-23 — Mastercard only: removed Visa from cards, transactions, and the issuing form. Redrew card tiles as light real-proportion cards, moved search and Create debit card into the title row, and dropped the redundant card count and CVV placeholder.
 
 - 2026-10-22 — Grouped the recent-transactions heading/subtitle with a 4px gap and centred View all against the group. Made descriptions plain text while retaining Carbon's keyboard-accessible rows; added shared transaction-type icons and compact thick-tick justification styling, with muted non-applicable states and consistent row heights.
